@@ -24,10 +24,23 @@ class CategoryTrailerController extends Controller
     {
         $formFields = $request->validate([
             'name_category_trailer' => 'required|string',
-            'image_category_trailer' => 'required|string',
         ]); 
 
-        $categoryTrailer = CategoryTrailer::create($formFields);
+        $filename = "";
+        if ($request->file('image_category_trailer')) {
+            $filenameWithExt = $request->file('image_category_trailer')->getClientOriginalName();
+            $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image_category_trailer')->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            $path = $request->file('image_category_trailer')->storeAs('/uploads', $filename);
+        } else {
+            $filename = null;
+        }
+        $categoryTrailer = CategoryTrailer::create(array_merge(
+            $request->all(),
+            ['image_category_trailer' => $filename]
+        ));
+
 
         return response()->json([
             'message' => 'Catégorie ajoutée avec succès',
@@ -53,7 +66,8 @@ class CategoryTrailerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    /*
+    public function update(Request $request, CategoryTrailer $categoryTrailer)
     {
         $categoryTrailer = CategoryTrailer::find($id);
 
@@ -73,6 +87,44 @@ class CategoryTrailerController extends Controller
             'data' => $categoryTrailer
         ]);
     }
+*/
+
+    public function update(Request $request, CategoryTrailer $categoryTrailer)
+    {
+    
+        $request->validate([
+            'name_category_trailer' => 'required|max:100',
+            'image_category_trailer' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $updateData = [];
+        if ($request->has('name_category_trailer')) {
+            $updateData['name_category_trailer'] = $request->input('name_category_trailer');
+        }
+
+        if ($request->hasFile('categoryTrailer')) {
+            if ($categoryTrailer->imageCategoryTrailer && file_exists(public_path('uploads/' . $categoryTrailer->imageCategoryTrailer))) {
+                unlink(public_path('uploads/' . $categoryTrailer->imageCategoryTrailer));
+            }
+
+            $file = $request->file('image_category_trailer');
+            $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            $file->storeAs('uploads/', $filename);
+            $updateData['image_category_trailer'] = $filename;
+        }
+
+        $categoryTrailer->update($updateData);
+
+        return response()->json([
+            'status' => 'Catégorie de remorque mis à jour avec succès',
+            'data' => $categoryTrailer,
+        ]);
+    }
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -81,7 +133,7 @@ class CategoryTrailerController extends Controller
     {
         $categoryTrailer->delete();
         return response()->json([
-            'status' => 'categorie supprimée avec succès'
+            'status' => 'categorie de remorque supprimée avec succès'
         ]);
     }
 }

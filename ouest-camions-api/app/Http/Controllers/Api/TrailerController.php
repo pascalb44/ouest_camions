@@ -31,7 +31,6 @@ class TrailerController extends Controller
             'width_trailer' => 'required|string',
             'height_trailer' => 'required|string',
             'load_trailer' => 'required|string',
-            'image_trailer' => 'required|string',
             'duration_trailer' => 'required|string',
             'price_day_trailer' => 'required|string',
             'price_week_trailer' => 'required|string',
@@ -39,8 +38,21 @@ class TrailerController extends Controller
             'price_year_trailer' => 'required|string',          
             'id_category_trailer' => 'required|string',          
         ]); 
+        $filename = "";
+        if ($request->file('image_trailer')) {
+            $filenameWithExt = $request->file('image_trailer')->getClientOriginalName();
+            $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image_trailer')->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            $path = $request->file('image_trailer')->storeAs('/uploads', $filename);
+        } else {
+            $filename = null;
+        }
+        $trailer = Trailer::create(array_merge(
+            $request->all(),
+            ['image_trailer' => $filename]
+        ));
 
-        $trailer = Trailer::create($formFields);
         return response()->json([
             'message' => 'remorque ajoutée avec succès',
             'data' => $trailer

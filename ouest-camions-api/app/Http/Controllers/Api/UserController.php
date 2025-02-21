@@ -30,8 +30,42 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|string',
+            'company' => 'required|string',
+            'siren' => 'required|string',
+            'address' => 'required|string',
+            'postalCode' => 'required|string',
+            'town' => 'required|string',
+            'telephone' => 'required|string',   
+            'id_role' => 'required|exists:roles,id',
+        ]); 
+/*
+        $filename = "";
+        if ($request->file('siren')) {
+            $filenameWithExt = $request->file('siren')->getClientOriginalName();
+            $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('siren')->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            $path = $request->file('siren')->storeAs('/uploads', $filename);
+        } else {
+            $filename = null;
+        }
+        */
+        $user = User::create(array_merge(
+            $request->all(),
+        //    ['siren' => $filename]
+        ));
+        
+        return response()->json([
+            'message' => 'Client ajouté avec succès',
+            'data' => $user
+        ], 201);
     }
+
 
     /**
      * Display the specified resource.

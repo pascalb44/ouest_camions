@@ -20,14 +20,27 @@ class CategoryTruckController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         $formFields = $request->validate([
             'name_category_truck' => 'required|string',
-            'image_category_truck' => 'required|string',
         ]); 
 
-        $categoryTruck = CategoryTruck::create($formFields);
+        $filename = "";
+        if ($request->file('image_category_truck')) {
+            $filenameWithExt = $request->file('image_category_truck')->getClientOriginalName();
+            $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image_category_truck')->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            $path = $request->file('image_category_truck')->storeAs('/uploads', $filename);
+        } else {
+            $filename = null;
+        }
+        $categoryTruck = CategoryTruck::create(array_merge(
+            $request->all(),
+            ['image_category_truck' => $filename]
+        ));
 
         return response()->json([
             'message' => 'Catégorie ajoutée avec succès',
@@ -35,6 +48,18 @@ class CategoryTruckController extends Controller
         ], 201);
     }
     
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -53,20 +78,32 @@ class CategoryTruckController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, CategoryTruck $categoryTruck)
     {
-        $categoryTruck = CategoryTruck::find($id);
 
         if (!$categoryTruck) {
             return response()->json(['message' => 'Catégorie non trouvée'], 404);
         }
 
         $formFields = $request->validate([
-            'name_category_truck' => 'sometimes|string',
-            'image_category_truck' => 'sometimes|string',
+            'name_category_truck' => 'required|string',
+            'image_category_truck' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $categoryTruck->update($formFields);
+        if ($request->hasFile('image_category_truck')) {
+            if ($categoryTruck->imageCategoryTruck && file_exists(public_path('uploads/' . $categoryTruck->imageCategoryTruck))) {
+                unlink(public_path('uploads/' . $categoryTruck->imageCategoryTruck));
+            }
+
+            $file = $request->file('image_category_truck');
+            $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            $file->storeAs('uploads/', $filename);
+            $updateData['image_category_truck'] = $filename;
+        }
+        $categoryTruck->fill($formFields);
+        $categoryTruck->save();
 
         return response()->json([
             'message' => 'Catégorie mise à jour avec succès',

@@ -27,6 +27,7 @@ class ContactController extends Controller
                 'email_contact' => 'required|string',
                 'subject' => 'required|string',
                 'message' =>'required|string',
+                'id_user' =>'required|exists:users,id',
             ]); 
     
             $contact = new Contact();
