@@ -54,11 +54,23 @@ class ContactController extends Controller
     /**
      * Update the specified resource in storage.
      */
-/*    public function update(Request $request, Contact $contact)
+    public function update(Request $request, Contact $contact)
     {
-        //
-    }
-*/
+        $request->validate([
+                
+                'email_contact' => 'required|string',
+                'subject' => 'required|string',
+                'message' =>'required|string',
+                'id_user' =>'required|exists:users,id',
+            ]); 
+    $contact->update($request->all());
+        
+    return response()->json([
+        'status' => 'contact modifié avec succès'
+    ]);
+
+}
+
     /**
      * Remove the specified resource from storage.
      */

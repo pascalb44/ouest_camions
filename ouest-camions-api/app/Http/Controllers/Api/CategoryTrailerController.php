@@ -89,39 +89,43 @@ class CategoryTrailerController extends Controller
     }
 */
 
-    public function update(Request $request, CategoryTrailer $categoryTrailer)
-    {
-
-        $request->validate([
-            'name_category_trailer' => 'required|max:100',
-            'image_category_trailer' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $updateData = [];
-        if ($request->has('name_category_trailer')) {
-            $updateData['name_category_trailer'] = $request->input('name_category_trailer');
+public function update(Request $request, $id)
+{
+    // Utilisation de findOrFail au lieu de l'injection de modèle
+    $CategoryTrailer = CategoryTrailer::findOrFail($id);
+    
+    $request->validate([
+        'name_category_trailer' => 'required|string',
+        'image_category_trailer' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+    
+    // Créez un tableau pour les données à mettre à jour
+    $updateData = $request->only(['name_category_trailer']);
+    
+    if ($request->hasFile('image_category_trailer')) {
+        // Vérifiez si l'ancienne image existe
+        if ($CategoryTrailer->image_category_trailer && file_exists(public_path('uploads/' . $CategoryTrailer->image_category_trailer))) {
+            unlink(public_path('uploads/' . $CategoryTrailer->image_category_trailer));
         }
-
-        if ($request->hasFile('categoryTrailer')) {
-            if ($categoryTrailer->imageCategoryTrailer && file_exists(public_path('uploads/' . $categoryTrailer->imageCategoryTrailer))) {
-                unlink(public_path('uploads/' . $categoryTrailer->imageCategoryTrailer));
-            }
-
-            $file = $request->file('image_category_trailer');
-            $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $file->storeAs('uploads/', $filename);
-            $updateData['image_category_trailer'] = $filename;
-        }
-
-        $categoryTrailer->update($updateData);
-
-        return response()->json([
-            'status' => 'Catégorie de remorque mis à jour avec succès',
-            'data' => $categoryTrailer,
-        ]);
+        
+        $file = $request->file('image_category_trailer');
+        $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = $file->getClientOriginalExtension();
+        $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+        
+        // Utilisez move au lieu de storeAs
+        $file->move(public_path('uploads'), $filename);
+        $updateData['image_category_trailer'] = $filename;
     }
+
+   $CategoryTrailer->update($updateData); 
+   $CategoryTrailer = $CategoryTrailer->fresh();
+   return response()->json([
+       'status' => 'categorie de camion mise à jour avec succès',
+       'data' => $CategoryTrailer,        
+   ]);
+}
+
 
 
 

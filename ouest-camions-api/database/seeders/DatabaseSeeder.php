@@ -14,8 +14,11 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
      
-    public function run(): void // to create only the admin without userFactory 
+    public function run(): void // to create admin 
     {
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+
         User::factory()->create([
             'first_name' => 'Pascal',
             'last_name' => 'Dev',

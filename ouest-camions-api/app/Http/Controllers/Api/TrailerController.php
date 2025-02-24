@@ -77,8 +77,52 @@ class TrailerController extends Controller
      */
     public function update(Request $request, Trailer $trailer)
     {
-        //
-    }
+               $request->validate([
+                'brand_trailer' => 'required|string',
+                'name_trailer' => 'required|string',
+                'description_trailer' => 'required|string',
+                'color_trailer' => 'required|string',
+                'length_trailer' => 'required|string',
+                'width_trailer' => 'required|string',
+                'height_trailer' => 'required|string',
+                'load_trailer' => 'required|string',
+                'image_trailer' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'duration_trailer' => 'required|string',
+                'price_day_trailer' => 'required|string',
+                'price_week_trailer' => 'required|string',
+                'price_month_trailer' => 'required|string',
+                'price_year_trailer' => 'required|string',     
+                'id_category_trailer' => 'required|string',          
+            ]);
+    
+          
+            $updateData = $request->only([
+            'brand_trailer', 'name_trailer', 'description_trailer', 'color_trailer',
+            'length_trailer', 'width_trailer', 'height_trailer', 'load_trailer',
+            'duration_trailer', 'price_day_trailer', 'price_week_trailer',
+            'price_month_trailer', 'price_year_trailer', 'id_category_trailer',
+            ]);
+
+
+            if ($request->file('image_trailer')) {
+                if ($trailer->imageTrailer && file_exists(public_path('uploads/' . $trailer->imageTrailer))) {
+                    unlink(public_path('uploads/' . $trailer->imageTrailer));
+                }
+    
+                $file = $request->file('image_trailer');
+                $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+                $file->storeAs('uploads/', $filename);
+                $updateData['image_trailer'] = $filename;
+            }
+            $trailer->update($updateData);
+            return response()->json([
+                'status' => 'remorque mise à jour avec succès',
+                'data' => $trailer,
+            ]);
+        }
+    
 
     /**
      * Remove the specified resource from storage.
