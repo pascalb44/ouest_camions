@@ -24,7 +24,7 @@ class CategoryTrailerController extends Controller
     {
         $formFields = $request->validate([
             'name_category_trailer' => 'required|string',
-        ]); 
+        ]);
 
         $filename = "";
         if ($request->file('image_category_trailer')) {
@@ -47,14 +47,14 @@ class CategoryTrailerController extends Controller
             'data' => $categoryTrailer
         ], 201);
     }
-    
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $categoryTrailer= CategoryTrailer::find($id);
+        $categoryTrailer = CategoryTrailer::find($id);
 
         if (!$categoryTrailer) {
             return response()->json(['message' => 'Catégorie non trouvée'], 404);
@@ -91,7 +91,7 @@ class CategoryTrailerController extends Controller
 
     public function update(Request $request, CategoryTrailer $categoryTrailer)
     {
-    
+
         $request->validate([
             'name_category_trailer' => 'required|max:100',
             'image_category_trailer' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -129,11 +129,12 @@ class CategoryTrailerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CategoryTrailer $categoryTrailer)
+    public function destroy($id)
     {
-        $categoryTrailer->delete();
+        $categoryTrailer = CategoryTrailer::findOrFail($id);
+        $deleted = $categoryTrailer->delete();
         return response()->json([
             'status' => 'categorie de remorque supprimée avec succès'
-        ]);
+        ], 500);
     }
 }

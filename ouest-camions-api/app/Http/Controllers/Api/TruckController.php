@@ -111,7 +111,7 @@ class TruckController extends Controller
             ]);
 
 
-            if ($request->hasFile('image_truck')) {
+            if ($request->file('image_truck')) {
                 if ($truck->imageTruck && file_exists(public_path('uploads/' . $truck->imageTruck))) {
                     unlink(public_path('uploads/' . $truck->imageTruck));
                 }

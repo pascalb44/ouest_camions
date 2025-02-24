@@ -21,3 +21,6 @@ Route::apiResource("trailers", TrailerController::class);
 Route::apiResource("trucks", TruckController::class);
 Route::apiResource("categories-trucks", CategoryTruckController ::class);
 Route::apiResource("categories-trailers", CategoryTrailerController::class);
+
+
+Route::patch('/categories-trucks/{categories_truck}', [CategoryTruckController::class, 'update']);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\CategoryTruck;
 use App\Http\Controllers\Controller;
 
+
 class CategoryTruckController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class CategoryTruckController extends Controller
     {
         $formFields = $request->validate([
             'name_category_truck' => 'required|string',
-        ]); 
+        ]);
 
         $filename = "";
         if ($request->file('image_category_truck')) {
@@ -47,18 +48,6 @@ class CategoryTruckController extends Controller
             'data' => $categoryTruck
         ], 201);
     }
-    
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -66,7 +55,7 @@ class CategoryTruckController extends Controller
      */
     public function show(string $id)
     {
-        $categoryTruck= CategoryTruck::find($id);
+        $categoryTruck = CategoryTruck::find($id);
 
         if (!$categoryTruck) {
             return response()->json(['message' => 'Catégorie non trouvée'], 404);
@@ -78,17 +67,22 @@ class CategoryTruckController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(Request $request, CategoryTruck $categoryTruck)
     {
 
-        if (!$categoryTruck) {
-            return response()->json(['message' => 'Catégorie non trouvée'], 404);
-        }
 
-        $formFields = $request->validate([
+        $request->validate([
             'name_category_truck' => 'required|string',
             'image_category_truck' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+
+        $updateData = [];
+
+        if ($request->has('name_category_truck')) {
+            $updateData['name_category_truck'] = $request->input('name_category_truck');
+        }
 
         if ($request->hasFile('image_category_truck')) {
             if ($categoryTruck->imageCategoryTruck && file_exists(public_path('uploads/' . $categoryTruck->imageCategoryTruck))) {
@@ -102,23 +96,28 @@ class CategoryTruckController extends Controller
             $file->storeAs('uploads/', $filename);
             $updateData['image_category_truck'] = $filename;
         }
-        $categoryTruck->fill($formFields);
-        $categoryTruck->save();
 
-        return response()->json([
-            'message' => 'Catégorie mise à jour avec succès',
-            'data' => $categoryTruck
-        ]);
+        try {
+            $categoryTruck->update($updateData);
+            return response()->json([
+                'message' => 'Catégorie mise à jour avec succès',
+                'data' => $categoryTruck->refresh()
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CategoryTruck $categoryTruck)
+
+    public function destroy($id)
     {
-        $categoryTruck->delete();
+        $categoryTruck = CategoryTruck::findOrFail($id);
+        $deleted = $categoryTruck->delete();
         return response()->json([
             'status' => 'categorie supprimée avec succès'
-        ]);
+        ], 500);
     }
 }
