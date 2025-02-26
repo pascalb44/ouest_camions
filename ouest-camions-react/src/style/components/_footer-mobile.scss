@@ -1,0 +1,54 @@
+/* version mobile */
+
+@media (max-width: 480px) {
+
+    .footer {
+        padding-bottom: 10%;
+    }
+
+    .footerBlock {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logoFooterBlock {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        /* Ajoute de l'espace en bas de logoFooterBlock */
+    }
+    
+    .brandFooter p {
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    .adressFooterTitle,
+    .companyFooterTitle,
+    .servicesFooterTitle {
+        margin-top: 30px;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .adressFooter,
+    .companyFooter,
+    .servicesFooter {
+        text-align: center;
+        font-size: 1rem;
+        line-height: 10px;
+        padding-top: 0;
+    }
+
+    /* 2nd line of the bottom */
+
+    .footerBottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footerBottom p {
+        margin: 0;
+    }
+}

@@ -1,0 +1,57 @@
+/* footer version desktop */
+
+.footer {
+    width: 100%;
+    background-color: lightseagreen;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2%;
+}
+
+.footerBlock {
+    display: flex;
+    flex-direction: row;
+}
+
+.logoFooterBlock {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px; /* Ajoute de l'espace en bas de logoFooterBlock */
+}
+
+.brandFooter p {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.adressFooterTitle,
+.companyFooterTitle,
+.servicesFooterTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.adressFooter,
+.companyFooter,
+.servicesFooter {
+    flex: 1;
+    min-width: 200px;
+    text-align: left;
+    padding: 30px;
+    font-size: 1rem;
+    line-height: 25px;
+}
+
+/* 2nd line of the bottom */
+
+.footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.footerBottom p {
+    margin: 0;
+}

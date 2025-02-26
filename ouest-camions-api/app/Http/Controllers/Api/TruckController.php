@@ -82,7 +82,6 @@ class TruckController extends Controller
      */
     public function update(Request $request, Truck $truck)
     {
-        dd($truck);
         $request->validate([
             'brand_truck' => 'required|string',
             'name_truck' => 'required|string',
