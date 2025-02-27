@@ -1,0 +1,41 @@
+@media (min-width: 1024px) {
+
+    /* header version desktop */
+
+    .header {
+        position: relative;
+        width: 100%;
+    }
+
+    .banner-container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+    }
+
+
+    /* Vidéo of the header */
+    .banner-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* video cover all the banner without deformation */
+        z-index: -1;
+        /* video in background */
+    }
+
+
+    .top-banner { /* transparent banner */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 40%;
+        background-color: rgba(32, 178, 170, 0.5);
+        z-index: 10;
+        /* above the video */
+    }
+}

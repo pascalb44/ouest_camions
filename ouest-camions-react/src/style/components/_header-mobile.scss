@@ -1,0 +1,46 @@
+/* version tablette */
+
+@media (min-width: 480px) and (max-width: 768px) {
+
+    /* Vidéo of the header */
+    .banner-video {
+        display: none;
+    }
+
+    .top-banner {
+        display: none;
+    }
+}
+
+
+
+
+/* version mobile */
+
+@media (max-width: 480px) {
+
+    .header {
+        position: relative;
+        width: 100%;
+    }
+
+    .banner-container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        border: solid 1px rebeccapurple;
+    }
+
+
+
+    .banner-video {
+        display: none;
+    }
+
+    /* menu burger in place of */
+
+    .top-banner {
+        display: none;
+    }
+
+}

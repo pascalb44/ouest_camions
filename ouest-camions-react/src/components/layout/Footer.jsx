@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { faAt } from '@fortawesome/free-solid-svg-icons';
-import Logo from './Logo';
+import LogoFooter from './LogoFooter';
 
 
 const Footer = () => {
@@ -11,15 +11,15 @@ const Footer = () => {
             <div className="footerBlock">
                 <div class="logoFooterBlock">
                     <div className="brandFooter">
-                        <p><span>Ouest camions</span></p>
+                        <p>Ouest camions</p>
                     </div>
-                    <div className="logoFooter logoFooterMobile" >
-                        <Logo clickable={false} footer={true} /> {/* import component logo not clickable */}
+                    <div className="logoFooter" >
+                        <LogoFooter />
                     </div>
                 </div>
                 <div className="adressFooter">
                     <p className="adressFooterTitle">Adresse</p>
-                    <p>123 rue du tourisme</p>
+                    <p>123 rue du transport</p>
                     <p>44110 CHATEAUBRIANT</p>
                     <p><FontAwesomeIcon icon={faPhoneAlt} /> 0123546879</p>
                     <p><FontAwesomeIcon icon={faAt} /> contact@ouestcamions.fr</p>

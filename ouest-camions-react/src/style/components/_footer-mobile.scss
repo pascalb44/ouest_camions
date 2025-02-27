@@ -1,9 +1,11 @@
-/* version mobile */
+/* version tablette */
 
-@media (max-width: 480px) {
+@media (min-width: 480px) and (max-width: 768px) {
 
     .footer {
+        background-color: lightseagreen;
         padding-bottom: 10%;
+
     }
 
     .footerBlock {
@@ -15,12 +17,74 @@
         display: flex;
         flex-direction: column;
         margin: 0 auto;
-        /* Ajoute de l'espace en bas de logoFooterBlock */
     }
-    
+
+    .brandFooter p {
+        font-weight: bold;
+        font-size: 1.8rem;
+    }
+
+    .adressFooterTitle,
+    .companyFooterTitle,
+    .servicesFooterTitle {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .adressFooter,
+    .companyFooter,
+    .servicesFooter {
+        text-align: center;
+        font-size: 1rem;
+        line-height: 10px;
+        padding-top: 0;
+    }
+
+    /* 2nd line of the bottom */
+
+    .footerBottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footerBottom p {
+        margin: 0;
+    }
+}
+
+
+
+
+
+
+
+/* version mobile */
+
+@media (max-width: 480px) {
+
+    .footer {
+        padding-bottom: 10%;
+        background-color: lightseagreen;
+
+    }
+
+    .footerBlock {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logoFooterBlock {
+        display: block;
+        margin: 0 auto;
+
+    }
+
     .brandFooter p {
         font-weight: bold;
         font-size: 2rem;
+        text-align: center;
     }
 
     .adressFooterTitle,

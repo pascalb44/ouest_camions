@@ -1,20 +1,66 @@
-.logo-container {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
+@media (min-width: 1024px) {
+
+    .logo-container-header {
+        position: absolute;
+        z-index: 20;
+        /* above the top-banner and to be clickable */
+    }
+
+    .logoHeader {
+        width: 150px;
+        margin-left: 50px;
+        margin-top: 30px;
+    }
+
+    .logoFooter {
+        width: 150px;
+    }
+
 }
 
-.logo {
-    width: 150px;
+
+/* tablette */
+
+@media (min-width: 480px) and (max-width: 768px) {
+
+    .logoFooter,.logoHeader {
+        width: 140px;
+    }
 }
 
-.logoFooter {
-    width: 150px; 
-    margin-top: 100px;
-    margin-left: 100px;
-}
+/* mobile */
 
-.logoFooterMobile {
-    margin-top: 130px;
+@media (max-width: 480px) {
+
+
+    /* header */
+
+    .logo-container-header {
+        position: absolute;
+        top: 20px;
+        left: 2px;
+    }
+
+    .logoHeader {
+        width: 140px;
+        margin-left: 150%;
+    }
+
+    /* footer */
+
+  .logo-container-footer {
+        margin-top: 100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .logoFooter {
+        width: 140px;
+        margin : 0 auto;
+    }
+
+
+
+  
+
 }
