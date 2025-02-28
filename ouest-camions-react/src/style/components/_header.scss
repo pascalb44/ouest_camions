@@ -28,7 +28,52 @@
     }
 
 
-    .top-banner { /* transparent banner */
+    .top-banner {
+        /* transparent banner */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 40%;
+        background-color: rgba(32, 178, 170, 0.5);
+        z-index: 10;
+        /* above the video */
+    }
+}
+
+/* version tablette orientation landscape */
+
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+    .header {
+        position: relative;
+        width: 100%;
+    }
+
+    .banner-container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+    }
+
+
+    /* Vidéo of the header */
+    .banner-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* video cover all the banner without deformation */
+        z-index: -1;
+        /* video in background */
+    }
+
+
+    .top-banner {
+        /* transparent banner */
         position: absolute;
         top: 0;
         left: 0;

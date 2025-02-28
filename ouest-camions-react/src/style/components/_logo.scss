@@ -1,3 +1,5 @@
+/************************ version desktop ****************************/
+
 @media (min-width: 1024px) {
 
     .logo-container-header {
@@ -19,16 +21,66 @@
 }
 
 
-/* tablette */
+/**************************** version tablette orientation landscape **********************/
 
-@media (min-width: 480px) and (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 
-    .logoFooter,.logoHeader {
-        width: 140px;
+    .logo-container-header {
+        position: absolute;
+        z-index: 20;
+        /* above the top-banner and to be clickable */
+
+        .logoHeader {
+            width: 150px;
+            margin-left: 50px;
+            margin-top: 30px;
+        }
+    }
+
+    .logoFooter {
+        width: 150px;
+    }
+
+
+}
+
+
+/************************ version tablette orientation portrait ****************************/
+
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+
+    .logoHeader {
+        width: 150px;
+        margin-left: 50px;
+        margin-top: 30px;
+    }
+
+    .logoFooter {
+        width: 150px;
+        margin: 0 auto;
     }
 }
 
-/* mobile */
+
+
+
+/***************************** great mobile ****************************/
+
+@media (min-width: 480px) and (max-width: 768px) {
+
+    .logoHeader {
+        width: 100px;
+        right: 80%;
+    }
+
+    .logoFooter {
+        width: 100px;
+        margin: 0 auto;
+    }
+}
+
+/**************************** mobile ************************/
 
 @media (max-width: 480px) {
 
@@ -37,18 +89,20 @@
 
     .logo-container-header {
         position: absolute;
-        top: 20px;
+        top: 10px;
         left: 2px;
-    }
+        z-index: 1000;
 
-    .logoHeader {
-        width: 140px;
-        margin-left: 150%;
+        .logoHeader {
+            width: 90px;
+            margin-left: 100%;
+            margin-top: 15%;
+        }
     }
 
     /* footer */
 
-  .logo-container-footer {
+    .logo-container-footer {
         margin-top: 100px;
         margin-left: auto;
         margin-right: auto;
@@ -56,11 +110,11 @@
 
     .logoFooter {
         width: 140px;
-        margin : 0 auto;
+        margin: 0 auto;
     }
 
 
 
-  
+
 
 }

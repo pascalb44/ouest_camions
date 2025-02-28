@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import { faAt } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +22,7 @@ const Footer = () => {
                     <p className="adressFooterTitle">Adresse</p>
                     <p>123 rue du transport</p>
                     <p>44110 CHATEAUBRIANT</p>
-                    <p><FontAwesomeIcon icon={faPhoneAlt} /> 0123546879</p>
+                    <p><FontAwesomeIcon icon={faPhoneAlt} /> 0123546879</p> {/* icone */}
                     <p><FontAwesomeIcon icon={faAt} /> contact@ouestcamions.fr</p>
                 </div>
                 <div className="companyFooter">
@@ -38,7 +39,8 @@ const Footer = () => {
          </div>
             <div className="footerBottom">
                 <p>Copyrigth 2025</p>
-                <p>Mention légales</p>
+                <p><Link to="/legal" className="nav-link">Mention légales</Link></p>
+
             </div>
         </footer>
     );

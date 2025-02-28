@@ -1,19 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Si tu utilises React Router pour la navigation
+import React, { useState } from "react"; import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import LogoHeader from './LogoHeader';
+
+
 
 const HeaderMobile = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
+
     return (
         <header className="mobile-header">
-            <div className="logo-container">
-                <h1>Mon Site</h1> {/* Logo ou titre */}
+            <div className="header-top">
+                <button className="menu-toggle" onClick={toggleMenu}>
+                    {isOpen ? "✖" : "☰"}
+                </button>
+                <div className="header-top-content">
+                <LogoHeader /> 
+                    <h1>Ouest camions</h1>
+                    <p><FontAwesomeIcon icon={faPhoneAlt} /> 0123546879</p>
+                </div>
             </div>
-            <nav className="mobile-nav">
-                <Link to="/" className="nav-link">Accueil</Link>
-                <Link to="/about" className="nav-link">À Propos</Link>
-                <Link to="/services" className="nav-link">Services</Link>
-                <Link to="/contact" className="nav-link">Contact</Link>
+            <nav className={`mobile-nav ${isOpen ? "open" : ""}`}>
+                <Link to="/presentation" className="nav-link" onClick={toggleMenu}>Présentation</Link>
+                <Link to="/" className="nav-link" onClick={toggleMenu}>Nos agences</Link>
+                <Link to="/contacts" className="nav-link" onClick={toggleMenu}>Contact</Link>
+                <Link to="/login" className="nav-link" onClick={toggleMenu}>Connexion</Link>
             </nav>
-            <button className="menu-toggle">☰</button>
         </header>
     );
 };
