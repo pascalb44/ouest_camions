@@ -1,0 +1,71 @@
+@media (min-width: 1024px) {
+
+    .homePicturesCard {
+        display: flex;
+        flex-direction: row;
+        margin-top: 5%;
+    }
+
+    .homePictures {
+        position: relative;
+        margin-left: 15%;
+
+    }
+
+    .CategoryTrailer-image,
+    .CategoryTruck-image {
+        width: 75%;
+        height: 70%;
+    }
+
+    /******** legend **********/
+
+    .image-caption {
+        width: 75%;
+        background-color: lightseagreen;
+        text-align: center;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+
+        a {
+            text-decoration: none;
+            color: white;
+
+        }
+    }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+
+ 
+    .homePicturesCard {
+        display: flex;
+        flex-direction: row;
+        margin-top: 5%;
+    }
+
+    .homePictures {
+        position: relative;
+        margin-left: 15%;
+
+    }
+
+    .CategoryTrailer-image,
+    .CategoryTruck-image {
+        width: 70%;
+        height: 70%;
+    }
+
+        /******** legend **********/
+
+    .image-caption {
+        width: 70%;
+        background-color: lightseagreen;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+}

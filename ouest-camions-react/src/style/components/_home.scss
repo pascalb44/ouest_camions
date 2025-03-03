@@ -1,0 +1,86 @@
+@media (min-width: 1024px) {
+
+    /***************************** page home **********************************/
+
+
+    .h1Home {
+        color : blue;
+        padding: 2%;
+    }
+    /* scrolling message  */
+
+    .pub-container {
+        width: 100%;
+        overflow: hidden;
+        background-color: #d3edea;
+        color: #004aad;
+        padding: 10px 0;
+        white-space: nowrap;
+        position: relative;
+    }
+
+    .pub {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: bold;
+        animation: marqueeScroll 10s linear infinite;
+    }
+
+    @keyframes marqueeScroll {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(-100%);
+        }
+    }
+
+    /* presentation text on the home page */
+
+    .edito {
+        text-align: center;
+        padding: 5%;
+
+        span {
+            display: inline-block;
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 2%;
+
+        }
+    }
+
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+
+    /* scrolling message  */
+
+    .pub-container {
+        width: 100%;
+        overflow: hidden;
+        background-color: #d3edea;
+        color: #004aad;
+        padding: 10px 0;
+        white-space: nowrap;
+        position: relative;
+    }
+
+    .pub {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: bold;
+        animation: marqueeScroll 10s linear infinite;
+    }
+
+    @keyframes marqueeScroll {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(-100%);
+        }
+    }
+}

@@ -32,7 +32,7 @@ class CategoryTrailerController extends Controller
             $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image_category_trailer')->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('image_category_trailer')->storeAs('/uploads', $filename);
+            $path = $request->file('image_category_trailer')->storeAs('/uploads/CategoryTrailer/', $filename);
         } else {
             $filename = null;
         }
@@ -91,7 +91,6 @@ class CategoryTrailerController extends Controller
 
 public function update(Request $request, $id)
 {
-    // Utilisation de findOrFail au lieu de l'injection de modèle
     $CategoryTrailer = CategoryTrailer::findOrFail($id);
     
     $request->validate([
@@ -99,13 +98,11 @@ public function update(Request $request, $id)
         'image_category_trailer' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
     
-    // Créez un tableau pour les données à mettre à jour
     $updateData = $request->only(['name_category_trailer']);
     
     if ($request->hasFile('image_category_trailer')) {
-        // Vérifiez si l'ancienne image existe
-        if ($CategoryTrailer->image_category_trailer && file_exists(public_path('uploads/' . $CategoryTrailer->image_category_trailer))) {
-            unlink(public_path('uploads/' . $CategoryTrailer->image_category_trailer));
+        if ($CategoryTrailer->image_category_trailer && file_exists(public_path('uploads/CategoryTrailer/' . $CategoryTrailer->image_category_trailer))) {
+            unlink(public_path('uploads/CategoryTrailer/' . $CategoryTrailer->image_category_trailer));
         }
         
         $file = $request->file('image_category_trailer');
@@ -113,8 +110,7 @@ public function update(Request $request, $id)
         $extension = $file->getClientOriginalExtension();
         $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
         
-        // Utilisez move au lieu de storeAs
-        $file->move(public_path('uploads'), $filename);
+        $file->move(public_path('uploads/CategoryTrailer'), $filename);
         $updateData['image_category_trailer'] = $filename;
     }
 
