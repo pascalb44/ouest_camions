@@ -1,9 +1,12 @@
-//***************** version desktop *******************/
-@media (min-width: 1025px) {
+
+/* version tablette orientation portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
 
     .homePicturesCard {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin-top: 5%;
     }
 
@@ -18,6 +21,7 @@
         width: 75%;
         height: 70%;
     }
+
 
     /******** legend **********/
 
@@ -36,38 +40,41 @@
     }
 }
 
-@media (min-width: 769px) and (max-width: 1024px)  {
 
- 
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
     .homePicturesCard {
         display: flex;
-        flex-direction: row;
-        margin-top: 5%;
+        flex-direction: column;
+        margin: 5% 0 10% 0;
     }
 
     .homePictures {
         position: relative;
-        margin-left: 15%;
+        margin: 6% 5% 5% 5%;
+        padding-left: 15%;
 
     }
 
     .CategoryTrailer-image,
     .CategoryTruck-image {
-        width: 70%;
+        width: 75%;
         height: 70%;
     }
 
-        /******** legend **********/
+
+    /******** legend **********/
 
     .image-caption {
-        width: 70%;
+        width: 75%;
         background-color: lightseagreen;
-        color: white;
         text-align: center;
         padding: 10px;
         font-size: 16px;
         font-weight: bold;
-        
+
         a {
             text-decoration: none;
             color: white;

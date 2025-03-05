@@ -47,13 +47,12 @@ export default function ImageHome() {
 
 
   return (
-
     <div className="homePicturesCard">
       {getTruckImage() && (
         <div className="homePictures">
           <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${getTruckImage()}`} alt="Truck" className="CategoryTruck-image" />
           <div className="image-caption">
-            <Link to="/category-truck" className="category-truck-link">
+            <Link to="/categories-trucks" className="category-truck-link">
               <h3>Nos camions</h3>
             </Link>
           </div>
@@ -64,34 +63,12 @@ export default function ImageHome() {
         <div className="homePictures">
           <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${getTrailerImage()}`} alt="Trailer" className="CategoryTrailer-image" />
           <div className="image-caption">
-            <Link to="/category-trailer" className="category-trailer-link">
+            <Link to="categories-trailers/" className="category-trailer-link">
               <h3>Nos remorques</h3>
             </Link>
           </div>
         </div>
       )}
-
-
-      {/*
-      {categoriesTrucks.map((categoryTruck, index) => (
-        <div key={categoryTruck.id} className={`homePictures picture-${index}`}>
-          <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${categoryTruck.image_category_truck}`} alt={categoryTruck.name_category_truck} className="CategoryTruck-image" />
-          <div className="image-caption">
-            <h3>{categoryTruck.name_category_truck}</h3>
-          </div>
-        </div>
-      ))}
-
-      {categoriesTrailers.map((categoryTrailer, index) => (
-        <div key={categoryTrailer.id} className={`homePictures picture-${index + 1}`}>
-          <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${categoryTrailer.image_category_trailer}`} alt={categoryTrailer.name_category_trailer} className="CategoryTrailer-image" />
-          <div className="image-caption">
-            <h3>{categoryTrailer.name_category_trailer}</h3>
-          </div>
-        </div>
-      ))}
-
-      */}
     </div>
   );
 };

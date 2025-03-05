@@ -1,6 +1,6 @@
 /************************ version desktop ****************************/
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
 
     .logo-container-header {
         position: absolute;
@@ -23,7 +23,7 @@
 
 /**************************** version tablette orientation landscape **********************/
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+@media (min-width: 769px) and (max-width: 1024px)  {
 
     .logo-container-header {
         position: absolute;
@@ -48,30 +48,12 @@
 /************************ version tablette orientation portrait ****************************/
 
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-
-    .logoHeader {
-        width: 150px;
-        margin-left: 50px;
-        margin-top: 30px;
-    }
-
-    .logoFooter {
-        width: 150px;
-        margin: 0 auto;
-    }
-}
-
-
-
-
-/***************************** great mobile ****************************/
-
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
 
     .logoHeader {
         width: 100px;
-        right: 80%;
+        margin-left: 50px;
+        margin-top: 30px;
     }
 
     .logoFooter {
@@ -79,6 +61,7 @@
         margin: 0 auto;
     }
 }
+
 
 /**************************** mobile ************************/
 
@@ -88,7 +71,7 @@
     /* header */
 
     .logo-container-header {
-        position: absolute;
+        position: relative;
         top: 10px;
         left: 2px;
         z-index: 1000;

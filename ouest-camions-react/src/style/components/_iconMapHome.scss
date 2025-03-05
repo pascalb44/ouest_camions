@@ -1,0 +1,59 @@
+
+/**************  map of the home page **********************************/
+
+@media (min-width: 1025px) {
+
+    .icon-map {
+        display: flex;
+        justify-content: left;
+        margin-top: 5%;
+
+        img {
+            padding: 1rem;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            cursor: pointer;
+            width: 50%;
+            margin-left : 35%;
+        }
+
+        span {
+            display: flex;
+            margin-top: -5%;
+            margin-left : 50%;
+            color: black;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+/* version tablette orientation paysage */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .icon-map {
+        display: flex;
+        justify-content: left;
+        margin-top: 5%;
+
+        img {
+            padding: 1rem;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            cursor: pointer;
+            width: 50%;
+            margin-left : 25%;
+        }
+
+        span {
+            display: flex;
+            margin-top: -5%;
+            margin-left : 50%;
+            color: black;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+
+

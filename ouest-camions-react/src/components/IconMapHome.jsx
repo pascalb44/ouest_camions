@@ -13,7 +13,7 @@ export default function IconCard() {
   ];
 
   return (
-    <div className="icon-navigation">
+    <div className="icon-map">
       {icons.map((icon, index) => (
         <div key={index} onClick={() => navigate(icon.route)} >
           <img src={icon.src} alt={icon.label}/>

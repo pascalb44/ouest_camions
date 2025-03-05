@@ -1,4 +1,4 @@
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
 
     /* header version desktop */
 
@@ -43,8 +43,7 @@
 
 /* version tablette orientation landscape */
 
-
-@media (max-width: 1024px) and (orientation: landscape) {
+@media (min-width: 769px) and (max-width: 1024px) {
 
     .header {
         position: relative;

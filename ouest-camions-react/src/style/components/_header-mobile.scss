@@ -1,105 +1,7 @@
-/* version tablette orientation portrait */
-
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-
-        /* Vidéo of the header */
-        .banner-video {
-            display: none;
-        }
-    
-        .top-banner {
-            display: none;
-        }
-    
-        .mobile-header {
-            position: relative;
-            width: 100%;
-            background: lightseagreen;
-            color: white;
-            padding: 1rem;
-            height: 150px;
-    
-    
-            .header-top {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
-            }
-    
-            .header-top-content {
-                display: flex;
-                flex-direction: row;
-                max-width: 768px;
-                margin: 0 auto;
-                align-items: center;
-                gap: 30px;
-                /* Espace between logo, h1 and p */
-                white-space: nowrap;
-                /* no return to line */
-                overflow: hidden; /* space between <h1> and <p> */
-            }
-    
-            h1 {
-                font-size: 1.2rem;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 100%;
-                white-space: nowrap;
-                /* button ☰ X */
-            }
-    
-            .menu-toggle {
-                background: none;
-                border: solid 1px black;
-                color: black !important;
-                font-size: 2rem;
-                cursor: pointer;
-                border-radius: 8px;
-                width: 50px;
-                height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-    
-            /* menu with items */
-    
-            .mobile-nav {
-                position: fixed;
-                top: 150px;
-                /* height of the header */
-                left: -100%;
-                width: 100%;
-                max-width: 100%;
-                /* when the menu is open */
-                background: darkgreen;
-                display: flex;
-                flex-direction: column;
-                text-align: center;
-                transition: left 0.3s ease-in-out;
-                z-index: 1000;
-    
-                .nav-link {
-                    color: white;
-                    text-decoration: none;
-                    padding: 1rem;
-                    border-bottom: 1px solid #444;
-                }
-            }
-    
-            .mobile-nav.open {
-                left: 0;
-            }
-        }
-    
-    }
-    
-
 /********************************** version great mobile ********************/
 
 
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
 
     /* Vidéo of the header */
     .banner-video {
@@ -136,7 +38,8 @@
             /* Espace between logo, h1 and p */
             white-space: nowrap;
             /* no return to line */
-            overflow: hidden; /* space between <h1> and <p> */
+            overflow: hidden;
+            /* space between <h1> and <p> */
         }
 
         h1 {
@@ -211,8 +114,6 @@
 
 
     /* menu burger */
-
-
     .mobile-header {
         position: relative;
         width: 100%;
@@ -229,10 +130,9 @@
         }
 
         .header-top-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin-left: 35%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
         }
 
         h1 {
@@ -260,34 +160,29 @@
         }
 
         /* menu with items */
-
         .mobile-nav {
             position: fixed;
             top: 150px;
             left: -100%;
-            width: 100%;
-            max-width: 100%;
-            /* when the menu is open */
+            width: 100vw; 
             background: darkgreen;
             display: flex;
             flex-direction: column;
+            align-items: center;
             text-align: center;
             transition: left 0.3s ease-in-out;
-            z-index: 1000;
-
-            .nav-link {
-                color: white;
-                text-decoration: none;
-                padding: 1rem;
-                border-bottom: 1px solid #444;
-            }
+            z-index: 1100;
         }
 
-        .mobile-nav.open {
-            left: 0;
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            border-bottom: 1px solid #444;
         }
     }
 
-
-
+    .mobile-nav.open {
+        left: 0;
+    }
 }

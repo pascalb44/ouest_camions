@@ -1,19 +1,20 @@
 
 import React from "react";
-import IconHome from '../components/IconHome';
+import IconMapHome from '../components/IconMapHome';
 import ImageHome from '../components/ImageHome';
 import "../style/components/_home.scss";
+
 const Home = () => {
     return (
         <div>
             <h1 className="h1Home">Location de véhicules uniquement dans l'ouest</h1>
-            <div className="pub-container">
-                <div className="pub">
+            <div className="pub-container pub-containerMobile">
+                <div className="pub pubMobile">
                     <p>EXCLUSIF : Découvrez nos locations à partir de 100 euros /jour</p>
                 </div>
             </div>
-            <IconHome /> {/* map on the home page*/}
-            <ImageHome /> {/* pîctures of the vehicles */}
+            <IconMapHome /> {/* map on the home page*/}
+            <ImageHome /> {/* pictures of the vehicles */}
 
             <section className="edito">
                 <h3>Bienvenue chez Ouest Camions</h3>

@@ -42,16 +42,15 @@ Route::delete('/users/{users}', [UserController::class, 'destroy']);
 
 Route::get('categories-trucks', [CategoryTruckController::class, 'index']);
 Route::post('/categories-trucks', [CategoryTruckController::class, 'store']);
-Route::get('/categories-trucks/{categories_truck}', [CategoryTruckController::class, 'show']);
+Route::get('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'show']);
 Route::get('categories-trucks/{id}', [CategoryTruckController::class, 'show']);
-Route::patch('/categories-trucks/{categories_truck}', [CategoryTruckController::class, 'update']);
-Route::delete('/categories-trucks/{categories_truck}', [CategoryTruckController::class, 'destroy']);
+Route::patch('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'update']);
+Route::delete('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'destroy']);
 
 // categories-trailers
 
 Route::get('categories-trailers', [CategoryTrailerController::class, 'index']);
 Route::post('/categories-trailers', [CategoryTrailerController::class, 'store']);
-Route::get('/categories-trailers/{categories_trailers}', [CategoryTrailerController::class, 'show']);
 Route::get('categories-trailers/{id}', [CategoryTrailerController::class, 'show']);
 Route::patch('/categories-trailers/{categories_trailers}', [CategoryTrailerController::class, 'update']);
 Route::delete('/categories-trailers/{categories_trailers}', [CategoryTrailerController::class, 'destroy']);

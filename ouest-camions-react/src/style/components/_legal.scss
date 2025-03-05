@@ -1,0 +1,48 @@
+/************************ version desktop ****************************/
+
+@media (min-width: 1025px) {
+
+    .h1Legal {
+        color: blue;
+        padding: 2%;
+    }
+
+
+    .blocLegal {
+        margin: 0 0 5% 15%;
+        width: 75%;
+
+        .h2Legal {
+            margin-top: 3%;
+        }
+        
+        .articleLegal {
+            margin-top: 3%;
+            font-weight: bold;   
+        }
+    }
+}
+
+
+/* version tablette orientation landscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .h1Legal {
+        color: blue;
+        padding: 2%;
+    }
+
+    .blocLegal {
+        margin: 0 0 5% 15%;
+        width: 75%;
+
+        .h2Legal {
+            margin-top: 3%;
+        }
+        
+        .articleLegal {
+            margin-top: 3%;
+            font-weight: bold;   
+        }
+    }
+}
