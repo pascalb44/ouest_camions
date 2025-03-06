@@ -57,8 +57,8 @@ const CategoriesTrailers = () => {
                             <td>{categoryTrailer.name}</td>
                             <td>
                                 <img 
-                                    src={`http://127.0.0.1:8000/storage/public/uploads/categories-trailers/${categoryTrailer.image}`} 
-                                    alt={categoryTrailer.name} width="75px" className="categoryTrailer-image"/>
+                                    src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${categoryTrailer.image_category_trailer}`} 
+                                    alt={categoryTrailer.name} width="75px" className="category-trailer-image"/>
                             </td>
                             <td>
                                 <Link to={`/categories-trailers/edit/${categoryTrailer.id}`} className="btn btn-success me-2">

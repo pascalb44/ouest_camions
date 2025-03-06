@@ -1,0 +1,31 @@
+/************************ version tablette orientation portrait ****************************/
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .picture-header img {
+        width: 100%;
+ 
+    }
+
+}
+
+
+/**************************** mobile ************************/
+
+@media (max-width: 480px) {
+
+     
+    .picture-container-header {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1; /* Place the image behind content */
+    }
+    
+    .picture-header {
+        width: 100%;
+}
+}
+

@@ -9,35 +9,35 @@ import LogoFooter from './LogoFooter';
 const Footer = () => {
     return (
         <footer className="footer">
-            <div className="footerBlock">
-                <div class="logoFooterBlock">
-                    <div className="brandFooter">
+            <div className="footer-block">
+                <div class="logo-footer-block">
+                    <div className="brand-footer">
                         <p>Ouest camions</p>
                     </div>
-                    <div className="logoFooter" >
+                    <div className="logo-footer" >
                         <LogoFooter />
                     </div>
                 </div>
-                <div className="adressFooter">
-                    <p className="adressFooterTitle">Adresse</p>
+                <div className="adress-footer">
+                    <p className="adress-footer-title">Adresse</p>
                     <p>123 rue du transport</p>
                     <p>44110 CHATEAUBRIANT</p>
                     <p><FontAwesomeIcon icon={faPhoneAlt} /> 0123546879</p> {/* icone */}
                     <p><FontAwesomeIcon icon={faAt} /> contact@ouestcamions.fr</p>
                 </div>
-                <div className="companyFooter">
-                <p className="companyFooterTitle">L'entreprise</p>
+                <div className="company-footer">
+                <p className="company-footer-title">L'entreprise</p>
                     <p>CGV</p>
                     <p>Nos agences</p>
                     <p>Qui sommes nous?</p>
                 </div>
-                <div className="servicesFooter">
-                <p className="servicesFooterTitle">Nos services</p>
+                <div className="services-footer">
+                <p className="services-footer-title">Nos services</p>
                     <p>Location camions</p>
                     <p>Locations remorques</p>
                 </div>
          </div>
-            <div className="footerBottom">
+            <div className="footer-bottom">
                 <p>Copyrigth 2025</p>
                 <p><Link to="/legal" className="nav-link">Mentions légales</Link></p>
 

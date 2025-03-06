@@ -7,15 +7,12 @@ import "../style/components/_home.scss";
 const Home = () => {
     return (
         <div>
-            <h1 className="h1Home">Location de véhicules uniquement dans l'ouest</h1>
-            <div className="pub-container pub-containerMobile">
-                <div className="pub pubMobile">
+            <h1 className="h1-home">Location de véhicules uniquement dans l'ouest</h1>
+            <div className="pub-container pub-container-mobile">
+                <div className="pub pub-mobile">
                     <p>EXCLUSIF : Découvrez nos locations à partir de 100 euros /jour</p>
                 </div>
             </div>
-            <IconMapHome /> {/* map on the home page*/}
-            <ImageHome /> {/* pictures of the vehicles */}
-
             <section className="edito">
                 <h3>Bienvenue chez Ouest Camions</h3>
                 <span>Votre partenaire en location de camions et remorques dans le Grand Ouest.</span>
@@ -29,7 +26,8 @@ const Home = () => {
                     Besoin d’un camion ou d’une remorque ? Contactez-nous dès aujourd’hui et roulez en toute sérénité avec Ouest Camions !
                 </p>
             </section>
-
+            <IconMapHome /> {/* map on the home page*/}
+            <ImageHome /> {/* pictures of the vehicles */}
         </div>
     );
 };

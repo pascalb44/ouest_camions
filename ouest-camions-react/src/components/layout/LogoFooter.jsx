@@ -7,7 +7,7 @@ const LogoFooter = () => {
 
     return (
         <div className="logo-container-footer">
-            <img className="logoFooter" src={logoSrc} alt={altText} />
+            <img className="logo-footer" src={logoSrc} alt={altText} />
                         {/* logo will be used in header and footer, clickable for header but not for footer with a different scss */}
 
         </div>

@@ -8,7 +8,7 @@ const LogoHeader = () => {
     return (
         <div className="logo-container-header">
                      <Link to="/"> {/* to home */}
-                <img className="logoHeader" src={logoSrc} alt={altText} />
+                <img className="logo-header" src={logoSrc} alt={altText} />
                 
             </Link>
         </div>

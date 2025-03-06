@@ -11,34 +11,34 @@
         padding-bottom: 2%;
     }
 
-    .footerBlock {
+    .footer-block {
         display: flex;
         flex-direction: row;
         justify-content: center;
     }
 
-    .logoFooterBlock {
+    .logo-footer-block {
         display: flex;
         flex-direction: column;
         margin-left: 150px;
     }
 
-    .brandFooter p {
+    .brand-footer p {
         font-weight: bold;
         font-size: 2rem;
         margin-left: -25%;
     }
 
-    .adressFooterTitle,
-    .companyFooterTitle,
-    .servicesFooterTitle {
+    .adress-footer-title,
+    .company-footer-title,
+    .services-footer-Title {
         font-size: 1.2rem;
         font-weight: 600;
     }
 
-    .adressFooter,
-    .companyFooter,
-    .servicesFooter {
+    .adress-footer,
+    .company-footer,
+    .services-footer {
         flex: 1;
         min-width: 200px;
         text-align: left;
@@ -49,14 +49,14 @@
 
     /* 2nd line of the bottom */
 
-    .footerBottom {
+    .footer-bottom {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 30px;
     }
 
-    .footerBottom p {
+    .footer-bottom p {
         margin: 0;
     }
 
@@ -75,34 +75,34 @@
         padding-bottom: 2%;
     }
 
-    .footerBlock {
+    .footer-block {
         display: flex;
         flex-direction: row;
         justify-content: center;
     }
 
-    .logoFooterBlock {
+    .logo-footer-block {
         display: flex;
         flex-direction: column;
         margin-left: 150px;
     }
 
-    .brandFooter p {
+    .brand-footer p {
         font-weight: bold;
         font-size: 2rem;
         margin-left: -25%;
     }
 
-    .adressFooterTitle,
-    .companyFooterTitle,
-    .servicesFooterTitle {
+    .adress-footer-title,
+    .company-footer-title,
+    .services-footer-title {
         font-size: 1.2rem;
         font-weight: 600;
     }
 
-    .adressFooter,
-    .companyFooter,
-    .servicesFooter {
+    .adress-footer,
+    .company-footer,
+    .services-footer {
         flex: 1;
         min-width: 200px;
         text-align: left;
@@ -113,14 +113,14 @@
 
     /* 2nd line of the bottom */
 
-    .footerBottom {
+    .footer-bottom {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 30px;
     }
 
-    .footerBottom p {
+    .footer-bottom p {
         margin: 0;
     }
 }

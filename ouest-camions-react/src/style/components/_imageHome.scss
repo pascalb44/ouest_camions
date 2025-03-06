@@ -1,20 +1,21 @@
 //***************** version desktop *******************/
 @media (min-width: 1025px) {
 
-    .homePicturesCard {
+    .home-pictures-card {
         display: flex;
         flex-direction: row;
         margin-top: 5%;
+        margin-left: 10%;
     }
 
-    .homePictures {
+    .home-pictures {
         position: relative;
-        margin-left: 15%;
+        flex: 1;
 
     }
 
-    .CategoryTrailer-image,
-    .CategoryTruck-image {
+    .category-trailer-home-image,
+    .category-truck-home-image {
         width: 75%;
         height: 70%;
     }
@@ -39,20 +40,21 @@
 @media (min-width: 769px) and (max-width: 1024px)  {
 
  
-    .homePicturesCard {
+    .home-pictures-card {
         display: flex;
         flex-direction: row;
-        margin-top: 5%;
+        margin: 4% 0 10% 10%;
     }
 
-    .homePictures {
+    .home-pictures {
         position: relative;
-        margin-left: 15%;
+        margin-left: 5%;
+        flex: 1;
 
     }
 
-    .CategoryTrailer-image,
-    .CategoryTruck-image {
+    .category-trailer-home-image,
+    .category-truck-home-image {
         width: 70%;
         height: 70%;
     }

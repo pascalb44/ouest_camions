@@ -68,7 +68,7 @@
         /* menu with items */
 
         .mobile-nav {
-            position: fixed;
+            position: absolute;
             top: 150px;
             /* height of the header */
             left: -100%;
@@ -161,7 +161,7 @@
 
         /* menu with items */
         .mobile-nav {
-            position: fixed;
+            position: absolute;
             top: 150px;
             left: -100%;
             width: 100vw; 

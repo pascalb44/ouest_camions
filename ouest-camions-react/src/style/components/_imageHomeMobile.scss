@@ -4,20 +4,20 @@
 
 @media (min-width: 481px) and (max-width: 768px) {
 
-    .homePicturesCard {
+    .home-pictures-card {
         display: flex;
         flex-direction: column;
         margin-top: 5%;
     }
 
-    .homePictures {
+    .home-pictures {
         position: relative;
         margin-left: 15%;
 
     }
 
-    .CategoryTrailer-image,
-    .CategoryTruck-image {
+    .category-trailer-home-image,
+    .category-truck-home-image {
         width: 75%;
         height: 70%;
     }
@@ -45,21 +45,21 @@
 
 @media (max-width: 480px) {
 
-    .homePicturesCard {
+    .home-pictures-card {
         display: flex;
         flex-direction: column;
         margin: 5% 0 10% 0;
     }
 
-    .homePictures {
+    .home-pictures {
         position: relative;
         margin: 6% 5% 5% 5%;
         padding-left: 15%;
 
     }
 
-    .CategoryTrailer-image,
-    .CategoryTruck-image {
+    .category-trailer-home-image,
+    .category-truck-home-image {
         width: 75%;
         height: 70%;
     }

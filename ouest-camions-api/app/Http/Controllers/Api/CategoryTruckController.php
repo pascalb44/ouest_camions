@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\CategoryTruck;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 
 class CategoryTruckController extends Controller
@@ -64,9 +65,6 @@ class CategoryTruckController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     */
 
      public function update(Request $request, $id)
      {
@@ -78,24 +76,24 @@ class CategoryTruckController extends Controller
              'image_category_truck' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
          ]);
          
-         // Créez un tableau pour les données à mettre à jour
          $updateData = $request->only(['name_category_truck']);
          
          if ($request->hasFile('image_category_truck')) {
-             // Vérifiez si l'ancienne image existe
-             if ($categoryTruck->image_category_truck && file_exists(public_path('uploads/' . $categoryTruck->image_category_truck))) {
-                 unlink(public_path('uploads/' . $categoryTruck->image_category_truck));
-             }
-             
-             $file = $request->file('image_category_truck');
-             $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-             $extension = $file->getClientOriginalExtension();
-             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-             
-             // Utilisez move au lieu de storeAs
-             $file->move(public_path('uploads'), $filename);
-             $updateData['image_category_truck'] = $filename;
-         }
+
+            if ($categoryTruck->image_category_truck && Storage::exists('public/uploads/CategoryTruck/' . $categoryTruck->image_category_truck)) {
+                Storage::delete('public/uploads/CategoryTruck/' . $categoryTruck->image_category_truck);
+            }
+    
+            // new picture 
+            $file = $request->file('image_category_truck');
+            $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;        /* timestamp behind the name */
+    
+            $file->storeAs('uploads/CategoryTruck', $filename);
+    
+            $updateData['image_category_truck'] = $filename; /* only the name in the base */
+        }
 
         $categoryTruck->update($updateData); 
         $categoryTruck = $categoryTruck->fresh();
@@ -105,9 +103,7 @@ class CategoryTruckController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
 
     public function destroy($id)
     {
@@ -117,4 +113,14 @@ class CategoryTruckController extends Controller
             'status' => 'categorie de camions supprimée avec succès'
         ], 500);
     }
+
+
+    public function getHeaderImage() /* picture in background of the header for mobile */
+    {
+        $imagePath = asset('storage/uploads/CategoryTruck/camion_IA2.jpg');
+        return response()->json(['image' => $imagePath]);
+    }
+
+
+
 }

@@ -8,13 +8,13 @@
         /* above the top-banner and to be clickable */
     }
 
-    .logoHeader {
+    .logo-header {
         width: 150px;
         margin-left: 50px;
         margin-top: 30px;
     }
 
-    .logoFooter {
+    .logo-footer {
         width: 150px;
     }
 
@@ -30,14 +30,14 @@
         z-index: 20;
         /* above the top-banner and to be clickable */
 
-        .logoHeader {
+        .logo-header {
             width: 150px;
             margin-left: 50px;
             margin-top: 30px;
         }
     }
 
-    .logoFooter {
+    .logo-footer {
         width: 150px;
     }
 
@@ -50,13 +50,13 @@
 
 @media (min-width: 481px) and (max-width: 768px) {
 
-    .logoHeader {
+    .logo-header {
         width: 100px;
         margin-left: 50px;
         margin-top: 30px;
     }
 
-    .logoFooter {
+    .logo-footer {
         width: 140px;
         margin: 0 auto;
     }
@@ -76,7 +76,7 @@
         left: 2px;
         z-index: 1000;
 
-        .logoHeader {
+        .logo-header {
             width: 90px;
             margin-left: 100%;
             margin-top: 15%;
@@ -91,7 +91,7 @@
         margin-right: auto;
     }
 
-    .logoFooter {
+    .logo-footer {
         width: 140px;
         margin: 0 auto;
     }

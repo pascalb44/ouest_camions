@@ -41,6 +41,7 @@ Route::delete('/users/{users}', [UserController::class, 'destroy']);
 // categories-trucks
 
 Route::get('categories-trucks', [CategoryTruckController::class, 'index']);
+Route::get('/header-image', [CategoryTruckController::class, 'getHeaderImage']);
 Route::post('/categories-trucks', [CategoryTruckController::class, 'store']);
 Route::get('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'show']);
 Route::get('categories-trucks/{id}', [CategoryTruckController::class, 'show']);

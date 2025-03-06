@@ -10,7 +10,7 @@ class CategoryTrailer  extends Model
     use HasFactory;
 
     protected $table = 'categories_trailers'; 
-    protected $fillable = ['name_category_trailer', 'image_category_trailer'];
+    protected $fillable = ['name_category_trailer', 'image_category_trailer','description' ];
 
     public function trailers()
     {

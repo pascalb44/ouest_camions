@@ -2,6 +2,7 @@ import React, { useState } from "react"; import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import LogoHeader from './LogoHeader';
+import PictureHeader from "./PictureHeader";
 
 
 
@@ -21,6 +22,7 @@ const HeaderMobile = () => {
                 </button>
                 <div className="header-top-content">
                 <LogoHeader /> 
+                <PictureHeader /> 
                     <h1>Ouest camions</h1>
                     <p><FontAwesomeIcon icon={faPhoneAlt} /> 0123546879</p>
                 </div>

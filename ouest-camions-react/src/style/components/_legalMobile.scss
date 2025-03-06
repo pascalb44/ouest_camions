@@ -2,22 +2,22 @@
 
 @media (min-width: 481px) and (max-width: 768px) {
 
-    .h1Legal {
+    .h1-legal {
         color: blue;
         text-align: center;   
         margin-top: 10%;
     }
 
 
-    .blocLegal {
+    .bloc-legal {
         margin: 10% 0 5% 15%;
         width: 75%;
 
-        .h2Legal {
+        .h2-legal {
             margin-top: 30px;
         }
         
-        .articleLegal {
+        .article-legal {
             margin-top: 3%;
             font-weight: bold;   
         }
@@ -28,21 +28,21 @@
 /* version mobile */
 
 @media (max-width: 480px) {
-    .h1Legal {
+    .h1-legal {
         color: blue;
         text-align: center;   
         margin-top: 10%;
     }
 
-    .blocLegal {
+    .bloc-legal {
         margin: 10% 0 5% 15%;
         width: 75%;
 
-        .h2Legal {
+        .h2-legal {
             margin-top: 30px;
         }
         
-        .articleLegal {
+        .article-legal {
             margin-top: 3%;
             font-weight: bold;   
         }

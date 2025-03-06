@@ -4,7 +4,7 @@
 
     /***************************** page home **********************************/
 
-    .h1Home {
+    .h1-home {
         color: blue;
         padding: 2%;
     }
@@ -22,7 +22,6 @@
     }
 
     .pub {
-        display: inline-block;
         font-size: 20px;
         font-weight: bold;
         animation: marqueeScroll 10s linear infinite;

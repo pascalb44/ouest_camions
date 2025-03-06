@@ -49,8 +49,8 @@ const CategoriesTrucks = () => {
                                 <td>{categoryTruck.name}</td>
                                 <td>
                                     <img 
-                                        src={`http://127.0.0.1:8000/storage/public/uploads/categories-trucks/${categoryTruck.image}`} 
-                                        alt={categoryTruck.name} width="75px" className="categoryTrailer-image"/>
+                                        src={`http://127.0.0.1:8000/storage/uploads/categories-trucks/${categoryTruck.image}`} 
+                                        alt={categoryTruck.name} width="75px" className="category-trailer-image"/>
                                 </td>
                                 <td>
                                     <Link to={`/categories-trucks/edit/${categoryTruck.id}`} className="btn btn-success me-2">
