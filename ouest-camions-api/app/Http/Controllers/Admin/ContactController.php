@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
@@ -13,7 +13,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $categories = Contact::all(); // import all categories of trucks
+        $contact = Contact::all(); // import all contacts
         return response()->json(Contact::all());
     }
 

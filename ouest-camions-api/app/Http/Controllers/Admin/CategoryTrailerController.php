@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\CategoryTrailer;
@@ -28,7 +28,6 @@ class CategoryTrailerController extends Controller
             'description' => 'required|string',
 
         ]);
-
         $filename = "";
         if ($request->file('image_category_trailer')) {
             $filenameWithExt = $request->file('image_category_trailer')->getClientOriginalName();
@@ -105,9 +104,6 @@ public function update(Request $request, $id)
         'data' => $CategoryTrailer,        
     ]);
 }
-
-
-
 
 
     /**
