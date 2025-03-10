@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Truck;
+use App\Models\CategoryTruck;
 use Illuminate\Http\Request;
 
 class TruckController extends Controller
@@ -11,10 +12,13 @@ class TruckController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trucks  = Truck::all(); // import all categories of trucks
-        return response()->json($trucks);
+        $query = Truck::query();
+        if ($request->has('category')) {
+            $query->where('id_category_truck', $request->category); /* to get the trucks by categories */
+        }
+        return response()->json($query->get());
     }
 
     /**
@@ -46,7 +50,7 @@ class TruckController extends Controller
             $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image_truck')->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('image_truck')->storeAs('/uploads', $filename);
+            $path = $request->file('image_truck')->storeAs('/uploads/Truck', $filename);
         } else {
             $filename = null;
         }
@@ -153,4 +157,29 @@ class TruckController extends Controller
             'message' => 'camion supprimé avec succès'
         ]);
     }
+
+
+
+
+    public function getTrucksByCategory($id)
+    {
+        $category = CategoryTruck::find($id);
+    
+        if (!$category) {
+            return response()->json(['message' => 'Catégorie non trouvée'], 404);
+        }
+    
+        $trucks = Truck::where('id_category_truck', $id)->get();
+    
+        return response()->json([
+            'category_name' => $category->name_category_truck,
+            'trucks' => $trucks
+        ]);
+    }
+
+
+
+
+
+
 }

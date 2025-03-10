@@ -60,6 +60,7 @@ Route::get('/trucks/{truck}', [TruckController::class, 'show']);
 Route::get('trucks/{id}', [TruckController::class, 'show']);
 Route::patch('/trucks/{truck}', [TruckController::class, 'update']);
 Route::delete('/trucks/{truck}', [TruckController::class, 'destroy']);
+Route::get('/trucks/category/{id}', [TruckController::class, 'getTrucksByCategory']);
 
 // trailers
 

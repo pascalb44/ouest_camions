@@ -35,7 +35,7 @@ class CategoryTruckController extends Controller
             $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image_category_truck')->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('image_category_truck')->storeAs('/uploads', $filename);
+            $path = $request->file('image_category_truck')->storeAs('/uploads/CategoryTruck', $filename); /* in the <=> folder */
         } else {
             $filename = null;
         }

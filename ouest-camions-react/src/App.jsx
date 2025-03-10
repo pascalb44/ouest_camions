@@ -3,14 +3,20 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
+import Login from "./pages/users/Login";
 import Legal from "./pages/Legal";
 import CategoriesTrucks from "./pages/categories-trucks/CategoriesTrucks";
 import CategoriesTrailers from "./pages/categories-trailers/CategoriesTrailers"; /* version public */
+
+import TractorsTrucks from './pages/trucks/TractorsTrucks';
+import TractorTruckDetail from './pages/trucks/TractorTruckDetail';
+import TrucksByCategory from './pages/trucks/TrucksByCategory';
+
+
 import Dashboard from './pages/admin/Dashboard';
 import CategoryTrailer from './pages/admin/categories-trailers/CategoriesTrailers'; /* version admin */
 import AddCategoryTrailer from './pages/admin/categories-trailers/AddCategoryTrailer';
 //import Contact from './pages/admin/Contact';
-//import Truck from './pages/admin/Truck';
 //import Trailer from './pages/admin/Trailer';
 //import CategoryTruck from './pages/admin/CategoryTruck';
 
@@ -24,9 +30,16 @@ function App() {
         <Route path="/" element={<Layout />} >
 
           <Route index element={<Home />} />
+          <Route path="users/login" element={<Login />} />
+
           <Route path="legal" element={<Legal />} />
           <Route path="categories-trailers" element={<CategoriesTrailers />} />
           <Route path="categories-trucks" element={<CategoriesTrucks />} />
+          <Route path="tractors-trucks" element={<TractorsTrucks />} />
+          <Route path="/trucks-by-category/:id" element={<TrucksByCategory />} />
+          <Route path="tractor-truck-detail" element={<TractorTruckDetail />} />
+
+
           <Route path="/admin" element={<Dashboard />} /> {/* admin dashboard => routes admin only*/}
           <Route path="/admin/categories-trailers/add" element={<AddCategoryTrailer />} />{/* management by admin */}
           <Route path="/admin/categories-trailers" element={<CategoryTrailer />} /> 

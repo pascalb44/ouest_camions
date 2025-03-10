@@ -20,7 +20,6 @@ const CategoriesTrucks = () => {
     };
 
 
-
     return (
         <div>
             <h1 className="h1-categories-trucks">Ouest camions, c'est Tous nos camions</h1>
@@ -39,9 +38,9 @@ const CategoriesTrucks = () => {
                         </div>
                         <div className="category-truck-image-caption">
 
-                            <Link to="/trucks">
-                                En savoir plus
-                                {/* link to detail page of the truck */}
+                        <Link to={`/trucks-by-category/${truck.id}`}>
+                                                 En savoir plus
+                                {/* link to detail page of the trucks */}
                             </Link>
                         </div>
                     </div>

@@ -34,7 +34,7 @@ class CategoryTrailerController extends Controller
             $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image_category_trailer')->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('image_category_trailer')->storeAs('/uploads/CategoryTrailer/', $filename);
+            $path = $request->file('image_category_trailer')->storeAs('/uploads/CategoryTrailer/', $filename); /* in the <=> folder */
         } else {
             $filename = null;
         }
@@ -115,6 +115,6 @@ public function update(Request $request, $id)
         $deleted = $categoryTrailer->delete();
         return response()->json([
             'status' => 'categorie de remorque supprimée avec succès'
-        ], 500);
+        ], 200);
     }
 }
