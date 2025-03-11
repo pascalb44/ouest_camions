@@ -8,9 +8,9 @@ import Legal from "./pages/Legal";
 import CategoriesTrucks from "./pages/categories-trucks/CategoriesTrucks";
 import CategoriesTrailers from "./pages/categories-trailers/CategoriesTrailers"; /* version public */
 
-import TractorsTrucks from './pages/trucks/TractorsTrucks';
-import TractorTruckDetail from './pages/trucks/TractorTruckDetail';
+import TruckDetail from './pages/trucks/TruckDetail';
 import TrucksByCategory from './pages/trucks/TrucksByCategory';
+
 
 
 import Dashboard from './pages/admin/Dashboard';
@@ -35,10 +35,9 @@ function App() {
           <Route path="legal" element={<Legal />} />
           <Route path="categories-trailers" element={<CategoriesTrailers />} />
           <Route path="categories-trucks" element={<CategoriesTrucks />} />
-          <Route path="tractors-trucks" element={<TractorsTrucks />} />
           <Route path="/trucks-by-category/:id" element={<TrucksByCategory />} />
-          <Route path="tractor-truck-detail" element={<TractorTruckDetail />} />
-
+          <Route path="/trucks/:id" element={<TruckDetail />} />
+          
 
           <Route path="/admin" element={<Dashboard />} /> {/* admin dashboard => routes admin only*/}
           <Route path="/admin/categories-trailers/add" element={<AddCategoryTrailer />} />{/* management by admin */}

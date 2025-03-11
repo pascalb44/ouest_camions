@@ -16,7 +16,7 @@ class TruckController extends Controller
     {
         $query = Truck::query();
         if ($request->has('category')) {
-            $query->where('id_category_truck', $request->category); /* to get the trucks by categories */
+            $query->where('id_category_truck', $request->category); /* to get the trucks list by categories */
         }
         return response()->json($query->get());
     }
@@ -159,8 +159,6 @@ class TruckController extends Controller
     }
 
 
-
-
     public function getTrucksByCategory($id)
     {
         $category = CategoryTruck::find($id);
@@ -176,10 +174,5 @@ class TruckController extends Controller
             'trucks' => $trucks
         ]);
     }
-
-
-
-
-
 
 }

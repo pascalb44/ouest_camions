@@ -26,8 +26,7 @@ const CategoriesTrucks = () => {
 
             <div className="categories-trucks-list">
                 {categoriesTrucks.map((truck) => (
-                    <div
-                        key={truck.id}
+                    <div key={truck.id}
                         className="categories-trucks-item">
                         <div className="categories-trucks-name">
                             <p>{truck.name_category_truck || "Nom indisponible"}</p>
