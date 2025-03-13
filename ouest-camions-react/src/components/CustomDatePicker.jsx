@@ -7,9 +7,9 @@ import "react-datepicker/dist/react-datepicker.css";
 const CustomDatePicker = ({ truck, onDurationChange }) => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-    const [duration, setDuration] = useState(truck?.duration_truck || 0); 
+    const [duration, setDuration] = useState(truck?.duration_truck || 0);     /* duration_truck  is in base */
+
     /* to get the difference between start and end of the location's dates */
-    /* duration_truck  is in base */
 
     // calendar for start of location
     const DepartureContainer = ({ className, children }) => (
@@ -35,20 +35,20 @@ const CustomDatePicker = ({ truck, onDurationChange }) => {
         if (!date) return "Aucune date sélectionnée";
         return date.toLocaleDateString("fr-FR"); // french format (jj/mm/aaaa)
     };
-
     useEffect(() => {
         if (startDate && endDate) {
             const diff = differenceInDays(endDate, startDate);
             const newDuration = diff >= 0 ? diff : 0;
             setDuration(newDuration);
+    
             if (onDurationChange) {
-                onDurationChange(newDuration);
+                onDurationChange(newDuration, startDate, endDate); // dates
             }
         }
     }, [startDate, endDate, onDurationChange]);
 
     const updateDuration = useCallback(() => {
-        if (!truck) return; // Vérifie que truck existe avant d'exécuter la requête
+        if (!truck) return; 
         fetch(`/api/trucks/${truck.id_truck}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
@@ -61,14 +61,14 @@ const CustomDatePicker = ({ truck, onDurationChange }) => {
             updateDuration();
         }
     }, [duration, truck, updateDuration]);
-    if (!truck) return <p>Chargement des informations du camion...</p>; // Affiche un message si truck est null
+    if (!truck) return <p>Aucun chargement des informations du camion</p>;
 
     return (
         <div>
             <div className="date-picker">
                 <div className="date-picker-start">
                     <div className="date-picker-start-legend">
-                        Départ
+                        Date de départ
                     </div>
                     <div className="custom-date-picker-start">
                         <ReactDatePicker
@@ -76,14 +76,14 @@ const CustomDatePicker = ({ truck, onDurationChange }) => {
                             onChange={(date) => setStartDate(date)}
                             dateFormat="dd/MM/yyyy"
                             className="custom-date-picker"
-                            calendarContainer={DepartureContainer} // start
+                            calendarContainer={DepartureContainer} // for start date
                             locale={fr} // french format (jj/mm/aaaa)
                         />
                     </div>
                 </div>
                 <div className="date-picker-end">
                     <div className="date-picker-end-legend">
-                        Retour
+                        Date de retour
                     </div>
                     <div className="custom-date-picker-end">
                         <ReactDatePicker
@@ -91,7 +91,7 @@ const CustomDatePicker = ({ truck, onDurationChange }) => {
                             onChange={(date) => setEndDate(date)}
                             dateFormat="dd/MM/yyyy"
                             className="custom-date-picker"
-                            calendarContainer={ReturnContainer} // end
+                            calendarContainer={ReturnContainer} // for end date
                             locale={fr}  // french format (jj/mm/aaaa)
                         />
                     </div>
@@ -100,7 +100,7 @@ const CustomDatePicker = ({ truck, onDurationChange }) => {
             <div className="selected-dates">
                 <p><strong>Date de départ sélectionnée : </strong>{formatDate(startDate)}</p>
                 <p><strong>Date de retour sélectionnée : </strong>{formatDate(endDate)}</p>
-                <p><strong>Durée de location sélectionnée: </strong>{duration} jour(s)</p>
+                <p><strong>Durée de location sélectionnée : </strong>{duration} jour(s)</p>
             </div>
         </div>
     );

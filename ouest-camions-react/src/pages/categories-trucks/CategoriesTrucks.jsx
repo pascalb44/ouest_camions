@@ -22,7 +22,7 @@ const CategoriesTrucks = () => {
 
     return (
         <div>
-            <h1 className="h1-categories-trucks">Ouest camions, c'est Tous nos camions</h1>
+            <h1 className="h1-categories-trucks">Chez Ouestcamions, on a des camions pour tous les usages</h1>
 
             <div className="categories-trucks-list">
                 {categoriesTrucks.map((truck) => (
@@ -32,7 +32,7 @@ const CategoriesTrucks = () => {
                             <p>{truck.name_category_truck || "Nom indisponible"}</p>
                         </div>
                         <div className="category-truck-image-box">
-                            <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${truck.image_category_truck}`} className="category-truck-image" alt="camion disponible en location" />
+                            <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${truck.image_category_truck}`} className="category-truck-image category-truck-image-specialized" alt="camion disponible en location" />
                             {/* image_category_truck is the name of the picture in the table category_truck */}
                         </div>
                         <div className="category-truck-image-caption">

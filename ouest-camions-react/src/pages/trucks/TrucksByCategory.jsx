@@ -8,7 +8,7 @@ const TrucksByCategory = () => {
     const { id } = useParams();  // get ID of the categoryL
     const [categoryName, setCategoryName] = useState("");
     const [trucks, setTrucks] = useState([]);
-
+    const isSingleTruck = trucks.length === 1; /* to avoid deformation on firefox with 2 trucks instead of 3 */
 
     const fetchTrucksByCategory = useCallback(async () => {
         try {
@@ -37,20 +37,21 @@ const TrucksByCategory = () => {
             <div className="truck-category-list">
                 {trucks.length > 0 ? (
                     trucks.map((truck) => (
-                        <div key={truck.id} className="truck-category-item">
+                        <div key={truck.id} className={`truck-category-item ${isSingleTruck ? "single-truck" : ""}`}>
+
                             <div className="truck-category-name">
                                 <p>{truck.brand_truck} {truck.name_truck}</p>
                             </div>
                             <div className="truck-category-image-box">
                                 <img src={`http://127.0.0.1:8000/storage/uploads/Truck/${truck.image_truck}`} className="truck-category-image" alt={truck.name_truck} />
                             </div>
-                    
+
                             <p>{truck.km_truck} km</p>
                             <p>A partir de {truck.price_day_truck} euros/jour</p>
 
                             <div className="truck-category-image-caption">
-                            <Link to={`/trucks/${truck.id}`}>En savoir plus</Link>                              
-                                    {/* link to detail page of the truck */}
+                                <Link to={`/trucks/${truck.id}`}>En savoir plus</Link>
+                                {/* link to detail page of the truck */}
                             </div>
                         </div>
                     ))

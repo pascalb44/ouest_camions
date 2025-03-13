@@ -44,7 +44,7 @@ class OrderController extends Controller
         $order = Order::find($id);
 
         if (!$order) {
-            return response()->json(['message' => 'contact non trouvé'], 404);
+            return response()->json(['message' => 'commande non trouvée'], 404);
         }
         return response()->json($order);
     }

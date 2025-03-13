@@ -33,7 +33,6 @@ const CategoriesTrucks = () => {
         }
     };
 
-
       return (
             <div className="container mt-5">
                 <h1>Liste des catégories</h1>
@@ -48,8 +47,7 @@ const CategoriesTrucks = () => {
                             <tr key={categoryTruck.id}>
                                 <td>{categoryTruck.name}</td>
                                 <td>
-                                    <img 
-                                        src={`http://127.0.0.1:8000/storage/uploads/categories-trucks/${categoryTruck.image}`} 
+                                    <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${categoryTruck.image_category_truck}`} 
                                         alt={categoryTruck.name} width="75px" className="category-trailer-image"/>
                                 </td>
                                 <td>

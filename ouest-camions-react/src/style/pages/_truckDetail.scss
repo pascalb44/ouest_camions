@@ -2,7 +2,7 @@
 
 @media (min-width: 1025px) {
 
-    /***************************** page -tractor-trucks **********************************/
+    /***************************** page trucks-detail **********************************/
 
 
     .h1-truck-detail {
@@ -18,7 +18,8 @@
         flex-direction: row;
     }
 
-    .adBlock { /* truck detail block */
+    .adBlock {
+        /* truck detail block */
         display: flex;
         flex-direction: column;
         width: 60%;
@@ -43,8 +44,55 @@
         border-radius: 50px;
     }
 
+    .adBlockDetail {
+        display: flex;
+        flex-direction: row;
+        margin: 5%;
 
-     /* calendar */
+        h2 {
+            margin-bottom: 10%;
+            font-weight: 600;
+        }
+
+        .adBlockFeatures {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .adBlockLocation {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10%;
+        }
+
+        p {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 1.3rem;
+        }
+    }
+
+    .truck-detail-button {
+        width: 50%;
+        background-color: lightseagreen;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-top: auto;
+        margin-bottom: 10%;
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    }
+
+
+
+
+
+    /* calendar */
 
     .date-picker {
         display: flex;
@@ -52,24 +100,26 @@
         margin-top: 220px;
     }
 
-    
+
     .date-picker-start {
         display: flex;
         flex-direction: row;
         border: solid 1px black;
     }
 
-    .date-picker-start-legend,  .date-picker-end-legend {
+    .date-picker-start-legend,
+    .date-picker-end-legend {
         display: flex;
         margin-right: 25px;
         font-weight: 700;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-    
-    .custom-date-picker-start, .custom-date-picker-end {
+
+    .custom-date-picker-start,
+    .custom-date-picker-end {
         display: flex;
         flex-direction: column;
-        padding-left : 40px;
+        padding-left: 40px;
 
     }
 

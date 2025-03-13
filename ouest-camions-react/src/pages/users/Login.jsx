@@ -6,10 +6,7 @@ const Login = () => {
     return (
         <div>
             <h1 className='h1-login'>S'identifier</h1>
-        
                 <LoginForm />
-
-
         </div>
     );
 };

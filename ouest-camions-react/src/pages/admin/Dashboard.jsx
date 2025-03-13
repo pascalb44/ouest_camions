@@ -30,7 +30,7 @@ const Dashboard = () => {
                 <li><Link to="/admin/contacts">Gestion des contacts</Link></li>
                 <li><Link to="/admin/trucks">Gestion des camions</Link></li>
                 <li><Link to="/admin/trailers">Gestion des remorques</Link></li>
-                <li><Link to="/admin/category-trucks">Gestion des catégories de camions</Link></li>
+                <li><Link to="/admin/categories-trucks">Gestion des catégories de camions</Link></li>
                <li><Link to="/admin/orders">Gestion des commandes </Link></li>
                <li><Link to="/admin/users">Gestion des clients </Link></li>
 
