@@ -14,11 +14,16 @@
 @import "components/homeMobile";
 @import "components/legal";
 @import "components/legalMobile";
-@import "pages/categoriesTrailers";
+
 @import "pages/categoriesTrucks";
-@import "pages/admin/categoriesTrailers";
+@import "pages/categoriesTrailers";
+
 @import "pages/trucksByCategories";
 @import "pages/truckDetail";
+
+@import "pages/trailersByCategories";
+
 @import "pages/cart";
 
 
+@import "pages/admin/adminCategoriesTrailers";

@@ -12,14 +12,17 @@ import CategoriesTrailers from "./pages/categories-trailers/CategoriesTrailers";
 import TruckDetail from './pages/trucks/TruckDetail';
 import TrucksByCategory from './pages/trucks/TrucksByCategory';
 
+import TrailersByCategory from './pages/trailers/TrailersByCategory';
 
 
 import Dashboard from './pages/admin/Dashboard';
+
+import CategoryTruck from './pages/admin/categories-trucks/CategoriesTrucks';
+
 import CategoryTrailer from './pages/admin/categories-trailers/CategoriesTrailers'; /* version admin */
 import AddCategoryTrailer from './pages/admin/categories-trailers/AddCategoryTrailer';
 //import Contact from './pages/admin/Contact';
 //import Trailer from './pages/admin/Trailer';
-import CategoryTruck from './pages/admin/categories-trucks/CategoriesTrucks';
 import Cart from './pages/order/Cart';
 
 
@@ -37,10 +40,12 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           <Route path="legal" element={<Legal />} />
-          <Route path="categories-trailers" element={<CategoriesTrailers />} />
           <Route path="categories-trucks" element={<CategoriesTrucks />} />
           <Route path="/trucks-by-category/:id" element={<TrucksByCategory />} />
           <Route path="/trucks/:id" element={<TruckDetail />} />
+
+          <Route path="categories-trailers" element={<CategoriesTrailers />} />
+          <Route path="/trailers-by-category/:id" element={<TrailersByCategory />} />
           
 
           <Route path="/admin" element={<Dashboard />} /> {/* admin dashboard => routes admin only*/}

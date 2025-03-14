@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "../../style/pages/_categoriesTrailers.scss";
 
 
 const CategoriesTrailers = () => {
@@ -53,17 +54,27 @@ const CategoriesTrailers = () => {
             ref={(el) => (categoryRefs.current[trailer.id] = el)} // Assign a ref to each category
             className="categories-trailers-item">
             <div className="category-trailer-image-box">
-                <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${trailer.image_category_trailer}`} className="category-trailer-image" alt="remorque disponible en location" />
-                {/* image_category_trailer is the name of the picture in the table category_trailer */}
+              <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${trailer.image_category_trailer}`} className="category-trailer-image" alt="remorque disponible en location" />
+              {/* image_category_trailer is the name of the picture in the table category_trailer */}
             </div>
             <div className="categories-trailers-description-box">
               <div className="categories-trailers-name">
-                <p>{trailer.name_category_trailer || "Nom indisponible"}</p>
+                <p>{trailer.name_category_trailer}</p>
               </div>
               <p className="categories-trailers-description">{trailer.description || "Description indisponible pour cette catégorie."}</p>
+
+              <div>
+                <Link to={`/trailers-by-category/${trailer.id}`}>
+                  <button className="categories-trailers-link">En savoir plus
+                    {/* link to gallery of trailers */}
+                  </button>
+                </Link>
+
+              </div>
+
+
             </div>
-            <Link to="/trailers" className="category-trailer-link"> {/* link to detail page of the trailer */}
-            </Link>
+
 
           </div>
         ))}

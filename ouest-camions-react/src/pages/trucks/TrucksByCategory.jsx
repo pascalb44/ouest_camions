@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 const TrucksByCategory = () => {
-    const { id } = useParams();  // get ID of the categoryL
+    const { id } = useParams();  // get ID of the category
     const [categoryName, setCategoryName] = useState("");
     const [trucks, setTrucks] = useState([]);
     const isSingleTruck = trucks.length === 1; /* to avoid deformation on firefox with 2 trucks instead of 3 */

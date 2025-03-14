@@ -45,24 +45,12 @@ function LoginForm() {
     return (
         <form onSubmit={handleSubmit}>
             {/* Champ email */}
-            <Form.Control 
-                type="email" 
-                name="email"
-                placeholder="johndoe@unknown.fr"
-                value={form.email}
-                onChange={handleChange}
-            />
+            <Form.Control type="email" name="email" placeholder="johndoe@unknown.fr" value={form.email} onChange={handleChange}/>
             {errors.email && <p className="text-danger">{errors.email}</p>}
 
             {/* Champ mot de passe */}
             <label htmlFor="password">Mot de passe :</label>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-            />
+            <input type="password" id="password" name="password" value={form.password} onChange={handleChange}/>
             {errors.password && <p className="text-danger">{errors.password}</p>}
 
             {/* Bouton de soumission */}

@@ -5,6 +5,7 @@
     /***************************** page categories-trailers **********************************/
 
     .container-categories-trailers {
+        background-color: #99FFFF;
         width: 100%;
     }
 
@@ -24,15 +25,16 @@
     .categories-trailers-item {
         display: flex;
         flex-direction: row;
-        border: 1px solid red;
         margin-bottom: 5%;
         width: 100%;
+        border: solid 1px blue;
     }
 
     .category-trailer-image-box {
         width: 50%;
 
     }
+
     .category-trailer-image {
         width: 90%;
         padding: 1%;
@@ -45,21 +47,42 @@
         margin-left: 5%;
         padding-top: 5%;
         width: 50%;
+
+
+        .categories-trailers-name {
+            font-family: 'Abel', Helvetica, Arial, Lucida, sans-serif;
+            font-size: 35px;
+        }
+
+        .categories-trailers-description {
+            padding: 4%;
+            text-align: justify;
+        }
+
+        .categories-trailers-link {
+            background-color: #0033CC;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: auto;
+            margin-left: 4%;
+            margin-bottom: 4%;
+            color: white;
+
+            a {
+                text-decoration: none;
+            }
+        }
     }
 
-    .categories-trailers-name {
-        font-family: 'Abel', Helvetica, Arial, Lucida, sans-serif;
-        font-size: 35px;
-    }
 
-    .categories-trailers-description {
-        padding: 3px;
-    }
+
 }
 
 
 
-@media (min-width: 769px) and (max-width: 1024px)  {
+@media (min-width: 769px) and (max-width: 1024px) {
 
 
     .container-categories-trailers {
@@ -86,6 +109,7 @@
         width: 50%;
 
     }
+
     .category-trailer-image {
         width: 90%;
         padding: 1%;
@@ -109,7 +133,3 @@
         padding: 3px;
     }
 }
-
-
-
-

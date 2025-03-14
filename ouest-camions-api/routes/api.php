@@ -59,7 +59,7 @@ Route::get('categories-trucks', [CategoryTruckController::class, 'index']);
 Route::get('/header-image', [CategoryTruckController::class, 'getHeaderImage']);
 Route::post('/categories-trucks', [CategoryTruckController::class, 'store']);
 Route::get('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'show']);
-Route::get('categories-trucks/{id}', [CategoryTruckController::class, 'show']);
+//Route::get('categories-trucks/{id}', [CategoryTruckController::class, 'show']);
 Route::patch('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'update']);
 Route::delete('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'destroy']);
 
@@ -67,7 +67,9 @@ Route::delete('/categories-trucks/{categories_trucks}', [CategoryTruckController
 
 Route::get('categories-trailers', [CategoryTrailerController::class, 'index']);
 Route::post('/categories-trailers', [CategoryTrailerController::class, 'store']);
-Route::get('categories-trailers/{id}', [CategoryTrailerController::class, 'show']);
+//Route::get('categories-trailers/{id}', [CategoryTrailerController::class, 'show']);
+Route::get('/categories-trailers/{categories_trailers}', [CategoryTrailerController::class, 'show']);
+
 Route::patch('/categories-trailers/{categories_trailers}', [CategoryTrailerController::class, 'update']);
 Route::delete('/categories-trailers/{categories_trailers}', [CategoryTrailerController::class, 'destroy']);
 
@@ -92,6 +94,7 @@ Route::get('/trailers/{trailer}', [TrailerController::class, 'show']);
 Route::get('trailers/{id}', [TrailerController::class, 'show']);
 Route::patch('/trailers/{trailer}', [TrailerController::class, 'update']);
 Route::delete('/trailers/{trailer}', [TrailerController::class, 'destroy']);
+Route::get('/trailers/category/{id}', [TrailerController::class, 'getTrailersByCategory']);
 
 
 Route::get('cart', [OrderController::class, 'index']);
@@ -103,9 +106,8 @@ Route::get('cart', [OrderController::class, 'index']);
 
 //Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('/admin', [DashboardController::class, 'index']); {/* admin dashboard => routes admin only, easier to find url */} 
-    Route::get('/admin/categories-trailers', [CategoryTrailerController::class, 'index']);
-    Route::post('/admin/categories-trailers', [CategoryTrailerController::class, 'store']);
-
     Route::get('/admin/categories-trucks', [CategoryTruckController::class, 'index']);
 
+    Route::get('/admin/categories-trailers', [CategoryTrailerController::class, 'index']);
+    Route::post('/admin/categories-trailers', [CategoryTrailerController::class, 'store']);
 //});

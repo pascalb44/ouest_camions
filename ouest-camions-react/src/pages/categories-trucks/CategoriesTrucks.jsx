@@ -37,9 +37,9 @@ const CategoriesTrucks = () => {
                         </div>
                         <div className="category-truck-image-caption">
 
-                        <Link to={`/trucks-by-category/${truck.id}`}>
-                                                 En savoir plus
-                                {/* link to detail page of the trucks */}
+                            <Link to={`/trucks-by-category/${truck.id}`}>
+                                En savoir plus
+                                {/* link to gallery of trucks */}
                             </Link>
                         </div>
                     </div>

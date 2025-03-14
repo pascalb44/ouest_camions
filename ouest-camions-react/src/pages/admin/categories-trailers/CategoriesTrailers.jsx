@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
-import "../../../style/pages/admin/_categoriesTrailers.scss";
+import "../../../style/pages/admin/_adminCategoriesTrailers.scss";
 
 const CategoriesTrailers = () => {
     const [categoriesTrailers, setCategoriesTrailers] = useState([]);

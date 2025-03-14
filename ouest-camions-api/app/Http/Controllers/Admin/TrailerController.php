@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Trailer;
 use Illuminate\Http\Request;
+use App\Models\CategoryTrailer;
+use App\Http\Controllers\Controller;
 
 class TrailerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trailers  = Trailer::all(); // import all categories of trailers
-        return response()->json($trailers);
+        $query = Trailer::query();
+        if ($request->has('category')) {
+            $query->where('id_category_trailer', $request->category); /* to get the trailers list by categories */
+        }
+        return response()->json($query->get());
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -122,8 +127,7 @@ class TrailerController extends Controller
                 'data' => $trailer,
             ]);
         }
-    
-
+   
     /**
      * Remove the specified resource from storage.
      */
@@ -134,4 +138,22 @@ class TrailerController extends Controller
             'message' => 'remorque supprimée avec succès'
         ]);
     }
+
+
+    public function getTrailersByCategory($id)
+    {
+        $category = CategoryTrailer::find($id);
+    
+        if (!$category) {
+            return response()->json(['message' => 'Catégorie non trouvée'], 404);
+        }
+    
+        $trailers = Trailer::where('id_category_trailer', $id)->get();
+    
+        return response()->json([
+            'category_name' => $category->name_category_trailer,
+            'trailers' => $trailers
+        ]);
+    }
+    
 }

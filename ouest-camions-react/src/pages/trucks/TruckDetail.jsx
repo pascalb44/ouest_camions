@@ -94,9 +94,9 @@ const TruckDetail = () => {
                     <div>
                         <CustomDatePicker truck={truck} onDurationChange={updateTruckDuration} />
                     </div>
-                    <div className="truck-detail-button" onClick={handleReservation}>
-                        <Link to={`/cart`}>Réserver</Link>                        {/* direct link to reservation page */}
-                    </div>
+                    <Link to={`/cart`}>
+                        <button className="truck-detail-button" onClick={handleReservation}>Réserver</button>
+                    </Link>                        {/* direct link to reservation page */}
                 </aside>
             </div>
         </div>
