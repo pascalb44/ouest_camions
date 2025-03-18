@@ -1,62 +1,79 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+//import jwtDecode from 'jwt-decode'; // Importation de la bibliothèque
+import { jwtDecode } from 'jwt-decode'; // Utilisation de l'export nommé
+
 
 function LoginForm() {
-    // State pour stocker les valeurs du formulaire
-    const [form, setForm] = useState({ email: "", password: "" });
-    
-    // State pour stocker les erreurs
-    const [errors, setErrors] = useState({});
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [token, setToken] = useState('');
 
-    // Gestion du changement de valeur des inputs
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
+    const navigate = useNavigate();
 
-    // Validation du formulaire
-    const validateForm = () => {
-        let newErrors = {};
-        
-        if (!form.email) {
-            newErrors.email = "L'email est obligatoire";
-        } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-            newErrors.email = "Format d'email invalide";
-        }
-
-        if (!form.password) {
-            newErrors.password = "Le mot de passe est obligatoire";
-        } else if (form.password.length < 6) {
-            newErrors.password = "Le mot de passe doit contenir au moins 6 caractères";
-        }
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0; // Retourne true si pas d'erreurs
-    };
-
-    // Gestion de la soumission du formulaire
-    const handleSubmit = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        if (validateForm()) {
-            console.log("Données valides :", form);
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/login', {
+                email: email,
+                password: password,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+
+            const token = response.data.data.access_token.token;
+            setToken(token);
+            localStorage.setItem('token', token);
+
+            const decodedToken = jwtDecode(token);
+
+            const userId = decodedToken.id;  // users
+            const userRole = decodedToken.role; // admin
+            localStorage.setItem('user_id', userId);
+            localStorage.setItem('role', userRole);
+
+
+
+            // Configuration du header par défaut pour les futures requêtes
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+            console.log('Utilisateur connecté :', response.data.data.user);
+
+            navigate('/profile');
+            if (userRole === 1) {
+                navigate('/admin');
+            } else {
+                navigate('/profile');
+            }
+        }
+        catch (err) {
+            setError(err.response?.data?.message || 'Utilisateur non reconnu !!');
         }
     };
+
 
     return (
-        <form onSubmit={handleSubmit}>
-            {/* Champ email */}
-            <Form.Control type="email" name="email" placeholder="johndoe@unknown.fr" value={form.email} onChange={handleChange}/>
-            {errors.email && <p className="text-danger">{errors.email}</p>}
-
-            {/* Champ mot de passe */}
-            <label htmlFor="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" value={form.password} onChange={handleChange}/>
-            {errors.password && <p className="text-danger">{errors.password}</p>}
-
-            {/* Bouton de soumission */}
-            <Button variant="primary" type="submit">Se connecter</Button>
-        </form>
+        <div>
+            <form onSubmit={handleLogin}>
+                <div>
+                    <label>Email</label>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
+                <div>
+                    <label>Mot de passe</label>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <button type="submit">Se connecter</button>
+            </form>
+            {error && <div>{error}</div>}
+            {token && <div>Token JWT: {token}</div>}
+        </div>
     );
-}
+};
 
 export default LoginForm;

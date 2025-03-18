@@ -28,7 +28,25 @@ const Cart = () => {
             setReservation(parsedData);
             setTotalPrice(price);
         }
-    }, []);
+
+        const checkAuth = () => {
+            const token = localStorage.getItem("token");
+            if (!token) {
+                console.log("Utilisateur déconnecté, suppression de la réservation.");
+                localStorage.removeItem("reservation");
+                setReservation(null);
+            }
+        };
+        checkAuth(); // Vérifier immédiatement
+
+        window.addEventListener("storage", checkAuth);
+        return () => {
+            window.removeEventListener("storage", checkAuth);
+        };
+    },
+
+
+        []);
 
     if (!reservation) {
         return <p>Aucune réservation en cours.</p>;
@@ -40,25 +58,25 @@ const Cart = () => {
             <div className="cart">
 
                 <h2>Réservation camion</h2>
-                    <p><strong>Camion :</strong> {reservation.brand} {reservation.name}</p>
+                <p><strong>Camion :</strong> {reservation.brand} {reservation.name}</p>
 
-                    <p><strong>Durée retenue :</strong> {reservation.duration} jours du {reservation.startDate} au {reservation.endDate}</p>
-                    <p><strong>Prix total camions:</strong> {totalPrice > 0 ? `${totalPrice} €` : "Non calculé"} </p>
+                <p><strong>Durée retenue :</strong> {reservation.duration} jours du {reservation.startDate} au {reservation.endDate}</p>
+                <p><strong>Prix total camions:</strong> {totalPrice > 0 ? `${totalPrice} €` : "Non calculé"} </p>
                 <h2>Réservation remorque</h2>
-                    <p><strong>Remorque :</strong> {reservation.brand} {reservation.name}</p>
-                    <p><strong>Durée retenue :</strong> {reservation.duration} jours du {reservation.startDate} au {reservation.endDate}</p>
-                    <p><strong>Prix total remorques :</strong> {totalPrice > 0 ? `${totalPrice} €` : "Non calculé"} </p>
+                <p><strong>Remorque :</strong> {reservation.brand} {reservation.name}</p>
+                <p><strong>Durée retenue :</strong> {reservation.duration} jours du {reservation.startDate} au {reservation.endDate}</p>
+                <p><strong>Prix total remorques :</strong> {totalPrice > 0 ? `${totalPrice} €` : "Non calculé"} </p>
 
                 <h2>Réservation totale</h2>
-                    <p><strong>Prix total :</strong> {totalPrice > 0 ? `${totalPrice} €` : "Non calculé"} + {totalPrice > 0 ? `${totalPrice} €` : "Non calculé"} </p>
+                <p><strong>Prix total :</strong> {totalPrice > 0 ? `${totalPrice} €` : "Non calculé"} + {totalPrice > 0 ? `${totalPrice} €` : "Non calculé"} </p>
 
                 <h2>Méthode de paiement</h2>
-                    <ol>
-                        <li>paypal</li>
-                        <li>CB</li>
-                        <li>virement SEPA</li>
-                    </ol>
-                    <Link to={`/payment`}>Valider</Link>
+                <ol>
+                    <li>paypal</li>
+                    <li>CB</li>
+                    <li>virement SEPA</li>
+                </ol>
+                <Link to={`/payment`}>Valider</Link>
             </div>
         </div>
     );

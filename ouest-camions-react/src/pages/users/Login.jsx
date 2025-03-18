@@ -1,12 +1,16 @@
 import React from 'react';
 import LoginForm from "../../components/auth/LoginForm";
-//import Menu from "../components/Menu";
+import { Link } from "react-router-dom";
 //import axios from "axios";
 const Login = () => {
     return (
         <div>
             <h1 className='h1-login'>S'identifier</h1>
-                <LoginForm />
+            <LoginForm />
+            <p>Nouveau sur Ouestcamions? 
+                <Link to="/register/"> Créez un compte</Link>
+            </p>
+
         </div>
     );
 };

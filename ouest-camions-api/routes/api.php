@@ -13,8 +13,9 @@ use App\Http\Controllers\Admin\CategoryTruckController;
 use App\Http\Controllers\Admin\CategoryTrailerController;
 
 
-
+Route::post('/register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+
 
 // users
 
@@ -51,7 +52,7 @@ Route::get('contacts/{id}', [ContactController::class, 'show']);
 Route::patch('/contacts/{contacts}', [ContactController::class, 'update']);
 Route::delete('/contacts/{contacts}', [ContactController::class, 'destroy']);
 
-  
+
 
 // categories-trucks
 
@@ -97,17 +98,28 @@ Route::delete('/trailers/{trailer}', [TrailerController::class, 'destroy']);
 Route::get('/trailers/category/{id}', [TrailerController::class, 'getTrailersByCategory']);
 
 
-Route::get('cart', [OrderController::class, 'index']);
 
 
 //return $request->user();
 //})->middleware('auth:sanctum');
 // Route pour le dashboard administratif
 
-//Route::middleware(['auth:sanctum', 'admin'])->group(function () {
-    Route::get('/admin', [DashboardController::class, 'index']); {/* admin dashboard => routes admin only, easier to find url */} 
-    Route::get('/admin/categories-trucks', [CategoryTruckController::class, 'index']);
+Route::middleware('auth:api', 'admin')->group(function () {
+Route::get('/admin', [DashboardController::class, 'index']);  /* admin dashboard => routes admin only, easier to find url */
+Route::get('/admin/categories-trucks', [CategoryTruckController::class, 'index']);
 
-    Route::get('/admin/categories-trailers', [CategoryTrailerController::class, 'index']);
-    Route::post('/admin/categories-trailers', [CategoryTrailerController::class, 'store']);
-//});
+Route::get('/admin/categories-trailers', [CategoryTrailerController::class, 'index']);
+Route::post('/admin/categories-trailers', [CategoryTrailerController::class, 'store']);
+
+});
+
+Route::middleware('auth:api')->group(function () {
+
+ //   Route::get('/currentuser', [UserController::class, 'currentUser']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+ //   Route::get('cart', [OrderController::class, 'index']); // provisoire pour les tests
+
+});
+Route::get('/currentuser', [UserController::class, 'currentUser']);
+
+Route::get('cart', [OrderController::class, 'index']);

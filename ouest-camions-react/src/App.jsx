@@ -5,7 +5,10 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Login from "./pages/users/Login";
 import Register from "./pages/users/Register";
+import Profile from "./pages/users/Profile";
+
 import Legal from "./pages/Legal";
+
 import CategoriesTrucks from "./pages/categories-trucks/CategoriesTrucks";
 import CategoriesTrailers from "./pages/categories-trailers/CategoriesTrailers"; /* version public */
 
@@ -38,6 +41,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+
 
           <Route path="legal" element={<Legal />} />
           <Route path="categories-trucks" element={<CategoriesTrucks />} />

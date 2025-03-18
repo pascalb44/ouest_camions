@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -15,6 +16,22 @@ class UserController extends Controller
     {
         $this->user = $user;
     }
+
+
+    public function currentUser()
+    {
+        return response()->json([
+            'meta' => [
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'User fetched successfully!',
+            ],
+            'data' => [
+                'user' => JWTAuth::user(), // use JWTAuth to get the user    
+            ],
+        ]);
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -40,10 +57,35 @@ class UserController extends Controller
             'address' => 'required|string',
             'postalCode' => 'required|string',
             'town' => 'required|string',
-            'telephone' => 'required|string',   
+            'telephone' => 'required|string',
             'id_role' => 'required|exists:roles,id',
-        ]); 
-/*
+        ]);
+        
+    // Hash du mot de passe après validation
+    $hashedPassword = bcrypt($request->password);
+
+    // Création de l'utilisateur avec le mot de passe haché
+    $user = User::create([
+        'first_name' => $request->first_name,
+        'last_name' => $request->last_name,
+        'email' => $request->email,
+        'password' => $hashedPassword, // Mot de passe haché
+        'company' => $request->company,
+        'siren' => $request->siren,
+        'address' => $request->address,
+        'postalCode' => $request->postalCode,
+        'town' => $request->town,
+        'telephone' => $request->telephone,
+        'id_role' => $request->id_role,
+    ]);
+
+    // Réponse JSON avec les données de l'utilisateur créé
+    return response()->json([
+        'message' => 'Client ajouté avec succès',
+        'data' => $user
+    ], 201);
+}
+        /*
         $filename = "";
         if ($request->file('siren')) {
             $filenameWithExt = $request->file('siren')->getClientOriginalName();
@@ -55,17 +97,7 @@ class UserController extends Controller
             $filename = null;
         }
         */
-        $user = User::create(array_merge(
-            $request->all(),
-        //    ['siren' => $filename]
-        ));
-        
-        return response()->json([
-            'message' => 'Client ajouté avec succès',
-            'data' => $user
-        ], 201);
-    }
-
+    
 
     /**
      * Display the specified resource.
