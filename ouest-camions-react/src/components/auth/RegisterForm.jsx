@@ -78,7 +78,7 @@ const RegisterForm = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('http://localhost:8000/api/users', {
+            const response = await fetch('http://localhost:8000/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const RegisterForm = () => {
             console.log('Réponse brute:', responseText);
     
 
-            const data = JSON.parse(responseText); // Cela peut être source d'erreur si la réponse n'est pas du JSON
+            const data = JSON.parse(responseText); 
 
             if (response.ok) {
                 console.log('Inscription réussie:', data);
@@ -127,7 +127,7 @@ const RegisterForm = () => {
 
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <div className="rounded-md shadow-sm -space-y-px">
-                        {/* Prénom */}
+                        {/* first_name */}
                         <div className="mb-4">
                             <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">Prénom</label>
                             <input id="first_name" name="first_name" type="text" value={formData.first_name}
@@ -136,7 +136,7 @@ const RegisterForm = () => {
                             {errors.first_name && <p className="mt-2 text-sm text-red-600">{errors.first_name}</p>}
                         </div>
 
-                        {/* Nom */}
+                        {/* last_name */}
                         <div className="mb-4">
                             <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">Nom</label>
                             <input id="last_name" name="last_name" type="text" value={formData.last_name}
@@ -145,7 +145,7 @@ const RegisterForm = () => {
                             {errors.last_name && <p className="mt-2 text-sm text-red-600">{errors.last_name}</p>}
                         </div>
 
-
+                        {/* company */}
                         <div className="mb-4">
                             <label htmlFor="company" className="block text-sm font-medium text-gray-700">Entreprise</label>
                             <input id="company" name="company" type="text" value={formData.company}
@@ -155,7 +155,7 @@ const RegisterForm = () => {
                         </div>
 
 
-                        {/* Champ siren */}
+                        {/* siren */}
                         <div className="mb-4">
                             <label htmlFor="siren" className="block text-sm font-medium text-gray-700">SIREN</label>
                             <input id="siren" name="siren" type="text" value={formData.siren}
@@ -165,7 +165,7 @@ const RegisterForm = () => {
                         </div>
 
 
-                        {/* Champ adresse */}
+                        {/* address */}
                         <div className="mb-4">
                             <label htmlFor="address" className="block text-sm font-medium text-gray-700">Adresse</label>
                             <input id="address" name="address" type="text" value={formData.address}
@@ -175,7 +175,7 @@ const RegisterForm = () => {
                         </div>
 
 
-                        {/* Champ postalCode */}
+                        {/* postalCode */}
                         <div className="mb-4">
                             <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700">Code postal</label>
                             <input id="postalCode" name="postalCode" type="text" value={formData.postalCode}
@@ -185,7 +185,7 @@ const RegisterForm = () => {
                         </div>
 
 
-                        {/* Champ ville */}
+                        {/* town */}
                         <div className="mb-4">
                             <label htmlFor="town" className="block text-sm font-medium text-gray-700">Ville</label>
                             <input id="town" name="town" type="text" value={formData.town}
@@ -194,7 +194,7 @@ const RegisterForm = () => {
                             {errors.town && <p className="mt-2 text-sm text-red-600">{errors.town}</p>}
                         </div>
 
-                        {/* Champ telephone */}
+                        {/* phone */}
                         <div className="mb-4">
                             <label htmlFor="telephone" className="block text-sm font-medium text-gray-700">Téléphone</label>
                             <input id="telephone" name="telephone" type="text" value={formData.telephone}
@@ -214,7 +214,7 @@ const RegisterForm = () => {
                         {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email}</p>}
                     </div>
 
-                    {/* Mot de passe */}
+                    {/* password */}
                     <div className="mb-4">
                         <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe</label>
                         <input id="password" name="password" type="password" value={formData.password}
@@ -224,7 +224,7 @@ const RegisterForm = () => {
                         {errors.password && <p className="mt-2 text-sm text-red-600">{errors.password}</p>}
                     </div>
 
-                    {/* Confirmation mot de passe */}
+                    {/* Confirmation */}
                     <div className="mb-4">
                         <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirmer le mot de passe</label>
                         <input id="confirmPassword" name="confirmPassword" type="password" value={formData.confirmPassword}
@@ -234,13 +234,12 @@ const RegisterForm = () => {
                         {errors.confirmPassword && <p className="mt-2 text-sm text-red-600">{errors.confirmPassword}</p>}
                     </div>
                     <div>
-                        <button type="submit" disabled={isSubmitting} className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${isSubmitting ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'
+                        <button type="submit" disabled={isSubmitting} className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black ${isSubmitting ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'
                             } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}>
                             {isSubmitting ? 'Inscription en cours...' : 'Envoyer'}
                         </button>
                     </div>
                 </form>
-
 
 
             </div>

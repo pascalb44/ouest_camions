@@ -4,23 +4,19 @@
 @media (min-width: 1025px) {
 
     .icon-map {
-        display: flex;
-        justify-content: left;
-        margin-top: 5%;
+        position: relative;
+        flex: 1 1;
 
         img {
             padding: 1rem;
-            margin-top: 5%;
-            margin-bottom: 5%;
+            margin: 10% 0 0 15%;
             cursor: pointer;
-            width: 50%;
-            margin-left : 35%;
+            width: 40%;
         }
 
         span {
             display: flex;
-            margin-top: -5%;
-            margin-left : 50%;
+            margin-left : 30%;
             color: black;
             font-size: 1.5rem;
         }
@@ -32,23 +28,19 @@
 @media (min-width: 769px) and (max-width: 1024px) {
 
     .icon-map {
-        display: flex;
-        justify-content: left;
-        margin-top: 5%;
+        position: relative;
+        flex: 1 1;
 
         img {
             padding: 1rem;
-            margin-top: 5%;
-            margin-bottom: 5%;
+            margin: 10% 0 0 15%;
             cursor: pointer;
-            width: 50%;
-            margin-left : 25%;
+            width: 60%;
         }
 
         span {
             display: flex;
-            margin-top: -5%;
-            margin-left : 50%;
+            margin-left : 30%;
             color: black;
             font-size: 1.5rem;
         }

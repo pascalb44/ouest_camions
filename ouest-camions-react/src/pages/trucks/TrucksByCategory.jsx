@@ -47,7 +47,7 @@ const TrucksByCategory = () => {
                             </div>
 
                             <p>{truck.km_truck} km</p>
-                            <p>A partir de {truck.price_day_truck} euros/jour</p>
+                            <p>A partir de {truck.price_day_truck} /jour</p>
 
                             <div className="truck-category-image-caption">
                                 <Link to={`/trucks/${truck.id}`}>En savoir plus</Link>

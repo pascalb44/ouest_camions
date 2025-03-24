@@ -6,32 +6,26 @@ function getToken() {
 
 let getDecodedToken = () => {
     const token = getToken();
-    if (token) {
-        return jwtDecode(token);
-    } else {
-        return null;
-    }
+    return token ? jwtDecode(token) : null;
 }
 
 let getExpiryTime = () => {
     const decodedToken = getDecodedToken();
-    if (decodedToken && decodedToken.exp * 1000 >= Date.now()) {
-        return true;
-    } else {
-        // Le token a expiré ou est absent, on le supprime
-        localStorage.removeItem('access_token');
-        return false;
+    if (decodedToken && decodedToken.exp) {
+        if (decodedToken.exp * 1000 >= Date.now()) {
+            return true;
+        } else {
+            localStorage.removeItem('access_token');
+            return false;
+        }
     }
+    return false; // Le token est mal formé ou sans expiration
 }
 
 let getRoles = () => {
     const decodedToken = getDecodedToken();
     if (getExpiryTime() && decodedToken) {
-        try {
-            return JSON.parse(decodedToken.roles).toString(); // s'assurer que `roles` est bien un tableau
-        } catch (e) {
-            return false; // En cas de problème avec le format des rôles
-        }
+        return decodedToken?.roles?.toString() || false;
     }
     return false;
 }
@@ -39,7 +33,7 @@ let getRoles = () => {
 let getEmail = () => {
     const decodedToken = getDecodedToken();
     if (getExpiryTime() && decodedToken) {
-        return decodedToken.email;
+        return decodedToken?.email || false;
     }
     return false;
 }

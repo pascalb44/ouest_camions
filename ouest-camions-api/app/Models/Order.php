@@ -13,7 +13,7 @@ class Order extends Model
 
     public function trucks()
     {
-        return $this->belongsToMany(Truck::class, 'order_truck', 'id_order', 'id_truck');
+        return $this->belongsToMany(Truck::class, 'order_truck', 'id_order', 'id');
     }
 
 

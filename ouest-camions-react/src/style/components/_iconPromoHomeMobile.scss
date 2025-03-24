@@ -1,7 +1,7 @@
 /* version tablette orientation portrait */
 @media (min-width: 481px) and (max-width: 768px) {
 
-    .icon-map {
+    .icon-promo {
         display: flex;
         flex-direction: column;
         margin-top: 5%;
@@ -10,20 +10,11 @@
             display: flex;
             margin-top: 5%;
             margin-bottom: 5%;
-            cursor: pointer;
             width: 50%;
-            margin-left : 25%;
-            
-        }
+            margin-left: 25%;
 
-        span {
-            display: flex;
-            margin-left : 40%;
-            color: black;
-            font-size: 1.5rem;
         }
     }
-
 }
 
 
@@ -32,25 +23,14 @@
 
 @media (max-width: 480px) {
 
-    .icon-map {
+    .icon-promo {
         display: flex;
         flex-direction: column;
-        margin-top: 5%;
+        margin : 10% 0 10% 25%;
 
         img {
             display: flex;
-            margin-top: 5%;
-            margin-bottom: 5%;
-            cursor: pointer;
             width: 50%;
-            margin-left : 25%;
-        }
-
-        span {
-            display: flex;
-            margin-left : 35%;
-            color: black;
-            font-size: 1.5rem;
         }
     }
 

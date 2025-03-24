@@ -36,10 +36,10 @@ const TrailersByCategory = () => {
 
             <div className="trailer-category-list">
                 {trailers.length > 0 ? (
-                    trailers.map((trailer) => (
+                    trailers.map((trailer) => (                       
                         <div key={trailer.id} className={`trailer-category-item ${trailers.length === 1 ? "full-width" : ""}`}>
                             {/* to have 1 picture on the page for specialized trailers */}
-
+                        
                             <div className="trailer-category-name">
                                 <p>{trailer.brand_trailer} {trailer.name_trailer}</p>
                             </div>
@@ -48,7 +48,7 @@ const TrailersByCategory = () => {
                                 alt={trailer.name_trailer} />
                             </div>
 
-                            <p>{trailer.load_trailer} Charge utile</p>
+                            <p>Charge utile : {trailer.load_trailer}</p>
                             <p>A partir de {trailer.price_day_trailer} euros/jour</p>
 
                             <div className="trailer-category-image-caption">
@@ -56,6 +56,7 @@ const TrailersByCategory = () => {
                                 {/* link to detail page of the trailer */}
                             </div>
                         </div>
+                        
                     ))
                 ) : (
                     <p>Aucune remorque trouvée pour cette catégorie.</p>

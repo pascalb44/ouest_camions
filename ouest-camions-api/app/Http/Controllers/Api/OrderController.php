@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Truck;
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class OrderController extends Controller
 {
@@ -13,7 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all(); // import all categories of trucks
+        $orders = Order::with('trucks')->get();  // import orders with trucks
         return response()->json($orders);
     }
 
@@ -23,17 +26,34 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'order_number' => 'required|string',
-            'start_date' => 'required|string',
-            'end_date' => 'required|string',
-            'amount' => 'required|integer',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'amount' => 'required|numeric',
             'method_payment' => 'required|string',
-            'date_payment' => 'required|string',
+            'trucks' => 'required|array', // trucks
+            'trucks.*' => 'exists:trucks,id', 
         ]); 
+
+        $user = JWTAuth::user(); // Utilisation de JWTAuth pour récupérer l'utilisateur authentifié
+        // Create order
         $order = new Order();
-        $order->fill($formFields);
+        $order->order_number = rand(1000, 9999); 
+        $order->start_date = $formFields['start_date'];
+        $order->end_date = $formFields['end_date'];
+        $order->amount = $formFields['amount'];
+        $order->method_payment = $formFields['method_payment'];
+        $order->date_payment = now(); 
+        $order->id_user = $user->id;
         $order->save();
-        return response()->json($order);
+
+        // Associate trucks with table 'orders_truck'
+        $order->trucks()->attach($formFields['trucks']); // 
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Commande créée avec succès.',
+            'order' => $order,
+        ]);
     }
 
     /**
@@ -41,8 +61,7 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        $order = Order::find($id);
-
+        $order = Order::with('trucks')->find($id); // orders with trucks
         if (!$order) {
             return response()->json(['message' => 'commande non trouvée'], 404);
         }

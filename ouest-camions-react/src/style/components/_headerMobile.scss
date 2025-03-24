@@ -1,4 +1,4 @@
-/********************************** version great mobile ********************/
+/********************************** version tablette ********************/
 
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -114,40 +114,50 @@
 
 
     /* menu burger */
-    .mobile-header {
+
+
+
+    .header-top-mobile {
         position: relative;
         width: 100%;
-        background: lightseagreen;
-        color: white;
-        padding: 1rem;
         height: 150px;
+        color: white;
+        background-size: cover;
+        background-position: center;
+
+        .header-top-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* between logo and phone */
+            background-color: lightseagreen;
+            padding: 25px 20px; 
+            height: 100px; 
+        
+            .phone-number {
+                position: relative; 
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 1.1rem;
+            }
+        }
 
         .header-top {
             display: flex;
             align-items: center;
             justify-content: flex-start;
             gap: 10px;
+            height: 200px;
         }
 
-        .header-top-content {
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
 
-        h1 {
-            font-size: 1.2rem;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
+
 
         /* button ☰ X */
 
         .menu-toggle {
             background: none;
-            border: solid 1px black;
-            color: black !important;
+            border: solid 1px green;
+            color: blue !important;
             font-size: 1.5rem;
             cursor: pointer;
             border-radius: 8px;
@@ -157,14 +167,15 @@
             align-items: center;
             justify-content: center;
             z-index: 1001;
+            margin-bottom: 130px;
+            margin-left: 3%;
         }
 
         /* menu with items */
         .mobile-nav {
             position: absolute;
-            top: 150px;
             left: -100%;
-            width: 100vw; 
+            width: 100vw;
             background: darkgreen;
             display: flex;
             flex-direction: column;
@@ -185,4 +196,7 @@
     .mobile-nav.open {
         left: 0;
     }
+
+   
+
 }

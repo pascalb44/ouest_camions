@@ -32,7 +32,7 @@ class truck extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class, 'order_truck', 'id_truck', 'id_order');
+        return $this->belongsToMany(Order::class, 'order_truck', 'id', 'id_order');
     }
 
     public function categories_trucks()

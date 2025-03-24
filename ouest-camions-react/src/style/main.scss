@@ -9,19 +9,26 @@
 @import "components/nav";
 @import "components/iconMapHome";
 @import "components/iconMapHomeMobile";
+@import "components/iconPromoHome";
+@import "components/iconPromoHomeMobile";
+
 @import "components/imageHome";
 @import "components/imageHomeMobile";
+
+
 @import "components/homeMobile";
 @import "components/legal";
 @import "components/legalMobile";
 
 @import "pages/categoriesTrucks";
-@import "pages/categoriesTrailers";
-
 @import "pages/trucksByCategories";
 @import "pages/truckDetail";
 
+
+@import "pages/categoriesTrailers";
 @import "pages/trailersByCategories";
+@import "pages/trailerDetail";
+
 
 @import "pages/cart";
 

@@ -39,14 +39,14 @@
 
     .edito {
         text-align: justify;
-        padding: 5%;
+        padding: 10%;
 
-        span {
-            display: inline-block;
-            font-style: italic;
-            font-size: 1.3rem;
-            margin-bottom: 2%;
+        h2 {
+            text-align: center;
+            margin-bottom: 10%;
+
         }
+
     }
 }
 
@@ -59,7 +59,7 @@
 
     .h1-home {
         color: blue;
-        margin: 5% 5% 5% 5%;
+        margin: 50% 5% 5% 5%;
         font-size: 1.4rem;
         text-align: center;
     }
@@ -72,11 +72,9 @@
         text-align: justify;
         padding: 5%;
 
-        span {
-            display: inline-block;
-            font-style: italic;
-            font-size: 1.3rem;
-            margin-bottom: 2%;
-        }
+    }
+
+    h2 {
+      display: none;
     }
 }

@@ -19,6 +19,8 @@ Route::post('login', [AuthController::class, 'login']);
 
 // users
 
+Route::middleware('auth:api')->group(function () {
+
 Route::get('users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 Route::get('/users/{users}', [UserController::class, 'show']);
@@ -26,7 +28,7 @@ Route::get('users/{id}', [UserController::class, 'show']);
 Route::patch('/users/{users}', [UserController::class, 'update']);
 Route::delete('/users/{users}', [UserController::class, 'destroy']);
 
-
+});
 // orders
 
 Route::get('orders', [OrderController::class, 'index']);
@@ -114,12 +116,9 @@ Route::post('/admin/categories-trailers', [CategoryTrailerController::class, 'st
 });
 
 Route::middleware('auth:api')->group(function () {
-
- //   Route::get('/currentuser', [UserController::class, 'currentUser']);
+    Route::get('/currentuser', [UserController::class, 'currentUser']);
     Route::post('/logout', [AuthController::class, 'logout']);
- //   Route::get('cart', [OrderController::class, 'index']); // provisoire pour les tests
-
+    Route::get('cart', [OrderController::class, 'index']); 
+    Route::get('payment', [OrderController::class, 'index']);
+    Route::get('orders', [OrderController::class, 'index']);
 });
-Route::get('/currentuser', [UserController::class, 'currentUser']);
-
-Route::get('cart', [OrderController::class, 'index']);

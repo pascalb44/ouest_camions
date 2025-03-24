@@ -10,22 +10,24 @@ const PictureHeader = () => {
         axios
             .get("http://127.0.0.1:8000/api/header-image") // Adjust the API endpoint
             .then((response) => {
-                setPictureSrc(response.data.image); // Assume the API returns { image: 'path_to_image' }
+                setPictureSrc(response.data.image); // get the picture from the API
             })
             .catch((error) => {
                 console.error("Erreur lors du chargement de l'image :", error);
             });
     }, []);
 
-    return (
-        <div className="picture-container-header">
-            {pictureSrc ? (
-                <img className="picture-header" src={pictureSrc} alt={altText} />
-            ) : (
-                <p>Chargement de l'image...</p>
-            )}
-        </div>
-    );
+    return pictureSrc ? (
+        <style>
+            {`
+                .mobile-header {
+                    background-image: url(${pictureSrc});
+                    background-size: cover;
+                    background-position: center;
+                }
+            `}
+        </style>
+    ) : null;
 };
 
 export default PictureHeader;

@@ -18,7 +18,7 @@ class UserController extends Controller
     }
 
 
-    public function currentUser()
+    public function currentUser(Request $request)
     {
         return response()->json([
             'meta' => [

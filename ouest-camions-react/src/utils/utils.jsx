@@ -1,24 +1,35 @@
 export const calculatePrice = (duration, pricePerDay, pricePerWeek, pricePerMonth, pricePerYear) => {
+    // Valider les prix pour s'assurer qu'ils sont des nombres valides
+    pricePerDay = parseFloat(pricePerDay);
+    pricePerWeek = parseFloat(pricePerWeek);
+    pricePerMonth = parseFloat(pricePerMonth);
+    pricePerYear = parseFloat(pricePerYear);
+
+    if (isNaN(pricePerDay) || isNaN(pricePerWeek) || isNaN(pricePerMonth) || isNaN(pricePerYear)) {
+        console.error("Certains prix sont invalides");
+        return 0; // Retourner 0 si l'un des prix est invalide
+    }
+
+    let totalPrice = 0;
+    
     // calcul price per year
-    if (duration >= 365) {
-        const years = Math.floor(duration / 365);
-        const remainingDays = duration % 365;
-        return years * pricePerYear + calculatePrice(remainingDays, pricePerDay, pricePerWeek, pricePerMonth, pricePerYear);
-    }
+    const years = Math.floor(duration / 365);
+    totalPrice += years * pricePerYear;
+    duration -= years * 365;
+
+    
     // calcul price per month
+    const months = Math.floor(duration / 30);
+    totalPrice += months * pricePerMonth;
+    duration -= months * 30;
+    
 
-    if (duration >= 30) {
-        const months = Math.floor(duration / 30);
-        const remainingDays = duration % 30;
-        return months * pricePerMonth + calculatePrice(remainingDays, pricePerDay, pricePerWeek, pricePerMonth, pricePerYear);
-    }
     // calcul price per week
+    const weeks = Math.floor(duration / 7);
+    totalPrice += weeks * pricePerWeek;
+    duration -= weeks * 7;  
 
-    if (duration >= 7) {
-        const weeks = Math.floor(duration / 7);
-        const remainingDays = duration % 7;
-        return weeks * pricePerWeek + calculatePrice(remainingDays, pricePerDay, pricePerWeek, pricePerMonth, pricePerYear);
-    }
-    return duration * pricePerDay;    
+    totalPrice += duration * pricePerDay;
+
+    return totalPrice;
 };
-

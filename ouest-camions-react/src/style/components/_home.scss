@@ -40,7 +40,7 @@
     /* presentation text on the home page */
 
     .edito {
-        text-align: center;
+        text-align: justify;
         padding: 5%;
 
         span {
@@ -48,9 +48,14 @@
             font-style: italic;
             font-size: 1.3rem;
             margin-bottom: 2%;
+
         }
     }
-
+    .icons-home {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15%;
+    }
 }
 
 /* version tablette orientation lanscape */
@@ -96,6 +101,12 @@
             font-size: 1.3rem;
             margin-bottom: 2%;
         }
+    }
+
+    .icons-home {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15%;
     }
 
 }

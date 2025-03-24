@@ -21,7 +21,6 @@
         max-width: max-content;
         margin: 5% auto;
         align-items: stretch;
-        background-color: #99FFFF;
 
     }
 
@@ -36,6 +35,8 @@
         box-sizing: border-box;
         text-align: center;
         border: 1px solid blue;
+                background-color: #99FFFF;
+
     }
 
     .trailer-category-name {
@@ -66,7 +67,7 @@
         flex: 0 1 100%;
     }
 
-    .trailer-category-image-one {
+    .trailer-category-image-one { /* one picture on the page */
         height: 600px; 
     }
 

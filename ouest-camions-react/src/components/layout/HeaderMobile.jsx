@@ -15,24 +15,29 @@ const HeaderMobile = () => {
 
 
     return (
-        <header className="mobile-header">
-            <div className="header-top">
-                <button className="menu-toggle" onClick={toggleMenu}>
-                    {isOpen ? "✖" : "☰"}
-                </button>
-                <div className="header-top-content">
-                <LogoHeader /> 
-                <PictureHeader /> 
-                    <h1>Ouest camions</h1>
-                    <p><FontAwesomeIcon icon={faPhoneAlt} /> 0123546879</p>
-                </div>
+
+        <header className="header-top-mobile">
+            <div className="header-top-banner">
+                <LogoHeader />
+                <p className="phone-number">
+                    <FontAwesomeIcon icon={faPhoneAlt} />
+                    0123546879
+                </p>           
             </div>
-            <nav className={`mobile-nav ${isOpen ? "open" : ""}`}>
-                <Link to="/presentation" className="nav-link" onClick={toggleMenu}>Présentation</Link>
-                <Link to="/" className="nav-link" onClick={toggleMenu}>Nos agences</Link>
-                <Link to="/contacts" className="nav-link" onClick={toggleMenu}>Contact</Link>
-                <Link to="/login" className="nav-link" onClick={toggleMenu}>Connexion</Link>
-            </nav>
+            <div className="mobile-header">
+                <div className="header-top">
+                    <PictureHeader />
+                    <button className="menu-toggle" onClick={toggleMenu}>
+                        {isOpen ? "✖" : "☰"}
+                    </button>
+                </div>
+                <nav className={`mobile-nav ${isOpen ? "open" : ""}`}>
+                    <Link to="/presentation" className="nav-link" onClick={toggleMenu}>Présentation</Link>
+                    <Link to="/" className="nav-link" onClick={toggleMenu}>Nos agences</Link>
+                    <Link to="/contacts" className="nav-link" onClick={toggleMenu}>Contact</Link>
+                    <Link to="/login" className="nav-link" onClick={toggleMenu}>Connexion</Link>
+                </nav>
+            </div>
         </header>
     );
 };

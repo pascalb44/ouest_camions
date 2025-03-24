@@ -18,7 +18,7 @@
         flex-direction: row;
     }
 
-    .adBlock {
+    .truck-detail {
         /* truck detail block */
         display: flex;
         flex-direction: column;
@@ -26,7 +26,7 @@
         margin-left: 5%;
     }
 
-    .editoTruck {
+    .edito-truck {
         margin: 5% auto;
 
     }
@@ -44,7 +44,7 @@
         border-radius: 50px;
     }
 
-    .adBlockDetail {
+    .truck-detail-block {
         display: flex;
         flex-direction: row;
         margin: 5%;
@@ -54,13 +54,13 @@
             font-weight: 600;
         }
 
-        .adBlockFeatures {
+        .truck-detail-features {
             display: flex;
             flex-direction: column;
         }
 
 
-        .adBlockLocation {
+        .truck-detail-location {
             display: flex;
             flex-direction: column;
             margin-left: 10%;
@@ -94,40 +94,45 @@
 
     /* calendar */
 
-    .date-picker {
+
+    .vehicle-picker-truck {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .date-picker-truck {
         display: flex;
         flex-direction: column;
         margin-top: 220px;
     }
 
 
-    .date-picker-start {
+    .date-picker-start-truck {
         display: flex;
         flex-direction: row;
-        border: solid 1px black;
     }
 
-    .date-picker-start-legend,
-    .date-picker-end-legend {
+    .date-picker-start-legend-truck,
+    .date-picker-end-legend-truck {
         display: flex;
         margin-right: 25px;
         font-weight: 700;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+        width: 140px;
     }
 
-    .custom-date-picker-start,
-    .custom-date-picker-end {
+    .custom-date-picker-start-truck,
+    .custom-date-picker-end-truck {
         display: flex;
         flex-direction: column;
         padding-left: 40px;
 
     }
 
-    .date-picker-end {
+    .date-picker-end-truck {
         display: flex;
         flex-direction: row;
-        border: solid 1px black;
-        margin-top: 120%;
+        margin-top: 10%;
     }
 
 

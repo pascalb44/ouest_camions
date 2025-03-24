@@ -1,0 +1,33 @@
+
+/**************  map of the home page **********************************/
+
+@media (min-width: 1025px) {
+
+    .icon-promo {
+        position: relative;
+        flex: 1 1;
+
+        img {
+            width: 60%;
+        }
+    }
+}
+
+/* version tablette orientation paysage */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .icon-promo {
+        position: relative;
+        flex: 1 1;
+
+        img {
+            padding: 1rem;
+            margin: 5% 0 0 15%;
+            width: 65%;
+        }
+    }
+}
+
+
+

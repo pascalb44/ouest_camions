@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -20,19 +21,21 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+     
+    
         $request->validate([
-            'first_name'    => 'required|string|max:255',
-            'last_name'     => 'required|string|max:255',
-            'email'         => 'required|email|unique:users',
-            'password'      => 'required|string|min:6|max:255',
-            'company'       => 'required|string|max:255',
-            'siren'         => 'required|integer|digits:9',
-            'address'       => 'required|string|max:255',
-            'postalCode'    => 'required|string|max:10',
-            'town'          => 'required|string|max:255',
-            'telephone'     => 'required|string|max:20',
-            'id_role'       => $request->id_role,
+             'first_name'    => 'required|string|max:255',
+             'last_name'     => 'required|string|max:255',
+             'email'         => 'required|email|unique:users',
+             'password'      => 'required|string|min:6|max:255',
+             'company'       => 'required|string|max:255',
+             'siren'         => 'required|integer|digits:9',
+             'address'       => 'required|string|max:255',
+             'postalCode'    => 'required|string|max:10',
+             'town'          => 'required|string|max:255',
+             'telephone'     => 'required|string|max:20',
         ]);
+
         $user = User::create([
             'first_name'    => $request->first_name,
             'last_name'     => $request->last_name,
@@ -47,8 +50,11 @@ class AuthController extends Controller
             'id_role' => $request->id_role ?? 2,        
         ]);
 
-        $token = JWTAuth::login($user);
+        $user->email_verified_at = Carbon::now();
+            $user->save();
 
+        $token = auth()->login($user); // non-blocking error message 
+        //    dd($request);
         return response()->json([
             'meta' => [
                 'code'    => 200,
@@ -91,7 +97,7 @@ class AuthController extends Controller
     
         $user = JWTAuth::user();
     
-        // Ajouter le rôle dans le token
+        // add role in token
         $customClaims = ['role' => $user->id_role];
         $token = JWTAuth::claims($customClaims)->fromUser($user);
     
@@ -131,3 +137,4 @@ class AuthController extends Controller
         }
     }
 }
+

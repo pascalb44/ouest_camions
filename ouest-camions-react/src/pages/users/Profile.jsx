@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode'; 
+//import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import { Link } from "react-router-dom";
 
 
 const Profile = () => {
     const [user, setUser] = useState(null);  // Initialiser avec null, pas un tableau
     const [error, setError] = useState(null);  // Pour gérer les erreurs
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -41,15 +41,28 @@ const Profile = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post('http://127.0.0.1:8000/api/logout', {}, {
+            const token = localStorage.getItem('token');
+            console.log("Token avant logout:", token); // Vérifie si le token est présent
+    
+            // Appel à l'API pour invalider le token sur le backend
+            const response = await axios.post('http://127.0.0.1:8000/api/logout', {}, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                    Authorization: `Bearer ${token}`
                 }
             });
-            localStorage.removeItem('token'); // Supprimer le token
-            navigate('/login'); // Rediriger vers la page de connexion
+            console.log("Réponse logout:", response.data);
+    
+            // Nettoyage complet du localStorage
+            localStorage.removeItem('token');
+            localStorage.removeItem('paymentMethod');
+            localStorage.removeItem('reservation');
+            localStorage.removeItem('role');
+            localStorage.removeItem('user_id');
+    
+            // Redirection vers la page de connexion
+            window.location.href = "/login";
         } catch (error) {
-            console.error('Erreur lors de la déconnexion:', error);
+            console.error('Erreur lors de la déconnexion:', error.response ? error.response.data : error);
         }
     };
 
@@ -73,13 +86,12 @@ const Profile = () => {
                 <div><label className="font-semibold">Code postal :</label> {user.postalCode}</div>
                 <div><label className="font-semibold">Ville :</label> {user.town}</div>
                 <div><label className="font-semibold">Email :</label> {user.email}</div>
-            </div>
-            <Link to="/cart">Votre réservation</Link>
+            </div><br />
+            <Link to="/cart">Votre panier de réservation</Link><br />
+            <Link to="/orders">Vos commandes</Link><br />
 
-            <button 
-                onClick={handleLogout} 
-                className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition">
-                Se déconnecter
+            <button onClick={handleLogout} className="mt-4 w-full bg-red-500 text-black py-2 rounded-lg hover:bg-red-600 transition">
+                Déconnexion
             </button>
         </div>
     );
