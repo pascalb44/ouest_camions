@@ -37,13 +37,16 @@
     }
 }
 
+
+/**************   tablette landscape *****************/
+
 @media (min-width: 769px) and (max-width: 1024px)  {
 
  
     .home-pictures-card {
         display: flex;
         flex-direction: row;
-        margin: 4% 0 10% 10%;
+        margin: 0 2% 7% 0;
     }
 
     .home-pictures {
@@ -55,14 +58,13 @@
 
     .category-trailer-home-image,
     .category-truck-home-image {
-        width: 70%;
+        width: 100%;
         height: 70%;
     }
 
         /******** legend **********/
 
     .image-caption {
-        width: 70%;
         background-color: lightseagreen;
         color: white;
         text-align: center;

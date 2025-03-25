@@ -1,4 +1,5 @@
-/* version tablette orientation portrait */
+/* tablette orientation landscape */
+
 @media (min-width: 481px) and (max-width: 768px) {
 
     .icon-map {
@@ -8,10 +9,9 @@
 
         img {
             display: flex;
-            margin-top: 5%;
             margin-bottom: 5%;
             cursor: pointer;
-            width: 50%;
+            width: 45%;
             margin-left : 25%;
             
         }

@@ -11,14 +11,19 @@
 @import "components/iconMapHomeMobile";
 @import "components/iconPromoHome";
 @import "components/iconPromoHomeMobile";
-
 @import "components/imageHome";
 @import "components/imageHomeMobile";
+@import "components/loginForm";
+@import "components/loginFormMobile";
 
 
-@import "components/homeMobile";
-@import "components/legal";
-@import "components/legalMobile";
+@import "pages/homeMobile";
+@import "pages/legal";
+@import "pages/legalMobile";
+
+@import "pages/login";
+@import "pages/loginMobile";
+
 
 @import "pages/categoriesTrucks";
 @import "pages/trucksByCategories";

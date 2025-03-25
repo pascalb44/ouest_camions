@@ -1,4 +1,5 @@
-/* version tablette orientation portrait */
+/********* tablette portrait *************/
+
 @media (min-width: 481px) and (max-width: 768px) {
 
     .icon-promo {
@@ -12,7 +13,6 @@
             margin-bottom: 5%;
             width: 50%;
             margin-left: 25%;
-
         }
     }
 }
@@ -26,11 +26,11 @@
     .icon-promo {
         display: flex;
         flex-direction: column;
-        margin : 10% 0 10% 25%;
+        padding : 25px;
 
         img {
             display: flex;
-            width: 50%;
+            width: 100%;
         }
     }
 

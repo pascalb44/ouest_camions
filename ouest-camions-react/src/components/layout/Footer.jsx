@@ -17,26 +17,28 @@ const Footer = () => {
                     <div className="logo-footer" >
                         <LogoFooter />
                     </div>
+                    <div className="adress-footer">
+                        <p className="adress-footer-title">Adresse</p>
+                        <p>123 rue du transport</p>
+                        <p>44110 CHATEAUBRIANT</p>
+                        <p><FontAwesomeIcon icon={faPhoneAlt} /> 02 XX XX XX XX</p> {/* icone */}
+                        <p><FontAwesomeIcon icon={faAt} /> contact@ouestcamions.fr</p>
+                    </div>
+
                 </div>
-                <div className="adress-footer">
-                    <p className="adress-footer-title">Adresse</p>
-                    <p>123 rue du transport</p>
-                    <p>44110 CHATEAUBRIANT</p>
-                    <p><FontAwesomeIcon icon={faPhoneAlt} /> 0123546879</p> {/* icone */}
-                    <p><FontAwesomeIcon icon={faAt} /> contact@ouestcamions.fr</p>
-                </div>
+
                 <div className="company-footer">
-                <p className="company-footer-title">L'entreprise</p>
+                    <p className="company-footer-title">L'entreprise</p>
                     <p>CGV</p>
                     <p>Nos agences</p>
                     <p>Qui sommes nous?</p>
                 </div>
                 <div className="services-footer">
-                <p className="services-footer-title">Nos services</p>
+                    <p className="services-footer-title">Nos services</p>
                     <p><Link to="/categories-trucks" className="nav-link">Location camions</Link></p>
                     <p><Link to="/categories-trailers" className="nav-link">Location remorques</Link></p>
                 </div>
-         </div>
+            </div>
             <div className="footer-bottom">
                 <p>Copyrigth 2025</p>
                 <p><Link to="/legal" className="nav-link">Mentions légales</Link></p>

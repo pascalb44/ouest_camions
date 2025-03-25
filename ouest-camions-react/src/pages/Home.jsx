@@ -4,19 +4,19 @@ import IconMapHome from '../components/IconMapHome';
 import ImageHome from '../components/ImageHome';
 import IconPromoHome from '../components/IconPromoHome';
 
-import "../style/components/_home.scss";
+import "../style/pages/_home.scss";
 
 const Home = () => {
     return (
         <div>
-            <h1 className="h1-home">Location de véhicules uniquement dans l'ouest</h1>
             <div className="pub-container pub-container-mobile">
                 <div className="pub pub-mobile">
                     <p>EXCLUSIF : Découvrez nos locations à partir de 100 euros /jour</p>
                 </div>
             </div>
+            <h1 className="h1-home">Votre partenaire en location de camions et remorques dans le grand ouest</h1>
+
             <section className="edito">
-                <h2>Votre partenaire en location de camions et remorques dans le Grand Ouest.</h2>
                     <p>Ouest Camions est votre spécialiste de la location de camions et de remorques dans le Grand Ouest de la France. Que vous soyez un professionnel du transport, du BTP, de l’agriculture ou un particulier ayant un besoin ponctuel, nous mettons à votre disposition une flotte de véhicules fiables et performants adaptés à toutes vos exigences.</p>
                     <h4>Une large gamme de véhicules pour tous vos besoins.</h4>
                         <p>Nous proposons un vaste choix de camions porteurs, semi-remorques, poids lourds, utilitaires et remorques spécialisées. Nos véhicules sont régulièrement entretenus pour garantir sécurité, fiabilité et performance sur toutes vos routes.</p>

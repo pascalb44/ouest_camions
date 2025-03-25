@@ -59,16 +59,16 @@ function LoginForm() {
 
     return (
         <div>
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label>Email</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <form onSubmit={handleLogin} className="form-container-login" >
+                <div className="form-group-login">
+                <label className="label-login">Email</label>
+                <input className="input-login" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
-                <div>
-                    <label>Mot de passe</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <div className="form-group-login">
+                    <label className="label-login">Mot de passe</label>
+                    <input className="input-login" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <button type="submit">Se connecter</button>
+                <button className="button-login" type="submit">Se connecter</button>
             </form>
             {error && <div>{error}</div>}
             {token && <div>Token JWT: {token}</div>}

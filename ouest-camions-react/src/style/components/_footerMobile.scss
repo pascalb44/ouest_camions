@@ -1,6 +1,6 @@
 
 
-/* version tablette orientation portrait */
+/* tablette portrait */
 
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -25,11 +25,12 @@
     .brand-footer p {
         font-weight: bold;
         font-size: 1.8rem;
+        margin-top: 10%;
     }
 
     .adress-footer-title,
     .company-footer-title,
-    .services-footer-Title {
+    .services-footer-title {
         margin-top: 20px;
         font-size: 1.2rem;
         font-weight: 600;
@@ -44,7 +45,7 @@
         padding-top: 0;
     }
 
-    /* 2nd line of the bottom */
+    /* Copyrigth + legal */
 
     .footer-bottom {
         display: flex;
@@ -84,6 +85,8 @@
         font-weight: bold;
         font-size: 2rem;
         text-align: center;
+        margin-top: 10%;
+
     }
 
     .adress-footer-title,
@@ -103,7 +106,7 @@
         padding-top: 0;
     }
 
-    /* 2nd line of the bottom */
+    /* copyright + legal*/
 
     .footer-bottom {
         display: flex;

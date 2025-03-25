@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const Login = () => {
     return (
         <div>
-            <h1 className='h1-login'>S'identifier</h1>
+            <h1 className="h1-login">Vous avez déjà un compte ?</h1>
             <LoginForm />
-            <p>Nouveau sur Ouestcamions? 
-                <Link to="/register/"> Créez un compte</Link>
+            <p className="question-login">Nouveau sur ouestcamions? 
+                <Link to="/register/" className="register-link"> Créez un compte</Link>
             </p>
 
         </div>

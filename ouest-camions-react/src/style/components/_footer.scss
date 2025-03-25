@@ -1,126 +1,138 @@
-    /* footer version desktop */
+    /* footer desktop */
 
-@media (min-width: 1025px) {
+    @media (min-width: 1025px) {
 
-    .footer {
-        width: 100%;
-        background-color: lightseagreen;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 2%;
+        .footer {
+            width: 100%;
+            background-color: lightseagreen;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 2%;
+        }
+
+        .footer-block {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .logo-footer-block {
+            display: flex;
+            flex-direction: column;
+            margin-left: 150px;
+        }
+
+        .brand-footer p {
+            font-weight: bold;
+            font-size: 2rem;
+            margin-left: -25%;
+        }
+
+        .adress-footer-title,
+        .company-footer-title,
+        .services-footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .adress-footer,
+        .company-footer,
+        .services-footer {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+            padding: 30px;
+            font-size: 1rem;
+            line-height: 25px;
+        }
+
+        /* 2nd line of the bottom */
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
+
     }
 
-    .footer-block {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+    /* tablette landscape */
+
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .footer {
+            width: 100%;
+            background-color: lightseagreen;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 2%;
+        }
+
+        .footer-block {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .logo-footer-block {
+            display: flex;
+            flex-direction: column;
+            margin-left: 60px;
+            width: 30%;
+
+            .brand-footer p {
+                font-weight: bold;
+                font-size: 2rem;
+            }
+
+            .adress-footer {
+                padding-top: 15px;
+                font-size: 1rem;
+                line-height: 25px;
+            }
+
+            .adress-footer-title {
+
+                font-size: 1.3rem;
+                font-weight: 600;
+            }
+        }
+
+        .company-footer,
+        .services-footer {
+            flex: 1;
+            width: 25%;
+            text-align: left;
+            padding: 30px;
+            font-size: 1rem;
+            line-height: 25px;
+
+            .company-footer-title,
+            .services-footer-title {
+                font-size: 1.3rem;
+                font-weight: 600;
+            }
+        }
+
+
+
+        /* 2nd line of the bottom */
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
     }
-
-    .logo-footer-block {
-        display: flex;
-        flex-direction: column;
-        margin-left: 150px;
-    }
-
-    .brand-footer p {
-        font-weight: bold;
-        font-size: 2rem;
-        margin-left: -25%;
-    }
-
-    .adress-footer-title,
-    .company-footer-title,
-    .services-footer-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-
-    .adress-footer,
-    .company-footer,
-    .services-footer {
-        flex: 1;
-        min-width: 200px;
-        text-align: left;
-        padding: 30px;
-        font-size: 1rem;
-        line-height: 25px;
-    }
-
-    /* 2nd line of the bottom */
-
-    .footer-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 30px;
-    }
-
-    .footer-bottom p {
-        margin: 0;
-    }
-
-}
-
-/* version tablette orientation landscape */
-
-
-@media (min-width: 769px) and (max-width: 1024px)  {
-    .footer {
-        width: 100%;
-        background-color: lightseagreen;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 2%;
-    }
-
-    .footer-block {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .logo-footer-block {
-        display: flex;
-        flex-direction: column;
-        margin-left: 150px;
-    }
-
-    .brand-footer p {
-        font-weight: bold;
-        font-size: 2rem;
-        margin-left: -25%;
-    }
-
-    .adress-footer-title,
-    .company-footer-title,
-    .services-footer-title {
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-
-    .adress-footer,
-    .company-footer,
-    .services-footer {
-        flex: 1;
-        min-width: 200px;
-        text-align: left;
-        padding: 30px;
-        font-size: 1rem;
-        line-height: 25px;
-    }
-
-    /* 2nd line of the bottom */
-
-    .footer-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 30px;
-    }
-
-    .footer-bottom p {
-        margin: 0;
-    }
-}

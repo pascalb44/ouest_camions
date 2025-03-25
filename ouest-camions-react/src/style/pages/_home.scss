@@ -7,6 +7,8 @@
     .h1-home {
         color: blue;
         padding: 2%;
+        font-size: 1.4rem;
+        text-align: center;
     }
 
     /* scrolling message  */
@@ -51,6 +53,7 @@
 
         }
     }
+
     .icons-home {
         display: flex;
         flex-direction: row;
@@ -58,10 +61,17 @@
     }
 }
 
-/* version tablette orientation lanscape */
+/* tablette lanscape */
 
 @media (min-width: 769px) and (max-width: 1024px) {
 
+    .h1-home {
+        color: blue;
+        padding: 2%;
+        font-size: 1.4rem;
+        text-align: center;
+    }
+    
     /* scrolling message  */
 
     .pub-container {

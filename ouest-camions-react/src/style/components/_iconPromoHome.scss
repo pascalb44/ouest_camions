@@ -1,6 +1,8 @@
 
 /**************  map of the home page **********************************/
 
+/* desktop */
+
 @media (min-width: 1025px) {
 
     .icon-promo {
@@ -13,7 +15,7 @@
     }
 }
 
-/* version tablette orientation paysage */
+/* tablette landscape */
 
 @media (min-width: 769px) and (max-width: 1024px) {
 
@@ -22,9 +24,8 @@
         flex: 1 1;
 
         img {
-            padding: 1rem;
-            margin: 5% 0 0 15%;
-            width: 65%;
+            margin-top: 5%;
+            width: 95%;
         }
     }
 }
