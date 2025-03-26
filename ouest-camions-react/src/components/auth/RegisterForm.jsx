@@ -7,9 +7,9 @@ const RegisterForm = () => {
         first_name: '',
         last_name: '',
         company: '',
-        siren: '',
+        siren: null,
         address: '',
-        postalCode: '',
+        postal_code: '',
         town: '',
         telephone: '',
         email: '',
@@ -26,13 +26,20 @@ const RegisterForm = () => {
 
     // change 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-
-
+        const { name, value, files } = e.target;
+    
+        if (name === 'siren') {
+            setFormData({
+                ...formData,
+                [name]: files[0] // seclected file 
+            });
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            });
+        }
+    
         if (errors[name]) {
             setErrors({
                 ...errors,
@@ -48,9 +55,9 @@ const RegisterForm = () => {
         if (!formData.first_name.trim()) newErrors.first_name = "Le prénom est requis";
         if (!formData.last_name.trim()) newErrors.last_name = "Le nom de famille est requis";
         if (!formData.company.trim()) newErrors.company = "Le nom de l'entreprise est requis";
-        if (!formData.siren.match(/^\d{9}$/)) newErrors.siren = "Le siren doit être un entier de 9 chiffres";
+        if (!formData.siren) newErrors.siren = "Le siren doit être un fichier image";
         if (!formData.address.trim()) newErrors.address = "L'adresse est requise";
-        if (!formData.postalCode.trim()) newErrors.postalCode = "Le code postal est requis";
+        if (!formData.postal_code.trim()) newErrors.postal_code = "Le code postal est requis";
         if (!formData.town.trim()) newErrors.town = "La ville est requise";
         if (!formData.telephone.trim()) newErrors.telephone = "Le numéro de téléphone est requis";
         if (!formData.email.trim()) newErrors.email = "L'email est requis";
@@ -67,45 +74,43 @@ const RegisterForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         const newErrors = validateForm();
-
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
-
+    
         setIsSubmitting(true);
-
+    
+        const formDataToSend = new FormData();
+        Object.keys(formData).forEach(key => {
+            formDataToSend.append(key, formData[key]);
+        });
+        formDataToSend.append("id_role", 2);
+    
         try {
             const response = await fetch('http://localhost:8000/api/register', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ ...formData, id_role: 2 }),
+                body: formDataToSend,
             });
-
-            const responseText = await response.text();
-            console.log('Réponse brute:', responseText);
-
-
-            const data = JSON.parse(responseText);
-
+    
+            const data = await response.json();
+    
             if (response.ok) {
                 console.log('Inscription réussie:', data);
                 setIsSuccess(true);
                 navigate('/login');
             } else {
-                setErrors({ submit: data.meta.message || "Erreur lors de l'inscription" });
+                setErrors({ submit: data.message || "Erreur lors de l'inscription" });
             }
-
         } catch (error) {
             console.error('Erreur lors de l\'inscription:', error);
             setErrors({ submit: 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.' });
         } finally {
             setIsSubmitting(false);
         }
+    
     };
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -156,10 +161,9 @@ const RegisterForm = () => {
 
                     {/* siren */}
                     <div className="form-group-register">
-                        <label htmlFor="siren" className="label-register">SIREN</label>
-                        <input id="siren" name="siren" type="text" value={formData.siren}
-                            onChange={handleChange}
-                            className={`input-register ${errors.address ? 'border-red-300' : 'border-gray-300'}`} />
+                        <label htmlFor="siren" for="image" className="label-register">SIREN</label>
+                        <input id="siren" name="siren" type="file" onChange={handleChange}
+                            className={`input-register ${errors.siren ? 'border-red-300' : 'border-gray-300'}`} />
                         {errors.siren && <p className="mt-2 text-sm text-red-600">{errors.siren}</p>}
                     </div>
 
@@ -176,13 +180,12 @@ const RegisterForm = () => {
 
                     {/* postalCode */}
                     <div className="form-group-register">
-                        <label htmlFor="postalCode" className="label-register">Code postal</label>
-                        <input id="postalCode" name="postalCode" type="text" value={formData.postalCode}
+                        <label htmlFor="postal_code" className="label-register">Code postal</label>
+                        <input id="postal_code" name="postal_code" type="text" value={formData.postal_code}
                             onChange={handleChange}
-                            className={`input-register ${errors.postalCode ? 'border-red-300' : 'border-gray-300'}`} />
-                        {errors.postalCode && <p className="mt-2 text-sm text-red-600">{errors.postalCode}</p>}
+                            className={`input-register ${errors.postal_code ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.postal_code && <p className="mt-2 text-sm text-red-600">{errors.postal_code}</p>}
                     </div>
-
 
                     {/* town */}
                     <div className="form-group-register">
@@ -232,7 +235,7 @@ const RegisterForm = () => {
                         {errors.confirmPassword && <p className="mt-2 text-sm text-red-600">{errors.confirmPassword}</p>}
                     </div>
                     <div>
-                        <button type="submit" className= "button-register">
+                        <button type="submit" className="button-register">
                             {isSubmitting ? 'Inscription en cours...' : 'Envoyer'}
                         </button>
                     </div>

@@ -45,6 +45,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    /*
     public function store(Request $request)
     {
         $formFields = $request->validate([
@@ -53,50 +54,36 @@ class UserController extends Controller
             'email' => 'required|string',
             'password' => 'required|string',
             'company' => 'required|string',
-            'siren' => 'required|string',
+            'siren' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'address' => 'required|string',
-            'postalCode' => 'required|string',
+            'postal_code' => 'required|string',
             'town' => 'required|string',
             'telephone' => 'required|string',
             'id_role' => 'required|exists:roles,id',
         ]);
         
-    // Hash du mot de passe après validation
     $hashedPassword = bcrypt($request->password);
 
-    // Création de l'utilisateur avec le mot de passe haché
     $user = User::create([
         'first_name' => $request->first_name,
         'last_name' => $request->last_name,
         'email' => $request->email,
-        'password' => $hashedPassword, // Mot de passe haché
+        'password' => $hashedPassword, 
         'company' => $request->company,
         'siren' => $request->siren,
         'address' => $request->address,
-        'postalCode' => $request->postalCode,
+        'postal_code' => $request->postal_code,
         'town' => $request->town,
         'telephone' => $request->telephone,
         'id_role' => $request->id_role,
     ]);
 
-    // Réponse JSON avec les données de l'utilisateur créé
     return response()->json([
         'message' => 'Client ajouté avec succès',
         'data' => $user
     ], 201);
 }
-        /*
-        $filename = "";
-        if ($request->file('siren')) {
-            $filenameWithExt = $request->file('siren')->getClientOriginalName();
-            $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('siren')->getClientOriginalExtension();
-            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('siren')->storeAs('/uploads', $filename);
-        } else {
-            $filename = null;
-        }
-        */
+    */
     
 
     /**

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
+use Carbon\Carbon; /* for the date */
 
 class AuthController extends Controller
 {
@@ -21,30 +21,42 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-     
-    
+         
         $request->validate([
              'first_name'    => 'required|string|max:255',
              'last_name'     => 'required|string|max:255',
              'email'         => 'required|email|unique:users',
              'password'      => 'required|string|min:6|max:255',
              'company'       => 'required|string|max:255',
-             'siren'         => 'required|integer|digits:9',
+             'siren'         => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
              'address'       => 'required|string|max:255',
-             'postalCode'    => 'required|string|max:10',
+             'postal_code'    => 'required|string|max:10',
              'town'          => 'required|string|max:255',
              'telephone'     => 'required|string|max:20',
         ]);
+
+        /* to upload file image for siren */
+
+        $filename = ""; 
+        if ($request->file('siren')) {  /*  don't use hasFile */
+            $filenameWithExt = $request->file('siren')->getClientOriginalName();
+            $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('siren')->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            $path = $request->file('siren')->storeAs('uploads/users', $filename, 'public');
+        } else {
+            $filename = null;
+        }
 
         $user = User::create([
             'first_name'    => $request->first_name,
             'last_name'     => $request->last_name,
             'email'         => $request->email,
-            'password' => Hash::make($request->password),
+            'password'      => Hash::make($request->password),
             'company'       => $request->company,
-            'siren'         => $request->siren,
+            'siren'         => $filename, 
             'address'       => $request->address,
-            'postalCode'    => $request->postalCode,
+            'postal_code'   => $request->postal_code,
             'town'          => $request->town,
             'telephone'     => $request->telephone,
             'id_role' => $request->id_role ?? 2,        
