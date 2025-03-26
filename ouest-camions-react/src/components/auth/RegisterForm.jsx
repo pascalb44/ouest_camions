@@ -88,9 +88,9 @@ const RegisterForm = () => {
 
             const responseText = await response.text();
             console.log('Réponse brute:', responseText);
-    
 
-            const data = JSON.parse(responseText); 
+
+            const data = JSON.parse(responseText);
 
             if (response.ok) {
                 console.log('Inscription réussie:', data);
@@ -125,117 +125,114 @@ const RegisterForm = () => {
                     </div>
                 )}
 
-                <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    <div className="rounded-md shadow-sm -space-y-px">
-                        {/* first_name */}
-                        <div className="mb-4">
-                            <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">Prénom</label>
-                            <input id="first_name" name="first_name" type="text" value={formData.first_name}
-                                onChange={handleChange}
-                                className={`mt-1 block w-full px-3 py-2 border ${errors.first_name ? 'border-red-300' : 'border-gray-300'}`} />
-                            {errors.first_name && <p className="mt-2 text-sm text-red-600">{errors.first_name}</p>}
-                        </div>
-
-                        {/* last_name */}
-                        <div className="mb-4">
-                            <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">Nom</label>
-                            <input id="last_name" name="last_name" type="text" value={formData.last_name}
-                                onChange={handleChange}
-                                className={`mt-1 block w-full px-3 py-2 border ${errors.last_name ? 'border-red-300' : 'border-gray-300'}`} />
-                            {errors.last_name && <p className="mt-2 text-sm text-red-600">{errors.last_name}</p>}
-                        </div>
-
-                        {/* company */}
-                        <div className="mb-4">
-                            <label htmlFor="company" className="block text-sm font-medium text-gray-700">Entreprise</label>
-                            <input id="company" name="company" type="text" value={formData.company}
-                                onChange={handleChange}
-                                className={`mt-1 block w-full px-3 py-2 border ${errors.company ? 'border-red-300' : 'border-gray-300'}`} />
-                            {errors.company && <p className="mt-2 text-sm text-red-600">{errors.company}</p>}
-                        </div>
-
-
-                        {/* siren */}
-                        <div className="mb-4">
-                            <label htmlFor="siren" className="block text-sm font-medium text-gray-700">SIREN</label>
-                            <input id="siren" name="siren" type="text" value={formData.siren}
-                                onChange={handleChange}
-                                className={`mt-1 block w-full px-3 py-2 border ${errors.address ? 'border-red-300' : 'border-gray-300'}`} />
-                            {errors.siren && <p className="mt-2 text-sm text-red-600">{errors.siren}</p>}
-                        </div>
-
-
-                        {/* address */}
-                        <div className="mb-4">
-                            <label htmlFor="address" className="block text-sm font-medium text-gray-700">Adresse</label>
-                            <input id="address" name="address" type="text" value={formData.address}
-                                onChange={handleChange}
-                                className={`mt-1 block w-full px-3 py-2 border ${errors.address ? 'border-red-300' : 'border-gray-300'}`} />
-                            {errors.address && <p className="mt-2 text-sm text-red-600">{errors.address}</p>}
-                        </div>
-
-
-                        {/* postalCode */}
-                        <div className="mb-4">
-                            <label htmlFor="postalCode" className="block text-sm font-medium text-gray-700">Code postal</label>
-                            <input id="postalCode" name="postalCode" type="text" value={formData.postalCode}
-                                onChange={handleChange}
-                                className={`mt-1 block w-full px-3 py-2 border ${errors.postalCode ? 'border-red-300' : 'border-gray-300'}`} />
-                            {errors.postalCode && <p className="mt-2 text-sm text-red-600">{errors.postalCode}</p>}
-                        </div>
-
-
-                        {/* town */}
-                        <div className="mb-4">
-                            <label htmlFor="town" className="block text-sm font-medium text-gray-700">Ville</label>
-                            <input id="town" name="town" type="text" value={formData.town}
-                                onChange={handleChange}
-                                className={`mt-1 block w-full px-3 py-2 border ${errors.town ? 'border-red-300' : 'border-gray-300'}`} />
-                            {errors.town && <p className="mt-2 text-sm text-red-600">{errors.town}</p>}
-                        </div>
-
-                        {/* phone */}
-                        <div className="mb-4">
-                            <label htmlFor="telephone" className="block text-sm font-medium text-gray-700">Téléphone</label>
-                            <input id="telephone" name="telephone" type="text" value={formData.telephone}
-                                onChange={handleChange}
-                                className={`mt-1 block w-full px-3 py-2 border ${errors.telephone ? 'border-red-300' : 'border-gray-300'}`} />
-                            {errors.telephone && <p className="mt-2 text-sm text-red-600">{errors.telephone}</p>}
-                        </div>
-
+                <form className="form-container-register" onSubmit={handleSubmit}>
+                    {/* first_name */}
+                    <div className="form-group-register">
+                        <label htmlFor="first_name" className="label-register">Prénom</label>
+                        <input id="first_name" name="first_name" type="text" value={formData.first_name}
+                            onChange={handleChange}
+                            className={`input-register ${errors.first_name ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.first_name && <p className="mt-2 text-sm text-red-600">{errors.first_name}</p>}
                     </div>
+
+                    {/* last_name */}
+                    <div className="form-group-register">
+                        <label htmlFor="last_name" className="label-register">Nom</label>
+                        <input id="last_name" name="last_name" type="text" value={formData.last_name}
+                            onChange={handleChange}
+                            className={`input-register ${errors.last_name ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.last_name && <p className="mt-2 text-sm text-red-600">{errors.last_name}</p>}
+                    </div>
+
+                    {/* company */}
+                    <div className="form-group-register">
+                        <label htmlFor="company" className="label-register">Entreprise</label>
+                        <input id="company" name="company" type="text" value={formData.company}
+                            onChange={handleChange}
+                            className={`input-register ${errors.company ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.company && <p className="mt-2 text-sm text-red-600">{errors.company}</p>}
+                    </div>
+
+
+                    {/* siren */}
+                    <div className="form-group-register">
+                        <label htmlFor="siren" className="label-register">SIREN</label>
+                        <input id="siren" name="siren" type="text" value={formData.siren}
+                            onChange={handleChange}
+                            className={`input-register ${errors.address ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.siren && <p className="mt-2 text-sm text-red-600">{errors.siren}</p>}
+                    </div>
+
+
+                    {/* address */}
+                    <div className="form-group-register">
+                        <label htmlFor="address" className="label-register">Adresse</label>
+                        <input id="address" name="address" type="text" value={formData.address}
+                            onChange={handleChange}
+                            className={`input-register ${errors.address ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.address && <p className="mt-2 text-sm text-red-600">{errors.address}</p>}
+                    </div>
+
+
+                    {/* postalCode */}
+                    <div className="form-group-register">
+                        <label htmlFor="postalCode" className="label-register">Code postal</label>
+                        <input id="postalCode" name="postalCode" type="text" value={formData.postalCode}
+                            onChange={handleChange}
+                            className={`input-register ${errors.postalCode ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.postalCode && <p className="mt-2 text-sm text-red-600">{errors.postalCode}</p>}
+                    </div>
+
+
+                    {/* town */}
+                    <div className="form-group-register">
+                        <label htmlFor="town" className="label-register">Ville</label>
+                        <input id="town" name="town" type="text" value={formData.town}
+                            onChange={handleChange}
+                            className={`input-register ${errors.town ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.town && <p className="mt-2 text-sm text-red-600">{errors.town}</p>}
+                    </div>
+
+                    {/* phone */}
+                    <div className="form-group-register">
+                        <label htmlFor="telephone" className="label-register">Téléphone</label>
+                        <input id="telephone" name="telephone" type="text" value={formData.telephone}
+                            onChange={handleChange}
+                            className={`input-register ${errors.telephone ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.telephone && <p className="mt-2 text-sm text-red-600">{errors.telephone}</p>}
+                    </div>
+
                     {/* Email */}
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                    <div className="form-group-register">
+                        <label htmlFor="email" className="label-register">Email</label>
                         <input id="email" name="email" type="email" value={formData.email}
                             onChange={handleChange}
-                            className={`mt-1 block w-full px-3 py-2 border ${errors.email ? 'border-red-300' : 'border-gray-300'}`}
+                            className={`input-register ${errors.email ? 'border-red-300' : 'border-gray-300'}`}
                             placeholder="Email" />
                         {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email}</p>}
                     </div>
 
                     {/* password */}
-                    <div className="mb-4">
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe</label>
+                    <div className="form-group-register">
+                        <label htmlFor="password" className="label-register">Mot de passe</label>
                         <input id="password" name="password" type="password" value={formData.password}
                             onChange={handleChange}
-                            className={`mt-1 block w-full px-3 py-2 border ${errors.password ? 'border-red-300' : 'border-gray-300'}`}
+                            className={`input-register ${errors.password ? 'border-red-300' : 'border-gray-300'}`}
                             placeholder="Mot de passe" />
                         {errors.password && <p className="mt-2 text-sm text-red-600">{errors.password}</p>}
                     </div>
 
                     {/* Confirmation */}
-                    <div className="mb-4">
-                        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirmer le mot de passe</label>
+                    <div className="form-group-register">
+                        <label htmlFor="confirmPassword" className="label-register">Confirmer</label>
                         <input id="confirmPassword" name="confirmPassword" type="password" value={formData.confirmPassword}
                             onChange={handleChange}
-                            className={`mt-1 block w-full px-3 py-2 border ${errors.confirmPassword ? 'border-red-300' : 'border-gray-300'}`}
+                            className={`input-register ${errors.confirmPassword ? 'border-red-300' : 'border-gray-300'}`}
                             placeholder="Confirmer le mot de passe" />
                         {errors.confirmPassword && <p className="mt-2 text-sm text-red-600">{errors.confirmPassword}</p>}
                     </div>
                     <div>
-                        <button type="submit" disabled={isSubmitting} className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black ${isSubmitting ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'
-                            } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}>
+                        <button type="submit" className= "button-register">
                             {isSubmitting ? 'Inscription en cours...' : 'Envoyer'}
                         </button>
                     </div>

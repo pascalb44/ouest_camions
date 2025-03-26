@@ -1,0 +1,24 @@
+/***************** version desktop *******************/
+
+@media (min-width: 1025px) {
+
+    .h1-register {
+        color: lightseagreen;
+        padding: 2%;
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+
+/* tablette lanscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .h1-login {
+        color: lightseagreen;
+        padding: 2%;
+        font-size: 2rem;
+        text-align: center;
+    }
+}
