@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-//import jwtDecode from 'jwt-decode'; // Importation de la bibliothèque
-import { jwtDecode } from 'jwt-decode'; // Utilisation de l'export nommé
+import { jwtDecode } from 'jwt-decode'; 
 
 
 function LoginForm() {
@@ -38,11 +37,7 @@ function LoginForm() {
             localStorage.setItem('role', userRole);
 
 
-
-            // Configuration du header par défaut pour les futures requêtes
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-            console.log('Utilisateur connecté :', response.data.data.user);
 
             navigate('/profile');
             if (userRole === 1) {
@@ -52,6 +47,7 @@ function LoginForm() {
             }
         }
         catch (err) {
+            console.log(err.response?.data);
             setError(err.response?.data?.message || 'Utilisateur non reconnu !!');
         }
     };
@@ -70,7 +66,7 @@ function LoginForm() {
                 </div>
                 <button className="button-login" type="submit">Se connecter</button>
             </form>
-            {error && <div>{error}</div>}
+            {error && <div className="error-Login-user">{error}</div>} {/* error message user not known / email field is required */ }
             {token && <div>Token JWT: {token}</div>}
         </div>
     );

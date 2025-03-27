@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { calculatePrice } from "../../utils/utils";
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -9,6 +10,7 @@ const Cart = () => {
     const [reservations, setReservations] = useState([]);
     const [totalTruckPrice, setTotalTruckPrice] = useState(0);
     const [totalTrailerPrice, setTotalTrailerPrice] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -96,19 +98,24 @@ const Cart = () => {
             setTotalTrailerPrice(0);
         }
     };
-    
+
     const handleRemove = (id) => {
         const updatedReservations = reservations.filter(res => res.id !== id);
-        // Sauvegarder la liste mise à jour dans le localStorage
+        // save list in localStorage
         localStorage.setItem("reservations", JSON.stringify(updatedReservations));
-        // Optionnel : rafraîchir la page pour afficher les changements immédiatement
-        window.location.reload();
+        setReservations(updatedReservations);
     };
 
 
     if (reservations.length === 0) {
-        return <p>Aucune réservation en cours. Soit vous n'êtes pas connecté, soit votre panier est vide</p>;
+        return (
+            <div>
+                <p className="back-message">Aucune réservation en cours. Soit vous n'êtes pas connecté, soit votre panier est vide</p>
+                <button className="back-button" onClick={() => navigate(-1)}>Retour à la page précédente</button>
+            </div>
+        );
     }
+
     const formatDate = (date) => {
         return format(new Date(date), "dd MMMM yyyy", { locale: fr }); // french dates
     }

@@ -90,6 +90,9 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|string',
             'password' => 'required|string',
+        ], [
+            'email.required' => 'Le champ email est requis.',
+            'password.required' => 'Le champ mot de passe est requis.', /* message in french  */
         ]);
     
         $token = JWTAuth::attempt([
@@ -142,7 +145,7 @@ class AuthController extends Controller
                 'meta' => [
                     'code' => 200,
                     'status' => 'success',
-                    'message' => 'Successfully logged out',
+                    'message' => 'Déconnecté avec succès',
                 ],
                 'data' => [],
             ]);

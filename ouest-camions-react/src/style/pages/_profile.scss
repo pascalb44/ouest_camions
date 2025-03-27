@@ -1,0 +1,140 @@
+/***************** version desktop *******************/
+
+@media (min-width: 1025px) {
+
+
+    .profile-block {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .h1-profile {
+        color: lightseagreen;
+        padding: 2%;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .profile {
+        margin-left: 25%;
+    }
+
+
+    .form-group-profile {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15px;
+    }
+
+    .label-profile {
+        margin-bottom: 5px;
+        font-weight: bold;
+        padding-right: 5px;
+    }
+
+    .profile-button-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 5% 0 5%;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    .profile-button-group a,
+    .profile-button-group button {
+        flex: 1;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .link-cart {
+        background-color: #2d98af;
+    }
+
+    .link-orders {
+        background-color: green;
+    }
+
+    .logout-button {
+        background-color: red;
+    }
+
+}
+
+
+
+/* tablette lanscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+
+   
+    .profile-block {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .h1-profile {
+        color: lightseagreen;
+        padding: 2%;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .profile {
+        margin-left: 25%;
+    }
+
+
+    .form-group-profile {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15px;
+    }
+
+    .label-profile {
+        margin-bottom: 5px;
+        font-weight: bold;
+        padding-right: 5px;
+    }
+
+    .profile-button-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 10% 0 10%;
+        width: 80%;
+        max-width: 500px;
+    }
+
+    .profile-button-group a,
+    .profile-button-group button {
+        flex: 1;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .link-cart {
+        background-color: #2d98af;
+    }
+
+    .link-orders {
+        background-color: green;
+    }
+
+    .logout-button {
+        background-color: red;
+    }
+
+}

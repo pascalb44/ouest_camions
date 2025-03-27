@@ -1,0 +1,120 @@
+/* tablette portrait */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .h1-profile {
+        color: lightseagreen;
+        margin: 5%;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .profile {
+        margin-left: 20%;
+    }
+
+
+    .form-group-profile {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15px;
+    }
+
+    .label-profile {
+        margin-bottom: 5px;
+        font-weight: bold;
+        padding-right: 5px;
+    }
+
+    .profile-button-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 10px;
+        width: 350px;
+        margin-bottom: 10%;
+    }
+
+    .profile-button-group a,
+    .profile-button-group button {
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
+        width: 150px;
+    }
+
+    .link-cart {
+        background-color: #2d98af;
+
+    }
+
+    .link-orders {
+        background-color: green;
+    }
+
+    .logout-button {
+        background-color: red;
+        margin-top: 10%;
+    }
+}
+
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
+    .h1-profile {
+        color: lightseagreen;
+        margin: 5%;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .profile {
+        margin-left: 20%;
+    }
+
+    .form-group-profile {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15px;
+    }
+
+    .label-profile {
+        margin-bottom: 5px;
+        font-weight: bold;
+        padding-right: 5px;
+    }
+
+    .profile-button-group {
+        display: flex;
+        flex-direction: column;
+        margin: 10% auto 20%;
+    }
+
+    .profile-button-group a,
+    .profile-button-group button {
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 5px;
+        width: 250px;
+        margin-top: 10%;
+    }
+
+    .link-cart {
+        background-color: #2d98af;
+    }
+
+    .link-orders {
+        background-color: green;
+
+    }
+
+    .logout-button {
+        background-color: red;
+    }
+}

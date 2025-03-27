@@ -10,25 +10,25 @@
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    
+
     .form-group-login {
         display: flex;
         flex-direction: column;
         margin-bottom: 15px;
     }
-    
+
     .label-login {
         margin-bottom: 5px;
         font-weight: bold;
     }
-    
+
     .input-login {
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
     }
-    
+
     .button-login {
         width: 100%;
         background-color: #007bff;
@@ -38,13 +38,17 @@
         border-radius: 5px;
         cursor: pointer;
     }
-    
+
     button:hover {
         background-color: #0056b3;
     }
+
+    .error-Login-user {
+        margin-left: 25%;
+    }
 }
 
-    
+
 
 /* tablette lanscape */
 
@@ -64,25 +68,25 @@
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    
+
     .form-group-login {
         display: flex;
         flex-direction: column;
         margin-bottom: 15px;
     }
-    
+
     .label-login {
         margin-bottom: 5px;
         font-weight: bold;
     }
-    
+
     .input-login {
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
     }
-    
+
     .button-login {
         width: 100%;
         background-color: #007bff;
@@ -92,7 +96,7 @@
         border-radius: 5px;
         cursor: pointer;
     }
-    
+
     button:hover {
         background-color: #0056b3;
     }
