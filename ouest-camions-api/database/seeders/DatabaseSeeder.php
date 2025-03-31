@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
      
-    public function run(): void // to create admin 
+    public function run(): void // to create only the admin 
     {
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
             'company' => 'ouestcamions',
             'siren' => '503000000',
             'address' => '13 rue de Brest',
-            'postalCode' => '44000',
+            'postal_code' => '44000',
             'town' => 'Nantes',
-            'telephone' => '0123456789',   
+            'phone' => '0123456789',   
             'id_role' => '1', // = admin  
         ]);
     }

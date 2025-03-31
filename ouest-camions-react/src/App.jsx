@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import Login from "./pages/users/Login";
 import Register from "./pages/users/Register";
 import Profile from "./pages/users/Profile";
+import EditUser from './pages/users/EditUser';
+
 
 import Legal from "./pages/Legal";
 
@@ -46,8 +48,11 @@ function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+
           <Route path="/profile" element={<Profile />} />
 
+          <Route path="user/edit-user/:id" element={<EditUser />} />
 
           <Route path="legal" element={<Legal />} />
           <Route path="categories-trucks" element={<CategoriesTrucks />} />

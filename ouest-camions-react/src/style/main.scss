@@ -27,8 +27,13 @@
 @import "pages/loginMobile";
 @import "pages/register";
 @import "pages/registerMobile";
-@import "pages/profile";
-@import "pages/profileMobile";
+
+
+@import "pages/user/profile";
+@import "pages/user/profileMobile";
+
+@import "pages/user/editUser";
+@import "pages/user/editUserMobile";
 
 
 @import "pages/categoriesTrucks";

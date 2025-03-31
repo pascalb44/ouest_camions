@@ -30,9 +30,9 @@ class UserFactory extends Factory
             'company' => fake()->company(),
             'siren' => fake()->unique()->randomNumber(9, true), // to generate a SIREN number non recognized in data generator
             'address' => fake()->address(),
-            'postalCode' => fake()->numerify('#####'), 
+            'postal_code' => fake()->numerify('#####'), 
             'town' => fake()->city(),
-            'telephone' => fake()->phoneNumber(),
+            'phone' => fake()->phoneNumber(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),

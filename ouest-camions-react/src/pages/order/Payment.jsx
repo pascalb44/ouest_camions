@@ -63,7 +63,6 @@ const Payment = () => {
     
             console.log("Commande créée avec succès", response.data);
             
-            // Marquer que le paiement est effectué
             localStorage.setItem("paymentCompleted", "true");
             
             navigate('/orders');

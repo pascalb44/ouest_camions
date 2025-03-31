@@ -11,7 +11,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const token = localStorage.getItem('token'); /* to get user Id */
+                const token = localStorage.getItem('token'); // to get user Id 
                 if (!token) {
                     setError('Aucun utilisateur trouvé');
                     return;
@@ -35,7 +35,7 @@ const Profile = () => {
         fetchUser();
     }, []);
 
-    const handleLogout = async () => {
+    const handleLogout = async () => {   /*  to deconnect */
         try {
             const token = localStorage.getItem('token');
             console.log("Token avant logout:", token); // if token 
@@ -79,11 +79,12 @@ const Profile = () => {
                 <div className="form-group-profile"><label className="label-profile">Code postal :</label> {user.postal_code}</div>
                 <div className="form-group-profile"><label className="label-profile">Ville :</label> {user.town}</div>
                 <div className="form-group-profile"><label className="label-profile">Email :</label> {user.email}</div>
-                <div className="form-group-profile"><label className="label-profile">Téléphone :</label> {user.telephone}</div>
+                <div className="form-group-profile"><label className="label-profile">Téléphone :</label> {user.phone}</div>
                 <div className="profile-button-group">
                     <Link to="/cart" className="link-cart">Votre panier</Link>
                     <Link to="/orders" className="link-orders">Vos commandes</Link>
                     <button onClick={handleLogout} className="logout-button">Déconnexion</button>
+                    <Link to={`/user/edit-user/${user.id}`} className="link-edit-user">Gestion</Link> {/* get id of the user to manage it*/}
                 </div>
             </div>
         </div>

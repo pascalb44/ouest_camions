@@ -1,16 +1,22 @@
-/* tablette portrait */
+/***************** version desktop *******************/
 
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 1025px) {
+
+
+    .profile-block {
+        display: flex;
+        flex-direction: column;
+    }
 
     .h1-profile {
         color: lightseagreen;
-        margin: 5%;
+        padding: 2%;
         font-size: 2rem;
         text-align: center;
     }
 
     .profile {
-        margin-left: 20%;
+        margin-left: 25%;
     }
 
 
@@ -28,53 +34,71 @@
 
     .profile-button-group {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
         gap: 10px;
-        width: 350px;
-        margin-bottom: 10%;
+        margin: 5% 0 5%;
+        width: 80%;
+        max-width: 600px;
     }
 
     .profile-button-group a,
     .profile-button-group button {
+        flex: 1;
+        display: flex;
+        align-items: center; 
+        justify-content: center;
         text-align: center;
         color: white;
         text-decoration: none;
         padding: 10px;
         border-radius: 5px;
-        width: 150px;
+        border: none;
+        height: 50px; 
+        cursor: pointer;
     }
 
     .link-cart {
         background-color: #2d98af;
-
     }
 
     .link-orders {
         background-color: green;
     }
+  
+    .link-edit-user {
+        background-color: black;
+    }
 
     .logout-button {
         background-color: red;
-        margin-top: 10%;
     }
+
 }
 
 
-/********************************** version mobile ********************/
 
-@media (max-width: 480px) {
+/* tablette lanscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+
+   
+    .profile-block {
+        display: flex;
+        flex-direction: column;
+    }
 
     .h1-profile {
         color: lightseagreen;
-        margin: 5%;
+        padding: 2%;
         font-size: 2rem;
         text-align: center;
     }
 
     .profile {
-        margin-left: 20%;
+        margin-left: 25%;
     }
+
 
     .form-group-profile {
         display: flex;
@@ -90,19 +114,24 @@
 
     .profile-button-group {
         display: flex;
-        flex-direction: column;
-        margin: 10% auto 20%;
+        justify-content: center;
+        gap: 10px;
+        margin: 10% 0 10% -10%;
+        max-width: 600px;
     }
 
     .profile-button-group a,
     .profile-button-group button {
+        flex: 1;
         text-align: center;
+        align-items: center; 
+        justify-content: center;
         color: white;
         text-decoration: none;
         padding: 10px;
         border-radius: 5px;
-        width: 250px;
-        margin-top: 10%;
+        border: none;
+        cursor: pointer;
     }
 
     .link-cart {
@@ -111,10 +140,14 @@
 
     .link-orders {
         background-color: green;
+    }
 
+    .link-edit-user {
+        background-color: black;
     }
 
     .logout-button {
         background-color: red;
     }
+
 }

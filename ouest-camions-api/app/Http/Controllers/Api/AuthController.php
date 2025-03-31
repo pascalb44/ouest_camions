@@ -32,7 +32,7 @@ class AuthController extends Controller
              'address'       => 'required|string|max:255',
              'postal_code'    => 'required|string|max:10',
              'town'          => 'required|string|max:255',
-             'telephone'     => 'required|string|max:20',
+             'phone'     => 'required|string|max:20|regex:/^[0-9+\-\(\) ]+$/',
         ]);
 
         /* to upload file image for siren */
@@ -58,7 +58,7 @@ class AuthController extends Controller
             'address'       => $request->address,
             'postal_code'   => $request->postal_code,
             'town'          => $request->town,
-            'telephone'     => $request->telephone,
+            'phone'     => $request->phone,
             'id_role' => $request->id_role ?? 2,        
         ]);
 

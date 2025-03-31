@@ -1,0 +1,203 @@
+/* tablette portrait */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .h1-edit-user {
+        color: black;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 5% auto 10%;
+    }
+
+    .form-edit-user {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+    }
+
+    .form-group-edit-user {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .label-edit-user {
+        font-weight: bold;
+        width: 120px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .file-info {
+        margin-bottom: 10px;
+    }
+
+    .form-group-edit-user-siren-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 15px;
+
+        .group-edit-user-siren-mobile {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .label-edit-user-no-mobile {
+            display: none;
+        }
+
+        .label-edit-user-mobile {
+            font-weight: bold;
+        }
+
+        .file-info-no-mobile {
+            display: none;
+        }
+    }
+
+    .user-manage-buttons {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10%;
+    }
+
+    .update-button-user {
+        margin: 10% auto 0;
+        padding: 10px;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        width: 60%;
+    }
+
+    .delete-button-user {
+        margin: 5% auto 0;
+        padding: 10px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        width: 60%;
+
+    }
+
+}
+
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
+    .h1-edit-user {
+        color: black;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 5% auto 10%;
+    }
+
+    .form-edit-user {
+        display: flex;
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+    }
+
+    .edit-user {
+        display: flex;
+        flex-direction: column;
+     
+    }
+
+    .form-group-edit-user {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .label-edit-user {
+        font-weight: bold;
+        width: 120px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .file-info {
+        margin-bottom: 10px;
+    }
+
+    .form-group-edit-user-siren-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 15px;
+
+        .group-edit-user-siren-mobile {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .label-edit-user-no-mobile {
+            display: none;
+        }
+
+        .label-edit-user-mobile {
+            font-weight: bold;
+        }
+
+        .file-info-no-mobile {
+            display: none;
+        }
+    }
+
+    .user-manage-buttons {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10%;
+    }
+
+    .update-button-user {
+        margin: 10% auto 0;
+        padding: 10px;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        width: 60%;
+    }
+
+    .delete-button-user {
+        margin: 5% auto 0;
+        padding: 10px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        width: 60%;
+
+    }
+}

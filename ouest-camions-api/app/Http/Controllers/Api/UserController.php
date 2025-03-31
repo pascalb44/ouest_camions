@@ -43,50 +43,6 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    /*
-    public function store(Request $request)
-    {
-        $formFields = $request->validate([
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'email' => 'required|string',
-            'password' => 'required|string',
-            'company' => 'required|string',
-            'siren' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'address' => 'required|string',
-            'postal_code' => 'required|string',
-            'town' => 'required|string',
-            'telephone' => 'required|string',
-            'id_role' => 'required|exists:roles,id',
-        ]);
-        
-    $hashedPassword = bcrypt($request->password);
-
-    $user = User::create([
-        'first_name' => $request->first_name,
-        'last_name' => $request->last_name,
-        'email' => $request->email,
-        'password' => $hashedPassword, 
-        'company' => $request->company,
-        'siren' => $request->siren,
-        'address' => $request->address,
-        'postal_code' => $request->postal_code,
-        'town' => $request->town,
-        'telephone' => $request->telephone,
-        'id_role' => $request->id_role,
-    ]);
-
-    return response()->json([
-        'message' => 'Client ajouté avec succès',
-        'data' => $user
-    ], 201);
-}
-    */
-    
-
-    /**
      * Display the specified resource.
      */
     public function show(string $id)
@@ -101,18 +57,65 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
+     */ public function update(Request $request, User $user)
     {
-        //
+        $authenticatedUser = JWTAuth::user();
+        if ($authenticatedUser->id !== $user->id) {
+            return response()->json(['message' => 'Accès non autorisé'], 403);
+        }
+
+        // Valid request
+        $validatedData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'siren' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation pour le fichier image
+            'address' => 'nullable|string|max:255',
+            'postal_code' => 'nullable|string|max:10',
+            'town' => 'nullable|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'nullable|string|max:20',
+        ]);
+
+        // siren file 
+        if ($request->hasFile('siren')) {
+            // delete old file if exist
+            if ($user->siren && file_exists(public_path('uploads/users/' . $user->siren))) {
+                unlink(public_path('uploads/users/' . $user->siren));
+            }
+
+            $file = $request->file('siren');
+            $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            $file->storeAs('uploads/users', $filename, 'public');
+            $validatedData['siren'] = $filename;
+        }
+
+        $user->update($validatedData);
+
+        return response()->json([
+            'message' => 'Utilisateur mis à jour avec succès',
+            'user' => $user
+        ], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
+
+    public function destroy($id)
     {
-        $user->delete();
+        $user = JWTAuth::user();  /* if user conneted */
+
+        if (!$user) {
+            return response()->json(['message' => 'Utilisateur non authentifié.'], 401);
+        }
+
+        if ($user->id !== (int)$id) {
+            return response()->json(['message' => 'Vous ne pouvez pas supprimer un autre compte.'], 403);
+        }
+
+        $userToDelete = User::findOrFail($id);  /* get the user to delete */
+        $userToDelete->delete();
+
         return response()->json([
             'message' => 'Utilisateur supprimé avec succès'
         ]);

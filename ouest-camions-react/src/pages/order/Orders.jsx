@@ -7,11 +7,11 @@ const Orders = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Vérifier si le paiement a été effectué avant d'afficher la page
+        // verify payment
         const paymentCompleted = localStorage.getItem("paymentCompleted");
         if (!paymentCompleted) {
             alert("Vous devez procéder au paiement avant de pouvoir accéder à cette page.");
-            navigate("/cart"); // ou "/payment" selon où tu veux rediriger
+            navigate("/cart"); 
         }
 
         const storedReservation = localStorage.getItem("reservation");

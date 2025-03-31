@@ -111,7 +111,7 @@ const Cart = () => {
         return (
             <div>
                 <p className="back-message">Aucune réservation en cours. Soit vous n'êtes pas connecté, soit votre panier est vide</p>
-                <button className="back-button" onClick={() => navigate(-1)}>Retour à la page précédente</button>
+                <button className="back-button" onClick={() => navigate('/profile')}>Retour à la page précédente</button>
             </div>
         );
     }

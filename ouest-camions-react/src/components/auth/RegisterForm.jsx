@@ -11,7 +11,7 @@ const RegisterForm = () => {
         address: '',
         postal_code: '',
         town: '',
-        telephone: '',
+        phone: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -59,7 +59,7 @@ const RegisterForm = () => {
         if (!formData.address.trim()) newErrors.address = "L'adresse est requise";
         if (!formData.postal_code.trim()) newErrors.postal_code = "Le code postal est requis";
         if (!formData.town.trim()) newErrors.town = "La ville est requise";
-        if (!formData.telephone.trim()) newErrors.telephone = "Le numéro de téléphone est requis";
+        if (!formData.phone.trim()) newErrors.phone = "Le numéro de téléphone est requis";
         if (!formData.email.trim()) newErrors.email = "L'email est requis";
         else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "L'email n'est pas valide";
         if (!formData.password) newErrors.password = "Le mot de passe est requis";
@@ -198,11 +198,11 @@ const RegisterForm = () => {
 
                     {/* phone */}
                     <div className="form-group-register">
-                        <label htmlFor="telephone" className="label-register">Téléphone</label>
-                        <input id="telephone" name="telephone" type="text" value={formData.telephone}
+                        <label htmlFor="phone" className="label-register">Téléphone</label>
+                        <input id="phone" name="phone" type="text" value={formData.phone}
                             onChange={handleChange}
-                            className={`input-register ${errors.telephone ? 'border-red-300' : 'border-gray-300'}`} />
-                        {errors.telephone && <p className="mt-2 text-sm text-red-600">{errors.telephone}</p>}
+                            className={`input-register ${errors.phone ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.phone && <p className="mt-2 text-sm text-red-600">{errors.phone}</p>}
                     </div>
 
                     {/* Email */}

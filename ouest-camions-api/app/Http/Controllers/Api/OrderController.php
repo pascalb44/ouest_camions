@@ -34,7 +34,7 @@ class OrderController extends Controller
             'trucks.*' => 'exists:trucks,id', 
         ]); 
 
-        $user = JWTAuth::user(); // Utilisation de JWTAuth pour récupérer l'utilisateur authentifié
+        $user = JWTAuth::user(); // to get connected user
         // Create order
         $order = new Order();
         $order->order_number = rand(1000, 9999); 
