@@ -1,16 +1,17 @@
-/***************** version desktop *******************/
+/* tablette portrait */
 
-@media (min-width: 1025px) {
 
-    /***************************** page categories-trailers **********************************/
+@media (min-width: 481px) and (max-width: 768px) {
+
 
 
     .admin-category-trailer-container {
-        margin-left: 5%;
+        margin-left: 1%;
+        margin-right: 1%;
     }
-    
+
     .admin-category-trailer-btn-add-container {
-        margin: 5% auto 5%;
+        margin: 7% auto 7%;
     }
 
     .admin-category-trailer-btn-add {
@@ -25,7 +26,7 @@
     .admin-category-trailer-menu {
         border: solid 1px blue;
         text-align: center;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 
     .admin-category-trailer-unite {
@@ -34,16 +35,17 @@
 
     .admin-category-trailer-name {
         width: 15%;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 
     .admin-category-trailer-description {
-        width: 30%;
-        font-size: 1rem;
+        width: 40%;
+        border: solid 1px blue;
+        font-size: 0.8rem;
     }
 
     .admin-category-trailer-image-container {
-        width: 25%;
+        width: 30%;
         border: solid 1px blue;
     }
 
@@ -57,8 +59,9 @@
         display: flex;
         flex-direction: column;
         margin-top: 80px;
-        width: 30%;
+        width: 100%;
         border: none;
+
     }
 
     .admin-category-trailer-update-btn {
@@ -67,7 +70,6 @@
         background-color: green;
         text-decoration: none;
         padding: 10px;
-        height: 50px;
     }
 
     .admin-category-trailer-delete-btn {
@@ -76,30 +78,23 @@
         background-color: red;
         text-decoration: none;
         padding: 10px;
-        height: 50px;
     }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+/********************************** version mobile ********************/
+
+@media only screen and (max-width: 480px) {
 
 
     .admin-category-trailer-container {
-        margin-left: 5%;
-    }
-
-    .admin-category-trailer-menu {
-        border: solid 1px blue;
-        text-align: center;
-        font-size: 1rem;
-    }
-
-    .admin-category-trailer-unite {
-        border: solid 1px blue;
+        margin-left: 1%;
+        margin-right: 1%;
     }
 
     .admin-category-trailer-btn-add-container {
-        margin: 5% auto 5%;
+        margin: 7% auto 7%;
     }
+
 
     .admin-category-trailer-btn-add {
         text-align: center;
@@ -110,18 +105,28 @@
         height: 50px;
     }
 
+    .admin-category-trailer-menu {
+        border: solid 1px blue;
+        text-align: center;
+        font-size: 0.8rem;
+    }
+
+    .admin-category-trailer-unite {
+        border: solid 1px blue;
+    }
+
     .admin-category-trailer-name {
-        width: 15%;
-        font-size: 1rem;
+        width: 10%;
+        font-size: 0.8rem;
     }
 
     .admin-category-trailer-description {
-        width: 40%;
-        font-size: 0.9rem;
+        width: 35%;
+        font-size: 0.8rem;
     }
 
     .admin-category-trailer-image-container {
-        width: 30%;
+        width: 35%;
         border: solid 1px blue;
     }
 
@@ -134,9 +139,11 @@
     .admin-categories-trailers-buttons {
         display: flex;
         flex-direction: column;
-        margin-top: 80px;
+        margin-top: 300px;
         width: 100%;
         border: none;
+        font-size: 0.8rem;
+
     }
 
     .admin-category-trailer-update-btn {

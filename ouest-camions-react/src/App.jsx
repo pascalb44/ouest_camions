@@ -12,7 +12,7 @@ import EditUser from './pages/users/EditUser';
 import Legal from "./pages/Legal";
 
 
-import CategoriesTrucks from "./pages/categories-trucks/CategoriesTrucks";
+import CategoriesTrucks from "./pages/categories-trucks/CategoriesTrucks"; /* version public */
 import TruckDetail from './pages/trucks/TruckDetail';
 import TrucksByCategory from './pages/trucks/TrucksByCategory';
 
@@ -24,10 +24,15 @@ import TrailersByCategory from './pages/trailers/TrailersByCategory';
 
 import Dashboard from './pages/admin/Dashboard';
 
-import CategoryTruck from './pages/admin/categories-trucks/CategoriesTrucks';
+import CategoryTruck from './pages/admin/categories-trucks/CategoriesTrucks'; /* version admin */
+import AddCategoryTruck from './pages/admin/categories-trucks/AddCategoryTruck';
+
+
 
 import CategoryTrailer from './pages/admin/categories-trailers/CategoriesTrailers'; /* version admin */
 import AddCategoryTrailer from './pages/admin/categories-trailers/AddCategoryTrailer';
+import EditCategoryTrailer from './pages/admin/categories-trailers/EditCategoryTrailer';
+
 //import Contact from './pages/admin/Contact';
 //import Trailer from './pages/admin/Trailer';
 import Cart from './pages/order/Cart';
@@ -66,13 +71,18 @@ function App() {
 
 
           <Route path="/admin" element={<Dashboard />} /> {/* admin dashboard => routes admin only*/}
-          <Route path="/admin/categories-trailers/add" element={<AddCategoryTrailer />} />{/* management by admin */}
+
           <Route path="/admin/categories-trailers" element={<CategoryTrailer />} />
+          <Route path="/admin/categories-trailers/add" element={<AddCategoryTrailer />} />{/* management by admin */}
+          <Route path="/admin/categories-trailers/edit/:id" element={<EditCategoryTrailer />} />
+
 
           {/*     <Route path="/admin/contacts" element={<Contact />} />*/}
           {/*     <Route path="/admin/trucks" element={<Truck />} />*/}
           {/*      <Route path="/admin/trailers" element={<Trailer />} />*/}
           <Route path="/admin/categories-trucks" element={<CategoryTruck />} />
+          <Route path="/admin/categories-trucks/add" element={<AddCategoryTruck />} />
+
 
           <Route path="cart" element={<Cart />} />
           <Route path="payment" element={<Payment />} />

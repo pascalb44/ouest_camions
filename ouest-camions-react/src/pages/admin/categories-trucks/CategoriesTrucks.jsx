@@ -33,36 +33,38 @@ const CategoriesTrucks = () => {
         }
     };
 
-      return (
-            <div className="container mt-5">
-                <h1>Liste des catégories</h1>
-    
-                <div className="mb-3">
-                    <Link to="/categories-trucks/add" className="btn btn-primary">
-                        Ajouter une catégorie
-                    </Link>
-                </div>
-     <tbody>
-                        {categoriesTrucks.map((categoryTruck) => (
-                            <tr key={categoryTruck.id}>
-                                <td>{categoryTruck.name}</td>
-                                <td>
-                                    <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${categoryTruck.image_category_truck}`} 
-                                        alt={categoryTruck.name} width="75px" className="category-trailer-image"/>
-                                </td>
-                                <td>
-                                    <Link to={`/categories-trucks/edit/${categoryTruck.id}`} className="btn btn-success me-2">
-                                        Modifier
-                                    </Link>
-                                    <button className="btn btn-danger" onClick={() => deleteCategoryTruck(categoryTruck.id)}>
-                                        Supprimer
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
+    return (
+        <div className="admin-categories-trucks-page">
+            <h1 className="h1-admin-categories-trucks">Liste des catégories camions</h1>
+
+            <div>
+                <Link to="/admin/categories-trucks/add" className="btn btn-primary">
+                    Ajouter une catégorie camions
+                </Link>
             </div>
-        );
-    };
-    
-    export default CategoriesTrucks;
+            <tbody className="admin-categories-trucks-container">
+                {categoriesTrucks.map((categoryTruck) => (
+                    <tr key={categoryTruck.id} className="admin-categories-trucks-item">
+                        <div className="admin-categories-trucks-line">
+                            <td className="admin-category-truck-name">{categoryTruck.name_category_truck}</td>
+                            <td>
+                                <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${categoryTruck.image_category_truck}`}
+                                    alt={categoryTruck.name} width="75px" className="admin-category-truck-image" />
+                            </td>
+                        </div>
+                        <td className="admin-categories-trucks-buttons">
+                            <Link to={`/categories-trucks/edit/${categoryTruck.id}`} className="admin-category-truck-update-btn">
+                                Modifier
+                            </Link>
+                            <Link to={`/categories-trucks/edit/${categoryTruck.id}`} className="admin-category-truck-delete-btn" onClick={() => deleteCategoryTruck(categoryTruck.id)}>
+                                Supprimer
+                            </Link>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </div>
+    );
+};
+
+export default CategoriesTrucks;

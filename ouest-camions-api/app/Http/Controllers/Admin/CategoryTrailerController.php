@@ -23,6 +23,7 @@ class CategoryTrailerController extends Controller
      */
     public function store(Request $request)
     {
+        
         $formFields = $request->validate([
             'name_category_trailer' => 'required|string',
             'description' => 'required|string',
@@ -34,7 +35,7 @@ class CategoryTrailerController extends Controller
             $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image_category_trailer')->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('image_category_trailer')->storeAs('/uploads/CategoryTrailer/', $filename); /* in the <=> folder */
+            $path = $request->file('image_category_trailer')->storeAs('uploads/CategoryTrailer/', $filename); /* in the <=> folder */
         } else {
             $filename = null;
         }
@@ -42,7 +43,6 @@ class CategoryTrailerController extends Controller
             $request->all(),
             ['image_category_trailer' => $filename]
         ));
-
 
         return response()->json([
             'message' => 'Catégorie ajoutée avec succès',
@@ -81,23 +81,23 @@ public function update(Request $request, $id)
         
         // remove picture if exist
 
-        if ($CategoryTrailer->image_category_trailer && Storage::exists('public/uploads/CategoryTrailer/' . $CategoryTrailer->image_category_trailer)) {
-            Storage::delete('public/uploads/CategoryTrailer/' . $CategoryTrailer->image_category_trailer);
+        if ($CategoryTrailer->image_category_trailer && Storage::exists('/uploads/CategoryTrailer/' . $CategoryTrailer->image_category_trailer)) {
+            Storage::delete('/uploads/CategoryTrailer/' . $CategoryTrailer->image_category_trailer);
         }
 
         // new picture 
         $file = $request->file('image_category_trailer');
-        $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $extension = $file->getClientOriginalExtension();
-        $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;        /* timestamp behind the name */
-
+   //     $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+    //    $extension = $file->getClientOriginalExtension();
+    //    $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;        /* timestamp behind the name */
+    $filename = time() . '_' . $file->getClientOriginalName();
         $file->storeAs('uploads/CategoryTrailer', $filename);
 
         $updateData['image_category_trailer'] = $filename; /* only the name in the base */
     }
 
     $CategoryTrailer->update($updateData);
-    $CategoryTrailer = $CategoryTrailer->fresh();
+  //  $CategoryTrailer = $CategoryTrailer->fresh();
 
     return response()->json([
         'status' => 'Catégorie de remorque mise à jour avec succès',
@@ -118,3 +118,7 @@ public function update(Request $request, $id)
         ], 200);
     }
 }
+
+
+
+/* admin@ouestcamions.fr */

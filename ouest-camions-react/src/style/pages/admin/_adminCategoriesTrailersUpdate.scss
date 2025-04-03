@@ -1,0 +1,128 @@
+/***************** version desktop *******************/
+
+@media (min-width: 1025px) {
+
+
+    .h1-admin-category-trailer-edit {
+        color: black;
+        font-size: 2rem;
+        text-align: center;
+        margin: 5% auto 3%;
+    }
+
+    .admin-category-trailer-form-edit {
+        max-width: 90%;
+        margin-left: 10%;
+    }
+
+    .admin-category-trailer-form-edit-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-category-trailer-form-edit label {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-left: 10%;
+    }
+
+    .admin-category-trailer-name-edit {
+        width: 30%;
+        font-size: 1.1rem;
+        margin: 3% 0 3% 20%;
+        border: solid 1px blue;
+    }
+
+    .admin-category-trailer-description-edit {
+        width: 60%;
+        border: solid 1px blue;
+        font-size: 1.1rem;
+        height: 150px;
+        margin: 3% 0 3% 20%;
+    }
+
+    .admin-category-trailer-image-edit {
+        width: 60%;
+        padding: 1%;
+        height: 250px;
+        margin: 3% 0 3% 20%;
+        border: solid 1px blue;
+    }
+
+    .admin-category-trailer-image-edit-upload {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 25%;
+        margin-left: 20%;
+        font-size: 1.3rem;
+    }
+
+    .admin-category-trailer-edit-button {
+        margin-left: 20%;
+
+    }
+
+    .admin-category-trailer-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 10px;
+        margin: 5% 0 10% 25%;
+        width: 50%;
+    }
+
+}
+
+/* tablette lanscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+
+    .h1-admin-category-trailer-edit {
+        color: black;
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 10% auto 7%;
+    }
+
+    .admin-category-trailer-form-edit label {
+        margin-left: 10px;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    .admin-category-trailer-name-edit {
+        width: 95%;
+        font-size: 1rem;
+        margin: 3% 0 3% 2%;
+        border: solid 1px blue;
+    }
+
+    .admin-category-trailer-description-edit {
+        width: 95%;
+        border: solid 1px blue;
+        font-size: 1rem;
+        height: 180px;
+        margin: 3% 0 3% 2%;
+    }
+
+    .admin-category-trailer-image-edit {
+        width: 95%;
+        padding: 1%;
+        height: 250px;
+        margin: 3% 0 3% 2%;
+        border: solid 1px blue;
+    }
+
+    .admin-category-trailer-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 10px;
+        margin: 10% 0 15% 25%;
+        width: 50%;
+    }
+}

@@ -36,7 +36,6 @@ const CategoriesTrucks = () => {
                             {/* image_category_truck is the name of the picture in the table category_truck */}
                         </div>
                         <div className="category-truck-image-caption">
-
                             <Link to={`/trucks-by-category/${truck.id}`}>
                                 En savoir plus
                                 {/* link to gallery of trucks */}

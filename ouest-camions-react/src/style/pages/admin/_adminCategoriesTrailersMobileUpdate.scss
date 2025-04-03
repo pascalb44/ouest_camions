@@ -1,0 +1,106 @@
+/* tablette portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    
+    .h1-admin-category-trailer-edit {
+        color: black;
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 5% auto 10%;
+    }
+
+    .admin-category-trailer-form-edit label {
+        margin-left: 10px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .admin-category-trailer-name-edit {
+        width: 100%;
+        font-size: 0.9rem;
+        margin: 3% 0 3% 0%;
+        border: solid 1px blue;
+    }
+
+    .admin-category-trailer-description-edit {
+        width: 100%;
+        border: solid 1px blue;
+        font-size: 0.8rem;
+        height: 150px;
+        margin: 3% 0 3% 0%;
+    }
+
+    .admin-category-trailer-image-edit {
+        width: 100%;
+        padding: 1%;
+        height: 200px;
+        margin: 2% auto 5%;
+        border: solid 1px blue;
+    }
+
+    .admin-category-trailer-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 10px;
+        margin: 5% 0 10% 25%;
+        width: 50%; 
+    }
+
+}
+
+/********************************** version mobile ********************/
+
+@media only screen and (max-width: 480px) {
+
+
+      
+    .h1-admin-category-trailer-edit {
+        color: black;
+        font-size: 1.4rem;
+        text-align: center;
+        margin: 10% auto 10%;
+    }
+
+    .admin-category-trailer-form-edit label {
+        margin-left: 10px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .admin-category-trailer-name-edit {
+        width: 100%;
+        font-size: 0.9rem;
+        margin: 3% 0 3% 0%;
+        border: solid 1px blue;
+    }
+
+    .admin-category-trailer-description-edit {
+        width: 100%;
+        border: solid 1px blue;
+        font-size: 0.8rem;
+        height: 180px;
+        margin: 3% 0 3% 0%;
+    }
+
+    .admin-category-trailer-image-edit {
+        width: 100%;
+        padding: 1%;
+        height: 200px;
+        margin: 2% auto 5%;
+        border: solid 1px blue;
+    }
+
+    .admin-category-trailer-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 10px;
+        margin: 10% 0 15% 25%;
+        width: 50%; 
+    }
+}

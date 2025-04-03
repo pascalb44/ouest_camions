@@ -1,0 +1,152 @@
+/* tablette portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    /***************************** page categories-trucks **********************************/
+
+    .admin-categories-trucks-page {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1%;
+    }
+
+    .h1-admin-categories-trucks {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 10%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .admin-categories-trucks-container {
+        display: flex;
+        flex-direction: column;
+        margin: 10% 0 10%;
+        width: 100%;
+    }
+
+    .admin-categories-trucks-item {
+        border: 1px solid lightseagreen;
+    }
+
+    .admin-categories-trucks-line {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .admin-category-truck-name {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1rem;
+        margin : 20% 0 0 5%;
+        flex :1;
+    }
+
+    .admin-category-truck-image {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+        padding: 1%;
+        margin : 30px 30px;
+        border: 1px solid greenyellow;
+    }
+
+    .admin-categories-trucks-buttons {
+        display: flex;
+        flex-direction: row;
+        width: 35%;
+        border: none;
+
+        .admin-category-truck-update-btn,
+        .admin-category-truck-delete-btn {
+            display: flex;
+            color: white;
+            background-color: green;
+            text-decoration: none;
+            padding: 10px;
+            width: 50%;
+            margin: 25% 2% 10% 10%;
+        }
+
+        .admin-category-truck-delete-btn {
+            background-color: red;
+        }
+    }
+
+}
+
+
+
+/********************************** version mobile ********************/
+
+@media only screen and (max-width: 480px) {
+
+    .admin-categories-trucks-page {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1%;
+    }
+
+    .h1-admin-categories-trucks {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 10%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .admin-categories-trucks-container {
+        display: flex;
+        flex-direction: column;
+        margin: 10% 0 10%;
+        width: 100%;
+    }
+
+    .admin-categories-trucks-item {
+        border: 1px solid lightseagreen;
+    }
+
+    .admin-categories-trucks-line {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .admin-category-truck-name {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1rem;
+        margin : 20% 0 0 1%;
+    }
+
+    .admin-category-truck-image {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+        padding: 1%;
+        margin : 30px auto;
+        border: 1px solid greenyellow;
+    }
+
+    .admin-categories-trucks-buttons {
+        display: flex;
+        flex-direction: row;
+
+        .admin-category-truck-update-btn,
+        .admin-category-truck-delete-btn {
+            display: flex;
+            color: white;
+            justify-content: center; 
+            align-items: center;
+            background-color: green;
+            text-decoration: none;
+            padding: 10px;
+            width: 50%;
+            height: 40px;
+        }
+
+        .admin-category-truck-delete-btn {
+            background-color: red;
+        }
+      
+
+    }
+
+
+}

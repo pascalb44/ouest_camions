@@ -32,8 +32,6 @@ const CategoriesTrailers = () => {
   return (
     <div className="container-categories-trailers">
       <h1>Nos remorques</h1>
-
-
       <div className="button-group" style={{ display: "flex", gap: "10px", overflowX: "auto" }}>
         {categoriesTrailers.length > 0 &&
           categoriesTrailers.map((trailer) => (  /* 'trailer' is used to get the differents categories of trailers */
@@ -49,8 +47,7 @@ const CategoriesTrailers = () => {
       </div>
       <div className="categories-trailers-list">
         {categoriesTrailers.map((trailer) => (
-          <div
-            key={trailer.id}
+          <div key={trailer.id}
             ref={(el) => (categoryRefs.current[trailer.id] = el)} // Assign a ref to each category
             className="categories-trailers-item">
             <div className="category-trailer-image-box">
@@ -69,13 +66,8 @@ const CategoriesTrailers = () => {
                     {/* link to gallery of trailers */}
                   </button>
                 </Link>
-
               </div>
-
-
             </div>
-
-
           </div>
         ))}
       </div>

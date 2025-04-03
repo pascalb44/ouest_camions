@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
-import "../../../style/pages/admin/_adminCategoriesTrailers.scss";
 
 const CategoriesTrailers = () => {
     const [categoriesTrailers, setCategoriesTrailers] = useState([]);
@@ -20,10 +19,11 @@ const CategoriesTrailers = () => {
         }
     };
 
+    /* delete */ 
     const deleteCategoryTrailer = async (id) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://127.0.0.1:8000/api/categories-trailers/${id}`, {
+            await axios.delete(`http://127.0.0.1:8000/api/admin/categories-trailers/${id}`, { /* only admin */
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -35,16 +35,16 @@ const CategoriesTrailers = () => {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="admin-category-trailer-container mt-5">
             <h1>Liste des catégories</h1>
 
-            <div className="mb-3">
-                <Link to="/admin/categories-trailers/add" className="btn btn-primary">Ajouter une catégorie</Link>
+            <div className="admin-category-trailer-btn-add-container">
+                <Link to="/admin/categories-trailers/add" className="admin-category-trailer-btn-add">Ajouter une catégorie</Link>
             </div>
 
             <table className="table">
                 <thead>
-                    <tr>
+                    <tr className="admin-category-trailer-menu">
                         <th>Nom</th>
                         <th>Description</th>
                         <th>Image</th>
@@ -53,16 +53,16 @@ const CategoriesTrailers = () => {
                 </thead>
                 <tbody>
                     {categoriesTrailers.map((categoryTrailer) => (
-                        <tr key={categoryTrailer.id}>
-                            <td>{categoryTrailer.name_category_trailer}</td>
-                            <td>{categoryTrailer.description}</td>
-                            <td>
+                        <tr className="admin-category-trailer-unite" key={categoryTrailer.id}>
+                            <td className="admin-category-trailer-name">{categoryTrailer.name_category_trailer}</td>
+                            <td className="admin-category-trailer-description">{categoryTrailer.description}</td>
+                            <td className="admin-category-trailer-image-container">
                                 <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${categoryTrailer.image_category_trailer}`} 
-                                    alt={categoryTrailer.name} width="75px" className="category-trailer-image-admin"/>
+                                    alt={categoryTrailer.name} width="75px" className="admin-category-trailer-image"/>
                             </td>
-                            <td>
-                                <Link to={`/categories-trailers/edit/${categoryTrailer.id}`} className="btn btn-success me-2">Modifier</Link>
-                                <button className="btn btn-danger" onClick={() => deleteCategoryTrailer(categoryTrailer.id)}>Supprimer</button>
+                            <td className="admin-categories-trailers-buttons">
+                                <Link to={`/admin/categories-trailers/edit/${categoryTrailer.id}`} className="admin-category-trailer-update-btn">Modifier</Link>
+                                <button className="admin-category-trailer-delete-btn" onClick={() => deleteCategoryTrailer(categoryTrailer.id)}>Supprimer</button>
                             </td>
                         </tr>
                     ))}

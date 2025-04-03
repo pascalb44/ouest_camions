@@ -28,7 +28,15 @@ const AddCategoryTrailer = () => {
             for (let [key, value] of formData.entries()) {
                 console.log(`${key}:`, value);
             }
-            await axios.post(`http://127.0.0.1:8000/api/admin/categories-trailers`, formData);
+            await axios.post(
+                'http://127.0.0.1:8000/api/admin/categories-trailers',
+                formData,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'multipart/form-data',
+                    }
+                });
             navigate('/admin/categories-trailers'); // return to categories trailers admin page
         } catch (error) {
             if (error.response && error.response.status === 422) {
@@ -47,7 +55,7 @@ const AddCategoryTrailer = () => {
                 <div>
                     <div className="card">
                         <div className="card-body">
-                            <h4 className="card-title">Création d'une nouvelle categorie</h4>
+                            <h4 className="card-title">Création d'une nouvelle categorie de remorque</h4>
                             <hr />
                             <div className="form-wrapper">
                                 {Object.keys(validationError).length > 0 && (
@@ -80,7 +88,7 @@ const AddCategoryTrailer = () => {
                                         <label className="form-label">Image</label>
                                         <input type="file" className="form-control" onChange={changeHandler} />
                                     </div>
-                                    <button variant="primary" className="mt-2" size="lg" block="block" type="submit">Ajouter la catégorie</button>
+                                    <button className="mt-2" size="lg" block="block" type="submit">Ajouter la catégorie</button>
                                 </form>
                             </div>
                         </div>
