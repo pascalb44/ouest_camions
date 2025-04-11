@@ -91,6 +91,7 @@ const TruckDetail = () => {
     return (
         <div>
             <h1 className="h1-truck-detail">{truck.brand_truck} {truck.name_truck}</h1>
+                <Link to="/categories-trailers/" className="trailer-btn-return">Retour à la liste</Link>            
             <div className="truck-detail-page">
                 <div className="truck-detail">
                     <div className="edito-truck">

@@ -1,8 +1,6 @@
-/***************** version desktop *******************/
+/* tablette portrait */
 
-@media (min-width: 1025px) {
-
-    /***************************** page categories-trailers **********************************/
+@media (min-width: 481px) and (max-width: 768px) {
 
     .container-categories-trailers {
         width: 100%;
@@ -31,18 +29,11 @@
         text-align: center;
         margin: 3% 0 5%;
         text-transform: uppercase;
+        font-size: 1.2rem;
     }
 
     .categories-trailers-button-group {
-        display: flex;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: dodgerblue;
-        cursor: pointer;
-        gap: 80px;
-        width: max-content;
-        margin-bottom: 2%;
-        font-size: 1rem;
+        display: none;
     }
 
     .categories-trailers-list {
@@ -57,7 +48,6 @@
         width: 100%;
         border: solid 1px blue;
         background-color: #99FFFF;
-
     }
 
     .category-trailer-image-box {
@@ -74,10 +64,9 @@
     .categories-trailers-description-box {
         display: flex;
         flex-direction: column;
-        margin-left: 5%;
+        margin-left: 3%;
         padding-top: 5%;
         width: 50%;
-
 
         .categories-trailers-name {
             font-family: 'Abel', Helvetica, Arial, Lucida, sans-serif;
@@ -93,7 +82,7 @@
             background-color: #0033CC;
             text-align: center;
             padding: 10px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
             margin-top: auto;
             margin-left: 4%;
@@ -105,18 +94,22 @@
             }
         }
     }
+
+
+
 }
 
-/* tablette lanscape */
 
+/********************************** version mobile ********************/
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (max-width: 480px) {
+
 
 
     .container-categories-trailers {
         width: 100%;
     }
-    
+
     .top-categories-trailers {
         width: 100%;
         background-color: black;
@@ -152,7 +145,7 @@
 
     .categories-trailers-item {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         border: solid 1px blue;
         background-color: #99FFFF;
         margin-bottom: 5%;
@@ -160,26 +153,21 @@
     }
 
 
-    /* left side*/
-
     .category-trailer-image-box {
-        width: 50%;
+        width: 100%;
     }
 
     .category-trailer-image {
-        width: 90%;
+        width: 100%;
         padding: 1%;
         height: 350px;
     }
 
-    /* right side*/
-
     .categories-trailers-description-box {
         display: flex;
         flex-direction: column;
-        margin-left: 3%;
-        padding:3%;
-        width: 50%;
+        padding:5%;
+        width: 100%;
         text-align: justify;
     }
 
@@ -192,7 +180,7 @@
         background-color: #0033CC;
         text-align: center;
         padding: 10px;
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: bold;
         margin-top: auto;
         margin-left: 4%;
@@ -203,5 +191,4 @@
             text-decoration: none;
         }
     }
-
 }

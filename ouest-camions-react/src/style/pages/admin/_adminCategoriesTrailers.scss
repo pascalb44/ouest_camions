@@ -105,6 +105,8 @@
     }
 }
 
+/* tablette lanscape */
+
 @media (min-width: 769px) and (max-width: 1024px) {
 
     .admin-categories-trailers-container {
@@ -128,7 +130,7 @@
         width: max-content;
         margin: 3% 0 0% 10%;
     }
-    
+
     .admin-categories-trailers-btn-add-container {
         margin: 5% auto 5%;
     }

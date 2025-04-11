@@ -32,20 +32,21 @@ const TrailersByCategory = () => {
     console.log("Category Name:", categoryName);
     return (
         <div>
+            <Link to="/categories-trailers" className="trailer-by-category-btn-return">Retour à la liste</Link>
             <h1 className="h1-trailer-category-name">{categoryName}</h1>  {/* name change on each page */}
 
             <div className="trailer-category-list">
                 {trailers.length > 0 ? (
-                    trailers.map((trailer) => (                       
+                    trailers.map((trailer) => (
                         <div key={trailer.id} className={`trailer-category-item ${trailers.length === 1 ? "full-width" : ""}`}>
                             {/* to have 1 picture on the page for specialized trailers */}
-                        
+
                             <div className="trailer-category-name">
                                 <p>{trailer.brand_trailer} {trailer.name_trailer}</p>
                             </div>
                             <div className="trailer-category-image-box">
-                                <img src={`http://127.0.0.1:8000/storage/uploads/Trailer/${trailer.image_trailer}`} className={`trailer-category-image ${trailers.length === 1 ? "trailer-category-image-one" : ""}`} 
-                                alt={trailer.name_trailer} />
+                                <img src={`http://127.0.0.1:8000/storage/uploads/Trailer/${trailer.image_trailer}`} className={`trailer-category-image ${trailers.length === 1 ? "trailer-category-image-one" : ""}`}
+                                    alt={trailer.name_trailer} />
                             </div>
 
                             <p>Charge utile : {trailer.load_trailer}</p>
@@ -56,7 +57,7 @@ const TrailersByCategory = () => {
                                 {/* link to detail page of the trailer */}
                             </div>
                         </div>
-                        
+
                     ))
                 ) : (
                     <p>Aucune remorque trouvée pour cette catégorie.</p>

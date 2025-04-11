@@ -8,8 +8,8 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
     // Vérifie si un camion ou une remorque est passé en prop
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-    const [duration, setDuration] = useState(truck?.duration_truck || trailer?.duration_trailer || 0);  
-    
+    const [duration, setDuration] = useState(truck?.duration_truck || trailer?.duration_trailer || 0);
+
 
     const [reservedDates, setReservedDates] = useState([]); // Pour stocker les réservations passées
 
@@ -98,8 +98,8 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
     return (
         <div className={`vehicle-picker-${vehicleType}`}>
             <div className={`date-picker-${vehicleType}`}>
-            <div className={`date-picker-start-${vehicleType}`}>
-                   <div className={`date-picker-start-legend-${vehicleType}`}>
+                <div className={`date-picker-start-${vehicleType}`}>
+                    <div className={`date-picker-start-legend-${vehicleType}`}>
                         Date de départ
                     </div>
                     <div className={`custom-date-picker-start-${vehicleType}`}>
@@ -111,8 +111,8 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
                             calendarContainer={DepartureContainer} // pour la date de départ
                             locale={fr} // Format français
                             minDate={new Date()}  // Pour bloquer les dates passées
-                            filterDate={(date) => isDateAvailable(date, vehicleType === "truck" ? truck?.id : trailer?.id)}  
-                            />
+                            filterDate={(date) => isDateAvailable(date, vehicleType === "truck" ? truck?.id : trailer?.id)}
+                        />
                     </div>
                 </div>
                 <div className={`date-picker-end-${vehicleType}`}>
@@ -128,7 +128,7 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
                             calendarContainer={ReturnContainer} // pour la date de retour
                             locale={fr}  // Format français
                             minDate={startDate} // La date de retour après la date de départ
-                            filterDate={(date) => isDateAvailable(date, vehicleType === "truck" ? truck?.id : trailer?.id)}                        />
+                            filterDate={(date) => isDateAvailable(date, vehicleType === "truck" ? truck?.id : trailer?.id)} />
                     </div>
                 </div>
             </div>

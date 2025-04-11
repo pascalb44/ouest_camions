@@ -4,13 +4,12 @@
 
     /***************************** page trucks-detail **********************************/
 
-
     .h1-truck-detail {
         text-align: center;
         font-size: 3rem;
         margin-top: 5%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-
+        text-transform: uppercase;
     }
 
     .truck-detail-page {
@@ -143,6 +142,7 @@
 }
 
 
+/* tablette lanscape */
 
 
 @media (min-width: 769px) and (max-width: 1024px) {

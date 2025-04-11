@@ -90,9 +90,10 @@ const TrailerDetail = () => {
 
     return (
         <div>
+            <Link to="/categories-trailers/" className="trailer-btn-return">Retour à la liste</Link>
             <div className="trailer-detail-page">
                 <h1 className="h1-trailer-detail">{trailer.brand_trailer} {trailer.name_trailer}</h1>
-                <div className="editotrailer">
+                <div className="edito-trailer">
                     <p>{trailer.description_trailer}</p>
                 </div>
                 <section className="trailer-detail-top">

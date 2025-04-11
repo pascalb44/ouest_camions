@@ -1,8 +1,8 @@
-/***************** version desktop *******************/
+/* tablette portrait */
 
-@media (min-width: 1025px) {
 
-    /***************************** page trailers-detail **********************************/
+@media (min-width: 481px) and (max-width: 768px) {
+
 
     .trailer-detail-page {
         display: flex;
@@ -18,13 +18,13 @@
         text-decoration: none;
         padding: 10px;
         width: max-content;
-        margin: 3% 0 0% 10%;
+        margin: 0 0 5% 10%;
     }
 
     .h1-trailer-detail {
         text-align: center;
-        font-size: 2.2rem;
-        margin-top: 3%;
+        font-size: 2.1rem;
+        margin-top: 5%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         text-transform: uppercase;
     }
@@ -37,7 +37,7 @@
 
     .trailer-detail-top {
         display: flex;
-        align-items: stretch; // all elements have the same height
+        flex-direction: column;
     }
 
     .trailer-detail-block {
@@ -47,42 +47,33 @@
 
     .trailer-image-box {
         display: flex;
-        flex: 1; // picture = all the block
-        margin-left: 1%;
+        margin: auto;
     }
 
     .trailer-image {
         width: 100%;
-        height: 600px;
-        border-top-left-radius: 50px;
-        border-bottom-left-radius: 50px;
+        height: 300px;
     }
 
     .trailer-block-features {
         display: flex;
         flex-direction: column;
-        flex: 1; // text = 1/3 of space
         background-color: white;
         padding: 20px;
-        margin-right: 1%;
-        border-top-right-radius: 50px;
-        border-bottom-right-radius: 50px;
-
+        margin: auto;
+        width: 100%;
 
         h2 {
             margin-bottom: 10%;
             font-weight: 600;
         }
 
-        .trailer-detail-features {
-            display: flex;
-            flex-direction: column;
-        }
 
-
+        .trailer-detail-features,
         .trailer-detail-location {
             display: flex;
             flex-direction: column;
+            margin-top: 5%;
         }
 
         p {
@@ -98,7 +89,7 @@
 
     .date-picker-trailer {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin: 10% 0 0 10%;
         width: 60%;
     }
@@ -110,22 +101,25 @@
     .date-picker-start-trailer {
         display: flex;
         flex-direction: row;
+        margin: 0;
         padding-left: 10px;
+        width: 100%;
     }
 
     .date-picker-start-legend-trailer {
         display: flex;
-        margin-right: 25px;
+        margin-right: 10px;
         font-weight: 700;
-        height: 50px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+        width: 100%;
+
     }
 
     .custom-date-picker-start-trailer {
         display: flex;
         flex-direction: column;
         height: 50px;
-        padding: 0;
+        margin-right: 15px;
     }
 
 
@@ -133,18 +127,18 @@
 
     .date-picker-end-legend-trailer {
         display: flex;
-        margin-right: 25px;
+        margin-right: 10px;
         font-weight: 700;
-        height: 50px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+        width: 100%;
     }
 
 
     .custom-date-picker-end-trailer {
         display: flex;
         flex-direction: column;
-        padding: 0;
         height: 50px;
+        margin-right: 15px;
     }
 
     .date-picker-end-trailer {
@@ -177,14 +171,10 @@
 }
 
 
-/* tablette lanscape */
+/********************************** version mobile ********************/
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media only screen and (max-width: 480px) {
 
-
-    .container-tractor-trailers {
-        width: 100%;
-    }
 
     .trailer-detail-page {
         display: flex;
@@ -200,13 +190,13 @@
         text-decoration: none;
         padding: 10px;
         width: max-content;
-        margin: 5% 0 5% 10%;
+        margin: 0 0 10% 10%;
     }
 
     .h1-trailer-detail {
         text-align: center;
-        font-size: 2rem;
-        margin: 3% 0 5%;
+        font-size: 1.7rem;
+        margin-top: 5%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         text-transform: uppercase;
     }
@@ -214,12 +204,12 @@
     .edito-trailer {
         margin: 3% 20% 0 20%;
         text-align: center;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .trailer-detail-top {
         display: flex;
-        align-items: stretch; // all elements have the same height
+        flex-direction: column;
     }
 
     .trailer-detail-block {
@@ -229,58 +219,50 @@
 
     .trailer-image-box {
         display: flex;
-        flex: 1; // picture = all the block
-        margin-left: 1%;
+        margin: auto;
     }
 
     .trailer-image {
         width: 100%;
-        height: 600px;
-        border-top-left-radius: 50px;
-        border-bottom-left-radius: 50px;
+        height: 300px;
     }
 
     .trailer-block-features {
         display: flex;
         flex-direction: column;
-        flex: 1; // text = 1/3 of space
         background-color: white;
         padding: 20px;
-        margin-right: 1%;
-        border-top-right-radius: 50px;
-        border-bottom-right-radius: 50px;
+        margin: auto;
+        width: 100%;
 
         h2 {
             margin-bottom: 10%;
             font-weight: 600;
         }
 
-        .trailer-detail-features {
-            display: flex;
-            flex-direction: column;
-        }
-
+        .trailer-detail-features,
         .trailer-detail-location {
             display: flex;
             flex-direction: column;
+            margin-top: 5%;
         }
 
         p {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1rem;
         }
     }
 
 
-    
+
     /* calendar */
 
     .date-picker-trailer {
         display: flex;
         flex-direction: column;
-        margin: 10% 0 0 10%;
-        width: 60%;
+        margin: 10% 0 10% 5%;  
+        font-size: 0.9rem;      
     }
 
 
@@ -292,23 +274,22 @@
         flex-direction: row;
         margin: 0;
         padding-left: 10px;
-        width: 100%;
     }
 
     .date-picker-start-legend-trailer {
         display: flex;
-        margin-right: 10px;
+        margin-right: 25px;
         font-weight: 700;
+        height: 50px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        width: 100%;
-
+        width: 60%;
     }
 
     .custom-date-picker-start-trailer {
         display: flex;
         flex-direction: column;
         height: 50px;
-        margin-right: 15px;
+        margin-right: 15px;    
     }
 
 
@@ -316,18 +297,20 @@
 
     .date-picker-end-legend-trailer {
         display: flex;
-        margin-right: 10px;
+        margin-right: 25px;
         font-weight: 700;
+        height: 50px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        width: 100%;
+        width: 60%;
     }
 
 
     .custom-date-picker-end-trailer {
         display: flex;
         flex-direction: column;
+        padding: 0;
         height: 50px;
-        margin-right: 15px;
+        margin-right: 15px;    
     }
 
     .date-picker-end-trailer {
