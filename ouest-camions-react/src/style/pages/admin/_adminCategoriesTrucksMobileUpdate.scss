@@ -1,0 +1,135 @@
+/* tablette portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+
+    .h1-admin-category-truck-edit {
+        color: lightseagreen;
+        font-size: 2rem;
+        text-align: center;
+        margin: 5% auto 3%;
+    }
+
+    .admin-category-truck-form-edit {
+        padding-top: 5%;
+        background-color: powderblue;
+    }
+
+    .admin-category-truck-form-edit-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-category-truck-form-edit label {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-left: 10%;
+    }
+
+    .admin-category-truck-name-edit {
+        width: 40%;
+        font-size: 1.1rem;
+        margin: 3% 0 3% 15%;
+        border: solid 1px lightseagreen;
+    }
+
+     .admin-category-truck-image-edit {
+        width: 40%;
+        padding: 1%;
+        margin: 3% 0 3% 15%;
+        border: solid 1px lightseagreen;
+    }
+
+    .admin-category-truck-image-edit-upload {
+        padding: 10px;
+        border: 1px solid lightseagreen;
+        border-radius: 5px;
+        width: 70%;
+        margin-left: 15%;
+        font-size: 1rem;
+    }
+
+    .admin-category-truck-edit-button {
+        margin-left: 15%;
+
+    }
+
+    .admin-category-truck-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 10px;
+        margin: 5% 0 10%;
+        width: 20%;
+    }
+
+}
+
+/********************************** version mobile ********************/
+
+@media only screen and (max-width: 480px) {
+
+
+    .h1-admin-category-truck-edit {
+        color: lightseagreen;
+        font-size: 1.7rem;
+        text-align: center;
+        margin: 1% auto 5%;
+    }
+
+    .admin-category-truck-form-edit {
+        padding-top: 5%;
+        background-color: powderblue;
+    }
+
+    .admin-category-truck-form-edit-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-category-truck-form-edit label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-left: 10%;
+    }
+
+    .admin-category-truck-name-edit {
+        width: 60%;
+        font-size: 1.1rem;
+        margin: 3% 0 3% 15%;
+        border: solid 1px lightseagreen;
+    }
+
+     .admin-category-truck-image-edit {
+        width: 50%;
+        padding: 1%;
+        margin: 3% 0 3% 15%;
+        border: solid 1px lightseagreen;
+    }
+
+    .admin-category-truck-image-edit-upload {
+        padding: 10px;
+        border: 1px solid lightseagreen;
+        border-radius: 5px;
+        width: 80%;
+        margin-left: 15%;
+        font-size: 0.9rem;
+    }
+
+    .admin-category-truck-edit-button {
+        margin-left: 15%;
+
+    }
+
+    .admin-category-truck-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 10px;
+        margin: 5% 0 10%;
+        width: 25%;
+    }
+}

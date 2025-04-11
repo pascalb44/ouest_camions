@@ -21,7 +21,7 @@ const CategoriesTrucks = () => {
     const deleteCategoryTruck = async (id) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://127.0.0.1:8000/api/categories-trucks/${id}`, {
+            await axios.delete(`http://127.0.0.1:8000/api/admin/categories-trucks/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -29,40 +29,50 @@ const CategoriesTrucks = () => {
             setCategoriesTrucks(categoriesTrucks.filter(categoryTruck => categoryTruck.id !== id));
         } catch (error) {
             console.error("Erreur lors de la suppression de la catégorie :", error);
-            alert("Erreur lors de la suppression de la catégorie.");
+            alert("Erreur lors de la suppression.");
         }
     };
 
     return (
-        <div className="admin-categories-trucks-page">
-            <h1 className="h1-admin-categories-trucks">Liste des catégories camions</h1>
+        <div>
+            <Link to="/admin/" className="admin-truck-btn-return">Retour au dashboard</Link>
+            <div className="admin-categories-trucks-page">
 
-            <div>
-                <Link to="/admin/categories-trucks/add" className="btn btn-primary">
-                    Ajouter une catégorie camions
-                </Link>
+                <h1 className="h1-admin-categories-trucks">Liste des catégories de camions</h1>
+                <div>
+                    <Link to="/admin/categories-trucks/add" className="admin-categories-trucks-btn-add">
+                        Ajouter une catégorie
+                    </Link>
+                </div>
+                <table className="admin-categories-trucks-container">
+                    <tbody>
+                        {categoriesTrucks.map((categoryTruck) => (
+                            <tr key={categoryTruck.id} className="admin-categories-trucks-item">
+                                <div className="admin-categories-trucks-line">
+                                    <td className="admin-category-truck-name">{categoryTruck.name_category_truck}</td>
+                                    <td>
+                                        <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${categoryTruck.image_category_truck}`}
+                                            alt={categoryTruck.name} width="75px" className="admin-category-truck-image" />
+                                    </td>
+                                </div>
+                                <td className="admin-categories-trucks-buttons">
+                                    <Link to={`/admin/categories-trucks/edit/${categoryTruck.id}`} className="admin-category-truck-update-btn">
+                                        Modifier
+                                    </Link> {/* same presentation than a Link but with a button */}
+                                    <button className="admin-category-truck-delete-btn" style={{ background: 'red', border: 'none', color: 'white', textDecoration: 'none' }}
+                                        onClick={() => {
+                                            if (window.confirm("Es-tu sûr de vouloir supprimer cette catégorie ? Cette action est irréversible.")) {
+                                                deleteCategoryTruck(categoryTruck.id);
+                                            }
+                                        }}>
+                                        Supprimer
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-            <tbody className="admin-categories-trucks-container">
-                {categoriesTrucks.map((categoryTruck) => (
-                    <tr key={categoryTruck.id} className="admin-categories-trucks-item">
-                        <div className="admin-categories-trucks-line">
-                            <td className="admin-category-truck-name">{categoryTruck.name_category_truck}</td>
-                            <td>
-                                <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${categoryTruck.image_category_truck}`}
-                                    alt={categoryTruck.name} width="75px" className="admin-category-truck-image" />
-                            </td>
-                        </div>
-                        <td className="admin-categories-trucks-buttons">
-                            <Link to={`/categories-trucks/edit/${categoryTruck.id}`} className="admin-category-truck-update-btn">
-                                Modifier
-                            </Link>
-                            <Link to={`/categories-trucks/edit/${categoryTruck.id}`} className="admin-category-truck-delete-btn" onClick={() => deleteCategoryTruck(categoryTruck.id)}>
-                                Supprimer
-                            </Link>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
         </div>
     );
 };

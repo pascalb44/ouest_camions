@@ -19,7 +19,7 @@ const CategoriesTrailers = () => {
         }
     };
 
-    /* delete */ 
+    /* delete */
     const deleteCategoryTrailer = async (id) => {
         try {
             const token = localStorage.getItem("token");
@@ -35,39 +35,48 @@ const CategoriesTrailers = () => {
     };
 
     return (
-        <div className="admin-category-trailer-container mt-5">
-            <h1>Liste des catégories</h1>
+        <div>
+            <Link to="/admin/" className="admin-categories-trailer-btn-return">Retour au dashboard</Link>
+            <div className="admin-categories-trailers-container">
 
-            <div className="admin-category-trailer-btn-add-container">
-                <Link to="/admin/categories-trailers/add" className="admin-category-trailer-btn-add">Ajouter une catégorie</Link>
-            </div>
+                <h1 className="h1-admin-categories-trailers">Liste des catégories</h1>
 
-            <table className="table">
-                <thead>
-                    <tr className="admin-category-trailer-menu">
-                        <th>Nom</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {categoriesTrailers.map((categoryTrailer) => (
-                        <tr className="admin-category-trailer-unite" key={categoryTrailer.id}>
-                            <td className="admin-category-trailer-name">{categoryTrailer.name_category_trailer}</td>
-                            <td className="admin-category-trailer-description">{categoryTrailer.description}</td>
-                            <td className="admin-category-trailer-image-container">
-                                <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${categoryTrailer.image_category_trailer}`} 
-                                    alt={categoryTrailer.name} width="75px" className="admin-category-trailer-image"/>
-                            </td>
-                            <td className="admin-categories-trailers-buttons">
-                                <Link to={`/admin/categories-trailers/edit/${categoryTrailer.id}`} className="admin-category-trailer-update-btn">Modifier</Link>
-                                <button className="admin-category-trailer-delete-btn" onClick={() => deleteCategoryTrailer(categoryTrailer.id)}>Supprimer</button>
-                            </td>
+                <div className="admin-categories-trailers-btn-add-container">
+                    <Link to="/admin/categories-trailers/add" className="admin-category-trailer-btn-add">Ajouter une catégorie</Link>
+                </div>
+
+                <table className="admin-categories-trailers-table">
+                    <thead>
+                        <tr className="admin-categories-trailers-menu">
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {categoriesTrailers.map((categoryTrailer) => (
+                            <tr className="admin-category-trailer-unite" key={categoryTrailer.id}>
+                                <td className="admin-category-trailer-name">{categoryTrailer.name_category_trailer}</td>
+                                <td className="admin-category-trailer-description">{categoryTrailer.description}</td>
+                                <td className="admin-category-trailer-image-container">
+                                    <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${categoryTrailer.image_category_trailer}`}
+                                        alt={categoryTrailer.name} width="75px" className="admin-category-trailer-image" />
+                                </td>
+                                <td className="admin-categories-trailers-buttons">
+                                    <Link to={`/admin/categories-trailers/edit/${categoryTrailer.id}`} className="admin-category-trailer-update-btn">Modifier</Link>
+                                    <button className="admin-category-trailer-delete-btn" onClick={() => {
+                                        if (window.confirm("Es-tu sûr de vouloir supprimer cette catégorie ? Cette action est irréversible.")) {
+                                            deleteCategoryTrailer(categoryTrailer.id);
+                                        }
+                                    }}>
+                                        Supprimer</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

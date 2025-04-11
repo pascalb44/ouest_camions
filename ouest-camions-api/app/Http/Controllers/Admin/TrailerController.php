@@ -18,6 +18,8 @@ class TrailerController extends Controller
         if ($request->has('category')) {
             $query->where('id_category_trailer', $request->category); /* to get the trailers list by categories */
         }
+        $trailers = $query->with('categories_trailers')->get(); /* to display the categories in the trailers list for admin */
+
         return response()->json($query->get());
     }
 
@@ -49,7 +51,7 @@ class TrailerController extends Controller
             $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image_trailer')->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('image_trailer')->storeAs('/uploads', $filename);
+            $path = $request->file('image_trailer')->storeAs('/uploads/Trailer', $filename);
         } else {
             $filename = null;
         }
@@ -110,15 +112,15 @@ class TrailerController extends Controller
 
 
             if ($request->file('image_trailer')) {
-                if ($trailer->imageTrailer && file_exists(public_path('uploads/' . $trailer->imageTrailer))) {
-                    unlink(public_path('uploads/' . $trailer->imageTrailer));
+                if ($trailer->imageTrailer && file_exists(public_path('uploads/Trailer' . $trailer->imageTrailer))) {
+                    unlink(public_path('uploads/Trailer/' . $trailer->imageTrailer));
                 }
     
                 $file = $request->file('image_trailer');
                 $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $extension = $file->getClientOriginalExtension();
                 $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-                $file->storeAs('uploads/', $filename);
+                $file->storeAs('uploads/Trailer/', $filename);
                 $updateData['image_trailer'] = $filename;
             }
             $trailer->update($updateData);

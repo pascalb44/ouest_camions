@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 const AddCategoryTruck = () => {
@@ -49,8 +50,8 @@ const AddCategoryTruck = () => {
     return (
 
         <div className="container">
-            <div className="row justify-content-center">
                 <div>
+                <Link to="/admin/" className="admin-truck-btn-return">Retour au dashboard</Link>
                     <div className="card">
                         <div className="card-body">
                             <h4 className="card-title">Création d'une nouvelle categorie de camion</h4>
@@ -88,7 +89,6 @@ const AddCategoryTruck = () => {
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     );
 };

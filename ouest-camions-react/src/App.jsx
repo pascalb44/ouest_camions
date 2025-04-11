@@ -26,12 +26,24 @@ import Dashboard from './pages/admin/Dashboard';
 
 import CategoryTruck from './pages/admin/categories-trucks/CategoriesTrucks'; /* version admin */
 import AddCategoryTruck from './pages/admin/categories-trucks/AddCategoryTruck';
+import EditCategoryTruck from './pages/admin/categories-trucks/EditCategoryTruck';
 
 
 
 import CategoryTrailer from './pages/admin/categories-trailers/CategoriesTrailers'; /* version admin */
 import AddCategoryTrailer from './pages/admin/categories-trailers/AddCategoryTrailer';
 import EditCategoryTrailer from './pages/admin/categories-trailers/EditCategoryTrailer';
+
+
+import Truck from './pages/admin/trucks/Trucks'; /* version admin */
+import AddTruck from './pages/admin/trucks/AddTruck';
+import EditTruck from './pages/admin/trucks/EditTruck';
+
+import Trailer from './pages/admin/trailers/Trailers'; /* version admin */
+import AddTrailer from './pages/admin/trailers/AddTrailer';
+import EditTrailer from './pages/admin/trailers/EditTrailer';
+
+
 
 //import Contact from './pages/admin/Contact';
 //import Trailer from './pages/admin/Trailer';
@@ -68,6 +80,8 @@ function App() {
           <Route path="/trailers-by-category/:id" element={<TrailersByCategory />} />
           <Route path="/trailers/:id" element={<TrailerDetail />} />
 
+          <Route path="/trucks" element={<Truck />} />
+          <Route path="/trailers" element={<Trailer />} />
 
 
           <Route path="/admin" element={<Dashboard />} /> {/* admin dashboard => routes admin only*/}
@@ -78,10 +92,17 @@ function App() {
 
 
           {/*     <Route path="/admin/contacts" element={<Contact />} />*/}
-          {/*     <Route path="/admin/trucks" element={<Truck />} />*/}
-          {/*      <Route path="/admin/trailers" element={<Trailer />} />*/}
           <Route path="/admin/categories-trucks" element={<CategoryTruck />} />
           <Route path="/admin/categories-trucks/add" element={<AddCategoryTruck />} />
+          <Route path="/admin/categories-trucks/edit/:id" element={<EditCategoryTruck />} />
+
+          <Route path="/admin/trucks" element={<Truck />} />
+          <Route path="/admin/trucks/add" element={<AddTruck />} />
+          <Route path="/admin/trucks/edit/:id" element={<EditTruck />} />
+
+          <Route path="/admin/trailers" element={<Trailer />} />
+          <Route path="/admin/trailers/add" element={<AddTrailer />} />
+          <Route path="/admin/trailers/edit/:id" element={<EditTrailer />} />
 
 
           <Route path="cart" element={<Cart />} />

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const EditCategoryTrailer = () => {
     const { id } = useParams();
@@ -27,7 +29,6 @@ const EditCategoryTrailer = () => {
         formData.append("_method", "PATCH");
         formData.append("name_category_trailer", categoryTrailer.name_category_trailer);
         formData.append("description", categoryTrailer.description);
-        console.log([...formData]);
         if (categoryTrailer.image_category_trailer instanceof File) {
             formData.append("image_category_trailer", categoryTrailer.image_category_trailer);
         }
@@ -62,6 +63,7 @@ const EditCategoryTrailer = () => {
 
     return (
         <div>
+            <Link to="/admin/" className="admin-categories-trailer-btn-return">Retour au dashboard</Link>
             <h1 className="h1-admin-category-trailer-edit">Modifier la catégorie remorque</h1>
             <form onSubmit={handleSubmit} className="admin-category-trailer-form-edit">
                 <div className="admin-category-trailer-form-edit-group">

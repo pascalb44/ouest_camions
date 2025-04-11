@@ -23,7 +23,6 @@ class CategoryTrailerController extends Controller
      */
     public function store(Request $request)
     {
-        
         $formFields = $request->validate([
             'name_category_trailer' => 'required|string',
             'description' => 'required|string',
@@ -35,7 +34,7 @@ class CategoryTrailerController extends Controller
             $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image_category_trailer')->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('image_category_trailer')->storeAs('uploads/CategoryTrailer/', $filename); /* in the <=> folder */
+            $path = $request->file('image_category_trailer')->storeAs('/uploads/CategoryTrailer', $filename); /* in the <=> folder */
         } else {
             $filename = null;
         }
@@ -66,44 +65,37 @@ class CategoryTrailerController extends Controller
 
 
 
-public function update(Request $request, $id)
-{
-    $CategoryTrailer = CategoryTrailer::findOrFail($id);
-    
-    $request->validate([
-        'name_category_trailer' => 'required|string',
-        'image_category_trailer' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        'description' =>  'required|string',
-    ]);
-    
-    $updateData = $request->only(['name_category_trailer', 'description']);
-    if ($request->hasFile('image_category_trailer')) {
-        
-        // remove picture if exist
+    public function update(Request $request, $id)
+    {
+        $categoryTrailer = CategoryTrailer::findOrFail($id);
 
-        if ($CategoryTrailer->image_category_trailer && Storage::exists('/uploads/CategoryTrailer/' . $CategoryTrailer->image_category_trailer)) {
-            Storage::delete('/uploads/CategoryTrailer/' . $CategoryTrailer->image_category_trailer);
+        $validatedData = $request->validate([
+            'name_category_trailer' => 'required|string',
+            'image_category_trailer' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' =>  'required|string',
+        ]);
+
+        if ($request->hasFile('image_category_trailer')) {
+            $file = $request->file('image_category_trailer');
+            $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;        /* timestamp behind the name */
+            $file->storeAs('uploads/CategoryTrailer', $filename, 'public');
+            $validatedData['image_category_trailer'] = $filename;
+
+            // remove picture if exist
+
+            if ($categoryTrailer->image_category_trailer && Storage::exists('/uploads/CategoryTrailer/' . $categoryTrailer->image_category_trailer)) {
+                Storage::delete('/uploads/CategoryTrailer/' . $categoryTrailer->image_category_trailer);
+            }
+            $categoryTrailer->update($validatedData);
         }
 
-        // new picture 
-        $file = $request->file('image_category_trailer');
-   //     $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-    //    $extension = $file->getClientOriginalExtension();
-    //    $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;        /* timestamp behind the name */
-    $filename = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('uploads/CategoryTrailer', $filename);
-
-        $updateData['image_category_trailer'] = $filename; /* only the name in the base */
+        return response()->json([
+            'status' => 'Catégorie de remorque mise à jour avec succès',
+            'data' => $categoryTrailer,
+        ]);
     }
-
-    $CategoryTrailer->update($updateData);
-  //  $CategoryTrailer = $CategoryTrailer->fresh();
-
-    return response()->json([
-        'status' => 'Catégorie de remorque mise à jour avec succès',
-        'data' => $CategoryTrailer,        
-    ]);
-}
 
 
     /**

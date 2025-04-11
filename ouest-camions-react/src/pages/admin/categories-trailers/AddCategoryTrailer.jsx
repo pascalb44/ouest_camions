@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 
 
 const AddCategoryTrailer = () => {
@@ -51,47 +53,44 @@ const AddCategoryTrailer = () => {
     return (
 
         <div className="container">
-            <div className="row justify-content-center">
-                <div>
-                    <div className="card">
-                        <div className="card-body">
-                            <h4 className="card-title">Création d'une nouvelle categorie de remorque</h4>
-                            <hr />
-                            <div className="form-wrapper">
-                                {Object.keys(validationError).length > 0 && (
-                                    <div className="row">
-                                        <div className="col-12">
-                                            <div className="alert alert-danger">
-                                                <ul className="mb-0">
-                                                    {Object.entries(validationError).map(
-                                                        ([key, value]) => (
-                                                            <li key={key}>{value}</li>
-                                                        )
-                                                    )}
-                                                </ul>
-                                            </div>
-                                        </div>
+            <Link to="/admin/" className="admin-categories-trailer-btn-return">Retour au dashboard</Link>
+            <div className="card">
+                <div className="card-body">
+                    <h4 className="card-title">Création d'une nouvelle categorie de remorque</h4>
+                    <hr />
+                    <div className="form-wrapper">
+                        {Object.keys(validationError).length > 0 && (
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="alert alert-danger">
+                                        <ul className="mb-0">
+                                            {Object.entries(validationError).map(
+                                                ([key, value]) => (
+                                                    <li key={key}>{value}</li>
+                                                )
+                                            )}
+                                        </ul>
                                     </div>
-                                )}
-                                <form onSubmit={addCategoryTrailer}>
-                                    <div className="mb-3" controlid="name_category_trailer"> {/* add name */}
-                                        <label className="form-label">Catégorie</label>
-                                        <input type="text" className="form-control" value={nameCategoryTrailer}
-                                            onChange={(event) => setNameCategoryTrailer(event.target.value)} required />
-                                    </div>
-                                    <div className="mb-3" controlid="description"> {/* add description */}
-                                        <label className="form-label">Description</label>
-                                        <input type="text" className="form-control" value={description}
-                                            onChange={(event) => setDescription(event.target.value)} required />
-                                    </div>
-                                    <div className="mb-3" controlid="image_category_trailer"> {/* add the picture */}
-                                        <label className="form-label">Image</label>
-                                        <input type="file" className="form-control" onChange={changeHandler} />
-                                    </div>
-                                    <button className="mt-2" size="lg" block="block" type="submit">Ajouter la catégorie</button>
-                                </form>
+                                </div>
                             </div>
-                        </div>
+                        )}
+                        <form onSubmit={addCategoryTrailer}>
+                            <div className="mb-3" controlid="name_category_trailer"> {/* add name */}
+                                <label className="form-label">Catégorie</label>
+                                <input type="text" className="form-control" value={nameCategoryTrailer}
+                                    onChange={(event) => setNameCategoryTrailer(event.target.value)} required />
+                            </div>
+                            <div className="mb-3" controlid="description"> {/* add description */}
+                                <label className="form-label">Description</label>
+                                <input type="text" className="form-control" value={description}
+                                    onChange={(event) => setDescription(event.target.value)} required />
+                            </div>
+                            <div className="mb-3" controlid="image_category_trailer"> {/* add the picture */}
+                                <label className="form-label">Image</label>
+                                <input type="file" className="form-control" onChange={changeHandler} />
+                            </div>
+                            <button className="mt-2" size="lg" block="block" type="submit">Ajouter la catégorie</button>
+                        </form>
                     </div>
                 </div>
             </div>

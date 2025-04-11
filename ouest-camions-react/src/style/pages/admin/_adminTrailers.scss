@@ -1,0 +1,221 @@
+/***************** version desktop *******************/
+
+@media (min-width: 1025px) {
+
+    /***************************** page admin trailers **********************************/
+
+
+    .admin-trailer-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 0% 10%;
+    }
+
+
+    .h1-admin-trailers {
+        color: blue;
+        text-align: center;
+        margin: 5% auto 3%;
+    }
+
+    .admin-trailers-btn-add-container {
+        margin-left: 10%;
+    }
+
+    .admin-trailer-btn-add {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: blue;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 5% 0 10% 10%;
+    }
+
+    .admin-trailer-list-block {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .admin-trailer-list {
+        display: flex;
+        flex-direction: column;
+        background-color: #99ffff;
+        border: solid 1px dodgerblue;
+        margin-top: 3%;
+    }
+
+    .admin-trailer-bloc-left {
+        /* bloc left */
+
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        margin-left: 5%;
+    }
+
+    .admin-trailer-image-container {
+        width: 100%;
+        margin-top: 2%;
+        border: solid 1px dodgerblue;
+    }
+
+    .admin-trailer-image {
+        width: 400px;
+        padding: 1%;
+        height: 250px;
+    }
+
+    .admin-trailer-bloc-right {
+        /* bloc right */
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        margin-left: 10%;
+    }
+
+    .admin-trailer-description-list {
+        width: 80%;
+    }
+
+    .admin-trailers-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .admin-trailer-update-btn,
+    .admin-trailer-delete-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 10px;
+        height: 50px;
+        width: 100px;
+        border-radius: 10%;
+        margin: 0 2% 2% 0;
+    }
+
+    .admin-trailer-delete-btn {
+        background-color: red;
+    }
+}
+
+
+
+/* tablette lanscape */
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .admin-trailer-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 0% 10%;
+    }
+
+    .h1-admin-trailers {
+        color: blue;
+        text-align: center;
+        margin: 5% auto 3%;
+    }
+
+    .admin-trailers-btn-add-container {
+        margin-left: 10%;
+    }
+
+    .admin-trailer-btn-add {
+       display: flex;
+        text-align: center;
+        color: white;
+        background-color: blue;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 5% 0 10% 10%;
+    }
+
+    .admin-trailer-list-block {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .admin-trailer-list {
+        display: flex;
+        flex-direction: column;
+        background-color: #99ffff;
+        border: solid 1px dodgerblue;
+        margin-top: 5%;
+    }
+
+    .admin-trailer-bloc-left {
+        /* bloc left */
+
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        margin-left: 2%;
+    }
+
+    .admin-trailer-image-container {
+        width: 100%;
+        margin-top: 2%;
+        border: solid 1px dodgerblue;
+    }
+
+    .admin-trailer-image {
+        width: 400px;
+        padding: 1%;
+        height: 250px;
+    }
+
+    .admin-trailer-bloc-right {
+        /* bloc right */
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        margin-left: 10%;
+    }
+
+    .admin-trailer-description-list {
+        width: 80%;
+    }
+
+    .admin-trailers-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .admin-trailer-update-btn,
+    .admin-trailer-delete-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 10px;
+        height: 50px;
+        width: 100px;
+        border-radius: 10%;
+        margin: 0 2% 2% 0;
+    }
+
+    .admin-trailer-delete-btn {
+        background-color: red;
+    }
+
+}

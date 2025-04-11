@@ -1,0 +1,205 @@
+/***************** version desktop *******************/
+
+@media (min-width: 1025px) {
+
+    /***************************** page trucks **********************************/
+    
+    .admin-truck-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 2% 5%;
+    }
+
+    .h1-admin-trucks {
+        color: lightseagreen;
+        padding: 2%;
+        font-size: 2rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .admin-truck-btn-add-container {
+        margin: 2% auto 2%;
+    }
+
+    .admin-truck-btn-add {
+        text-align: center;
+        color: white;
+        background-color: blue;
+        text-decoration: none;
+        padding: 10px;
+        height: 50px;
+        margin-left: 5%;
+    }
+
+    .admin-truck-unit {
+        display: none;
+    }
+
+    .table-admin-truck {
+        background-color: powderblue;
+    }
+
+    .admin-truck-menu {
+        text-align: center;
+        font-size: 1rem;
+        border: solid 1px blue;
+
+    }
+
+    .admin-truck-menu-description {
+        width: 25%;
+    }
+
+
+    .admin-truck-unite {
+        border: solid 1px blue;
+    }
+
+    .admin-truck-image-container {
+        width: 10%;
+        border: solid 1px blue;
+    }
+
+    .admin-truck-image {
+        width: 100%;
+        height: 160px;
+    }
+
+    .admin-truck-detail {
+        font-size: 1rem;
+        border: solid 1px powderblue;
+    }
+
+
+
+    .admin-trucks-buttons {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        width: 100%;
+    }
+
+    .admin-truck-update-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 10px;
+        height: 50px;
+        width: 100px;
+    }
+
+    .admin-truck-delete-btn {
+        text-align: center;
+        color: white;
+        background-color: red;
+        text-decoration: none;
+        padding: 10px;
+        height: 50px;
+        width: 100px;
+    }
+
+}
+    /* tablette lanscape */
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .admin-truck-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 10% 5%;
+    }
+
+    .h1-admin-trucks {
+        color: lightseagreen;
+        padding: 2%;
+        font-size: 2rem;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .admin-truck-btn-add-container {
+        margin: 3% 5% 5%;
+    }
+
+    .admin-truck-btn-add {
+        text-align: center;
+        color: white;
+        background-color: blue;
+        text-decoration: none;
+        padding: 10px;
+    }
+
+    .table-admin-truck {
+        display: none;
+    }
+
+    .admin-truck-unit {
+        border: 1px solid white;
+        border-radius: 8px;
+        margin: 1rem;
+        padding: 1rem;
+        background-color: powderblue;
+
+    }
+
+    .admin-truck-top-line {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .admin-truck-image-container-mobile {
+        flex: 0 0 150px;
+
+        .admin-truck-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    }
+
+    .admin-truck-fields>div {
+        width: 100%;
+
+        .admin-truck-menu-description {
+            width: 100%;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+    }
+
+    .admin-trucks-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        .admin-truck-update-btn,
+        .admin-truck-delete-btn {
+            text-align: center;
+            color: white;
+            background-color: green;
+            text-decoration: none;
+            padding: 10px;
+            height: 50px;
+            width: 100px;
+            border-radius: 10%;
+        }
+
+        .admin-truck-delete-btn {
+            background-color: red;
+        }
+    }
+}

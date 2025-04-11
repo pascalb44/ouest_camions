@@ -23,7 +23,6 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('categories-trucks', [CategoryTruckController::class, 'index']);
 Route::get('/header-image', [CategoryTruckController::class, 'getHeaderImage']);
 Route::get('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'show']);
-//Route::get('categories-trucks/{id}', [CategoryTruckController::class, 'show']);
 
 
 
@@ -101,16 +100,20 @@ Route::delete('/admin/categories-trailers/{id}', [CategoryTrailerController::cla
 
 // trucks
 
-Route::post('/trucks', [TruckController::class, 'store']);
-Route::patch('/trucks/{truck}', [TruckController::class, 'update']);
-Route::delete('/trucks/{truck}', [TruckController::class, 'destroy']);
+Route::get('/admin/trucks', [TruckController::class, 'index']); /* list for admin*/
+Route::get('/admin/trucks/{truck}', [TruckController::class, 'show']);
+Route::post('/admin/trucks', [TruckController::class, 'store']);
+Route::patch('/admin/trucks/{truck}', [TruckController::class, 'update']);
+Route::delete('/admin/trucks/{truck}', [TruckController::class, 'destroy']);
 
 
 // trailers
 
-Route::post('/trailers', [TrailerController::class, 'store']);
-Route::patch('/trailers/{trailer}', [TrailerController::class, 'update']);
-Route::delete('/trailers/{trailer}', [TrailerController::class, 'destroy']);
+Route::get('/admin/trailers', [TrailerController::class, 'index']); /* list for admin*/
+Route::post('/admin/trailers/{trailer}', [TrailerController::class, 'show']);
+Route::post('/admin/trailers', [TrailerController::class, 'store']);
+Route::patch('/admin/trailers/{trailer}', [TrailerController::class, 'update']);
+Route::delete('/admin/trailers/{trailer}', [TrailerController::class, 'destroy']);
 
 
 // orders

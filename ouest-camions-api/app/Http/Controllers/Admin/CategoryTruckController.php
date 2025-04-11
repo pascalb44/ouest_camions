@@ -65,53 +65,45 @@ class CategoryTruckController extends Controller
     }
 
 
+    public function update(Request $request, $id)
+    {
+        $categoryTruck = CategoryTruck::findOrFail($id);
 
-     public function update(Request $request, $id)
-     {
-         // Utilisation de findOrFail au lieu de l'injection de modèle
-         $categoryTruck = CategoryTruck::findOrFail($id);
-         
-         $request->validate([
-             'name_category_truck' => 'required|string',
-             'image_category_truck' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-         ]);
-         
-         $updateData = $request->only(['name_category_truck']);
-         
-         if ($request->hasFile('image_category_truck')) {
+        $validatedData = $request->validate([
+            'name_category_truck' => 'required|string|max:255',
+            'image_category_truck' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-            if ($categoryTruck->image_category_truck && Storage::exists('public/uploads/CategoryTruck/' . $categoryTruck->image_category_truck)) {
-                Storage::delete('public/uploads/CategoryTruck/' . $categoryTruck->image_category_truck);
-            }
-    
-            // new picture 
+
+        if ($request->hasFile('image_category_truck')) {
             $file = $request->file('image_category_truck');
             $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
-            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;        /* timestamp behind the name */
-    
-            $file->storeAs('uploads/CategoryTruck', $filename);
-    
-            $updateData['image_category_truck'] = $filename; /* only the name in the base */
+            $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
+            $file->storeAs('uploads/CategoryTruck', $filename, 'public');
+            $validatedData['image_category_truck'] = $filename;
+
+            // Supprimer l'ancienne image si elle existe
+            if ($categoryTruck->image_category_truck) {
+                Storage::disk('public')->delete('uploads/CategoryTruck/' . $categoryTruck->image_category_truck);
+            }
         }
 
-        $categoryTruck->update($updateData); 
-        $categoryTruck = $categoryTruck->fresh();
-        return response()->json([
-            'status' => 'categorie de camion mise à jour avec succès',
-            'data' => $categoryTruck,        
-        ]);
-    }
+        $categoryTruck->update($validatedData);
 
+        return response()->json(['message' => 'Mise à jour réussie !'], 200);
+    }
 
 
     public function destroy($id)
     {
-        $categoryTruck = CategoryTruck::findOrFail($id);
-        $deleted = $categoryTruck->delete();
-        return response()->json([
-            'status' => 'categorie de camions supprimée avec succès'
-        ], 500);
+        {
+            $categoryTruck = CategoryTruck::findOrFail($id);
+            $deleted = $categoryTruck->delete();
+            return response()->json([
+                'status' => 'categorie de camion supprimée avec succès'
+            ], 200);
+        }
     }
 
 
@@ -120,7 +112,4 @@ class CategoryTruckController extends Controller
         $imagePath = asset('storage/uploads/CategoryTruck/camion_IA2.jpg');
         return response()->json(['image' => $imagePath]);
     }
-
-
-
 }

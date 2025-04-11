@@ -1,0 +1,153 @@
+/* tablette portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+
+    .h1-admin-trailer-edit {
+        color: blue;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 1% auto 5%;
+    }
+
+    .admin-trailer-form-edit {
+        background-color: #99FFFF;
+    }
+
+    .admin-trailer-list-choice {
+        margin: 1% auto 5%;
+    }
+
+    .admin-trailer-list-choice-form-control { /* select categories bar */
+        max-width: 70%;
+        margin-left: 5%;
+        margin-top: 3%;
+    } 
+
+    .admin-trailer-form-edit-group, .admin-trailer-list-choice { 
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-trailer-form-edit label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-left: 5%;
+    }
+
+    .admin-trailer-name-edit {
+        width: 80%;
+        font-size: 1.1rem;
+        margin: 4% 0 3% 5%;
+        border: solid 1px dodgerblue;
+    }
+
+     .admin-trailer-image-edit {
+        width: 60%;
+        padding: 1%;
+        margin: 3% 0 3% 10%;
+    }
+
+    .admin-trailer-image-edit-upload {
+        padding: 10px;
+        border: 1px solid green;
+        border-radius: 5px;
+        width: 80%;
+        margin-left: 10%;
+        font-size: 1.1rem;
+    }
+
+    .admin-trailer-edit-button {
+        margin-left: 10%;
+    }
+
+    .admin-trailer-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 10px;
+        margin: 5% 0 10%;
+        width: 20%;
+        border-radius: 10%;
+    }
+}
+
+/********************************** version mobile ********************/
+
+@media only screen and (max-width: 480px) {
+
+
+    .h1-admin-trailer-edit {
+        color: blue;
+        font-size: 1.7rem;
+        text-align: center;
+        margin: 1% auto 5%;
+    }
+
+    .admin-trailer-form-edit {
+        background-color: #99FFFF;
+        margin-top: 20px;
+    }
+
+    .admin-trailer-list-choice {
+        margin: 1% auto 5%;
+    }
+
+    .admin-trailer-list-choice-form-control {
+        max-width: 70%;
+        margin-left: 5%;
+        margin-top: 4%;
+    }
+
+    .admin-trailer-form-edit-group, .admin-trailer-list-choice { /* select categories bar */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-trailer-form-edit label {
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin-left: 5%;
+    }
+
+    .admin-trailer-name-edit {
+        width: 80%;
+        font-size: 0.9rem;
+        margin: 4% 0 3% 5%;
+    }
+
+     .admin-trailer-image-edit {
+        width: 60%;
+        padding: 1%;
+        margin: 3% 0 3% 10%;
+        border: solid 1px dodgerblue;
+    }
+
+    .admin-trailer-image-edit-upload {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid green;
+        width: 80%;
+        margin-left: 10%;
+        font-size: 0.9rem;
+    }
+
+    .admin-trailer-edit-button {
+        margin-left: 10%;
+    }
+
+    .admin-trailer-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 8px;
+        margin: 5% 0 10%;
+        width: 25%;
+        border-radius: 10%;
+        font-size: 0.9rem;
+    }
+}

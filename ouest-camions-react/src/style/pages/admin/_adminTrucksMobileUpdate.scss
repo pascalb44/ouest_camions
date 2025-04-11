@@ -1,0 +1,175 @@
+/* tablette portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .admin-truck-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 0 0 7% 5%;
+    }
+
+    .h1-admin-truck-edit {
+        color: lightseagreen;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 1% auto 5%;
+        font-weight: bold;
+    }
+
+    .admin-truck-form-edit {
+        background-color: powderblue;
+    }
+
+    .admin-truck-list-choice {
+        margin: 1% auto 5%;
+    }
+
+    .admin-truck-list-choice-form-control { /* select categories bar */
+        max-width: 70%;
+        margin-left: 5%;
+        margin-top: 3%;
+    } 
+
+    .admin-truck-form-edit-group, .admin-truck-list-choice { 
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-truck-form-edit label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-left: 5%;
+    }
+
+    .admin-truck-name-edit {
+        width: 80%;
+        font-size: 1.1rem;
+        margin: 4% 0 3% 5%;
+        border: solid 1px powderblue;
+    }
+
+     .admin-truck-image-edit {
+        width: 60%;
+        padding: 1%;
+        margin: 3% 0 3% 10%;
+    }
+
+    .admin-truck-image-edit-upload {
+        padding: 10px;
+        border: 1px solid green;
+        border-radius: 5px;
+        width: 80%;
+        margin-left: 10%;
+        font-size: 1.1rem;
+    }
+
+    .admin-truck-edit-button {
+        margin-left: 10%;
+    }
+
+    .admin-truck-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 10px;
+        margin: 5% 0 10%;
+        width: 20%;
+        border-radius: 10%;
+    }
+}
+
+/********************************** version mobile ********************/
+
+@media only screen and (max-width: 480px) {
+
+    .admin-truck-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 0 0 10% 5%;
+    }
+
+    .h1-admin-truck-edit {
+        color: lightseagreen;
+        font-size: 1.7rem;
+        text-align: center;
+        margin: 1% auto 5%;
+        font-weight: bold;
+    }
+
+    .admin-truck-form-edit {
+        background-color: powderblue;
+        margin-top: 20px;
+    }
+
+    .admin-truck-list-choice {
+        margin: 1% auto 5%;
+    }
+
+    .admin-truck-list-choice-form-control {
+        max-width: 70%;
+        margin-left: 5%;
+        margin-top: 4%;
+    }
+
+    .admin-truck-form-edit-group, .admin-truck-list-choice { /* select categories bar */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-truck-form-edit label {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-left: 5%;
+    }
+
+    .admin-truck-name-edit {
+        width: 80%;
+        font-size: 1rem;
+        margin: 4% 0 3% 5%;
+    }
+
+     .admin-truck-image-edit {
+        width: 60%;
+        padding: 1%;
+        margin: 3% 0 3% 10%;
+        border: solid 1px powderblue;
+    }
+
+    .admin-truck-image-edit-upload {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid green;
+        width: 80%;
+        margin-left: 10%;
+        font-size: 1rem;
+    }
+
+    .admin-truck-edit-button {
+        margin-left: 10%;
+    }
+
+    .admin-truck-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        padding: 8px;
+        margin: 5% 0 10%;
+        width: 25%;
+        border-radius: 10%;
+        font-size: 1rem;
+    }
+}

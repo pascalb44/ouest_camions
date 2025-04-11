@@ -37,6 +37,6 @@ class truck extends Model
 
     public function categories_trucks()
     {
-        return $this->belongsTo(CategoryTruck::class, 'id_category_truck', 'id_category_truck');
+        return $this->belongsTo(CategoryTruck::class, 'id_category_truck');
     }
 }

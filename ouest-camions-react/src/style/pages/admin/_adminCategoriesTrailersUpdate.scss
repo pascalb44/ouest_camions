@@ -4,15 +4,16 @@
 
 
     .h1-admin-category-trailer-edit {
-        color: black;
+        color: blue;
         font-size: 2rem;
         text-align: center;
         margin: 5% auto 3%;
     }
 
     .admin-category-trailer-form-edit {
-        max-width: 90%;
-        margin-left: 10%;
+        background-color: #99ffff;
+        padding-top: 5%;
+
     }
 
     .admin-category-trailer-form-edit-group {
@@ -30,47 +31,43 @@
         width: 30%;
         font-size: 1.1rem;
         margin: 3% 0 3% 20%;
-        border: solid 1px blue;
+        border: solid 1px dodgerblue;
     }
 
     .admin-category-trailer-description-edit {
-        width: 60%;
-        border: solid 1px blue;
+        width: 70%;
+        border: solid 1px dodgerblue;
         font-size: 1.1rem;
         height: 150px;
         margin: 3% 0 3% 20%;
     }
 
     .admin-category-trailer-image-edit {
-        width: 60%;
+        width: 500px;
         padding: 1%;
         height: 250px;
         margin: 3% 0 3% 20%;
-        border: solid 1px blue;
+        border: solid 1px dodgerblue;
     }
 
     .admin-category-trailer-image-edit-upload {
         padding: 10px;
-        border: 1px solid #ccc;
+        border: 1px solid dodgerblue;
         border-radius: 5px;
         width: 25%;
         margin-left: 20%;
         font-size: 1.3rem;
     }
 
-    .admin-category-trailer-edit-button {
-        margin-left: 20%;
-
-    }
-
     .admin-category-trailer-edit-btn {
         text-align: center;
         color: white;
-        background-color: green;
+        background-color: blue;
         text-decoration: none;
         padding: 10px;
-        margin: 5% 0 10% 25%;
-        width: 50%;
+        margin: 5% 0 10% 0%;
+        width: 100%;
+        font-size: 1.2rem;
     }
 
 }
@@ -81,48 +78,69 @@
 
 
     .h1-admin-category-trailer-edit {
-        color: black;
-        font-size: 1.5rem;
+        color: blue;
+        font-size: 2rem;
         text-align: center;
-        margin: 10% auto 7%;
+        margin: 5% auto 3%;
+    }
+
+    .admin-category-trailer-form-edit {
+        background-color: #99ffff;
+        padding-top: 5%;
+
+    }
+
+    .admin-category-trailer-form-edit-group {
+        display: flex;
+        flex-direction: column;
     }
 
     .admin-category-trailer-form-edit label {
-        margin-left: 10px;
+        font-size: 1.3rem;
         font-weight: bold;
-        font-size: 1rem;
+        margin-left: 10%;
     }
 
     .admin-category-trailer-name-edit {
-        width: 95%;
-        font-size: 1rem;
-        margin: 3% 0 3% 2%;
-        border: solid 1px blue;
+        width: 30%;
+        font-size: 1.1rem;
+        margin: 3% 0 3% 20%;
+        border: solid 1px dodgerblue;
     }
 
     .admin-category-trailer-description-edit {
-        width: 95%;
-        border: solid 1px blue;
-        font-size: 1rem;
-        height: 180px;
-        margin: 3% 0 3% 2%;
+        width: 70%;
+        border: solid 1px dodgerblue;
+        font-size: 1.1rem;
+        height: 150px;
+        margin: 3% 0 3% 20%;
     }
 
     .admin-category-trailer-image-edit {
-        width: 95%;
+        width: 500px;
         padding: 1%;
         height: 250px;
-        margin: 3% 0 3% 2%;
-        border: solid 1px blue;
+        margin: 3% 0 3% 20%;
+        border: solid 1px dodgerblue;
+    }
+
+    .admin-category-trailer-image-edit-upload {
+        padding: 10px;
+        border: 1px solid dodgerblue;
+        border-radius: 5px;
+        width: 25%;
+        margin-left: 20%;
+        font-size: 1.2rem;
     }
 
     .admin-category-trailer-edit-btn {
         text-align: center;
         color: white;
-        background-color: green;
+        background-color: blue;
         text-decoration: none;
         padding: 10px;
-        margin: 10% 0 15% 25%;
-        width: 50%;
+        margin: 5% 0 10% 0%;
+        width: 100%;
+        font-size: 1.2rem;
     }
 }

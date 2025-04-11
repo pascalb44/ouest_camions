@@ -5,12 +5,35 @@
     /***************************** page categories-trailers **********************************/
 
 
-    .admin-category-trailer-container {
-        margin-left: 5%;
+    .admin-categories-trailers-container {
+        background-color: #99ffff;
+    }
+
+
+
+    .h1-admin-categories-trailers {
+        color: black;
+        text-align: center;
+        margin: 10% auto 3%;
     }
     
-    .admin-category-trailer-btn-add-container {
+    .admin-categories-trailer-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 0% 10%;
+    }
+    
+    .admin-categories-trailers-btn-add-container {
         margin: 5% auto 5%;
+    }
+
+    .admin-categories-trailers-table {
+        background-color: #99ffff;
     }
 
     .admin-category-trailer-btn-add {
@@ -20,16 +43,17 @@
         text-decoration: none;
         padding: 10px;
         height: 50px;
+        margin-left: 10%;
     }
 
-    .admin-category-trailer-menu {
-        border: solid 1px blue;
+    .admin-categories-trailers-menu {
+        border: solid 1px ;
         text-align: center;
         font-size: 1.1rem;
     }
 
     .admin-category-trailer-unite {
-        border: solid 1px blue;
+        border: solid 1px dodgerblue;
     }
 
     .admin-category-trailer-name {
@@ -44,7 +68,7 @@
 
     .admin-category-trailer-image-container {
         width: 25%;
-        border: solid 1px blue;
+        border: solid 1px dodgerblue;
     }
 
     .admin-category-trailer-image {
@@ -57,6 +81,7 @@
         display: flex;
         flex-direction: column;
         margin-top: 80px;
+        margin-left: 25%;
         width: 30%;
         border: none;
     }
@@ -82,23 +107,34 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
 
-
-    .admin-category-trailer-container {
-        margin-left: 5%;
+    .admin-categories-trailers-container {
+        background-color: #99ffff;
+        padding-bottom: 5%;
     }
 
-    .admin-category-trailer-menu {
-        border: solid 1px blue;
+    .h1-admin-categories-trailers {
+        color: black;
         text-align: center;
-        font-size: 1rem;
+        margin: 10% auto 3%;
     }
-
-    .admin-category-trailer-unite {
-        border: solid 1px blue;
+    
+    .admin-categories-trailer-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 0% 10%;
     }
-
-    .admin-category-trailer-btn-add-container {
+    
+    .admin-categories-trailers-btn-add-container {
         margin: 5% auto 5%;
+    }
+
+    .admin-categories-trailers-table {
+        background-color: #99ffff;
     }
 
     .admin-category-trailer-btn-add {
@@ -108,34 +144,46 @@
         text-decoration: none;
         padding: 10px;
         height: 50px;
+        margin-left: 10%;
+    }
+
+    .admin-categories-trailers-menu {
+        border: solid 1px ;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .admin-category-trailer-unite {
+        border: solid 1px dodgerblue;
     }
 
     .admin-category-trailer-name {
         width: 15%;
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     .admin-category-trailer-description {
-        width: 40%;
-        font-size: 0.9rem;
+        width: 30%;
+        font-size: 1rem;
     }
 
     .admin-category-trailer-image-container {
-        width: 30%;
-        border: solid 1px blue;
+        width: 25%;
+        border: solid 1px dodgerblue;
     }
 
     .admin-category-trailer-image {
         width: 100%;
         padding: 1%;
-        height: 200px;
+        height: 250px;
     }
 
     .admin-categories-trailers-buttons {
         display: flex;
         flex-direction: column;
         margin-top: 80px;
-        width: 100%;
+        margin-left: 25%;
+        width: 50%;
         border: none;
     }
 
@@ -154,6 +202,5 @@
         background-color: red;
         text-decoration: none;
         padding: 10px;
-        height: 50px;
     }
 }

@@ -18,6 +18,8 @@ class TruckController extends Controller
         if ($request->has('category')) {
             $query->where('id_category_truck', $request->category); /* to get the trucks list by categories */
         }
+        $trucks = $query->with('categories_trucks')->get(); /* to display the categories in the trucks list for admin */
+
         return response()->json($query->get());
     }
 
@@ -41,8 +43,8 @@ class TruckController extends Controller
             'price_week_truck' => 'required|string',
             'price_month_truck' => 'required|string',
             'price_year_truck' => 'required|string',
-            'id_category_truck' => 'required|string',
-        ]);
+            'id_category_truck' => 'required|exists:categories_trucks,id', /* to get id_category_truck to add trucks by admin */
+            ]);
 
         $filename = "";
         if ($request->file('image_truck')) {
@@ -102,7 +104,7 @@ class TruckController extends Controller
             'price_week_truck' => 'required|string',
             'price_month_truck' => 'required|string',
             'price_year_truck' => 'required|string',
-            'id_category_truck' => 'required|string',
+            'id_category_truck' => 'required|exists:categories_trucks,id'
         ]);
 
 
@@ -126,15 +128,15 @@ class TruckController extends Controller
 
 
         if ($request->file('image_truck')) {
-            if ($truck->imageTruck && file_exists(public_path('uploads/' . $truck->imageTruck))) {
-                unlink(public_path('uploads/' . $truck->imageTruck));
+            if ($truck->imageTruck && file_exists(public_path('uploads/truck' . $truck->imageTruck))) {
+                unlink(public_path('uploads/truck' . $truck->imageTruck));
             }
 
             $file = $request->file('image_truck');
             $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $file->storeAs('uploads/', $filename);
+            $file->storeAs('uploads/truck', $filename);
             $updateData['image_truck'] = $filename;
         }
         $truck->update($updateData);

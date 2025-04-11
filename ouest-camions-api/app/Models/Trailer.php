@@ -27,7 +27,7 @@ class Trailer extends Model
         'id_category_trailer',
     ];
 
-    
+
     public function orders()
     {
         return $this->belongsToMany(Order::class, 'order_trailer', 'id_trailer', 'id_order');
@@ -35,5 +35,6 @@ class Trailer extends Model
 
     public function categories_trailers()
     {
-        return $this->belongsTo(CategoryTrailer::class, 'id_category_trailer', 'id_category_trailer');    }
+        return $this->belongsTo(CategoryTrailer::class, 'id_category_trailer');
+    }
 }

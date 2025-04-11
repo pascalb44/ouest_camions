@@ -1,0 +1,153 @@
+/***************** version desktop *******************/
+
+@media (min-width: 1025px) {
+
+
+    .h1-admin-truck-edit {
+        color: lightseagreen;
+        font-size: 2rem;
+        text-align: center;
+        margin: 5% auto 3%;
+        font-weight: bold;
+    }
+
+    .admin-truck-form-edit {
+        background-color: powderblue;
+    }
+    .admin-truck-list-choice {
+        margin: 1% auto 5%;
+    }
+
+    .admin-truck-list-choice-form-control { /* select categories bar */
+        width: 50%;
+        margin-left: 5%;
+        margin-top: 3%;
+    } 
+
+    .admin-truck-form-edit-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-truck-form-edit label {
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-left: 10%;
+    }
+
+    .admin-truck-name-edit {
+        width: 30%;
+        font-size: 1.1rem;
+        margin: 0 0 3% 30%;
+    }
+
+     .admin-truck-image-edit {
+        width: 50%;
+        padding: 1%;
+        margin: 3% 0 3% 20%;
+        border: solid 1px powderblue;
+    }
+
+    .admin-truck-image-edit-upload {
+        padding: 10px;
+        border: 1px solid green;
+        border-radius: 5px;
+        width: 30%;
+        margin-left: 20%;
+        font-size: 1.1rem;
+    }
+
+    .admin-truck-edit-button {
+        margin-left: 20%;
+    }
+
+    .admin-truck-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        font-size: 1.2rem;
+        padding: 10px;
+        margin: 5% 0 10%;
+        width: 15%;
+        border-radius: 10%;
+    }
+
+}
+
+/* tablette lanscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+
+
+    .h1-admin-truck-edit {
+        color: lightseagreen;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 5% auto 5%;
+        font-weight: bold;
+    }
+
+    .admin-truck-form-edit {
+        background-color: powderblue;
+    }
+
+    .admin-truck-list-choice {
+        margin: 1% auto 5%;
+    }
+
+    .admin-truck-list-choice-form-control { /* select categories bar */
+        max-width: 70%;
+        margin-left: 5%;
+        margin-top: 3%;
+    } 
+
+    .admin-truck-form-edit-group, .admin-truck-list-choice { 
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-truck-form-edit label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-left: 5%;
+    }
+
+    .admin-truck-name-edit {
+        width: 80%;
+        font-size: 1.1rem;
+        margin: 3% 0 3% 5%;
+    }
+
+     .admin-truck-image-edit {
+        width: 60%;
+        padding: 1%;
+        margin: 3% 0 3% 10%;
+    }
+
+    .admin-truck-image-edit-upload {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid green;
+        width: 80%;
+        margin-left: 10%;
+        font-size: 1.1rem;
+    }
+
+    .admin-truck-edit-button {
+        margin-left: 10%;
+    }
+
+    .admin-truck-edit-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        font-size: 1.1rem;
+        padding: 10px;
+        margin: 5% 0 10%;
+        width: 15%;
+        border-radius: 10%;
+    }
+}

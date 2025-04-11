@@ -1,0 +1,169 @@
+/* tablette portrait */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+
+    .admin-trailer-add-container {
+        background-color: #99FFFF;
+        width: 100%;
+        padding: 2%;
+    }
+
+    .h1-admin-trailer-add {
+        color: blue;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 1% auto 5%;
+    }
+
+    .admin-trailer-form-add {
+        padding-top: 3%;
+    }
+
+    .admin-trailer-list-choice {
+        margin: 1% auto 5%;
+    }
+
+    .admin-trailer-list-choice-form-control {
+        /* select categories bar */
+        max-width: 70%;
+        margin-left: 5%;
+        margin-top: 3%;
+    }
+
+    .admin-trailer-form-add-group,
+    .admin-trailer-list-choice {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-trailer-form-edit label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-left: 5%;
+    }
+
+    .admin-trailer-name-add {
+        width: 100%;
+        font-size: 1rem;
+        border: solid 1px dodgerblue;
+    }
+
+    .admin-trailer-image-edit {
+        width: 60%;
+        padding: 1%;
+        margin: 3% 0 3% 10%;
+    }
+
+    .admin-trailer-image-edit-upload {
+        padding: 10px;
+        border: 1px solid green;
+        border-radius: 5px;
+        width: 80%;
+        margin-left: 10%;
+        font-size: 1rem;
+    }
+
+    .admin-trailer-add-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 10px;
+        margin: 3% 0 10%;
+        border-radius: 10%;
+    }
+}
+
+
+
+/********************************** version mobile ********************/
+
+@media only screen and (max-width: 480px) {
+
+
+    .admin-trailer-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 10% 5%;
+    }
+
+    .admin-trailer-add-container {
+        background-color: #99FFFF;
+        width: 100%;
+        padding: 2%;
+    }
+
+    .h1-admin-trailer-add {
+        color: blue;
+        font-size: 1.6rem;
+        text-align: center;
+        margin: 1% auto 5%;
+    }
+
+    .admin-trailer-form-add {
+        padding-top: 3%;
+    }
+
+    .admin-trailer-list-choice {
+        margin: 1% auto 5%;
+    }
+
+    .admin-trailer-list-choice-form-control {
+        /* select categories bar */
+        max-width: 70%;
+        margin-left: 5%;
+        margin-top: 3%;
+    }
+
+    .admin-trailer-form-add-group,
+    .admin-trailer-list-choice {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-trailer-form-edit label {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-left: 5%;
+    }
+
+    .admin-trailer-name-add {
+        width: 100%;
+        font-size: 1rem;
+        border: solid 1px dodgerblue;
+    }
+
+    .admin-trailer-image-edit {
+        width: 60%;
+        padding: 1%;
+        margin: 3% 0 3% 10%;
+    }
+
+    .admin-trailer-image-edit-upload {
+        padding: 10px;
+        border: 1px solid green;
+        border-radius: 5px;
+        width: 80%;
+        margin-left: 10%;
+        font-size: 1rem;
+    }
+
+    .admin-trailer-add-btn {
+        text-align: center;
+        color: white;
+        background-color: green;
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 10px;
+        margin: 3% 0 10%;
+        border-radius: 10%;
+    }
+
+}
