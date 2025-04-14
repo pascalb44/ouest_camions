@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const ContactForm = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
+    const [formData, setFormData] = useState({ /* data in the base */
+        first_name: '',
+        last_name: '',
+        company: '',
+        email_contact: '',
+        subject: '',
+        message: '',
     });
     const [successMessage, setSuccessMessage] = useState('');
 
@@ -16,30 +19,63 @@ const ContactForm = () => {
             [name]: value
         });
     };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('/api/contact', formData)
-            .then(response => {
-                setSuccessMessage('Votre message a été envoyé avec succès!');
-            })
-            .catch(error => {
-                console.error('Erreur lors de l\'envoi du message', error);
+
+        const requestData = { ...formData };
+
+        try {
+            const token = localStorage.getItem('token');
+
+            const response = await axios.post('http://localhost:8000/api/contacts', requestData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
+
+            setSuccessMessage(response.data.message);
+            setFormData({
+                first_name: '',
+                last_name: '',
+                company: '',
+                email_contact: '',
+                subject: '',
+                message: '',
+            });
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi du message :', error.response?.data || error.message);
+        }
     };
 
     return (
         <div>
             <h1>Contactez-nous</h1>
-            {successMessage && <div>{successMessage}</div>}
             <form onSubmit={handleSubmit}>
+                {successMessage && (
+                    <div style={{ color: 'green', marginBottom: '1rem' }}>
+                        {successMessage}
+                    </div>
+                )}
                 <div>
-                    <label htmlFor="name">Nom :</label>
-                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+                    <label htmlFor="first_name">Prénom :</label>
+                    <input type="text" id="first_name" name="first_name" value={formData.first_name} onChange={handleChange} required />
                 </div>
                 <div>
-                    <label htmlFor="email">Email :</label>
-                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                    <label htmlFor="last_name">Nom :</label>
+                    <input type="text" id="last_name" name="last_name" value={formData.last_name} onChange={handleChange} required />
+                </div>
+
+                <div>
+                    <label htmlFor="subject">Entreprise :</label>
+                    <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} />
+                </div>
+                <div>
+                    <label htmlFor="subject">Objet :</label>
+                    <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} required />
+                </div>
+                <div>
+                    <label htmlFor="email_contact">Email :</label>
+                    <input type="email" id="email_contact" name="email_contact" value={formData.email_contact} onChange={handleChange} required />
                 </div>
                 <div>
                     <label htmlFor="message">Message :</label>

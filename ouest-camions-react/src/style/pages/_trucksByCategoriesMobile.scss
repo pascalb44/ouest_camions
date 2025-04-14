@@ -1,0 +1,153 @@
+
+/* tablette portrait */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+
+
+    .h1-truck-category-name {
+        text-align: center;
+        font-size: 2rem;
+        margin-top: 5%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .truck-category-list {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        flex-wrap: wrap;
+        gap : 5px;
+        width: 90%;
+        max-width: max-content;
+        margin: 5% auto;
+        padding: 10px;
+        align-items: stretch;
+        background-color: powderblue;
+
+    }
+
+    .truck-category-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1 1 30%;/* 30% with to get 3 */
+        max-width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+   //     border: 1px solid lightseagreen;
+    }
+
+    .single-truck { /* to avoid deformation on firefox where we have not 3 truck on line if we have only one */
+        flex: 1 1 100%;
+        max-width: 100%;
+        height: 700px; 
+        object-fit: cover; /* to respect dimensions of the conteneur*/
+        display: block;
+    }
+
+    .truck-category-name {
+        font-family: 'Abel', Helvetica, Arial, Lucida, sans-serif;
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+        height : 10%;
+    }
+
+
+    .truck-category-image-box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .truck-category-image {
+        width: 100%;
+        height: 500px; 
+        object-fit: cover; /* to respect dimensions of the conteneur*/
+        display: block;
+    }
+
+    .truck-category-image-specialized {
+        width: 100%;
+        height: 700px; 
+        object-fit: cover; /* to respect dimensions of the conteneur*/
+        display: block;
+    }
+
+    .truck-category-image-caption {
+        width: 100%;
+        background-color: lightseagreen;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-top: auto;
+
+        a {
+            text-decoration: none;
+            color: white;   
+        }
+    }
+}
+
+
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
+
+    .container-truck-category {
+        width: 100%;
+    }
+
+    .truck-category-list {
+        margin-top: 20px;
+    }
+
+    .truck-category-item {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid red;
+        margin-bottom: 5%;
+        width: 100%;
+    }
+
+    .truck-category-name {
+        font-family: 'Abel', Helvetica, Arial, Lucida, sans-serif;
+        font-size: 35px;
+    }
+
+    .truck-category-image-box {
+        width: 50%;
+
+    }
+
+    .truck-category-image {
+        width: 90%;
+        padding: 1%;
+        height: 350px;
+    }
+    .truck-category-image-caption {
+        width: 75%;
+        background-color: lightseagreen;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: auto;
+
+        a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            width: 100%;
+        }
+    }
+
+}

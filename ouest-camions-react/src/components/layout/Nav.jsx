@@ -26,7 +26,7 @@ const Nav = () => {
             <ul className="nav-list">
                 <li className="nav-item"><Link to="/presentation" className="admin-link">Présentation</Link></li>
                 <li className="nav-item"><Link to="/agences" className="admin-link">Nos agences</Link></li>
-                <li className="nav-item"><Link to="/contacts" className="admin-link">Contact</Link></li>
+                <li className="nav-item"><Link to="/contact" className="admin-link">Contact</Link></li>
                 {isAuthenticated ? (
                     <li className="nav-item"><Link to="/profile" className="admin-link">Votre compte</Link></li>  //permutation profile/login if connected or not
                 ) : (

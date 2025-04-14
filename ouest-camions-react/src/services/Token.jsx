@@ -19,7 +19,7 @@ let getExpiryTime = () => {
             return false;
         }
     }
-    return false; // Le token est mal formé ou sans expiration
+    return false; 
 }
 
 let getRoles = () => {
@@ -42,7 +42,6 @@ let loggedAndAdmin = () => {
     return getExpiryTime() && getRoles() === 'ROLE_ADMIN';
 }
 
-// Assigner l'objet à une variable avant l'export
 const authService = {
     getToken,
     getDecodedToken,

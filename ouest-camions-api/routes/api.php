@@ -54,7 +54,7 @@ Route::get('contacts', [ContactController::class, 'index']);
 Route::post('/contacts', [ContactController::class, 'store']);
 Route::get('/contacts/{contacts}', [ContactController::class, 'show']);
 Route::get('contacts/{id}', [ContactController::class, 'show']);
-Route::patch('/contacts/{contacts}', [ContactController::class, 'update']);
+//Route::patch('/contacts/{contacts}', [ContactController::class, 'update']);
 Route::delete('/contacts/{contacts}', [ContactController::class, 'destroy']);
 
 
@@ -128,31 +128,5 @@ Route::patch('/orders/{orders}', [OrderController::class, 'update']);
 Route::delete('/orders/{orders}', [OrderController::class, 'destroy']);
 
 });
-
-
-
-/* routes admin */
-//Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
-//Route::get('/user', function (Request $request) {
-
-
-
-// categories-trucks
-
-/*
-Route::post('/categories-trucks', [CategoryTruckController::class, 'store']);
-//Route::get('categories-trucks/{id}', [CategoryTruckController::class, 'show']);
-Route::patch('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'update']);
-Route::delete('/categories-trucks/{categories_trucks}', [CategoryTruckController::class, 'destroy']);
-
-//return $request->user();
-//})->middleware('auth:sanctum');
-
-/* Route::middleware('auth:api', 'admin')->group(function () {
-
-
-});
-
-*/
 
 

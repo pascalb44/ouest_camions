@@ -1,0 +1,194 @@
+
+/* tablette portrait */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .h1-truck-detail {
+        text-align: center;
+        font-size: 3rem;
+        margin-top: 5%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-transform: uppercase;
+    }
+
+    .truck-detail-page {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .truck-detail {
+        /* truck detail block */
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        margin-left: 5%;
+    }
+
+    .edito-truck {
+        margin: 5% auto;
+
+    }
+
+    .truck-image-box {
+        width: 50%;
+        display: flex;
+    }
+
+    .truck-image {
+        width: 100%;
+        max-width: none;
+        height: 600px;
+        padding: 1%;
+        border-radius: 50px;
+    }
+
+    .truck-detail-block {
+        display: flex;
+        flex-direction: row;
+        margin: 5%;
+
+        h2 {
+            margin-bottom: 10%;
+            font-weight: 600;
+        }
+
+        .truck-detail-features {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .truck-detail-location {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10%;
+        }
+
+        p {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 1.3rem;
+        }
+    }
+
+    .truck-detail-button {
+        width: 50%;
+        background-color: lightseagreen;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin: 10%;
+        color: white;
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    }
+
+
+    /* calendar */
+
+
+    .vehicle-picker-truck {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .date-picker-truck {
+        display: flex;
+        flex-direction: column;
+        margin-top: 220px;
+    }
+
+
+    .date-picker-start-truck {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .date-picker-start-legend-truck,
+    .date-picker-end-legend-truck {
+        display: flex;
+        margin-right: 25px;
+        font-weight: 700;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        width: 140px;
+    }
+
+    .custom-date-picker-start-truck,
+    .custom-date-picker-end-truck {
+        display: flex;
+        flex-direction: column;
+        padding-left: 40px;
+
+    }
+
+    .date-picker-end-truck {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10%;
+    }
+
+    .selected-dates {
+        margin-top: 120%;
+    }
+
+}
+
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
+
+    .container-tractor-trucks {
+        width: 100%;
+    }
+
+    .truck-category-list {
+        margin-top: 20px;
+    }
+
+    .truck-category-item {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid red;
+        margin-bottom: 5%;
+        width: 100%;
+    }
+
+    .truck-category-name {
+        font-family: 'Abel', Helvetica, Arial, Lucida, sans-serif;
+        font-size: 35px;
+    }
+
+    .truck-category-image-box {
+        width: 50%;
+
+    }
+
+    .truck-category-image {
+        width: 90%;
+        padding: 1%;
+        height: 350px;
+    }
+
+    .truck-category-image-caption {
+        width: 75%;
+        background-color: lightseagreen;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: auto;
+
+        a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            width: 100%;
+        }
+    }
+
+}

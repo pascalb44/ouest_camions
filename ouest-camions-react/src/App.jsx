@@ -45,7 +45,7 @@ import EditTrailer from './pages/admin/trailers/EditTrailer';
 
 
 
-//import Contact from './pages/admin/Contact';
+import Contact from './pages/Contact';
 //import Trailer from './pages/admin/Trailer';
 import Cart from './pages/order/Cart';
 import Payment from './pages/order/Payment';
@@ -66,6 +66,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
+          <Route path="/contact" element={<Contact />} />
 
           <Route path="/profile" element={<Profile />} />
 
@@ -91,7 +92,6 @@ function App() {
           <Route path="/admin/categories-trailers/edit/:id" element={<EditCategoryTrailer />} />
 
 
-          {/*     <Route path="/admin/contacts" element={<Contact />} />*/}
           <Route path="/admin/categories-trucks" element={<CategoryTruck />} />
           <Route path="/admin/categories-trucks/add" element={<AddCategoryTruck />} />
           <Route path="/admin/categories-trucks/edit/:id" element={<EditCategoryTruck />} />
