@@ -103,7 +103,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = JWTAuth::user();  /* if user conneted */
+        $user = JWTAuth::user();  /* if user connected */
 
         if (!$user) {
             return response()->json(['message' => 'Utilisateur non authentifié.'], 401);

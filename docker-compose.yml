@@ -1,0 +1,21 @@
+services:
+  laravel-docker:
+    container_name: laravel-docker
+    build: ./ouest-camions-api # back
+    ports:
+      - 8000:80
+
+  vue-docker:
+    container_name: vue-docker
+    build: ./ouest-camions-react #front
+    ports:
+      - 80:80
+
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ouest_camions_docker
+    ports:
+      - 3306:3306
+

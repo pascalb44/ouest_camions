@@ -1,0 +1,102 @@
+/* version tablette orientation portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .cart {
+        margin: 5%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .back-message {
+        font-size: 1rem;
+        color: red;
+        margin: 10%;
+        text-align: center;
+    }
+
+    .back-button {
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 2% 0 5% 40%;
+    }
+
+    .h2-resa-trucks {
+        margin: 5% 0 3%;
+        border: solid 1px green;
+        background-color: powderblue;
+        width: max-content;
+        padding: 10px;
+    }
+
+    .resa-trucks-delete-button,
+    .resa-trailers-delete-button {
+        margin: 1% 0 1%;
+        background-color: red;
+        color: white;
+        padding: 10px;
+    }
+
+
+    .h2-resa-trailers {
+        margin: 5% 0 3%;
+        border: solid 1px blue;
+        background-color: dodgerblue;
+        width: max-content;
+        padding: 10px;
+    }
+
+}
+
+
+
+
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
+
+    .back-message {
+        font-size: 1rem;
+        color: red;
+        margin-top: 10%;
+        text-align: center;
+    }
+
+    .back-button {
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 2% 0 5% 25%;
+    }
+
+    .h2-resa-trucks {
+        margin: 5% 0 3%;
+        border: solid 1px green;
+        background-color: powderblue;
+        width: max-content;
+        padding: 10px;
+    }
+
+    .resa-trucks-delete-button,
+    .resa-trailers-delete-button {
+        margin: 1% 0 1%;
+        background-color: red;
+        color: white;
+        padding: 10px;
+    }
+
+
+    .h2-resa-trailers {
+        margin: 5% 0 3%;
+        border: solid 1px blue;
+        background-color: dodgerblue;
+        width: max-content;
+        padding: 10px;
+    }
+
+}

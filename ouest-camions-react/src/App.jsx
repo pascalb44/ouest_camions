@@ -7,9 +7,10 @@ import Login from "./pages/users/Login";
 import Register from "./pages/users/Register";
 import Profile from "./pages/users/Profile";
 import EditUser from './pages/users/EditUser';
-
+import PaypalCheckout from './components/PaypalCheckout';
 
 import Legal from "./pages/Legal";
+import Cgv from "./pages/Cgv";
 
 
 import CategoriesTrucks from "./pages/categories-trucks/CategoriesTrucks"; /* version public */
@@ -46,6 +47,7 @@ import EditTrailer from './pages/admin/trailers/EditTrailer';
 
 
 import Contact from './pages/Contact';
+
 //import Trailer from './pages/admin/Trailer';
 import Cart from './pages/order/Cart';
 import Payment from './pages/order/Payment';
@@ -67,12 +69,14 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           <Route path="/contact" element={<Contact />} />
-
+          <Route path="/paypal" element={<PaypalCheckout />} />
           <Route path="/profile" element={<Profile />} />
 
           <Route path="user/edit-user/:id" element={<EditUser />} />
 
           <Route path="legal" element={<Legal />} />
+          <Route path="cgv" element={<Cgv />} />
+
           <Route path="categories-trucks" element={<CategoriesTrucks />} />
           <Route path="/trucks-by-category/:id" element={<TrucksByCategory />} />
           <Route path="/trucks/:id" element={<TruckDetail />} />

@@ -21,14 +21,14 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'first_name' => 'Pascal',
-            'last_name' => 'Dev',
+            'last_name' => 'Alouest',
             'email' => 'admin@ouestcamions.fr',
-            'password' => Hash::make('test123'),
+            'password' => Hash::make('AdminOuest123!'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
             'company' => 'ouestcamions',
-            'siren' => '503000000',
-            'address' => '13 rue de Brest',
+            'siren' => '503121733',
+            'address' => '29 rue de Brest',
             'postal_code' => '44000',
             'town' => 'Nantes',
             'phone' => '0123456789',   

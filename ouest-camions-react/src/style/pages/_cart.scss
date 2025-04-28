@@ -7,25 +7,49 @@
     .cart {
         margin: 5%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-
     }
 
-    .back-message {       
-        font-size: 1rem; 
+    .back-message {
+        font-size: 1rem;
         color: red;
-        margin-top:10%;
+        margin-top: 10%;
         text-align: center;
     }
 
     .back-button {
         background-color: black;
-        color: white; 
-        padding: 10px 20px; 
-        border-radius: 5px; 
-        font-size: 16px; 
-        margin:2% 0 5% 40%;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 2% 0 5% 40%;
     }
- 
+
+    .h2-resa-trucks {
+        margin: 5% 0 3%;
+        border: solid 1px green;
+        background-color: powderblue;
+        width: max-content;
+        padding: 10px;
+    }
+
+    .resa-trucks-delete-button,
+    .resa-trailers-delete-button {
+        margin: 1% 0 1%;
+        background-color: red;
+        color: white;
+        padding: 10px;
+    }
+
+
+    .h2-resa-trailers {
+        margin: 5% 0 3%;
+        border: solid 1px blue;
+        background-color: dodgerblue;
+        width: max-content;
+        padding: 10px;
+    }
+
 }
 
 
@@ -34,21 +58,46 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
 
-    .back-message {       
-        font-size: 1rem; 
+    .back-message {
+        font-size: 1rem;
         color: red;
-        margin-top:10%;
+        margin-top: 10%;
         text-align: center;
     }
 
     .back-button {
         background-color: black;
-        color: white; 
-        padding: 10px 20px; 
-        border-radius: 5px; 
-        font-size: 16px; 
-        margin:2% 0 5% 40%;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 2% 0 5% 40%;
     }
- 
+
+    .h2-resa-trucks {
+        margin: 5% 0 3%;
+        border: solid 1px green;
+        background-color: powderblue;
+        width: max-content;
+        padding: 10px;
+    }
+
+    .resa-trucks-delete-button,
+    .resa-trailers-delete-button {
+        margin: 1% 0 1%;
+        background-color: red;
+        color: white;
+        padding: 10px;
+    }
+
+
+    .h2-resa-trailers {
+        margin: 5% 0 3%;
+        border: solid 1px blue;
+        background-color: dodgerblue;
+        width: max-content;
+        padding: 10px;
+    }
+
 
 }

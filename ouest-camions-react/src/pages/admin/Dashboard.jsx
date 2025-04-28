@@ -61,7 +61,6 @@ const Dashboard = () => {
             <p>{message}</p>
             <ul>
                 <li><Link to="/admin/categories-trailers">Gestion des catégories de remorques</Link></li>
-                <li><Link to="/admin/contacts">Gestion des contacts</Link></li>
                 <li><Link to="/admin/trucks">Gestion des camions</Link></li>
                 <li><Link to="/admin/trailers">Gestion des remorques</Link></li>
                 <li><Link to="/admin/categories-trucks">Gestion des catégories de camions</Link></li>

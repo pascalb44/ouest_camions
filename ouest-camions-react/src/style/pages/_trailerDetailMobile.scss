@@ -8,6 +8,7 @@
         display: flex;
         flex-direction: column;
         background-color: #99FFFF;
+
     }
 
     .trailer-btn-return {
@@ -38,6 +39,7 @@
     .trailer-detail-top {
         display: flex;
         flex-direction: column;
+        background-color: #99FFFF;
     }
 
     .trailer-detail-block {
@@ -58,7 +60,6 @@
     .trailer-block-features {
         display: flex;
         flex-direction: column;
-        background-color: white;
         padding: 20px;
         margin: auto;
         width: 100%;
@@ -148,14 +149,13 @@
         padding-left: 10px;
     }
 
-
     .selected-dates {
         margin: 3% 0 0 10%;
     }
 
     .trailer-detail-button {
         width: 50%;
-        background-color: lightseagreen;
+        background-color: dodgerblue;
         text-align: center;
         padding: 10px;
         font-size: 1.3rem;
@@ -224,7 +224,7 @@
 
     .trailer-image {
         width: 100%;
-        height: 300px;
+        padding: 10px;
     }
 
     .trailer-block-features {
@@ -271,7 +271,7 @@
 
     .date-picker-start-trailer {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin: 0;
         padding-left: 10px;
     }
@@ -315,22 +315,19 @@
 
     .date-picker-end-trailer {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin: 0;
         padding-left: 10px;
     }
 
-
     .selected-dates {
-        margin: 3% 0 0 10%;
+        margin: 3% 0 0 5%;
     }
 
     .trailer-detail-button {
-        width: 50%;
-        background-color: lightseagreen;
+        background-color: dodgerblue;
         text-align: center;
         padding: 10px;
-        font-size: 1.3rem;
         font-weight: bold;
         margin: 10%;
         color: white;

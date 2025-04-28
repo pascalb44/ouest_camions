@@ -33,25 +33,26 @@ const TrucksByCategory = () => {
 
     return (
         <div>
-            <h1 className="h1-truck-category-name">{categoryName}</h1>  {/* name change on each page */}
-            <div className="truck-category-list">
+            <h1 className="h1-truck-by-category-name">{categoryName}</h1>  {/* name change on each page */}
+            <div className="truck-by-category-list">
                 {trucks.length > 0 ? (
                     trucks.map((truck) => (
-                        <div key={truck.id} className={`truck-category-item ${isSingleTruck ? "single-truck" : ""}`}>
+                        <div key={truck.id} className={`truck-by-category-item ${isSingleTruck ? "single-truck" : ""}`}>
 
-                            <div className="truck-category-name">
+                            <div className="truck-by-category-name">
                                 <p>{truck.brand_truck} {truck.name_truck}</p>
                             </div>
-                            <div className="truck-category-image-box">
-                                <img src={`http://127.0.0.1:8000/storage/uploads/Truck/${truck.image_truck}`} className="truck-category-image" alt={truck.name_truck} />
+                            <div className="truck-by-category-image-box">
+                                <img src={`http://127.0.0.1:8000/storage/uploads/Truck/${truck.image_truck}`} className="truck-by-category-image" alt={truck.name_truck} />
                             </div>
+                            <div className="truck-by-category-content">
+                                <p>{truck.km_truck} km</p>
+                                <p>A partir de {truck.price_day_truck} /jour</p>
 
-                            <p>{truck.km_truck} km</p>
-                            <p>A partir de {truck.price_day_truck} /jour</p>
-
-                            <div className="truck-category-image-caption">
-                                <Link to={`/trucks/${truck.id}`}>En savoir plus</Link>
-                                {/* link to detail page of the truck */}
+                                <div className="truck-by-category-button-to-trucks">
+                                    <Link to={`/trucks/${truck.id}`}>En savoir plus</Link>
+                                    {/* link to detail page of the truck */}
+                                </div>
                             </div>
                         </div>
                     ))

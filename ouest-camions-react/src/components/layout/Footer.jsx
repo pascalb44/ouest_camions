@@ -29,7 +29,7 @@ const Footer = () => {
 
                 <div className="company-footer">
                     <p className="company-footer-title">L'entreprise</p>
-                    <p>CGV</p>
+                    <p><Link to="/cgv" className="nav-link">CGV</Link></p>
                     <p>Nos agences</p>
                     <p>Qui sommes nous?</p>
                 </div>

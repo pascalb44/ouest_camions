@@ -1,0 +1,50 @@
+/* version tablette orientation portrait */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .h1-cgv {
+        color: blue;
+        text-align: center;   
+        margin-top: 10%;
+    }
+
+
+    .bloc-cgv {
+        margin: 10% 0 5% 15%;
+        width: 75%;
+
+        .h2-cgv {
+            margin-top: 30px;
+        }
+        
+        .article-cgv {
+            margin-top: 3%;
+            font-weight: bold;   
+        }
+    }
+}
+
+
+/* version mobile */
+
+@media (max-width: 480px) {
+    .h1-cgv {
+        color: blue;
+        text-align: center;   
+        margin-top: 10%;
+    }
+
+    .bloc-cgv {
+        margin: 10% 0 5% 15%;
+        width: 75%;
+
+        .h2-cgv {
+            margin-top: 30px;
+        }
+        
+        .article-cgv {
+            margin-top: 3%;
+            font-weight: bold;   
+        }
+    }
+}

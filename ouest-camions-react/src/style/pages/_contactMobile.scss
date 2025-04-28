@@ -1,0 +1,110 @@
+/* tablette portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .h1-contact {
+        color:lightseagreen;
+        padding: 5%;
+        font-size: 2rem;
+        text-align: center;
+        margin-top : 10%;
+    }
+
+    .form-container-contact {
+        max-width: 350px;
+        margin: 0 0 15% 20%;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-group-contact {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    
+    .label-contact {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    
+    .input-contact {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
+    
+    .button-contact {
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+}
+
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
+    .h1-contact {
+        color:lightseagreen;
+        padding: 5%;
+        font-size: 1.6rem;
+        text-align: center;
+        margin-top : 10%;
+    }
+
+    .form-container-contact {
+        max-width: 350px;
+        margin-bottom: 15%;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-group-contact {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    
+    .label-contact {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    
+    .input-contact {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+    }
+    
+    .button-contact {
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+
+}

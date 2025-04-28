@@ -106,11 +106,15 @@ class CategoryTrailerController extends Controller
         $categoryTrailer = CategoryTrailer::findOrFail($id);
         $deleted = $categoryTrailer->delete();
         return response()->json([
-            'status' => 'categorie de remorque supprimée avec succès'
+            'status' => 'Catégorie de remorque supprimée avec succès'
         ], 200);
     }
 }
 
 
 
-/* admin@ouestcamions.fr */
+//   admin@ouestcamions.fr 
+//    AdminOuest123!
+
+// robert@transportslenantais.fr
+// robert44 

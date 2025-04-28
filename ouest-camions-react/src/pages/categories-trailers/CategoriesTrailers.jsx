@@ -37,12 +37,8 @@ const CategoriesTrailers = () => {
         <div className="categories-trailers-button-group">
           {categoriesTrailers.length > 0 &&
             categoriesTrailers.map((trailer) => (  /* 'trailer' is used to get the differents categories of trailers */
-
-              <button
-                key={trailer.id}
-                onClick={() => handleCategoryClick(trailer.id)} // Scroll to the selected category
-              >
-                {trailer.name_category_trailer}
+              <button key={trailer.id} onClick={() => handleCategoryClick(trailer.id)}> {/* Scroll to the selected category */ }
+                    {trailer.name_category_trailer}
                 {/* name_category_trailer is used in the table category_trailer */}
               </button>
             ))}

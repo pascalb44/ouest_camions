@@ -34,14 +34,14 @@ Route::get('/categories-trailers/{categories_trailers}', [CategoryTrailerControl
 
 // trucks
 
-Route::get('trucks', [TruckController::class, 'index']);
+Route::get('trucks', [TruckController::class, 'index']);                                          /*admin*/
 Route::get('/trucks/{truck}', [TruckController::class, 'show']);
 //Route::get('trucks/{id}', [TruckController::class, 'show']);
 Route::get('/trucks/category/{id}', [TruckController::class, 'getTrucksByCategory']);
 
 // trailers
 
-Route::get('trailers', [TrailerController::class, 'index']);
+Route::get('trailers', [TrailerController::class, 'index']);                                /* admin */
 Route::get('/trailers/{trailer}', [TrailerController::class, 'show']);
 //Route::get('trailers/{id}', [TrailerController::class, 'show']);
 Route::get('/trailers/category/{id}', [TrailerController::class, 'getTrailersByCategory']);
@@ -52,10 +52,10 @@ Route::get('/trailers/category/{id}', [TrailerController::class, 'getTrailersByC
 
 Route::get('contacts', [ContactController::class, 'index']);
 Route::post('/contacts', [ContactController::class, 'store']);
-Route::get('/contacts/{contacts}', [ContactController::class, 'show']);
-Route::get('contacts/{id}', [ContactController::class, 'show']);
+//Route::get('/contacts/{contacts}', [ContactController::class, 'show']);
+//Route::get('contacts/{id}', [ContactController::class, 'show']);
 //Route::patch('/contacts/{contacts}', [ContactController::class, 'update']);
-Route::delete('/contacts/{contacts}', [ContactController::class, 'destroy']);
+//Route::delete('/contacts/{contacts}', [ContactController::class, 'destroy']);
 
 
 
@@ -94,7 +94,7 @@ Route::delete('/admin/categories-trucks/{id}', [CategoryTruckController::class, 
 
 Route::get('/admin/categories-trailers', [CategoryTrailerController::class, 'index']); /* list for admin*/
 Route::post('/admin/categories-trailers', [CategoryTrailerController::class, 'store']);
-Route::patch('admin/categories-trailers/{id}', [CategoryTrailerController::class, 'update']); /* no show for admin, it's just for update */
+Route::patch('admin/categories-trailers/{id}', [CategoryTrailerController::class, 'update']); /* no route show for admin, it's just for update */
 Route::delete('/admin/categories-trailers/{id}', [CategoryTrailerController::class, 'destroy']);
 
 
@@ -118,7 +118,8 @@ Route::delete('/admin/trailers/{trailer}', [TrailerController::class, 'destroy']
 
 // orders
 
-Route::get('cart', [OrderController::class, 'index']); 
+Route::get('cart', [OrderController::class, 'getCart']); /* cart = not paid */
+Route::post('/cart', [OrderController::class, 'addToCart']); /* to post to cart */
 Route::get('payment', [OrderController::class, 'index']);
 Route::get('orders', [OrderController::class, 'index']);
 Route::post('/orders', [OrderController::class, 'store']);

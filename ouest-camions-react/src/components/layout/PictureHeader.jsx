@@ -18,10 +18,10 @@ const PictureHeader = () => {
     }, []);
 
     return pictureSrc ? (
-        <style>
+        <style> {/* see categoryTruckController for background-image in mobile */}
             {`
                 .mobile-header {
-                    background-image: url(${pictureSrc});
+                    background-image: url(${pictureSrc}); 
                     background-size: cover;
                     background-position: center;
                 }

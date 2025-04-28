@@ -20,8 +20,17 @@
 
 
 @import "pages/homeMobile";
+
+
+@import "pages/contact";
+@import "pages/contactMobile";
+
+
 @import "pages/legal";
 @import "pages/legalMobile";
+
+@import "pages/cgv";
+@import "pages/cgvMobile";
 
 @import "pages/login";
 @import "pages/loginMobile";
@@ -53,7 +62,7 @@
 @import "pages/trailerDetailMobile";
 
 @import "pages/cart";
-
+@import "pages/cartMobile";
 
 @import "pages/admin/adminCategoriesTrailers";
 @import "pages/admin/adminCategoriesTrailersMobile";

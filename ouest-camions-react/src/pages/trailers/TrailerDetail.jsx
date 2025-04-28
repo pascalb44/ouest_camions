@@ -65,11 +65,11 @@ const TrailerDetail = () => {
         const existingReservations = JSON.parse(localStorage.getItem("reservations")) || [];
 
         const isTrailerAlreadyBooked = existingReservations.some(reservation => {
-            if (reservation.id === trailer.id) { // Comparer uniquement les réservations de la même remorque
+            if (reservation.id === trailer.id) { 
                 const existingStartDate = new Date(reservation.startDate);
                 const existingEndDate = new Date(reservation.endDate);
 
-                // Vérifier si les nouvelles dates se chevauchent avec une réservation existante
+                 
                 return (newStartDate <= existingEndDate && newEndDate >= existingStartDate);
             }
             return false;
@@ -80,7 +80,6 @@ const TrailerDetail = () => {
             return;
         }
 
-        // Ajouter la nouvelle réservation
         existingReservations.push(newReservation);
         localStorage.setItem("reservations", JSON.stringify(existingReservations));
 

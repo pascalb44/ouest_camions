@@ -81,14 +81,23 @@ const Cart = () => {
 
     const handleProceedToPayment = () => {
         const token = localStorage.getItem("token");
-
+    
         if (!token) {
             alert("Vous devez être connecté pour procéder au paiement.");
             return;
         }
-
+    
         localStorage.setItem("reservations", JSON.stringify(reservations));
+    
+        const totalPrice = totalTruckPrice + totalTrailerPrice;
+        const reservationPayload = {
+            amount: totalPrice,
+            reservations,
+        };
+    
+        localStorage.setItem("reservation", JSON.stringify(reservationPayload));
     };
+
 
     const handleClearCart = () => {
         if (window.confirm("Voulez-vous vraiment vider votre panier ?")) {
@@ -124,7 +133,7 @@ const Cart = () => {
         <div>
             <h1 className="h1">Votre panier de réservation</h1>
             <div className="cart">
-                <h2>Réservation camions</h2>
+                <h2 className="h2-resa-trucks">Réservation camions</h2>
                 {reservations.length === 0 ? (
                     <p>Aucun camion dans votre panier.</p>
                 ) : (
@@ -135,12 +144,12 @@ const Cart = () => {
                                 <p><strong>Camion :</strong> {truck.brand} {truck.name}</p>
                                 <p><strong>Durée retenue :</strong> {truck.duration} jours du {formatDate(truck.startDate)} au {formatDate(truck.endDate)}</p>
                                 <p><strong>Prix :</strong> {truck.calculatedPrice} €</p>
-                                <button onClick={() => handleRemove(truck.id)}>Supprimer cette réservation</button>
+                                <button className="resa-trucks-delete-button" onClick={() => handleRemove(truck.id)}>Supprimer cette réservation</button>
                             </div>
                         ))
                 )}
 
-                <h2>Réservation remorques</h2>
+                <h2 className="h2-resa-trailers">Réservation remorques</h2>
                 {reservations.length === 0 ? (
                     <p>Aucune remorque dans votre panier.</p>
                 ) : (
@@ -151,7 +160,7 @@ const Cart = () => {
                                 <p><strong>Remorque :</strong> {trailer.brand} {trailer.name}</p>
                                 <p><strong>Durée retenue :</strong> {trailer.duration} jours du {formatDate(trailer.startDate)} au {formatDate(trailer.endDate)}</p>
                                 <p><strong>Prix :</strong> {trailer.calculatedPrice} €</p>
-                                <button onClick={() => handleRemove(trailer.id)}>Supprimer cette réservation</button>
+                                <button className="resa-trailers-delete-button" onClick={() => handleRemove(trailer.id)}>Supprimer cette réservation</button>
                             </div>
                         ))
                 )}
@@ -161,7 +170,7 @@ const Cart = () => {
                 <Link to={`/payment`} onClick={handleProceedToPayment}>Payer</Link>
                 <button onClick={() => window.location.href = "/"}>Continuez vos réservations</button>
                 <button className="clear-cart-button" onClick={handleClearCart}>
-                    Vider le panier 🗑️
+                    Vider le panier 
                 </button>
             </div>
         </div>
@@ -169,3 +178,4 @@ const Cart = () => {
 };
 
 export default Cart;
+ 

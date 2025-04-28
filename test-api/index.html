@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main class="ant-layout-content" style="background: rgb(255, 255, 255); height: calc(-54.8px + 100vh); padding: 24px; overflow: scroll;"><div id="formao"><h2>Testez votre API</h2><p>Dans le cadre de ce cursus nous aborderons uniquement les tests API. Ces tests étant finalement les plus importants dans l’architecture 3-tiers.<br>Pour commencer, créons un programme complétement séparé du reste de notre projet. Dans notre cas, nous allons l’écrire en <strong>NodeJS </strong>avec <strong>Jest</strong> et <strong>Axios </strong>! En plus, cela permettras de ré-utiliser le code source des requêtes <strong>Axios </strong>dans notre front:</p><pre><code class="hljs language-arduino"><span class="hljs-meta"># npm init</span>
+        <span class="hljs-meta"># npm install jest</span>
+        <span class="hljs-meta"># npm install axios</span></code></pre><h3>Configurer le package.json</h3><pre><code class="language-json hljs"><span class="hljs-punctuation">{</span>
+          <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Test API"</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1.0.0"</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">"module"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"esnext"</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">"scripts"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">"start"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"node index.js"</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">"test"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"jest --runInBand"</span>
+          <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">"devDependencies"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">"chai"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"^5.1.1"</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">"jest"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"^29.7.0"</span>
+          <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">"dependencies"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">"axios"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"^1.7.5"</span>
+          <span class="hljs-punctuation">}</span>
+        <span class="hljs-punctuation">}</span></code></pre><p>La ligne <code>"test": "jest --runInBand"</code> permet de lancer la commande <code># npm run test </code>. Cette commande exécutera l’ensemble des tests. <strong>Il faut savoir que Jest exécute uniquement les fichiers qui sont post-fixés</strong> par <strong>.test.js</strong>.</p><h3>Procédure de connexion</h3><p>A présent, créons un fichier<strong> init.test.js</strong> qui contiendra nos tests:</p><pre><code class="language-javascript hljs"><span class="hljs-keyword">const</span> { expect } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@jest/globals'</span>);
+        <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
+        
+        <span class="hljs-keyword">const</span> <span class="hljs-title class_">Axios</span> = axios.<span class="hljs-title function_">create</span>({
+            <span class="hljs-attr">baseURL</span>: <span class="hljs-string">'http://localhost:8000/api'</span>,
+            <span class="hljs-attr">headers</span>: {
+                <span class="hljs-title class_">Accept</span>: <span class="hljs-string">'application/json'</span>
+            }
+        });
+        
+        <span class="hljs-keyword">const</span> user = {};
+        
+        <span class="hljs-title function_">describe</span>(<span class="hljs-string">"User Login"</span>, <span class="hljs-function">() =&gt;</span> {
+            <span class="hljs-title function_">test</span>(<span class="hljs-string">"Vérification de l'authentification"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+                <span class="hljs-keyword">await</span> <span class="hljs-title function_">login</span>(user, {
+                    <span class="hljs-attr">email</span>: <span class="hljs-string">'user@pokedex.com'</span>,
+                    <span class="hljs-attr">password</span>: <span class="hljs-string">'test123'</span>
+                });
+            });
+        });
+        
+        <span class="hljs-comment">// ------------------------------------------------------------------------------</span>
+        <span class="hljs-comment">// UTILS</span>
+        <span class="hljs-comment">// ------------------------------------------------------------------------------</span>
+        <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">login</span>(<span class="hljs-params">user, credentials</span>) {
+          <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/logout'</span>);
+        
+          <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/sanctum/csrf-cookie'</span>, {
+            <span class="hljs-attr">baseURL</span>: <span class="hljs-string">'http://localhost:8000'</span>
+          });
+        
+          <span class="hljs-title class_">Axios</span>.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">cookie</span> = res.<span class="hljs-property">headers</span>[<span class="hljs-string">'set-cookie'</span>];
+          <span class="hljs-title class_">Axios</span>.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">common</span>[<span class="hljs-string">'X-XSRF-TOKEN'</span>] = <span class="hljs-title function_">parseCSRFToken</span>(res.<span class="hljs-property">headers</span>[<span class="hljs-string">'set-cookie'</span>]);
+          <span class="hljs-title class_">Axios</span>.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">common</span>[<span class="hljs-string">'Origin'</span>] = <span class="hljs-string">'http://localhost:8000'</span>;
+          <span class="hljs-title class_">Axios</span>.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">common</span>[<span class="hljs-string">'Referer'</span>] = <span class="hljs-string">'http://localhost:8000'</span>;
+        
+          <span class="hljs-keyword">const</span> auth = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">post</span>(<span class="hljs-string">'/authenticate'</span>, credentials, {
+            <span class="hljs-attr">headers</span>: { <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/x-www-form-urlencoded'</span> }
+          });
+        
+          <span class="hljs-title class_">Axios</span>.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">cookie</span> = auth.<span class="hljs-property">headers</span>[<span class="hljs-string">'set-cookie'</span>];
+          <span class="hljs-title class_">Axios</span>.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">common</span>[<span class="hljs-string">'X-XSRF-TOKEN'</span>] = <span class="hljs-title function_">parseCSRFToken</span>(auth.<span class="hljs-property">headers</span>[<span class="hljs-string">'set-cookie'</span>])
+        
+          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> auth.<span class="hljs-property">data</span>.<span class="hljs-property">user</span>) {
+            user[key] = auth.<span class="hljs-property">data</span>.<span class="hljs-property">user</span>[key];
+          }
+        }
+        
+        <span class="hljs-keyword">function</span> <span class="hljs-title function_">parseCSRFToken</span>(<span class="hljs-params">cookies</span>) {
+          <span class="hljs-keyword">const</span> startAt = cookies[<span class="hljs-number">0</span>].<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">'='</span>);
+          <span class="hljs-keyword">const</span> endAt = cookies[<span class="hljs-number">0</span>].<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">';'</span>);
+          <span class="hljs-keyword">const</span> csrf = cookies[<span class="hljs-number">0</span>].<span class="hljs-title function_">substring</span>(startAt + <span class="hljs-number">1</span>, endAt - <span class="hljs-number">3</span>);
+          <span class="hljs-keyword">return</span> csrf;
+        }</code></pre><p>Ce code est certes un peu barbare mais pas d’inquiétude. Cette partie là sera la même pour toutes vos API basé sur Laravel. Ce code initialise une connexion en tant qu’utilisateur. Les tests suivant se feront donc dans le contexte de cet utilisateur là. Plus concrètement, nous récupérons tout simplement les cookies de la requête de connexion pour les sauvegarder dans les headers de nos futur requêtes (voir cours API Part.2).</p><h3>Ecriture des tests utilisateurs</h3><pre><code class="language-javascript hljs"><span class="hljs-title function_">describe</span>(<span class="hljs-string">"User Login"</span>, <span class="hljs-function">() =&gt;</span> {
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Vérification de l'authentification"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+            <span class="hljs-keyword">await</span> <span class="hljs-title function_">login</span>(user, {
+              <span class="hljs-attr">email</span>: <span class="hljs-string">'user@pokedex.com'</span>,
+              <span class="hljs-attr">password</span>: <span class="hljs-string">'test123'</span>
+            });
+          });
+        });
+        
+        <span class="hljs-title function_">describe</span>(<span class="hljs-string">"Creatures GET"</span>, <span class="hljs-function">() =&gt;</span> {
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">'Récupération de la liste des créatures'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+            <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-title function_">expect</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>).<span class="hljs-title function_">toBeGreaterThanOrEqual</span>(<span class="hljs-number">2</span>);
+          });
+        
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">'Get Show'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+            <span class="hljs-keyword">const</span> creatures = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures/'</span> + creatures.<span class="hljs-property">data</span>[<span class="hljs-number">0</span>].<span class="hljs-property">id</span>);
+            <span class="hljs-title function_">expect</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">name</span>).<span class="hljs-title function_">toBeTruthy</span>();
+            <span class="hljs-title function_">expect</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">pv</span>).<span class="hljs-title function_">toBeGreaterThanOrEqual</span>(<span class="hljs-number">1</span>);
+            <span class="hljs-title function_">expect</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">pv</span>).<span class="hljs-title function_">toBeLessThanOrEqual</span>(<span class="hljs-number">100</span>);
+          });
+        
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">'Get Paginate'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+            <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures-paginate?page=1'</span>);
+            <span class="hljs-title function_">expect</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">maxPages</span>).<span class="hljs-title function_">toBeGreaterThanOrEqual</span>(<span class="hljs-number">0</span>);
+            <span class="hljs-title function_">expect</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">page</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">'1'</span>);
+            <span class="hljs-title function_">expect</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">creatures</span>).<span class="hljs-title function_">toHaveLength</span>(<span class="hljs-number">3</span>);
+          });
+        });
+        
+        <span class="hljs-title function_">describe</span>(<span class="hljs-string">"Creatures PUT"</span>, <span class="hljs-function">() =&gt;</span> {
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Update as user owner"</span>, <span class="hljs-keyword">async</span> (data = { <span class="hljs-attr">name</span>: <span class="hljs-string">'New name'</span>, <span class="hljs-attr">_method</span>: <span class="hljs-string">'PUT'</span> }) =&gt; {
+            <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> creature = res.<span class="hljs-property">data</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> c.<span class="hljs-property">user_id</span> == user.<span class="hljs-property">id</span>);
+            <span class="hljs-keyword">const</span> updateRes = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">post</span>(<span class="hljs-string">'/creatures/'</span> + creature.<span class="hljs-property">id</span>, data);
+            <span class="hljs-title function_">expect</span>(updateRes.<span class="hljs-property">data</span>.<span class="hljs-property">name</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">'New name'</span>);
+          });
+        
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Update as not user owner"</span>, <span class="hljs-keyword">async</span> (data = { <span class="hljs-attr">name</span>: <span class="hljs-string">'New name'</span>, <span class="hljs-attr">_method</span>: <span class="hljs-string">'PUT'</span> }) =&gt; {
+            <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> creature = res.<span class="hljs-property">data</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> c.<span class="hljs-property">user_id</span> != user.<span class="hljs-property">id</span>);
+            <span class="hljs-keyword">const</span> updateRes = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">post</span>(<span class="hljs-string">'/creatures/'</span> + creature.<span class="hljs-property">id</span>, data, { <span class="hljs-attr">validateStatus</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-literal">true</span> });
+            <span class="hljs-title function_">expect</span>(updateRes.<span class="hljs-property">status</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">403</span>);
+            <span class="hljs-title function_">expect</span>(updateRes.<span class="hljs-property">data</span>.<span class="hljs-property">name</span>).<span class="hljs-property">not</span>.<span class="hljs-title function_">toBe</span>(<span class="hljs-string">'New name'</span>);
+          });
+        });
+        
+        <span class="hljs-title function_">describe</span>(<span class="hljs-string">"Creatures POST"</span>, <span class="hljs-function">() =&gt;</span> {
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Create with good data"</span>, <span class="hljs-keyword">async</span> (data = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Pika'</span>, <span class="hljs-attr">pv</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">atk</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">def</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">speed</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'ELECTRIK'</span>, <span class="hljs-attr">race</span>: <span class="hljs-string">'MOUSE'</span>, <span class="hljs-attr">capture_rate</span>: <span class="hljs-number">4</span> }) =&gt; {
+            <span class="hljs-keyword">const</span> old = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> oldNumCreatures = old.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+            <span class="hljs-comment">// before</span>
+            <span class="hljs-keyword">const</span> createRes = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">post</span>(<span class="hljs-string">'/creatures'</span>, data);
+            <span class="hljs-comment">// after</span>
+            <span class="hljs-keyword">const</span> cur = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> curNumCreatures = cur.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+        
+            <span class="hljs-title function_">expect</span>(createRes.<span class="hljs-property">data</span>.<span class="hljs-property">name</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">'Pika'</span>);
+            <span class="hljs-title function_">expect</span>(curNumCreatures).<span class="hljs-title function_">toBe</span>(oldNumCreatures + <span class="hljs-number">1</span>);
+          });
+        
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Create with bad data"</span>, <span class="hljs-keyword">async</span> (data = { <span class="hljs-attr">name</span>: <span class="hljs-string">'Pika'</span>, <span class="hljs-attr">pv</span>: <span class="hljs-number">120</span>, <span class="hljs-attr">atk</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">def</span>: <span class="hljs-number">10</span>, <span class="hljs-attr">speed</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">'ELECTRIK'</span>, <span class="hljs-attr">race</span>: <span class="hljs-string">'MOUSE'</span>, <span class="hljs-attr">capture_rate</span>: <span class="hljs-number">4</span> }) =&gt; {
+            <span class="hljs-keyword">const</span> old = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> oldNumCreatures = old.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+            <span class="hljs-comment">// before</span>
+            <span class="hljs-keyword">const</span> createRes = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">post</span>(<span class="hljs-string">'/creatures'</span>, data, { <span class="hljs-attr">validateStatus</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-literal">true</span> });
+            <span class="hljs-comment">// after</span>
+            <span class="hljs-keyword">const</span> cur = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> curNumCreatures = cur.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+        
+            <span class="hljs-title function_">expect</span>(createRes.<span class="hljs-property">status</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">422</span>);
+            <span class="hljs-title function_">expect</span>(curNumCreatures).<span class="hljs-title function_">toBe</span>(oldNumCreatures);
+          });
+        });
+        
+        <span class="hljs-title function_">describe</span>(<span class="hljs-string">"Creatures DELETE"</span>, <span class="hljs-function">() =&gt;</span> {
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Delete as user owner"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+            <span class="hljs-keyword">const</span> old = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> creature = old.<span class="hljs-property">data</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> c.<span class="hljs-property">user_id</span> == user.<span class="hljs-property">id</span>);
+            <span class="hljs-keyword">const</span> oldNumCreature = old.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+            <span class="hljs-comment">// before</span>
+            <span class="hljs-keyword">const</span> deleteRes = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">delete</span>(<span class="hljs-string">'/creatures/'</span> + creature.<span class="hljs-property">id</span>);
+            <span class="hljs-comment">// after</span>
+            <span class="hljs-keyword">const</span> cur = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> curNumCreature = cur.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+        
+            <span class="hljs-title function_">expect</span>(deleteRes.<span class="hljs-property">status</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">200</span>);
+            <span class="hljs-title function_">expect</span>(curNumCreature).<span class="hljs-title function_">toBe</span>(oldNumCreature - <span class="hljs-number">1</span>);
+          });
+        
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Delete as not user owner"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+            <span class="hljs-keyword">const</span> old = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> creature = old.<span class="hljs-property">data</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> c.<span class="hljs-property">user_id</span> != user.<span class="hljs-property">id</span>);
+            <span class="hljs-keyword">const</span> oldNumCreature = old.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+            <span class="hljs-comment">// before</span>
+            <span class="hljs-keyword">const</span> deleteRes = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">delete</span>(<span class="hljs-string">'/creatures/'</span> + creature.<span class="hljs-property">id</span>, { <span class="hljs-attr">validateStatus</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-literal">true</span> });
+            <span class="hljs-comment">// after</span>
+            <span class="hljs-keyword">const</span> cur = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> curNumCreature = cur.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+        
+            <span class="hljs-title function_">expect</span>(deleteRes.<span class="hljs-property">status</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">403</span>);
+            <span class="hljs-title function_">expect</span>(curNumCreature).<span class="hljs-title function_">toBe</span>(oldNumCreature);
+          });
+        });</code></pre><h3>Ecriture des tests administrateur</h3><pre><code class="language-javascript hljs"><span class="hljs-title function_">describe</span>(<span class="hljs-string">"Admin Login"</span>, <span class="hljs-function">() =&gt;</span> {
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Vérification de l'authentification"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+            <span class="hljs-keyword">await</span> <span class="hljs-title function_">login</span>(user, {
+              <span class="hljs-attr">email</span>: <span class="hljs-string">'admin@pokedex.com'</span>,
+              <span class="hljs-attr">password</span>: <span class="hljs-string">'test123'</span>
+            });
+          });
+        });
+        
+        <span class="hljs-title function_">describe</span>(<span class="hljs-string">"Admin Creatures PUT"</span>, <span class="hljs-function">() =&gt;</span> {
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Update as admin"</span>, <span class="hljs-keyword">async</span> (data = { <span class="hljs-attr">name</span>: <span class="hljs-string">'New name'</span>, <span class="hljs-attr">_method</span>: <span class="hljs-string">'PUT'</span> }) =&gt; {
+            <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> creature = res.<span class="hljs-property">data</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> c.<span class="hljs-property">user_id</span> != user.<span class="hljs-property">id</span>);
+            <span class="hljs-keyword">const</span> updateRes = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">post</span>(<span class="hljs-string">'/creatures/'</span> + creature.<span class="hljs-property">id</span>, data);
+            <span class="hljs-title function_">expect</span>(updateRes.<span class="hljs-property">data</span>.<span class="hljs-property">name</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">'New name'</span>);
+          });
+        });
+        
+        <span class="hljs-title function_">describe</span>(<span class="hljs-string">"Admin Creatures DELETE"</span>, <span class="hljs-function">() =&gt;</span> {
+          <span class="hljs-title function_">test</span>(<span class="hljs-string">"Delete as admin"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+            <span class="hljs-keyword">const</span> old = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> creature = old.<span class="hljs-property">data</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">c</span> =&gt;</span> c.<span class="hljs-property">user_id</span> != user.<span class="hljs-property">id</span>);
+            <span class="hljs-keyword">const</span> oldNumCreature = old.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+            <span class="hljs-comment">// before</span>
+            <span class="hljs-keyword">const</span> deleteRes = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">delete</span>(<span class="hljs-string">'/creatures/'</span> + creature.<span class="hljs-property">id</span>);
+            <span class="hljs-comment">// after</span>
+            <span class="hljs-keyword">const</span> cur = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Axios</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">'/creatures'</span>);
+            <span class="hljs-keyword">const</span> curNumCreature = cur.<span class="hljs-property">data</span>.<span class="hljs-property">length</span>;
+        
+            <span class="hljs-title function_">expect</span>(deleteRes.<span class="hljs-property">status</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">200</span>);
+            <span class="hljs-title function_">expect</span>(curNumCreature).<span class="hljs-title function_">toBe</span>(oldNumCreature - <span class="hljs-number">1</span>);
+          });
+        });</code></pre><h3>Lancement des tests</h3><p>Cela se fait en deux temps, ont commence par mettre la base de donnée dans un état initiale avec la commande: <code># php artisan migrate:fresh --seed</code> puis ont démarre nos tests: <code># npm run test</code></p></div></main>
+</body>
+
+</html>

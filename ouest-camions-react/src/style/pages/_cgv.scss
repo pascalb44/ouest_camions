@@ -1,0 +1,48 @@
+/************************ version desktop ****************************/
+
+@media (min-width: 1025px) {
+
+    .h1-cgv {
+        color: blue;
+        padding: 2%;
+    }
+
+
+    .bloc-cgv {
+        margin: 0 0 5% 15%;
+        width: 75%;
+
+        .h2-cgv {
+            margin-top: 3%;
+        }
+        
+        .article-cgv {
+            margin-top: 3%;
+            font-weight: bold;   
+        }
+    }
+}
+
+
+/* version tablette orientation landscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .h1-cgv {
+        color: blue;
+        padding: 2%;
+    }
+
+    .bloc-cgv {
+        margin: 0 0 5% 15%;
+        width: 75%;
+
+        .h2-cgv {
+            margin-top: 3%;
+        }
+        
+        .article-cgv {
+            margin-top: 3%;
+            font-weight: bold;   
+        }
+    }
+}

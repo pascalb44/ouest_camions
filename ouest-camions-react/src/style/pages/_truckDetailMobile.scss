@@ -1,89 +1,202 @@
-
 /* tablette portrait */
 
 @media (min-width: 481px) and (max-width: 768px) {
 
+  
+    .truck-btn-return-to-category-truck {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 10% auto 10%;
+    }
+
     .h1-truck-detail {
         text-align: center;
-        font-size: 3rem;
-        margin-top: 5%;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.6rem;
+        margin: 5% auto 5%;
+        padding : 5%;
+        color : green;
+        background-color: powderblue;
         text-transform: uppercase;
-    }
-
-    .truck-detail-page {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .truck-detail {
-        /* truck detail block */
-        display: flex;
-        flex-direction: column;
-        width: 60%;
-        margin-left: 5%;
+        font-weight: 700;
     }
 
     .edito-truck {
-        margin: 5% auto;
+        padding: 20px;
+        margin-bottom: 2%;
+    }
 
+    .edito-truck p {
+        text-align: justify;
+    }
+
+    .h2-truck-detail {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 7% auto 5%;
+    }
+
+
+    .truck-detail-page {
+        display: flex;
+        flex-direction: column;
     }
 
     .truck-image-box {
-        width: 50%;
-        display: flex;
+        height: 0%;
     }
 
     .truck-image {
-        width: 100%;
-        max-width: none;
-        height: 600px;
+        display: flex;
+        width: 80%;
         padding: 1%;
-        border-radius: 50px;
+        height: 450px;
+        margin: 0 auto;
+        border: solid 30px powderblue;
     }
 
     .truck-detail-block {
-        display: flex;
-        flex-direction: row;
-        margin: 5%;
-
-        h2 {
-            margin-bottom: 10%;
-            font-weight: 600;
-        }
-
-        .truck-detail-features {
-            display: flex;
-            flex-direction: column;
-        }
-
-
-        .truck-detail-location {
-            display: flex;
-            flex-direction: column;
-            margin-left: 10%;
-        }
-
-        p {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            font-size: 1.3rem;
-        }
+        padding: 2px;
     }
 
-    .truck-detail-button {
-        width: 50%;
-        background-color: lightseagreen;
+    .truck-detail-features p,  .truck-detail-location p {
+        font-size: 1.1rem;
+        margin-left: 10px;
+    }
+
+
+
+
+
+    /* calendar */
+
+
+    .vehicle-picker-truck {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .date-picker-truck {
+        display: flex;
+        flex-direction: column;
+        margin-top: 70px;
+    }
+
+
+    .date-picker-start-truck {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .date-picker-start-legend-truck,
+    .date-picker-end-legend-truck {
+        display: flex;
+        margin: 10px 0 15px 15px;
+        font-weight: 700;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        width: 25%;
+    }
+
+    .custom-date-picker-start-truck,
+    .custom-date-picker-end-truck {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .date-picker-end-truck {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10%;
+    }
+
+    .selected-dates {
+        margin-top: 120%;
+    }
+
+    /* button*/
+
+    .truck-detail-button-to-reservation {
+        width: max-content;
+        background-color: green;
+        color: powderblue;
         text-align: center;
         padding: 10px;
-        font-size: 1.3rem;
+        font-size: 1rem;
         font-weight: bold;
-        margin: 10%;
-        color: white;
+        margin: 5% 0 5% 5%;
+    }
+}
 
-        a {
-            text-decoration: none;
-            color: white;
-        }
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
+
+    .truck-btn-return-to-category-truck {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 10% auto 10%;
+    }
+
+    .h1-truck-detail {
+        text-align: center;
+        font-size: 1.5rem;
+        margin: 5% auto 5%;
+        padding : 5%;
+        color : green;
+        background-color: powderblue;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .edito-truck {
+        padding: 10px;
+    }
+
+    .edito-truck p {
+        text-align: justify;
+    }
+
+    .h2-truck-detail {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 7% 0 5% 5%;
+    }
+   
+    .truck-detail-page {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .truck-image-box {
+        height: 0%;
+    }
+
+    .truck-image {
+        display: flex;
+        width: 90%;
+        padding: 1%;
+        margin: 0 auto;
+    }
+    
+    .truck-detail-block {
+        border: solid 2px powderblue;
+        padding: 2px;
+    }
+
+    .truck-detail-features p,  .truck-detail-location p {
+        font-size: 1.1rem;
+        margin-left: 10px;
     }
 
 
@@ -98,9 +211,8 @@
     .date-picker-truck {
         display: flex;
         flex-direction: column;
-        margin-top: 220px;
+        margin-top: 70px;
     }
-
 
     .date-picker-start-truck {
         display: flex;
@@ -110,18 +222,16 @@
     .date-picker-start-legend-truck,
     .date-picker-end-legend-truck {
         display: flex;
-        margin-right: 25px;
+        margin: 0 0 15px 15px;
         font-weight: 700;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-        width: 140px;
+        width: 80px;
     }
 
     .custom-date-picker-start-truck,
     .custom-date-picker-end-truck {
         display: flex;
         flex-direction: column;
-        padding-left: 40px;
-
     }
 
     .date-picker-end-truck {
@@ -134,61 +244,19 @@
         margin-top: 120%;
     }
 
-}
+    /* button*/
 
-
-/********************************** version mobile ********************/
-
-@media (max-width: 480px) {
-
-
-    .container-tractor-trucks {
-        width: 100%;
-    }
-
-    .truck-category-list {
-        margin-top: 20px;
-    }
-
-    .truck-category-item {
-        display: flex;
-        flex-direction: row;
-        border: 1px solid red;
-        margin-bottom: 5%;
-        width: 100%;
-    }
-
-    .truck-category-name {
-        font-family: 'Abel', Helvetica, Arial, Lucida, sans-serif;
-        font-size: 35px;
-    }
-
-    .truck-category-image-box {
-        width: 50%;
-
-    }
-
-    .truck-category-image {
-        width: 90%;
-        padding: 1%;
-        height: 350px;
-    }
-
-    .truck-category-image-caption {
-        width: 75%;
-        background-color: lightseagreen;
+    .truck-detail-button-to-reservation {
+        width: max-content;
+        background-color: green;
+        color: powderblue;
         text-align: center;
         padding: 10px;
-        font-size: 1.5rem;
+        font-size: 1rem;
         font-weight: bold;
-        margin-top: auto;
+        margin: 5% 0 5% 5%;
 
-        a {
-            text-decoration: none;
-            color: white;
-            display: block;
-            width: 100%;
-        }
+
     }
 
 }

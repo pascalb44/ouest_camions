@@ -32,7 +32,7 @@ const HeaderMobile = () => {
                 <nav className={`mobile-nav ${isOpen ? "open" : ""}`}>
                     <Link to="/presentation" className="nav-link" onClick={toggleMenu}>Présentation</Link>
                     <Link to="/" className="nav-link" onClick={toggleMenu}>Nos agences</Link>
-                    <Link to="/contacts" className="nav-link" onClick={toggleMenu}>Contact</Link>
+                    <Link to="/contact" className="nav-link" onClick={toggleMenu}>Contact</Link>
                     <Link to="/login" className="nav-link" onClick={toggleMenu}>Connexion</Link>
                 </nav>
             </div>

@@ -109,7 +109,7 @@ class CategoryTruckController extends Controller
 
     public function getHeaderImage() /* picture in background of the header for mobile */
     {
-        $imagePath = asset('storage/uploads/CategoryTruck/camion_IA2.jpg');
+        $imagePath = asset('storage/uploads/CategoryTruck/camion_IA2_1743775522.jpg');
         return response()->json(['image' => $imagePath]);
     }
 }

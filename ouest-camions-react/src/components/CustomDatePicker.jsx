@@ -5,13 +5,12 @@ import { differenceInDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 
 const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
-    // Vérifie si un camion ou une remorque est passé en prop
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [duration, setDuration] = useState(truck?.duration_truck || trailer?.duration_trailer || 0);
 
 
-    const [reservedDates, setReservedDates] = useState([]); // Pour stocker les réservations passées
+    const [reservedDates, setReservedDates] = useState([]); // to stock past reservations
 
     useEffect(() => {
         const reservations = JSON.parse(localStorage.getItem("reservations") || "[]");
@@ -25,7 +24,6 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
         setReservedDates(validReservations);
     }, []);
 
-    // Container pour la date de départ
     const DepartureContainer = ({ className, children }) => (
         <CalendarContainer className={className}>
             <div style={{ padding: "16px", background: "#216ba5", color: "#fff", textAlign: "center" }}>
@@ -35,7 +33,6 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
         </CalendarContainer>
     );
 
-    // Container pour la date de retour
     const ReturnContainer = ({ className, children }) => (
         <CalendarContainer className={className}>
             <div style={{ padding: "16px", background: "#f39c12", color: "#fff", textAlign: "center" }}>
@@ -47,17 +44,17 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
 
     const formatDate = (date) => {
         if (!date) return "Aucune date sélectionnée";
-        return date.toLocaleDateString("fr-FR"); // Format français (jj/mm/aaaa)
+        return date.toLocaleDateString("fr-FR"); // french date (jj/mm/aaaa)
     };
 
     const isDateAvailable = (date, vehicleId) => {
         const checkDate = new Date(date);
 
         return !reservedDates.some(reservation => {
-            if (reservation.vehicleId === vehicleId) { // Vérifie uniquement pour le même véhicule
+            if (reservation.vehicleId === vehicleId) {
                 const start = new Date(reservation.start);
                 const end = new Date(reservation.end);
-                return checkDate >= start && checkDate <= end; // Vérifie si la date est réservée
+                return checkDate >= start && checkDate <= end;
             }
             return false;
         });
@@ -75,7 +72,7 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
     }, [startDate, endDate, onDurationChange]);
 
     const handleStartDateChange = (date) => {
-        if (isDateAvailable(date, truck?.id || trailer?.id)) { // Vérifie pour le bon véhicule
+        if (isDateAvailable(date, truck?.id || trailer?.id)) {  // Vérif date for the good vehicle
             setStartDate(date);
         } else {
             alert("Cette date est déjà réservée pour ce véhicule.");
@@ -83,7 +80,7 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
     };
 
     const handleEndDateChange = (date) => {
-        if (isDateAvailable(date, truck?.id || trailer?.id)) { // Vérifie pour le bon véhicule
+        if (isDateAvailable(date, truck?.id || trailer?.id)) { // Vérif date for the good vehicle
             setEndDate(date);
         } else {
             alert("Cette date est déjà réservée pour ce véhicule.");
@@ -92,7 +89,6 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
 
     if (!truck && !trailer) return <p>Aucun chargement des informations du véhicule</p>;
 
-    // Définir des couleurs ou des styles différents selon le type de véhicule
     const vehicleType = truck ? "truck" : "trailer";
 
     return (
@@ -108,9 +104,9 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
                             onChange={handleStartDateChange}
                             dateFormat="dd/MM/yyyy"
                             className={`custom-date-picker-${vehicleType}`}
-                            calendarContainer={DepartureContainer} // pour la date de départ
-                            locale={fr} // Format français
-                            minDate={new Date()}  // Pour bloquer les dates passées
+                            calendarContainer={DepartureContainer} //start date
+                            locale={fr}
+                            minDate={new Date()}  // to block past dates
                             filterDate={(date) => isDateAvailable(date, vehicleType === "truck" ? truck?.id : trailer?.id)}
                         />
                     </div>
@@ -125,9 +121,9 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
                             onChange={handleEndDateChange}
                             dateFormat="dd/MM/yyyy"
                             className={`custom-date-picker-${vehicleType}`}
-                            calendarContainer={ReturnContainer} // pour la date de retour
-                            locale={fr}  // Format français
-                            minDate={startDate} // La date de retour après la date de départ
+                            calendarContainer={ReturnContainer} // end date
+                            locale={fr}
+                            minDate={startDate} // end date after start date
                             filterDate={(date) => isDateAvailable(date, vehicleType === "truck" ? truck?.id : trailer?.id)} />
                     </div>
                 </div>

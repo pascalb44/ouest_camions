@@ -14,7 +14,7 @@ const TruckDetail = () => {
     // Add these states to fix the "not defined" errors
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    
+
 
     const updateTruckDuration = useCallback((newDuration, newStartDate, newEndDate) => {
         setDurationTruck(newDuration); // Update duration
@@ -62,58 +62,57 @@ const TruckDetail = () => {
             endDate: endDate,
             type: "truck",
         };
-     const existingReservations = JSON.parse(localStorage.getItem("reservations")) || [];
+        const existingReservations = JSON.parse(localStorage.getItem("reservations")) || [];
 
-    const isTruckAlreadyBooked = existingReservations.some(reservation => {
-        if (reservation.id === truck.id) { // Comparer uniquement les réservations du même camion
-            const existingStartDate = new Date(reservation.startDate);
-            const existingEndDate = new Date(reservation.endDate);
+        const isTruckAlreadyBooked = existingReservations.some(reservation => {
+            if (reservation.id === truck.id) { // Compare only reservations of the same truck
+                const existingStartDate = new Date(reservation.startDate);
+                const existingEndDate = new Date(reservation.endDate);
 
-            // Vérifier si les nouvelles dates se chevauchent avec une réservation existante
-            return (newStartDate <= existingEndDate && newEndDate >= existingStartDate);
+                // Vérif if there is no same dates 
+                return (newStartDate <= existingEndDate && newEndDate >= existingStartDate);
+            }
+            return false;
+        });
+
+        if (isTruckAlreadyBooked) {
+            alert("Ce camion est déjà réservé sur cette période. Veuillez choisir d'autres dates.");
+            return;
         }
-        return false;
-    });
 
-    if (isTruckAlreadyBooked) {
-        alert("Ce camion est déjà réservé sur cette période. Veuillez choisir d'autres dates.");
-        return;
-    }
+        // Add nex reservation
+        existingReservations.push(newReservation);
+        localStorage.setItem("reservations", JSON.stringify(existingReservations));
 
-    // Ajouter la nouvelle réservation
-    existingReservations.push(newReservation);
-    localStorage.setItem("reservations", JSON.stringify(existingReservations));
+        alert("La réservation a bien été ajoutée au panier mais n'est visible que des utilisateurs connectés !");
+        window.location.href = "/cart";
+    };
 
-    alert("La réservation a bien été ajoutée au panier mais n'est visible que des utilisateurs connectés !");
-    window.location.href = "/cart";
-};
-    
     return (
         <div>
+            <Link to="/categories-trucks/" className="truck-btn-return-to-category-truck">Retour à la liste</Link>
             <h1 className="h1-truck-detail">{truck.brand_truck} {truck.name_truck}</h1>
-                <Link to="/categories-trailers/" className="trailer-btn-return">Retour à la liste</Link>            
             <div className="truck-detail-page">
                 <div className="truck-detail">
                     <div className="edito-truck">
                         <p>{truck.description_truck}</p>
                     </div>
                     <div className="truck-image-box">
-                        <img src={`http://127.0.0.1:8000/storage/uploads/Truck/${truck.image_truck}`} className="truck-category-image" alt={`Camion ${truck.name_truck}`} />
+                        <img src={`http://127.0.0.1:8000/storage/uploads/Truck/${truck.image_truck}`} className="truck-image" alt={`Camion ${truck.name_truck}`} />
                     </div>
                     <div>
                         <div className="truck-detail-block">
+                            <h2 className="h2-truck-detail">Caractéristiques</h2>
                             <div className="truck-detail-features">
-                                <h2>Caractéristiques</h2>
                                 <p>Couleur : {truck.color_truck}</p>
                                 <p>Longueur : {truck.length_truck}</p>
                                 <p>Largeur : {truck.width_truck}</p>
                                 <p>Hauteur : {truck.height_truck}</p>
                                 <p>Kilométrage : {truck.km_truck}</p>
                                 <p>Charge utile : {truck.load_truck}</p>
-
                             </div>
+                            <h2 className="h2-truck-detail">Locations</h2>
                             <div className="truck-detail-location">
-                                <h2>Locations</h2>
                                 <p>Prix à la journée : {truck.price_day_truck}</p>
                                 <p>Prix à la semaine : {truck.price_week_truck}</p>
                                 <p>Prix au mois : {truck.price_month_truck}</p>
@@ -127,9 +126,11 @@ const TruckDetail = () => {
                     <div>
                         <CustomDatePicker truck={truck} onDurationChange={updateTruckDuration} />
                     </div>
-                    <button  className="truck-detail-button"  onClick={() => handleReservation(truck)}> 
-                        Réserver {/* direct link to reservation page */ }
-                    </button>
+                    <div className="truck-detail-button-to-reservation">
+                        <button className="truck-detail-button-to-reservation-btn" onClick={() => handleReservation(truck)}>
+                            Réserver {/* direct link to reservation page */}
+                        </button>
+                    </div>
                 </aside>
             </div>
         </div>
