@@ -33,6 +33,7 @@ const TrucksByCategory = () => {
 
     return (
         <div>
+            <Link to="/categories-trucks" className="truck-by-category-btn-return">Retour à la liste</Link>
             <h1 className="h1-truck-by-category-name">{categoryName}</h1>  {/* name change on each page */}
             <div className="truck-by-category-list">
                 {trucks.length > 0 ? (

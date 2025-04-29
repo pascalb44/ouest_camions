@@ -135,17 +135,17 @@ const EditUser = () => {
             <form className="form-edit-user" onSubmit={handleSubmit}>
                 <div className="edit-user">
                     <div className="form-group-edit-user">
-                        <label className="label-edit-user">Prénom:</label>
+                        <label className="label-edit-user label-edit-user-no-mobile">Prénom:</label>
                         <input type="text" name="first_name" value={user.first_name} onChange={handleChange} />
                         {validationError.first_name && <p className="error">{validationError.first_name}</p>} {/* validation of first_name */}
                     </div>
                     <div className="form-group-edit-user">
-                        <label className="label-edit-user">Nom:</label>
+                        <label className="label-edit-user label-edit-user-no-mobile">Nom:</label>
                         <input type="text" name="last_name" value={user.last_name} onChange={handleChange} />
                         {validationError.last_name && <p className="error">{validationError.last_name}</p>} {/* validation of last_name */}
                     </div>
                     <div className="form-group-edit-user">
-                        <label className="label-edit-user">Entreprise :</label>
+                        <label className="label-edit-user label-edit-user-no-mobile">Entreprise :</label>
                         <input type="text" name="company" value={user.company} onChange={handleChange} />
                         {validationError.company && <p className="error">{validationError.company}</p>}
                     </div>
@@ -161,27 +161,27 @@ const EditUser = () => {
                         {validationError.siren && <p className="error">{validationError.siren}</p>}
                     </div>
                     <div className="form-group-edit-user">
-                        <label className="label-edit-user">Adresse:</label>
+                        <label className="label-edit-user label-edit-user-no-mobile">Adresse:</label>
                         <input type="text" name="address" value={user.address} onChange={handleChange} />
                         {validationError.address && <p className="error">{validationError.address}</p>}
                     </div>
                     <div className="form-group-edit-user">
-                        <label className="label-edit-user">Code Postal:</label>
+                        <label className="label-edit-user label-edit-user-no-mobile">Code Postal:</label>
                         <input type="text" name="postal_code" value={user.postal_code} onChange={handleChange} />
                         {validationError.postal_code && <p className="error">{validationError.postal_code}</p>}
                     </div>
                     <div className="form-group-edit-user">
-                        <label className="label-edit-user">Ville:</label>
+                        <label className="label-edit-user label-edit-user-no-mobile">Ville:</label>
                         <input type="text" name="town" value={user.town} onChange={handleChange} />
                         {validationError.town && <p className="error">{validationError.town}</p>}
                     </div>
                     <div className="form-group-edit-user">
-                        <label className="label-edit-user">Email:</label>
+                        <label className="label-edit-user label-edit-user-no-mobile">Email:</label>
                         <input type="email" name="email" value={user.email} onChange={handleChange} />
                         {validationError.email && <p className="error">{validationError.email}</p>}
                     </div>
                     <div className="form-group-edit-user">
-                        <label className="label-edit-user">Téléphone:</label>
+                        <label className="label-edit-user label-edit-user-no-mobile">Téléphone:</label>
                         <input type="text" name="phone" value={user.phone} onChange={handleChange} />
                         {validationError.phone && <p className="error">{validationError.phone}</p>}
                     </div>

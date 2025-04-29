@@ -168,7 +168,7 @@ const Cart = () => {
                 <p><strong>Prix total :</strong> {totalTruckPrice + totalTrailerPrice} €</p>
 
                 <Link to={`/payment`} onClick={handleProceedToPayment}>Payer</Link>
-                <button onClick={() => window.location.href = "/"}>Continuez vos réservations</button>
+                <button className="cart-continue-button" onClick={() => window.location.href = "/"}>Continuez vos réservations</button>
                 <button className="clear-cart-button" onClick={handleClearCart}>
                     Vider le panier 
                 </button>

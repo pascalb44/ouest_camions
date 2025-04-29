@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CustomDatePicker from "../../components/CustomDatePicker";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const TrailerDetail = () => {
     const { id } = useParams();
@@ -10,6 +10,8 @@ const TrailerDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [durationTrailer, setDurationTrailer] = useState(0);
+
+    const navigate = useNavigate();
 
     // Add these states to fix the "not defined" errors
     const [startDate, setStartDate] = useState(null);
@@ -65,11 +67,11 @@ const TrailerDetail = () => {
         const existingReservations = JSON.parse(localStorage.getItem("reservations")) || [];
 
         const isTrailerAlreadyBooked = existingReservations.some(reservation => {
-            if (reservation.id === trailer.id) { 
+            if (reservation.id === trailer.id) {
                 const existingStartDate = new Date(reservation.startDate);
                 const existingEndDate = new Date(reservation.endDate);
 
-                 
+
                 return (newStartDate <= existingEndDate && newEndDate >= existingStartDate);
             }
             return false;
@@ -89,7 +91,7 @@ const TrailerDetail = () => {
 
     return (
         <div>
-            <Link to="/categories-trailers/" className="trailer-btn-return">Retour à la liste</Link>
+            <button onClick={() => navigate(-1)} className="trailer-btn-return">Retour à la liste</button>
             <div className="trailer-detail-page">
                 <h1 className="h1-trailer-detail">{trailer.brand_trailer} {trailer.name_trailer}</h1>
                 <div className="edito-trailer">

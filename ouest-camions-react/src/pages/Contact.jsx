@@ -84,7 +84,7 @@ const ContactForm = () => {
                     </div>
                     <div>
                         <label htmlFor="message" className="label-contact">Message</label>
-                        <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
+                        <textarea id="message" name="message" className="textarea-contact" value={formData.message} onChange={handleChange} required> </textarea>
                     </div>
                     <button type="submit" className="button-register">Envoyer</button>
                 </form>

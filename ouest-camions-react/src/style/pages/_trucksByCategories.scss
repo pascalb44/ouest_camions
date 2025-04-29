@@ -4,6 +4,16 @@
 
     /***************************** page trucks by categories **********************************/
 
+    .truck-by-category-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 0% 10%;
+    }
 
     .h1-truck-by-category-name {
         text-align: center;
@@ -104,6 +114,17 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
 
+    .truck-by-category-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 0% 10%;
+    }
+    
     .h1-truck-by-category-name {
         text-align: center;
         font-size: 1.5rem;

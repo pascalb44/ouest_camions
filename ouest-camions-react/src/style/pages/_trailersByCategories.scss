@@ -4,6 +4,17 @@
 
     /***************************** page trailers by categories **********************************/
 
+    
+    .trailer-by-category-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 0% 10%;
+    }
 
     .h1-trailer-category-name {
         text-align: center;
@@ -94,8 +105,15 @@
 @media (min-width: 769px) and (max-width: 1024px) {
 
 
-    .container-trailer-category {
-        width: 100%;
+    .trailer-by-category-btn-return {
+        display: flex;
+        text-align: center;
+        color: white;
+        background-color: gray;
+        text-decoration: none;
+        padding: 10px;
+        width: max-content;
+        margin: 3% 0 0% 10%;
     }
 
     .h1-trailer-category-name {

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CustomDatePicker from "../../components/CustomDatePicker";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const TruckDetail = () => {
     const { id } = useParams();
@@ -10,6 +10,8 @@ const TruckDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [durationTruck, setDurationTruck] = useState(0);
+
+    const navigate = useNavigate();
 
     // Add these states to fix the "not defined" errors
     const [startDate, setStartDate] = useState(null);
@@ -90,7 +92,7 @@ const TruckDetail = () => {
 
     return (
         <div>
-            <Link to="/categories-trucks/" className="truck-btn-return-to-category-truck">Retour à la liste</Link>
+            <button onClick={() => navigate(-1)} className="truck-btn-return-to-category-truck">Retour à la liste</button>
             <h1 className="h1-truck-detail">{truck.brand_truck} {truck.name_truck}</h1>
             <div className="truck-detail-page">
                 <div className="truck-detail">
