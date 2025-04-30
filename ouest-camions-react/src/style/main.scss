@@ -13,6 +13,9 @@
 @import "components/iconPromoHomeMobile";
 @import "components/imageHome";
 @import "components/imageHomeMobile";
+@import "components/imageHistorique";
+@import "components/imageHistoriqueMobile";
+
 @import "components/loginForm";
 @import "components/loginFormMobile";
 @import "components/registerForm";
@@ -20,6 +23,8 @@
 
 
 @import "pages/homeMobile";
+@import "pages/presentation";
+@import "pages/presentationMobile";
 
 
 @import "pages/contact";
@@ -63,6 +68,8 @@
 
 @import "pages/cart";
 @import "pages/cartMobile";
+
+@import "pages/admin/adminDashboard";
 
 @import "pages/admin/adminCategoriesTrailers";
 @import "pages/admin/adminCategoriesTrailersMobile";

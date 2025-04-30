@@ -4,8 +4,14 @@
 
 @media (min-width: 1025px) {
 
+    .h1-cart {
+        color: blue;
+        margin: 5% 0 7%;
+        text-align: center;
+    }
+
     .cart {
-        margin: 5%;
+        margin-left: 10%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
@@ -50,17 +56,39 @@
         padding: 10px;
     }
 
+    .cart-buttons {
+        display: flex;
+        flex-direction: row;
+        margin: 10% 0 10% 10%;
+        font-size: 1.2rem;
+    }
+
+    .cart-to-payment-button {
+        background-color: green;
+        padding: 3%;
+        width: 25%;
+        text-align: center;
+    }
+
+    .cart-to-payment-button-btn {
+        color: white;
+        text-decoration: none;
+    }
+
     .cart-continue-button {
         background-color: blue;
         color: white;
         padding: 10px;
+        margin-left: 5%;
+        width: 25%;
     }
-    
+
     .clear-cart-button {
         background-color: red;
         color: white;
         padding: 10px;
         margin-left: 5%;
+        width: 25%;
     }
 
 }
@@ -70,6 +98,16 @@
 /* tablette lanscape */
 
 @media (min-width: 769px) and (max-width: 1024px) {
+
+    .h1-cart {
+        color: blue;
+        margin: 5% 0 7%;
+        text-align: center;
+    }
+
+    .cart {
+        margin-left : 10%
+    }
 
     .back-message {
         font-size: 1rem;
@@ -110,6 +148,41 @@
         background-color: dodgerblue;
         width: max-content;
         padding: 10px;
+    }
+
+    .cart-buttons {
+        display: flex;
+        flex-direction: row;
+        margin: 10% 0 10% 10%;
+        font-size: 1.1rem;
+    }
+
+    .cart-to-payment-button {
+        background-color: green;
+        padding: 3%;
+        width: 25%;
+        text-align: center;
+    }
+
+    .cart-to-payment-button-btn {
+        color: white;
+        text-decoration: none;
+    }
+
+    .cart-continue-button {
+        background-color: blue;
+        color: white;
+        padding: 10px;
+        margin-left: 5%;
+        width: 25%;
+    }
+
+    .clear-cart-button {
+        background-color: red;
+        color: white;
+        padding: 10px;
+        margin-left: 5%;
+        width: 25%;
     }
 
 

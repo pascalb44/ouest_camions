@@ -31,7 +31,8 @@ const Footer = () => {
                     <p className="company-footer-title">L'entreprise</p>
                     <p><Link to="/cgv" className="nav-link">CGV</Link></p>
                     <p>Nos agences</p>
-                    <p>Qui sommes nous?</p>
+                    <p><Link to="/presentation" className="nav-link">Qui sommes nous?</Link></p>
+                   
                 </div>
                 <div className="services-footer">
                     <p className="services-footer-title">Nos services</p>

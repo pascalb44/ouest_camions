@@ -11,6 +11,8 @@ import PaypalCheckout from './components/PaypalCheckout';
 
 import Legal from "./pages/Legal";
 import Cgv from "./pages/Cgv";
+import Presentation from "./pages/Presentation";
+
 
 
 import CategoriesTrucks from "./pages/categories-trucks/CategoriesTrucks"; /* version public */
@@ -76,6 +78,7 @@ function App() {
 
           <Route path="legal" element={<Legal />} />
           <Route path="cgv" element={<Cgv />} />
+          <Route path="presentation" element={<Presentation />} />
 
           <Route path="categories-trucks" element={<CategoriesTrucks />} />
           <Route path="/trucks-by-category/:id" element={<TrucksByCategory />} />

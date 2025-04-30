@@ -4,6 +4,8 @@ services:
     build: ./ouest-camions-api # back
     ports:
       - 8000:80
+    volumes :configs:
+      - ~/storage:/var/www/app/storage
 
   vue-docker:
     container_name: vue-docker
@@ -15,7 +17,7 @@ services:
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ouest_camions_docker
+      MYSQL_DATABASE: ouest_camions
     ports:
       - 3306:3306
 

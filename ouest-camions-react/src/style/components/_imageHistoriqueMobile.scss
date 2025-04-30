@@ -1,0 +1,26 @@
+/* tablette orientation landscape */
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .image-historique {
+        margin-left: 20%;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
+    .image-historique {
+        margin-left: 20%;
+
+        img {
+            width: 100%;
+        }
+    }
+}

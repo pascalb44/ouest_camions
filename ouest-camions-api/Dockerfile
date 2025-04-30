@@ -1,6 +1,6 @@
 FROM php:8.2-apache
  
-# Installation des dépendances PHP
+# Install dépendancies PHP
 RUN apt-get update && apt-get install -y \ 
     libfreetype-dev \ 
     libjpeg62-turbo-dev \ 
@@ -13,12 +13,13 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \ 
     && docker-php-ext-install mysqli pdo pdo_mysql 
  
-# Copie des fichiers locaux vers le conteneur
+# Copy file to conteneur
 COPY . /var/www/app 
-# Ce dossier devient notre repertoire courant
+
+# current repertory
 WORKDIR /var/www/app 
 
-# Copie de l'environnement
+# Copy of environement
 COPY .env.test /var/www/app/.env
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
  
@@ -26,12 +27,14 @@ RUN a2enmod rewrite
  
 RUN chown -R www-data:www-data /var/www/app \ 
     && chmod -R 775 /var/www/app/storage 
- 
-# Installation de composer
-# Configurer la variable d'environnement 
+
+RUN chown -R www-data:www-data /var/www/app \storage 
+
+# Install composer
+# Configure environement variable
 ENV COMPOSER_ALLOW_SUPERUSER=1 
 COPY --from=composer:2.6.5 /usr/bin/composer /usr/local/bin/composer 
  
-# Installation des dependences
+# Install dependencies
 COPY composer.json ./ 
 RUN composer install

@@ -81,20 +81,20 @@ const Cart = () => {
 
     const handleProceedToPayment = () => {
         const token = localStorage.getItem("token");
-    
+
         if (!token) {
             alert("Vous devez être connecté pour procéder au paiement.");
             return;
         }
-    
+
         localStorage.setItem("reservations", JSON.stringify(reservations));
-    
+
         const totalPrice = totalTruckPrice + totalTrailerPrice;
         const reservationPayload = {
             amount: totalPrice,
             reservations,
         };
-    
+
         localStorage.setItem("reservation", JSON.stringify(reservationPayload));
     };
 
@@ -131,7 +131,7 @@ const Cart = () => {
 
     return (
         <div>
-            <h1 className="h1">Votre panier de réservation</h1>
+            <h1 className="h1-cart">Votre panier</h1>
             <div className="cart">
                 <h2 className="h2-resa-trucks">Réservation camions</h2>
                 {reservations.length === 0 ? (
@@ -167,15 +167,16 @@ const Cart = () => {
                 <h2>Total de la réservation</h2>
                 <p><strong>Prix total :</strong> {totalTruckPrice + totalTrailerPrice} €</p>
 
-                <Link to={`/payment`} onClick={handleProceedToPayment}>Payer</Link>
-                <button className="cart-continue-button" onClick={() => window.location.href = "/"}>Continuez vos réservations</button>
-                <button className="clear-cart-button" onClick={handleClearCart}>
-                    Vider le panier 
-                </button>
+                <div className="cart-buttons">
+                    <div className="cart-to-payment-button"><Link to={`/payment`} className="cart-to-payment-button-btn" onClick={handleProceedToPayment}>Payer</Link></div>
+                    <button className="cart-continue-button" onClick={() => window.location.href = "/"}>Continuez vos réservations</button>
+                    <button className="clear-cart-button" onClick={handleClearCart}>
+                        Vider le panier
+                    </button>
+                </div>
             </div>
         </div>
     );
 };
 
-export default Cart;
- 
+export default Cart; 

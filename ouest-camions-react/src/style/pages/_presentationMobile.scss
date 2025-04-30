@@ -1,0 +1,92 @@
+/* tablette portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .h1-presentation {
+        color: blue;
+        background-color: darkturquoise;
+        padding: 2%;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 10% auto 5%;
+    }
+
+    .h2-presentation {
+        text-transform: uppercase;
+        padding: 2%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .historique-top {
+        text-align: justify;
+        padding: 5%;
+        width: 80%;
+        margin-left: 10%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2rem;
+    }
+
+    .image-historique {
+        margin-bottom: 3%;
+        width: 70%;
+    }
+
+    .historique-bottom p {
+        text-align: justify;
+        padding: 5%;
+        width: 80%;
+        margin: 5% 0 5% 10%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.2rem;
+    }
+
+}
+
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+    
+    .h1-presentation {
+        color: blue;
+        background-color: darkturquoise;
+        padding: 2%;
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 10% auto 5%;
+    }
+
+    .h2-presentation {
+        text-transform: uppercase;
+        padding: 2%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .historique-top {
+        text-align: justify;
+        padding: 5%;
+        width: 80%;
+        margin-left: 10%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.1rem;
+    }
+
+    .image-historique {
+        margin-bottom: 3%;
+        width: 65%;
+    }
+
+    .historique-bottom p {
+        text-align: justify;
+        padding: 5%;
+        width: 80%;
+        margin: 5% 0 5% 10%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.1rem;
+    }
+}

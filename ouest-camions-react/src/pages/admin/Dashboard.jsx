@@ -56,7 +56,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h1>Tableau de Bord Admin</h1>
+            <h1 className="h1-dashboard">Tableau de Bord Admin</h1>
             {error && <p className="text-red-500">{error}</p>}
             <p>{message}</p>
             <ul>
@@ -67,9 +67,7 @@ const Dashboard = () => {
                 <li><Link to="/admin/orders">Gestion des commandes</Link></li>
                 <li><Link to="/admin/users">Gestion des clients</Link></li>
             </ul>
-            <button 
-                onClick={handleLogout} 
-                className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"> 
+            <button onClick={handleLogout} className="btn-to-login"> 
                 Se déconnecter {/* go to login page */}
             </button>
         </div>

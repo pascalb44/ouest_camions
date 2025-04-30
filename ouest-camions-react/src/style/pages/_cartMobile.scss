@@ -2,6 +2,13 @@
 
 
 @media (min-width: 481px) and (max-width: 768px) {
+
+    .h1-cart {
+        color: blue;
+        margin: 10% 0 10%;
+        text-align: center;
+    }
+
     .cart {
         margin: 5%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -41,13 +48,43 @@
 
 
     .h2-resa-trailers {
-        margin: 5% 0 3%;
+        margin: 10% 0 3%;
         border: solid 1px blue;
         background-color: dodgerblue;
         width: max-content;
         padding: 10px;
     }
 
+    
+    .cart-buttons {
+        display: flex;
+        flex-direction: column;
+        margin: 15% auto 15%;
+        font-size: 1.1rem;
+    }
+
+    .cart-to-payment-button {
+        background-color: green;
+        padding: 3%;
+        text-align: center;
+    }
+
+    .cart-to-payment-button-btn {
+        color: white;
+        text-decoration: none;
+    }
+
+    .cart-continue-button {
+        background-color: blue;
+        color: white;
+        padding: 10px;
+    }
+
+    .clear-cart-button {
+        background-color: red;
+        color: white;
+        padding: 10px;
+    }
 }
 
 
@@ -58,6 +95,11 @@
 
 @media (max-width: 480px) {
 
+    .h1-cart {
+        color: blue;
+        margin: 10% 0 10%;
+        text-align: center;
+    }
 
     .back-message {
         font-size: 1rem;
@@ -92,11 +134,40 @@
 
 
     .h2-resa-trailers {
-        margin: 5% 0 3%;
+        margin: 10% 0 3%;
         border: solid 1px blue;
         background-color: dodgerblue;
         width: max-content;
         padding: 10px;
     }
+    
+    .cart-buttons {
+        display: flex;
+        flex-direction: column;
+        margin: 15% auto 15%;
+        font-size: 1.1rem;
+    }
 
+    .cart-to-payment-button {
+        background-color: green;
+        padding: 3%;
+        text-align: center;
+    }
+
+    .cart-to-payment-button-btn {
+        color: white;
+        text-decoration: none;
+    }
+
+    .cart-continue-button {
+        background-color: blue;
+        color: white;
+        padding: 10px;
+    }
+
+    .clear-cart-button {
+        background-color: red;
+        color: white;
+        padding: 10px;
+    }
 }

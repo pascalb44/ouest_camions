@@ -1,0 +1,89 @@
+/***************** version desktop *******************/
+
+@media (min-width: 1025px) {
+
+
+    .h1-presentation {
+        color: blue;
+        background-color: darkturquoise;
+        padding: 2%;
+        font-size: 2rem;
+        text-align: center;
+        margin: 10% auto 5%;
+    }
+
+    .h2-presentation {
+        text-transform: uppercase;
+        padding: 2%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
+    .historique-top {
+        text-align: justify;
+        padding: 5%;
+        width: 80%;
+        margin-left: 10%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.4rem;
+    }
+
+    .image-presentation {
+        width: 70%;
+    }
+
+    .historique-bottom p {
+        text-align: justify;
+        padding: 5%;
+        width: 80%;
+        margin: 5% 0 5% 10%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.4rem;
+    }
+}
+
+/* tablette lanscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+
+    .h1-presentation {
+        color: blue;
+        background-color: darkturquoise;
+        padding: 2%;
+        font-size: 1.9rem;
+        text-align: center;
+        margin: 10% auto 5%;
+    }
+
+    .h2-presentation {
+        text-transform: uppercase;
+        padding: 2%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .historique-top {
+        text-align: justify;
+        padding: 5%;
+        width: 80%;
+        margin-left: 10%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.3rem;
+    }
+
+    .image-presentation {
+        width: 70%;
+    }
+
+    .historique-bottom p {
+        text-align: justify;
+        padding: 5%;
+        width: 80%;
+        margin: 5% 0 5% 10%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.3rem;
+    }
+}

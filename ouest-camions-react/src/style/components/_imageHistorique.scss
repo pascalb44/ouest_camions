@@ -1,0 +1,27 @@
+/**************  map of the home page **********************************/
+
+/* desktop */
+
+@media (min-width: 1025px) {
+
+    .image-historique {
+        margin-left: 20%;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+/* tablette orientation landscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .image-historique {
+        margin-left: 20%;
+
+        img {
+            width: 100%;
+        }
+    }
+}
