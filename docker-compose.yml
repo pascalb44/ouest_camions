@@ -4,7 +4,7 @@ services:
     build: ./ouest-camions-api # back
     ports:
       - 8000:80
-    volumes :configs:
+    volumes:
       - ~/storage:/var/www/app/storage
 
   vue-docker:
@@ -20,4 +20,6 @@ services:
       MYSQL_DATABASE: ouest_camions
     ports:
       - 3306:3306
+    volumes :
+      - ~/datadir:/var/lib/mysql
 
