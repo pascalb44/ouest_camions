@@ -11,7 +11,7 @@ const CategoriesTrucks = () => {
 
     const displayCategoriesTrucks = async () => {
         try {
-            const res = await axios.get("http://127.0.0.1:8000/api/categories-trucks");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories-trucks`);
             setCategoriesTrucks(res.data);
         } catch (error) {
             console.error("Erreur lors du chargement des catégories :", error);
@@ -21,7 +21,7 @@ const CategoriesTrucks = () => {
     const deleteCategoryTruck = async (id) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://127.0.0.1:8000/api/admin/categories-trucks/${id}`, {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/admin/categories-trucks/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -51,7 +51,7 @@ const CategoriesTrucks = () => {
                                 <div className="admin-categories-trucks-line">
                                     <td className="admin-category-truck-name">{categoryTruck.name_category_truck}</td>
                                     <td>
-                                        <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${categoryTruck.image_category_truck}`}
+                                        <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/CategoryTruck/${categoryTruck.image_category_truck}`}
                                             alt={categoryTruck.name} width="75px" className="admin-category-truck-image" />
                                     </td>
                                 </div>

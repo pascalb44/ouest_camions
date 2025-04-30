@@ -30,8 +30,7 @@ const AddCategoryTrailer = () => {
             for (let [key, value] of formData.entries()) {
                 console.log(`${key}:`, value);
             }
-            await axios.post(
-                'http://127.0.0.1:8000/api/admin/categories-trailers',
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/admin/categories-trailers`,
                 formData,
                 {
                     headers: {

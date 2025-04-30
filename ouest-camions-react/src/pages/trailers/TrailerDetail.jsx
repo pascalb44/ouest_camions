@@ -27,7 +27,7 @@ const TrailerDetail = () => {
     useEffect(() => {
         const fetchTrailerDetail = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/trailers/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/trailers/${id}`);
                 setTrailer(response.data);
             } catch (error) {
                 setError("Erreur lors du chargement de la remorque.");
@@ -100,7 +100,7 @@ const TrailerDetail = () => {
                 <section className="trailer-detail-top">
                     <div className="trailer-detail-block">
                         <div className="trailer-image-box">
-                            <img src={`http://127.0.0.1:8000/storage/uploads/trailer/${trailer.image_trailer}`} className="trailer-image" alt={`remorque ${trailer.name_trailer}`} />
+                            <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/trailer/${trailer.image_trailer}`} className="trailer-image" alt={`remorque ${trailer.name_trailer}`} />
                         </div>
                     </div>
                     <div className="trailer-block-features">

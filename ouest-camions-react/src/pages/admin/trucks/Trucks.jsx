@@ -11,7 +11,7 @@ const Trucks = () => {
 
     const displayTrucks = async () => {
         try {
-            const res = await axios.get("http://127.0.0.1:8000/api/trucks");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/trucks`);
             setTrucks(res.data);
         } catch (error) {
             console.error("Erreur lors du chargement des camions :", error);
@@ -21,7 +21,7 @@ const Trucks = () => {
     const deleteTruck = async (id) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://127.0.0.1:8000/api/admin/trucks/${id}`, {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/admin/trucks/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -66,7 +66,7 @@ const Trucks = () => {
                     {Trucks.map((truck) => (
                         <tr className="admin-truck-unite" key={truck.id}>
                             <td className="admin-truck-image-container">
-                                <img src={`http://127.0.0.1:8000/storage/uploads/truck/${truck.image_truck}`} alt={truck.name} width="75px" className="admin-truck-image" />
+                                <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/truck/${truck.image_truck}`} alt={truck.name} width="75px" className="admin-truck-image" />
                             </td>
                             <td className="admin-truck-detail">{truck.brand_truck}</td>
                             <td className="admin-truck-detail">{truck.categories_trucks?.name_category_truck}</td>
@@ -103,7 +103,7 @@ const Trucks = () => {
                     <div className="admin-truck-unit" key={truck.id}>
                         <div className="admin-truck-top-line">
                             <div className="admin-truck-image-container-mobile">
-                                <img src={`http://127.0.0.1:8000/storage/uploads/truck/${truck.image_truck}`} alt={truck.name_truck} className="admin-truck-image" />
+                                <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/truck/${truck.image_truck}`} alt={truck.name_truck} className="admin-truck-image" />
                             </div>
                             <div className="admin-truck-fields">
                                 <div><strong>Marque :</strong> {truck.brand_truck}</div>

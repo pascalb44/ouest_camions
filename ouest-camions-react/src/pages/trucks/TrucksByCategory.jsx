@@ -12,7 +12,7 @@ const TrucksByCategory = () => {
 
     const fetchTrucksByCategory = useCallback(async () => {
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/trucks/category/${id}`);
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/trucks/category/${id}`);
 
             if (res.data && res.data.trucks) {
                 setCategoryName(res.data.category_name);
@@ -44,7 +44,7 @@ const TrucksByCategory = () => {
                                 <p>{truck.brand_truck} {truck.name_truck}</p>
                             </div>
                             <div className="truck-by-category-image-box">
-                                <img src={`http://127.0.0.1:8000/storage/uploads/Truck/${truck.image_truck}`} className="truck-by-category-image" alt={truck.name_truck} />
+                                <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/Truck/${truck.image_truck}`} className="truck-by-category-image" alt={truck.name_truck} />
                             </div>
                             <div className="truck-by-category-content">
                                 <p>{truck.km_truck} km</p>

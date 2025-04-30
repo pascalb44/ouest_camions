@@ -30,7 +30,7 @@ const AddTrailer = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/admin/categories-trailers', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/categories-trailers`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
@@ -77,7 +77,7 @@ const AddTrailer = () => {
         try {
 
             await axios.post(
-                'http://127.0.0.1:8000/api/admin/trailers',
+                `${process.env.REACT_APP_API_URL}/api/admin/trailers`,
                 formData,
                 {
                     headers: {

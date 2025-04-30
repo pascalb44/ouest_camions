@@ -21,14 +21,14 @@ export default function ImageHome() {
 
 
   const displayCategoriesTrucks = async () => {
-    axios.get("http://127.0.0.1:8000/api/categories-trucks")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/categories-trucks`)
       .then((response) => {
         setCategoriesTrucks(response.data);
       });
   };
 
   const displayCategoriesTrailers = async () => {
-    axios.get("http://127.0.0.1:8000/api/categories-trailers")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/categories-trailers`)
       .then((response) => {
         const filteredTrailer = response.data.find(trailer => trailer.id === 1);  /* get only the picture of the trailer with id number 1*/
         setCategoriesTrailers(filteredTrailer ? [filteredTrailer] : []);
@@ -50,7 +50,7 @@ export default function ImageHome() {
     <div className="home-pictures-card">
       {getTruckImage() && (
         <div className="home-pictures">
-          <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${getTruckImage()}`} alt="Truck" className="category-truck-home-image" />
+          <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/CategoryTruck/${getTruckImage()}`} alt="Truck" className="category-truck-home-image" />
           <div className="image-caption">
             <Link to="/categories-trucks" className="category-truck-link">
               <h3>Nos camions</h3>
@@ -61,7 +61,7 @@ export default function ImageHome() {
 
       {getTrailerImage() && (
         <div className="home-pictures">
-          <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${getTrailerImage()}`} alt="Trailer" className="category-trailer-home-image" />
+          <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/CategoryTrailer/${getTrailerImage()}`} alt="Trailer" className="category-trailer-home-image" />
           <div className="image-caption">
             <Link to="categories-trailers/" className="category-trailer-link">
               <h3>Nos remorques</h3>

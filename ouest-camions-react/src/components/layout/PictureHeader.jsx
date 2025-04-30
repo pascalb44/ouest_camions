@@ -8,7 +8,7 @@ const PictureHeader = () => {
     useEffect(() => {
         // Fetch the image from your API
         axios
-            .get("http://127.0.0.1:8000/api/header-image") // Adjust the API endpoint
+            .get(`${process.env.REACT_APP_API_URL}/api/header-image`) // Adjust the API endpoint
             .then((response) => {
                 setPictureSrc(response.data.image); // get the picture from the API
             })

@@ -13,7 +13,7 @@ const Orders = () => {
             return navigate("/login");
         }
 
-        axios.get("http://localhost:8000/api/orders", {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/orders`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json'

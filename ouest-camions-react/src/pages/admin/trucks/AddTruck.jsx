@@ -31,7 +31,7 @@ const AddTruck = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/admin/categories-trucks', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/categories-trucks`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
@@ -80,7 +80,7 @@ const AddTruck = () => {
         try {
 
             await axios.post(
-                'http://127.0.0.1:8000/api/admin/trucks',
+               `${process.env.REACT_APP_API_URL}/api/admin/trucks`,
                 formData,
                 {
                     headers: {

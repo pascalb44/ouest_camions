@@ -14,7 +14,7 @@ const EditCategoryTruck = () => {
     /* no need token here because elements of categories_trucks are public */
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:8000/api/categories-trucks/${id}`)
+            fetch(`${process.env.REACT_APP_API_URL}/api/categories-trucks/${id}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setCategoryTruck(data);
@@ -42,7 +42,7 @@ const EditCategoryTruck = () => {
         /* we need to get token for admin */
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post(`http://127.0.0.1:8000/api/admin/categories-trucks/${id}`,
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/admin/categories-trucks/${id}`,
                 formData,
                 {
                     headers: {
@@ -83,7 +83,7 @@ const EditCategoryTruck = () => {
                         {imagePreview ? (
                             <img src={imagePreview} alt={categoryTruck.name_category_truck} className="admin-category-truck-image-edit" />
                         ) : categoryTruck.image_category_truck ? (
-                            <img src={`http://127.0.0.1:8000/storage/uploads/Categorytruck/${categoryTruck.image_category_truck}`}
+                            <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/Categorytruck/${categoryTruck.image_category_truck}`}
                                 alt={categoryTruck.name_category_truck} className="admin-category-truck-image-edit" />
                         ) : (
                             <p>Aucune image</p>

@@ -28,7 +28,7 @@ const AddCategoryTruck = () => {
                 console.log(`${key}:`, value);
             }
             await axios.post(
-                'http://127.0.0.1:8000/api/admin/categories-trucks',
+                `${process.env.REACT_APP_API_URL}/api/admin/categories-trucks`,
                 formData,
                 {
                     headers: {

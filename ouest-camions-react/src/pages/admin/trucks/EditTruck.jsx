@@ -17,7 +17,7 @@ const EditTruck = () => {
     /* no need token here because elements of trucks are public */
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:8000/api/trucks/${id}`)
+            fetch(`${process.env.REACT_APP_API_URL}/api/trucks/${id}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setTruck(data);
@@ -30,7 +30,7 @@ const EditTruck = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/admin/categories-trucks', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/categories-trucks`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
@@ -84,7 +84,7 @@ const EditTruck = () => {
         /* we need to get token for admin */
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post(`http://127.0.0.1:8000/api/admin/trucks/${id}`,
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/admin/trucks/${id}`,
                 formData,
                 {
                     headers: {
@@ -202,7 +202,7 @@ const EditTruck = () => {
                         {imagePreview ? (
                             <img src={imagePreview} alt={Truck.name_truck} className="admin-truck-image-edit" />
                         ) : Truck.image_truck ? (
-                            <img src={`http://127.0.0.1:8000/storage/uploads/Truck/${Truck.image_truck}`}
+                            <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/Truck/${Truck.image_truck}`}
                                 alt={Truck.name_truck} className="admin-truck-image-edit" />
                         ) : (
                             <p>Aucune image</p>

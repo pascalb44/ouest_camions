@@ -29,7 +29,7 @@ const ContactForm = () => {
         try {
             const token = localStorage.getItem('token');
 
-            const response = await axios.post('http://localhost:8000/api/contacts', requestData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/contacts`, requestData, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

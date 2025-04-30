@@ -27,7 +27,7 @@ const TruckDetail = () => {
     useEffect(() => {
         const fetchTruckDetail = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/trucks/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/trucks/${id}`);
                 setTruck(response.data);
             } catch (error) {
                 setError("Erreur lors du chargement du camion.");
@@ -100,7 +100,7 @@ const TruckDetail = () => {
                         <p>{truck.description_truck}</p>
                     </div>
                     <div className="truck-image-box">
-                        <img src={`http://127.0.0.1:8000/storage/uploads/Truck/${truck.image_truck}`} className="truck-image" alt={`Camion ${truck.name_truck}`} />
+                        <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/Truck/${truck.image_truck}`} className="truck-image" alt={`Camion ${truck.name_truck}`} />
                     </div>
                     <div>
                         <div className="truck-detail-block">

@@ -11,7 +11,7 @@ const TrailersByCategory = () => {
 
     const fetchTrailersByCategory = useCallback(async () => {
         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/trailers/category/${id}`);
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/trailers/category/${id}`);
 
             if (res.data && res.data.trailers) {
                 setCategoryName(res.data.category_name);
@@ -45,7 +45,7 @@ const TrailersByCategory = () => {
                                 <p>{trailer.brand_trailer} {trailer.name_trailer}</p>
                             </div>
                             <div className="trailer-category-image-box">
-                                <img src={`http://127.0.0.1:8000/storage/uploads/Trailer/${trailer.image_trailer}`} className={`trailer-category-image ${trailers.length === 1 ? "trailer-category-image-one" : ""}`}
+                                <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/Trailer/${trailer.image_trailer}`} className={`trailer-category-image ${trailers.length === 1 ? "trailer-category-image-one" : ""}`}
                                     alt={trailer.name_trailer} />
                             </div>
 

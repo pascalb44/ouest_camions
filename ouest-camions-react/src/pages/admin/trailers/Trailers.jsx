@@ -11,7 +11,7 @@ const Trailers = () => {
 
     const displaytrailers = async () => {
         try {
-            const res = await axios.get("http://127.0.0.1:8000/api/trailers");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/trailers`);
             settrailers(res.data);
         } catch (error) {
             console.error("Erreur lors du chargement des remorques :", error);
@@ -21,7 +21,7 @@ const Trailers = () => {
     const deletetrailer = async (id) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://127.0.0.1:8000/api/admin/trailers/${id}`, {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/admin/trailers/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -51,7 +51,7 @@ const Trailers = () => {
                             <div><strong>Modèle :</strong> {trailer.name_trailer}</div>
                             <div><strong>Catégorie :</strong> {trailer.categories_trailers?.name_category_trailer || "N/A"}</div>
                             <div className="admin-trailer-image-container">
-                                <img src={`http://127.0.0.1:8000/storage/uploads/trailer/${trailer.image_trailer}`} alt={trailer.name_trailer} className="admin-trailer-image" />
+                                <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/trailer/${trailer.image_trailer}`} alt={trailer.name_trailer} className="admin-trailer-image" />
                             </div>
                         </div>
                         <div className="admin-trailer-bloc-right">

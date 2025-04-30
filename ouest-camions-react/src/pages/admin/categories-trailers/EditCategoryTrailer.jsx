@@ -36,7 +36,7 @@ const EditCategoryTrailer = () => {
         /* we need to get token for admin */
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post(`http://127.0.0.1:8000/api/admin/categories-trailers/${id}`,
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/admin/categories-trailers/${id}`,
                 formData,
                 {
                     headers: {
@@ -84,7 +84,7 @@ const EditCategoryTrailer = () => {
                         {imagePreview ? (
                             <img src={imagePreview} alt={categoryTrailer.name_category_trailer} className="admin-category-trailer-image-edit" />
                         ) : categoryTrailer.image_category_trailer ? (
-                            <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${categoryTrailer.image_category_trailer}`}
+                            <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/CategoryTrailer/${categoryTrailer.image_category_trailer}`}
                                 alt={categoryTrailer.name_category_trailer} className="admin-category-trailer-image-edit" />
                         ) : (
                             <p>Aucune image</p>

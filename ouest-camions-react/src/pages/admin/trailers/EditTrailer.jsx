@@ -17,7 +17,7 @@ const EditTrailer = () => {
     /* no need token here because elements of trailers are public */
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:8000/api/trailers/${id}`)
+            fetch(`${process.env.REACT_APP_API_URL}/api/trailers/${id}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setTrailer(data);
@@ -30,7 +30,7 @@ const EditTrailer = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/admin/categories-trailers', {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/categories-trailers`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`,
                     }
@@ -83,7 +83,7 @@ const EditTrailer = () => {
         /* we need to get token for admin */
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post(`http://127.0.0.1:8000/api/admin/trailers/${id}`,
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/admin/trailers/${id}`,
                 formData,
                 {
                     headers: {
@@ -198,7 +198,7 @@ const EditTrailer = () => {
                         {imagePreview ? (
                             <img src={imagePreview} alt={trailer.name_trailer} className="admin-trailer-image-edit" />
                         ) : trailer.image_trailer ? (
-                            <img src={`http://127.0.0.1:8000/storage/uploads/trailer/${trailer.image_trailer}`}
+                            <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/trailer/${trailer.image_trailer}`}
                                 alt={trailer.name_trailer} className="admin-trailer-image-edit" />
                         ) : (
                             <p>Aucune image</p>

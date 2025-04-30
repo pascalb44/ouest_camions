@@ -12,7 +12,7 @@ const CategoriesTrailers = () => {
 
     const displayCategoriesTrailers = async () => {
         try {
-            const res = await axios.get("http://127.0.0.1:8000/api/categories-trailers");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories-trailers`);
             setCategoriesTrailers(res.data);
         } catch (error) {
             console.error("Erreur lors du chargement des catégories :", error);
@@ -23,7 +23,7 @@ const CategoriesTrailers = () => {
     const deleteCategoryTrailer = async (id) => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://127.0.0.1:8000/api/admin/categories-trailers/${id}`, { /* only admin */
+            await axios.delete(`${process.env.REACT_APP_API_URL}/api/admin/categories-trailers/${id}`, { /* only admin */
                 headers: { Authorization: `Bearer ${token}` },
             });
 
@@ -60,7 +60,7 @@ const CategoriesTrailers = () => {
                                 <td className="admin-category-trailer-name">{categoryTrailer.name_category_trailer}</td>
                                 <td className="admin-category-trailer-description">{categoryTrailer.description}</td>
                                 <td className="admin-category-trailer-image-container">
-                                    <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${categoryTrailer.image_category_trailer}`}
+                                    <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/CategoryTrailer/${categoryTrailer.image_category_trailer}`}
                                         alt={categoryTrailer.name} width="75px" className="admin-category-trailer-image" />
                                 </td>
                                 <td className="admin-categories-trailers-buttons">

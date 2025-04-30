@@ -13,7 +13,7 @@ const CategoriesTrucks = () => {
 
     const displayCategoriesTrucks = async () => {
         try {
-            const res = await axios.get("http://127.0.0.1:8000/api/categories-trucks");
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories-trucks`);
             setCategoriesTrucks(res.data);
         } catch (error) {
             console.error("Erreur lors du chargement des catégories :", error);
@@ -35,7 +35,7 @@ const CategoriesTrucks = () => {
                             <p>{truck.name_category_truck || "Nom indisponible"}</p>
                         </div>
                         <div className="category-truck-image-box">
-                            <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTruck/${truck.image_category_truck}`} className="category-truck-image category-truck-image-specialized" alt="camion disponible en location" />
+                            <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/CategoryTruck/${truck.image_category_truck}`} className="category-truck-image category-truck-image-specialized" alt="camion disponible en location" />
                             {/* image_category_truck is the name of the picture in the table category_truck */}
                         </div>
                         <div className="category-truck-button-to-trucks-by-category-block">
