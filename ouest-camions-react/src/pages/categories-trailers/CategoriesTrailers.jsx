@@ -14,7 +14,7 @@ const CategoriesTrailers = () => {
 
   const displayCategoriesTrailers = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/categories-trailers");
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/categories-trailers`);
       setCategoriesTrailers(res.data);
     } catch (error) {
       console.error("Erreur lors du chargement des catégories :", error);
@@ -50,7 +50,7 @@ const CategoriesTrailers = () => {
             ref={(el) => (categoryRefs.current[trailer.id] = el)} // Assign a ref to each category
             className="categories-trailers-item">
             <div className="category-trailer-image-box">  {/* left side*/}
-              <img src={`http://127.0.0.1:8000/storage/uploads/CategoryTrailer/${trailer.image_category_trailer}`} className="category-trailer-image" alt="remorque disponible en location" />
+              <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/CategoryTrailer/${trailer.image_category_trailer}`} className="category-trailer-image" alt="remorque disponible en location" />
               {/* image_category_trailer is the name of the picture in the table category_trailer */}
             </div>
             <div className="categories-trailers-description-box"> {/* right side*/}
