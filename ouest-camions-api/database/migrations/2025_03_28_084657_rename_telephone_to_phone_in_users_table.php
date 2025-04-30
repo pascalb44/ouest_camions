@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //$table->renameColumn('telephone', 'phone');
+            $table->renameColumn('telephone', 'phone');
             $table->string('phone', 20)->change();
         });
     }
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-      //      $table->renameColumn('phone', 'telephone');
-            $table->string('telephone', 20)->change(); 
+            $table->renameColumn('phone', 'telephone');
+            $table->string('telephone', 20)->change();
         });
     }
 };
