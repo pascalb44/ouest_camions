@@ -56,8 +56,8 @@ jobs:
             "MODE=prod"
           push: true
           tags: |
-            ghcr.io/pascalb44-teaching/cda-api-prod:latest
-            ghcr.io/pascalb44-teaching/cda-api-prod:${{ github.sha }}
+            ghcr.io/pascalb44/cda-api-prod:latest
+            ghcr.io/pascalb44/cda-api-prod:${{ github.sha }}
 
   build-and-push-image-spa-prod:
     needs:
@@ -71,7 +71,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: https://ghcr.io
-          username: jay19240-teaching
+          username: pascalb44
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
@@ -81,5 +81,5 @@ jobs:
             "MODE=prod"
           push: true
           tags: |
-            ghcr.io/pascalb44-teaching/cda-spa-prod:latest
-            ghcr.io/pascalb44-teaching/cda-spa-prod:${{ github.sha }}
+            ghcr.io/pascalb44/cda-spa-prod:latest
+            ghcr.io/pascalb44/cda-spa-prod:${{ github.sha }}
