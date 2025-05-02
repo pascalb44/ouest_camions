@@ -7,7 +7,7 @@ const path = require('path');
 
 
 const Axios = axios.create({
-    baseURL: 'http://localhost:8000/api', /* no localhost */
+    baseURL: 'http://localhost:8000/api', /* no localhost for local but necessary for tests in github */
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ async function login(credentials) {
             ...userData,
             token,
         };
-    /*    authAxios = axios.create({
+        authAxios = axios.create({
             baseURL: 'http://127.0.0.1:8000/api',
             headers: {
                 Accept: 'application/json',
@@ -41,7 +41,7 @@ async function login(credentials) {
                 Authorization: `Bearer ${token}`,
             },
         });
-        */
+        
 
         //console.log('Utilisateur connecté :', user); // get data user + token 
 
@@ -308,7 +308,7 @@ describe('Commande - Ajouter un camion au panier', () => {
             trailers: [],
         };
 
-        try {
+    
             console.log('Payload envoyé à /cart :', payload);
 
             const response = await authAxios.get('/cart', {
@@ -317,13 +317,10 @@ describe('Commande - Ajouter un camion au panier', () => {
 
             expect(response.status).toBe(200);
             const lastOrder = response.data[response.data.length - 1];
-            expect(lastOrder.trucks[0].truck).toBe(33); // Vérifie que le camion 33 est bien dans la commande
+            expect(lastOrder.trucks[0].truck).toBe(33); // Verif if truck 33 is in the order
 
             console.log('Réponse brute:', JSON.stringify(response.data, null, 2));
-                } catch (error) {
-            console.error('Erreur lors de la création de la commande camion', error.response?.data || error.message);
-            throw error;
-        }
+        
     });
 });
 
@@ -348,7 +345,6 @@ describe('Panier - Ajout d\'élément au panier', () => {
             trailers: [], 
         };
         
-        try {
             console.log('Payload envoyé à /orders :', payload);
             const response = await authAxios.post('/orders', payload);
 
@@ -356,10 +352,7 @@ describe('Panier - Ajout d\'élément au panier', () => {
             expect(response.data).toHaveProperty('order');
             expect(response.data.order.trucks[0].id_truck).toBe(28); // Vérifie que le camion a bien été ajouté au panier
             console.log('Commande ajoutée au panier :', response.data.order);
-        } catch (error) {
-            console.error('Erreur lors de l\'ajout au panier', error.response?.data || error.message);
-            throw error;
-        }
+       
     });
 
     test('devrait récupérer les éléments du panier de l\'utilisateur', async () => {
