@@ -24,7 +24,7 @@ let authAxios; // for authentification
 
 
 async function login(credentials) {
-    try {
+   
         const res = await Axios.post('/login', credentials); // request 
         const { user: userData, access_token } = res.data.data; // user data 
         const token = access_token.token; // token  
@@ -46,9 +46,7 @@ async function login(credentials) {
         //console.log('Utilisateur connecté :', user); // get data user + token 
 
         return token;
-    } catch (error) {
-        throw new Error(`Erreur login : ${error.response?.data?.message || error.message}`);
-    }
+    
 }
 
 
