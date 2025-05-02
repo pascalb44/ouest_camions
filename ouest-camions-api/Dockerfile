@@ -1,4 +1,5 @@
 FROM php:8.2-apache
+ARG MODE=test
  
 # Install dépendancies PHP
 RUN apt-get update && apt-get install -y \ 
@@ -20,7 +21,7 @@ COPY . /var/www/app
 WORKDIR /var/www/app 
 
 # Copy of environement
-COPY .env.test /var/www/app/.env
+COPY .env.${MODE} .env
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf 
  
 RUN a2enmod rewrite 

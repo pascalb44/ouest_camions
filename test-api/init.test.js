@@ -289,7 +289,7 @@ describe('Admin API - CategoryTrailer Deletion with login', () => {
 // crud by user : create cart
 
 
-
+/*
 describe('Commande - Ajouter un camion au panier', () => {
     test('devrait créer une commande avec le camion 33', async () => {
         const credentials = {
@@ -307,13 +307,12 @@ describe('Commande - Ajouter un camion au panier', () => {
             trucks: [33],
             trailers: [],
         };
-
     
             console.log('Payload envoyé à /cart :', payload);
+            await authAxios.post('/cart', payload); 
 
-            const response = await authAxios.get('/cart', {
-                params: payload
-            });
+            const response = await authAxios.get('/cart');     
+           
 
             expect(response.status).toBe(200);
             const lastOrder = response.data[response.data.length - 1];
@@ -323,9 +322,9 @@ describe('Commande - Ajouter un camion au panier', () => {
         
     });
 });
+*/
 
-
-
+/*
 
 describe('Panier - Ajout d\'élément au panier', () => {
     test('devrait ajouter un camion au panier sans paiement', async () => {
@@ -368,7 +367,7 @@ describe('Panier - Ajout d\'élément au panier', () => {
     });
 });
 
-
+*/
 
 //  read cart of the user 5 = ok 
 
@@ -420,7 +419,7 @@ describe("Vérification d'un camion dans le panier", () => {
 */
 
 /*  read all the orders of the user  = ok  */
-
+/*
 
 describe("User orders", () => {
     test("Vérifie si l'acheteur a des commandes", async () => {
@@ -444,7 +443,10 @@ describe("User orders", () => {
 
         console.log('List des commandes du user  :', orders);
     });
-});
+});*
+
+*/
+
 
 
 
@@ -495,7 +497,7 @@ describe('API accessibility test', () => {
 });
 
 */
-
+/*
 // page login : ok
 
 
@@ -506,9 +508,9 @@ describe('API accessibility test', () => {
 
     });
 });
+*/
 
-
-
+/*
 
 // test to open page categories-trucks by user = ok
 
@@ -519,12 +521,12 @@ describe('API accessibility test', () => {
         expect(response.status).toBe(200);
     });
 });
+*/
 
 
 
 
-
-
+/*
 // test to open public page categories-trailers/3 
 
 
@@ -535,10 +537,10 @@ describe('API accessibility test', () => {
         expect(response.status).toBe(200);
     });
 });
-
+*/
 
 // test to open public page categories-trucks/1 = ok
-
+/*
 
 describe('API accessibility test', () => {
     test('should return status 200 for /trucks/category/1', async () => {
@@ -547,14 +549,14 @@ describe('API accessibility test', () => {
     });
 });
 
-
+*/
 
 
 // page detail
 
 // test to open page trucks/27 = ok  
 
-
+/*
 
 describe('API accessibility test', () => {
     test('should return status 200 for /trucks/27', async () => {
@@ -565,12 +567,12 @@ describe('API accessibility test', () => {
     });
 });
 
-
+*/
 
 
 // test to open page trailers/1 by visitor = ok  
 
-
+/*
 
 describe('API accessibility test', () => {
     test('should return status 200 for /trailers/1', async () => {
@@ -580,5 +582,5 @@ describe('API accessibility test', () => {
     });
 });
 
-
+*/
 

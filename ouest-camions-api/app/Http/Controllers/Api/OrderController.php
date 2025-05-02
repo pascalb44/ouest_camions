@@ -65,8 +65,6 @@ class OrderController extends Controller
             $order->trailers()->attach($formFields['trailers']); // 2 : trailers
         }
 
-        
-
         if ($formFields['method_payment'] === 'none') {
             return response()->json(['message' => 'Utiliser /cart pour enregistrer un panier'], 400); /* no confusion with  cart */
         }

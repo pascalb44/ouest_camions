@@ -1,21 +1,21 @@
-name: ouest-camions
+name: ouestcamion
 
 on: # specify the build to trigger the automated ci/cd
   push:
     branches:
-      - "dev" # branch of github 
+      - "dev"
 jobs:
-  docker:
+  tests:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: test-api # my testfile 
+        working-directory: test-api # test file
     steps:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Install Docker
-      uses: hoverkraft-tech/compose-action@v2.0.1 # go to github
+      uses: hoverkraft-tech/compose-action@v2.0.1
     - name: Sleep for 10 seconds
       run: sleep 10s
       shell: bash
@@ -33,3 +33,53 @@ jobs:
       run: npm install -g jest # global 
     - name: Run tests
       run: npm run test
+
+  build-and-push-image-api-prod:
+    needs:
+      - tests
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: https://ghcr.io
+          username: pascalb44 # user de github
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ouest-camions-api # laravel 
+          build-args: |
+            "MODE=prod"
+          push: true
+          tags: |
+            ghcr.io/pascalb44-teaching/cda-api-prod:latest
+            ghcr.io/pascalb44-teaching/cda-api-prod:${{ github.sha }}
+
+  build-and-push-image-spa-prod:
+    needs:
+      - tests
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: https://ghcr.io
+          username: jay19240-teaching
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ouest-camions-react # react
+          build-args: |
+            "MODE=prod"
+          push: true
+          tags: |
+            ghcr.io/pascalb44-teaching/cda-spa-prod:latest
+            ghcr.io/pascalb44-teaching/cda-spa-prod:${{ github.sha }}
