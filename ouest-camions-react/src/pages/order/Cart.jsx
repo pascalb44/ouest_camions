@@ -165,7 +165,6 @@ const Cart = () => {
                         ))
                 )}
                 <h2>Total de la réservation</h2>
-                <h3>dddddddddddddddddd</h3>
                 <p><strong>Prix total :</strong> {totalTruckPrice + totalTrailerPrice} €</p>
 
                 <div className="cart-buttons">
