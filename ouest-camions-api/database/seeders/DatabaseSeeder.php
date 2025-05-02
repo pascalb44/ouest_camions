@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
 
+        /*
         User::factory()->create([
             'first_name' => 'Pascal',
             'last_name' => 'Alouest',
@@ -34,5 +35,6 @@ class DatabaseSeeder extends Seeder
             'phone' => '0123456789',   
             'id_role' => '1', // = admin  
         ]);
+        */
     }
 }
