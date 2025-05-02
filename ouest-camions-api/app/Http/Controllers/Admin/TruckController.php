@@ -139,6 +139,7 @@ class TruckController extends Controller
             $file->storeAs('uploads/truck', $filename);
             $updateData['image_truck'] = $filename;
         }
+        
         $truck->update($updateData);
               //dd($truck);
         return response()->json([

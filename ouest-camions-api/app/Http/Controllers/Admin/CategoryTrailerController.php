@@ -88,8 +88,9 @@ class CategoryTrailerController extends Controller
             if ($categoryTrailer->image_category_trailer && Storage::exists('/uploads/CategoryTrailer/' . $categoryTrailer->image_category_trailer)) {
                 Storage::delete('/uploads/CategoryTrailer/' . $categoryTrailer->image_category_trailer);
             }
-            $categoryTrailer->update($validatedData);
         }
+
+        $categoryTrailer->update($validatedData);
 
         return response()->json([
             'status' => 'Catégorie de remorque mise à jour avec succès',
