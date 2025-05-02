@@ -65,18 +65,18 @@ async function login(credentials) {
 describe("User Login", () => {
     test("Vérifie si l'utilisateur peut se connecter et obtenir un token", async () => {
         const credentials = {
-                // email: 'robert@transportslenantais.fr', // for user tests
-                // password: 'robert44',
-            email: 'admin@ouestcamions.fr',   // for admin tests
-            password: 'AdminOuest123!',
+            email: 'robert@transportslenantais.fr', // for user tests
+            password: 'robert44',
+            // email: 'admin@ouestcamions.fr',   // for admin tests
+            // password: 'AdminOuest123!',
         };
 
         const token = await login(credentials);
 
         expect(token).toBeDefined();
         expect(typeof token).toBe("string");
-        // expect(user.email).toBe('robert@transportslenantais.fr'); // for user tests
-      expect(user.email).toBe('admin@ouestcamions.fr'); // for admin tests
+        expect(user.email).toBe('robert@transportslenantais.fr'); // for user tests
+        // expect(user.email).toBe('admin@ouestcamions.fr'); // for admin tests
         expect(user.token).toBe(token);
 
     });
@@ -288,7 +288,7 @@ describe('Admin API - CategoryTrailer Deletion with login', () => {
 
 // crud by user : create cart
 
-/*
+
 
 describe('Commande - Ajouter un camion au panier', () => {
     test('devrait créer une commande avec le camion 33', async () => {
@@ -326,9 +326,9 @@ describe('Commande - Ajouter un camion au panier', () => {
         }
     });
 });
-*
 
-/*
+
+
 
 describe('Panier - Ajout d\'élément au panier', () => {
     test('devrait ajouter un camion au panier sans paiement', async () => {
@@ -374,7 +374,7 @@ describe('Panier - Ajout d\'élément au panier', () => {
         expect(response.data.trucks[0].id_truck).toBe(28); // Vérifie que c'est bien le camion avec l'ID 28
     });
 });
-*/
+
 
 
 //  read cart of the user 5 = ok 
@@ -428,15 +428,15 @@ describe("Vérification d'un camion dans le panier", () => {
 
 /*  read all the orders of the user  = ok  */
 
-/*
+
 describe("User orders", () => {
     test("Vérifie si l'acheteur a des commandes", async () => {
         const credentials = {
-            email: 'ulysse31@odyssee.fr',
-            password: 'ulysse31',
+//            email: 'ulysse31@odyssee.fr',
+  //          password: 'ulysse31',
 
-            // email: 'robert@transportslenantais.fr', // id user = 5
-            // password: 'robert44',
+             email: 'robert@transportslenantais.fr', // id user = 5
+             password: 'robert44',
         };
 
         await login(credentials);
@@ -449,11 +449,11 @@ describe("User orders", () => {
         const camionPresent = orders.some(item => item.id_user === 123); // id of the user
         expect(camionPresent).toBe(true);
 
-        console.log('List des commandes du user 5 :', orders);
+        console.log('List des commandes du user  :', orders);
     });
 });
 
-*/
+
 
 
 
@@ -504,7 +504,7 @@ describe('API accessibility test', () => {
 */
 
 // page login : ok
-/*
+
 
 describe('API accessibility test', () => {
     test('should return status 200 for /login', async () => {
@@ -513,20 +513,20 @@ describe('API accessibility test', () => {
 
     });
 });
-*/
+
 
 
 
 // test to open page categories-trucks by user = ok
 
-/*
+
 describe('API accessibility test', () => {
     test('should return status 200 for /categories-trucks', async () => {
         const response = await Axios.get('/categories-trucks');
         expect(response.status).toBe(200);
     });
 });
-*/
+
 
 
 
@@ -535,18 +535,18 @@ describe('API accessibility test', () => {
 // test to open public page categories-trailers/3 
 
 
-/*
+
 describe('API accessibility test', () => {
     test('should return status 200 for /trailers/category/3', async () => {
         const response = await Axios.get('/trailers/category/3');
         expect(response.status).toBe(200);
     });
 });
-*/
+
 
 // test to open public page categories-trucks/1 = ok
 
-/*
+
 describe('API accessibility test', () => {
     test('should return status 200 for /trucks/category/1', async () => {
         const response = await Axios.get('/trucks/category/1');
@@ -554,14 +554,14 @@ describe('API accessibility test', () => {
     });
 });
 
-*/
+
 
 
 // page detail
 
 // test to open page trucks/27 = ok  
 
-/*
+
 
 describe('API accessibility test', () => {
     test('should return status 200 for /trucks/27', async () => {
@@ -572,13 +572,13 @@ describe('API accessibility test', () => {
     });
 });
 
-*/
+
 
 
 // test to open page trailers/1 by visitor = ok  
 
 
-/*
+
 describe('API accessibility test', () => {
     test('should return status 200 for /trailers/1', async () => {
         const response = await Axios.get('/trailers/1');
@@ -587,5 +587,5 @@ describe('API accessibility test', () => {
     });
 });
 
-*/
+
 
