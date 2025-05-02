@@ -510,7 +510,7 @@ describe('API accessibility test', () => {
 });
 */
 
-/*
+
 
 // test to open page categories-trucks by user = ok
 
@@ -521,13 +521,13 @@ describe('API accessibility test', () => {
         expect(response.status).toBe(200);
     });
 });
-*/
 
 
 
 
-/*
-// test to open public page categories-trailers/3 
+
+
+// test to open public page trailers-by-category/3 
 
 
 
@@ -537,10 +537,10 @@ describe('API accessibility test', () => {
         expect(response.status).toBe(200);
     });
 });
-*/
+
 
 // test to open public page categories-trucks/1 = ok
-/*
+
 
 describe('API accessibility test', () => {
     test('should return status 200 for /trucks/category/1', async () => {
@@ -549,14 +549,14 @@ describe('API accessibility test', () => {
     });
 });
 
-*/
+
 
 
 // page detail
 
 // test to open page trucks/27 = ok  
 
-/*
+
 
 describe('API accessibility test', () => {
     test('should return status 200 for /trucks/27', async () => {
@@ -567,12 +567,12 @@ describe('API accessibility test', () => {
     });
 });
 
-*/
+
 
 
 // test to open page trailers/1 by visitor = ok  
 
-/*
+
 
 describe('API accessibility test', () => {
     test('should return status 200 for /trailers/1', async () => {
@@ -582,5 +582,5 @@ describe('API accessibility test', () => {
     });
 });
 
-*/
+
 
