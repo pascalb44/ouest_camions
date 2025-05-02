@@ -7,7 +7,7 @@ const path = require('path');
 
 
 const Axios = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api', /* no localhost */
+    baseURL: 'localhost/api', /* no localhost */
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ async function login(credentials) {
             ...userData,
             token,
         };
-        authAxios = axios.create({
+    /*    authAxios = axios.create({
             baseURL: 'http://127.0.0.1:8000/api',
             headers: {
                 Accept: 'application/json',
@@ -41,6 +41,7 @@ async function login(credentials) {
                 Authorization: `Bearer ${token}`,
             },
         });
+        */
 
         //console.log('Utilisateur connecté :', user); // get data user + token 
 
