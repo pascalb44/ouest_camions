@@ -65,18 +65,18 @@ async function login(credentials) {
 describe("User Login", () => {
     test("Vérifie si l'utilisateur peut se connecter et obtenir un token", async () => {
         const credentials = {
-                email: 'robert@transportslenantais.fr', // for user tests
-                password: 'robert44',
-          //  email: 'admin@ouestcamions.fr',   // for admin tests
-          //  password: 'AdminOuest123!',
+                // email: 'robert@transportslenantais.fr', // for user tests
+                // password: 'robert44',
+            email: 'admin@ouestcamions.fr',   // for admin tests
+            password: 'AdminOuest123!',
         };
 
         const token = await login(credentials);
 
         expect(token).toBeDefined();
         expect(typeof token).toBe("string");
-        expect(user.email).toBe('robert@transportslenantais.fr'); // for user tests
-    //  expect(user.email).toBe('admin@ouestcamions.fr'); // for admin tests
+        // expect(user.email).toBe('robert@transportslenantais.fr'); // for user tests
+      expect(user.email).toBe('admin@ouestcamions.fr'); // for admin tests
         expect(user.token).toBe(token);
 
     });
@@ -288,6 +288,7 @@ describe('Admin API - CategoryTrailer Deletion with login', () => {
 
 // crud by user : create cart
 
+/*
 
 describe('Commande - Ajouter un camion au panier', () => {
     test('devrait créer une commande avec le camion 33', async () => {
@@ -325,7 +326,7 @@ describe('Commande - Ajouter un camion au panier', () => {
         }
     });
 });
-
+*
 
 /*
 
