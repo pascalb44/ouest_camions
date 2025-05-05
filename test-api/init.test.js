@@ -488,7 +488,7 @@ describe("Vérification d'un camion dans le panier", () => {
       const token = await login(credentials);
       expect(token).toBeDefined();
 
-      const res = await authAxios.get('/api/orders');   
+      const res = await authAxios.get('/orders');   
   
       const orders = res.data;
   
