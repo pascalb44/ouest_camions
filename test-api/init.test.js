@@ -85,6 +85,7 @@ describe("User Login", () => {
 
 // route register = ok but ni siren
 
+/*
 describe('Registration API', () => {
     test('should register a new user successfully', async () => {
         const form = new FormData();
@@ -108,8 +109,8 @@ describe('Registration API', () => {
         expect(response.data.data.access_token).toHaveProperty('token');
     });
 });
+*/
 
-/*
 
 describe('Register API test', () => {
     test('should register a new user with siren file', async () => {
@@ -138,7 +139,7 @@ describe('Register API test', () => {
         expect(response.data.data.user.email).toContain('testuser_');
     });
 });
-*/
+
 
 // crud by admin : create categories-trailers = ok in the base 
 /*
