@@ -533,7 +533,7 @@ describe('API accessibility test', () => {
 
 describe('API accessibility test', () => {
     test('should return status 200 for /trailers/category/2', async () => {
-        const response = await Axios.get('/trailers/category/2');
+        const response = await Axios.get('/trailers-by-category/2 ');
         expect(response.status).toBe(200);
     });
 });
