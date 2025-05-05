@@ -5,12 +5,18 @@
     /***************************** page categories-trucks **********************************/
 
 
+    .top-categories-trucks {
+        width: 100%;
+        background-color: black;
+        padding: 1px;
+    }
+
     .h1-categories-trucks {
         text-align: center;
         font-size: 2rem;
-        margin-top: 5%;
+        margin: 5% auto 5%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
-
+        color : green;
     }
 
     .categories-truck-btn-return {
@@ -79,7 +85,7 @@
 
     .category-truck-button-to-trucks-by-category {
         width: 100%;
-        background-color: lightseagreen;
+        background-color: teal;
         text-align: center;
         padding: 10px;
         font-size: 1.3rem;
@@ -97,16 +103,18 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
 
+    .top-categories-trucks {
+        width: 100%;
+        background-color: black;
+        padding: 1px;
+    }
 
     .h1-categories-trucks {
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 2rem;
         margin: 5% auto 5%;
-        padding : 5%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         color : green;
-        background-color: powderblue;
-        text-transform: uppercase;
-        font-weight: 700;
     }
 
     .categories-truck-btn-return {
@@ -173,7 +181,7 @@
             color: white;
             font-weight: bold;
             border-radius: 10%;
-            background-color: lightseagreen;
+            background-color: teal;
             padding: 10px;
             display: block;
         }

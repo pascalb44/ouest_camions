@@ -13,6 +13,7 @@
         color: black;
         text-align: center;
         margin: 10% auto 3%;
+        padding-top: 10%;
     }
 
     .admin-categories-trailer-btn-return {
@@ -26,10 +27,6 @@
         margin: 0 0 0% 10%;
     }
 
-    
-    .admin-categories-trailers-btn-add-container {
-        margin: 5% auto 5%;
-    }
 
     .admin-categories-trailers-table {
         background-color: #99ffff;
@@ -46,29 +43,30 @@
         margin: 5% 0 10% 10%;
     }
 
-    .admin-categories-trailers-menu {
-        border: solid 1px ;
-        text-align: center;
-        font-size: 1.1rem;
+    .admin-categories-trailers-menu { // not in mobile 
+        display: none;
     }
 
+
     .admin-category-trailer-unite {
+        display: flex;
+        flex-direction: column;
         border: solid 1px dodgerblue;
     }
 
     .admin-category-trailer-name {
-        width: 15%;
         font-size: 1.1rem;
     }
 
     .admin-category-trailer-description {
-        width: 30%;
+        width: 95%;
         font-size: 1rem;
+        margin: 3%;
+        text-align: justify;
     }
 
     .admin-category-trailer-image-container {
-        width: 25%;
-        border: solid 1px dodgerblue;
+        border: solid 1px blue;
     }
 
     .admin-category-trailer-image {
@@ -80,8 +78,7 @@
     .admin-categories-trailers-buttons {
         display: flex;
         flex-direction: column;
-        margin-top: 80px;
-        margin-left: 25%;
+        margin: 80px auto;
         width: 50%;
         border: none;
     }
@@ -101,18 +98,13 @@
         background-color: red;
         text-decoration: none;
         padding: 10px;
+        margin-top: 10px;
     }
 }
 
 /********************************** version mobile ********************/
 
 @media only screen and (max-width: 480px) {
-
-
-    .admin-categories-trailers-container {
-        background-color: #99ffff;
-        padding-bottom: 5%;
-    }
 
     .admin-categories-trailer-btn-return {
         display: flex;
@@ -122,17 +114,22 @@
         text-decoration: none;
         padding: 10px;
         width: max-content;
-        margin: 0 0 10% 10%;
+        margin: 10% 0 0% 10%;
+    }
+
+
+    .admin-categories-trailers-container {
+        background-color: #99ffff;
+        padding-bottom: 5%;
     }
 
     .h1-admin-categories-trailers {
-        color: blue;
+        color: black;
         text-align: center;
+        margin: 10% auto 3%;
+        padding-top: 10%;
     }
-    
-    .admin-categories-trailers-btn-add-container {
-        margin: 5% auto 5%;
-    }
+
 
     .admin-categories-trailers-table {
         background-color: #99ffff;
@@ -146,32 +143,33 @@
         text-decoration: none;
         padding: 10px;
         width: max-content;
-        margin: 5% 0 10% 10%;
+        margin: 10% 0 10% 10%;
     }
 
-    .admin-categories-trailers-menu {
-        border: solid 1px ;
-        text-align: center;
-        font-size: 0.9rem;
+    .admin-categories-trailers-menu { // not in mobile 
+        display: none;
     }
+
 
     .admin-category-trailer-unite {
+        display: flex;
+        flex-direction: column;
         border: solid 1px dodgerblue;
     }
 
     .admin-category-trailer-name {
-        width: 15%;
-        font-size: 0.9rem;
+        font-size: 1.1rem;
     }
 
     .admin-category-trailer-description {
-        width: 30%;
+        width: 95%;
         font-size: 0.9rem;
+        margin: 3%;
+        text-align: justify;
     }
 
     .admin-category-trailer-image-container {
-        width: 25%;
-        border: solid 1px dodgerblue;
+        border: solid 1px blue;
     }
 
     .admin-category-trailer-image {
@@ -183,12 +181,9 @@
     .admin-categories-trailers-buttons {
         display: flex;
         flex-direction: column;
-        margin-top: 80px;
-        margin-left: 1%;
-        width: 100%;
-        height: 45px;
+        margin: 30px auto;
+        width: 50%;
         border: none;
-        font-size: 0.9rem;
     }
 
     .admin-category-trailer-update-btn {
@@ -197,6 +192,7 @@
         background-color: green;
         text-decoration: none;
         padding: 10px;
+        height: 50px;
     }
 
     .admin-category-trailer-delete-btn {
@@ -205,5 +201,6 @@
         background-color: red;
         text-decoration: none;
         padding: 10px;
+        margin-top: 10px;
     }
 }

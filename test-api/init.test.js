@@ -527,13 +527,13 @@ describe('API accessibility test', () => {
 
 
 
-// test to open public page trailers-by-category/3 
+// test to open public page trailers-by-category/2 
 
 
 
 describe('API accessibility test', () => {
-    test('should return status 200 for /trailers/category/3', async () => {
-        const response = await Axios.get('/trailers/category/3');
+    test('should return status 200 for /trailers/category/2', async () => {
+        const response = await Axios.get('/trailers/category/2');
         expect(response.status).toBe(200);
     });
 });

@@ -128,7 +128,7 @@ const CustomDatePicker = ({ truck, trailer, onDurationChange }) => {
                     </div>
                 </div>
             </div>
-            <div className="selected-dates">
+            <div className="selected-dates-truck selected-dates-trailer">
                 <p><strong>Date de départ sélectionnée : </strong>{formatDate(startDate)}</p>
                 <p><strong>Date de retour sélectionnée : </strong>{formatDate(endDate)}</p>
                 <p><strong>Durée de location sélectionnée : </strong>{duration} jour(s)</p>

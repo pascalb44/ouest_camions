@@ -102,8 +102,8 @@ const TruckDetail = () => {
                     <div className="truck-image-box">
                         <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/Truck/${truck.image_truck}`} className="truck-image" alt={`Camion ${truck.name_truck}`} />
                     </div>
-                    <div>
-                        <div className="truck-detail-block">
+                    <div className="truck-detail-block">
+                        <div className="truck-detail-block-1">
                             <h2 className="h2-truck-detail">Caractéristiques</h2>
                             <div className="truck-detail-features">
                                 <p>Couleur : {truck.color_truck}</p>
@@ -113,6 +113,9 @@ const TruckDetail = () => {
                                 <p>Kilométrage : {truck.km_truck}</p>
                                 <p>Charge utile : {truck.load_truck}</p>
                             </div>
+                        </div>
+                        <div className="truck-detail-block-2">
+
                             <h2 className="h2-truck-detail">Locations</h2>
                             <div className="truck-detail-location">
                                 <p>Prix à la journée : {truck.price_day_truck}</p>
@@ -121,7 +124,6 @@ const TruckDetail = () => {
                                 <p>Prix à l'année : {truck.price_year_truck}</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <aside>

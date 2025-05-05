@@ -36,14 +36,11 @@ const CategoriesTrailers = () => {
     return (
         <div>
             <Link to="/admin/" className="admin-categories-trailer-btn-return">Retour au dashboard</Link>
+            <h1 className="h1-admin-categories-trailers">Liste des catégories</h1>
+            <div className="admin-categories-trailers-btn-add-container">
+                <Link to="/admin/categories-trailers/add" className="admin-category-trailer-btn-add">Ajouter une catégorie</Link>
+            </div>
             <div className="admin-categories-trailers-container">
-
-                <h1 className="h1-admin-categories-trailers">Liste des catégories</h1>
-
-                <div className="admin-categories-trailers-btn-add-container">
-                    <Link to="/admin/categories-trailers/add" className="admin-category-trailer-btn-add">Ajouter une catégorie</Link>
-                </div>
-
                 <table className="admin-categories-trailers-table">
                     <thead>
                         <tr className="admin-categories-trailers-menu">

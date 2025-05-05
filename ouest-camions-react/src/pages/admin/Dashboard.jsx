@@ -56,10 +56,10 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h1 className="h1-dashboard">Tableau de Bord Admin</h1>
+            <h1 className="h1-dashboard">Gestion du site</h1>
             {error && <p className="text-red-500">{error}</p>}
             <p>{message}</p>
-            <ul>
+            <ul className="admin-dashboard-list">
                 <li><Link to="/admin/categories-trailers">Gestion des catégories de remorques</Link></li>
                 <li><Link to="/admin/trucks">Gestion des camions</Link></li>
                 <li><Link to="/admin/trailers">Gestion des remorques</Link></li>

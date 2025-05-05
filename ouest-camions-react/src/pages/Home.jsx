@@ -16,6 +16,7 @@ const Home = () => {
             </div>
             <h1 className="h1-home">Ouest Camions<span class="subtitle">La location de qualité</span></h1>
             <h2>Votre partenaire en location de camions et remorques dans le grand ouest</h2>
+            <p className="toto">dddddddddddddddddd</p>
 
             <section className="edito">
                 <p>Ouest Camions est votre spécialiste de la location de camions et de remorques dans le Grand Ouest de la France. Que vous soyez un professionnel du transport, du BTP, de l’agriculture ou un particulier ayant un besoin ponctuel, nous mettons à votre disposition une flotte de véhicules fiables et performants adaptés à toutes vos exigences.</p>
