@@ -24,29 +24,29 @@ let authAxios; // for authentification
 
 
 async function login(credentials) {
-   
-        const res = await Axios.post('/login', credentials); // request 
-        const { user: userData, access_token } = res.data.data; // user data 
-        const token = access_token.token; // token  
-        Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        user = {
-            ...userData,
-            token,
-        };
-        authAxios = axios.create({
-            baseURL: 'http://127.0.0.1:8000/api',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        
 
-        //console.log('Utilisateur connecté :', user); // get data user + token 
+    const res = await Axios.post('/login', credentials); // request 
+    const { user: userData, access_token } = res.data.data; // user data 
+    const token = access_token.token; // token  
+    Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    user = {
+        ...userData,
+        token,
+    };
+    authAxios = axios.create({
+        baseURL: 'http://127.0.0.1:8000/api',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    });
 
-        return token;
-    
+
+    //console.log('Utilisateur connecté :', user); // get data user + token 
+
+    return token;
+
 }
 
 
@@ -477,28 +477,46 @@ describe("Vérification d'un camion dans le panier", () => {
 /*  read all the orders of the user  = ok  */
 
 
-  
-  describe("User orders", () => {
-    test("Vérifie si l'acheteur a des commandes", async () => {
-      const credentials = {
-        email: 'robert@transportslenantais.fr',
-        password: 'robert44',
-      };
-  
-      const token = await login(credentials);
-      expect(token).toBeDefined();
 
-      const res = await authAxios.get('/orders');   
-  
-      const orders = res.data;
-  
-      expect(orders.length).toBeGreaterThan(0);
-      const camionPresent = orders.some(order => order.id_user === user.id);
-      expect(camionPresent).toBe(true);
-      console.log('Liste des commandes du user :', orders);
+describe("User orders", () => {
+    test("Vérifie si l'acheteur a des commandes", async () => {
+        const credentials = {
+            email: 'robert@transportslenantais.fr',
+            password: 'robert44',
+        };
+
+        const token = await login(credentials);
+        expect(token).toBeDefined();
+
+        // Effectuer la requête pour récupérer les commandes de l'utilisateur
+        const res = await authAxios.get('/orders');
+
+        // Vérifier que la réponse est réussie
+        expect(res.status).toBe(200); // Vérifie que le statut HTTP est 200 OK
+
+        const orders = res.data;
+
+        // Vérifier que l'utilisateur a des commandes
+        expect(orders.length).toBeGreaterThan(0);
+
+        // Vérifier qu'une des commandes appartient à l'utilisateur connecté
+        const camionPresent = orders.some(order => order.id_user === user.id);
+        expect(camionPresent).toBe(true);
+
+        console.log('Liste des commandes du user :', orders);
+
+        // Optionnel : vérifier les propriétés d'une commande pour être sûr de la structure
+        if (orders.length > 0) {
+            const order = orders[0];
+            expect(order).toHaveProperty('id'); // Assurez-vous que chaque commande a un ID
+            expect(order).toHaveProperty('start_date');
+            expect(order).toHaveProperty('end_date');
+            expect(order).toHaveProperty('amount');
+        }
     });
-  });
-  
+});
+
+
 
 
 
@@ -580,7 +598,7 @@ describe('API accessibility test', () => {
 
 */
 
-// don't work in back 
+// don't work in back
 
 /*
 describe('API accessibility test', () => {
