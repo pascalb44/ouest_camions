@@ -476,40 +476,35 @@ describe("Vérification d'un camion dans le panier", () => {
 
 /*  read all the orders of the user  = ok  */
 
-
-describe("User orders", () => {
+const login = async ({ email, password }) => {
+    const res = await Axios.post('/api/login', { email, password });
+    return res.data.token;
+  };
+  
+  describe("User orders", () => {
     test("Vérifie si l'acheteur a des commandes", async () => {
-        const credentials = {
-//            email: 'ulysse31@odyssee.fr',
-  //          password: 'ulysse31',
-
-             email: 'robert@transportslenantais.fr', // id user = 2
-             password: 'robert44',
-        };
-
-        const login = async ({ email, password }) => {
-            const res = await Axios.post('/login', { email, password });
-            return res.data.token;
-        };
-        
-        const res = await Axios.get('/api/orders', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
-
-
-       const orders = res.data;
-
-        expect(orders.length).toBeGreaterThan(0);
-
-        const camionPresent = orders.some(item => item.id_user === 2); // id of the user
-        expect(camionPresent).toBe(true);
-
-        console.log('List des commandes du user  :', orders);
+      const credentials = {
+        email: 'robert@transportslenantais.fr',
+        password: 'robert44',
+      };
+  
+      const token = await login(credentials);
+      console.log("Token reçu :", token);
+  
+      const res = await Axios.get('/api/orders', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      const orders = res.data;
+  
+      expect(orders.length).toBeGreaterThan(0);
+      const camionPresent = orders.some(order => order.id_user === 2);
+      expect(camionPresent).toBe(true);
     });
-});
-
+  });
+  
 
 
 
