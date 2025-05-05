@@ -83,10 +83,11 @@ describe("User Login", () => {
 });
 
 
-// route register
-
+// route register = ok but ni siren
+/*
 describe('Registration API', () => {
     test('should register a new user successfully', async () => {
+        const form = new FormData();
         const response = await Axios.post('/register', {
             first_name: 'Henri',
             last_name: 'Depanne',
@@ -107,7 +108,37 @@ describe('Registration API', () => {
         expect(response.data.data.access_token).toHaveProperty('token');
     });
 });
+*/
 
+
+describe('Register API test', () => {
+    test('should register a new user with siren file', async () => {
+        const form = new FormData();
+
+        form.append('first_name', 'Test');
+        form.append('last_name', 'User');
+        form.append('email', `testuser_${Date.now()}@example.com`);
+        form.append('password', 'password123');
+        form.append('company', 'TestCompany');
+        form.append('address', '123 Test St');
+        form.append('postal_code', '75000');
+        form.append('town', 'Paris');
+        form.append('phone', '0600000000');
+
+        // fichier siren (ex: image test dans /tests/files/siren.jpg)
+        const filePath = path.join(__dirname, 'files', 'extrait-kbis-entreprise.jpg');
+        form.append('siren', fs.createReadStream(filePath));
+
+        const response = await Axios.post('/register', form, {
+            headers: form.getHeaders(),
+            maxBodyLength: Infinity, // utile pour gros fichiers
+        });
+
+        expect(response.status).toBe(200);
+        expect(response.data.data.user).toBeDefined();
+        expect(response.data.data.user.email).toContain('testuser_');
+    });
+});
 
 
 // crud by admin : create categories-trailers = ok in the base 

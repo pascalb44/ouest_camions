@@ -6,8 +6,12 @@ return [
     
     'allowed_methods' => ['*'],
 
-//   'allowed_origins' => ['http://localhost:3000'],
-// 'allowed_origins' => ['http://168.231.80.181'],
+//   'allowed_origins' => ['http://localhost:3000'], //local = ok
+// 'allowed_origins' => ['http://168.231.80.181'],   //site =  non
+
+// 'allowed_origins' => ['http://srv807237.hstgr.cloud:8000'], //site
+
+
 
     'allowed_origins' => ['*'],
 
