@@ -10,7 +10,8 @@ const path = require('path');
 
 
 const Axios = axios.create({
-    baseURL: 'http://localhost:8000/api', // no localhost for local but necessary for tests in github */
+    baseURL: process.env.REACT_APP_API_URL + '/api',
+   // baseURL: 'http://localhost:8000/api', // no localhost for local but necessary for tests in github */
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
