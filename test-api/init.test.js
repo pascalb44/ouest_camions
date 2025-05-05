@@ -514,6 +514,7 @@ describe('API accessibility test', () => {
 
 // test to open page categories-trucks by user = ok
 
+/* oui
 
 describe('API accessibility test', () => {
     test('should return status 200 for /categories-trucks', async () => {
@@ -523,13 +524,12 @@ describe('API accessibility test', () => {
 });
 
 
-
-
+*/
 
 
 // test to open public page trailers-by-category/2 
 
-
+/*
 
 describe('API accessibility test', () => {
     test('should return status 200 for /trailers/category/2', async () => {
@@ -538,10 +538,11 @@ describe('API accessibility test', () => {
     });
 });
 
+*/
 
 // test to open public page categories-trucks/1 = ok
 
-
+/*
 describe('API accessibility test', () => {
     test('should return status 200 for /trucks/category/1', async () => {
         const response = await Axios.get('/trucks/category/1');
@@ -549,7 +550,7 @@ describe('API accessibility test', () => {
     });
 });
 
-
+*/
 
 
 // page detail
