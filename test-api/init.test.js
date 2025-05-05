@@ -7,11 +7,8 @@ const path = require('path');
 
 
 
-require('dotenv').config({ path: '.env.test' }); // Add chatgpt 05/05
-const Axios = axios.create({
-    baseURL: process.env.REACT_APP_API_URL + '/api',
 
-    /*
+
 const Axios = axios.create({
     baseURL: 'http://localhost:8000/api', // no localhost for local but necessary for tests in github */
     headers: {
@@ -30,29 +27,29 @@ let authAxios; // for authentification
 
 
 async function login(credentials) {
-   
-        const res = await Axios.post('/login', credentials); // request 
-        const { user: userData, access_token } = res.data.data; // user data 
-        const token = access_token.token; // token  
-        Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        user = {
-            ...userData,
-            token,
-        };
-        authAxios = axios.create({
-            baseURL: 'http://127.0.0.1:8000/api',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        
 
-        //console.log('Utilisateur connecté :', user); // get data user + token 
+    const res = await Axios.post('/login', credentials); // request 
+    const { user: userData, access_token } = res.data.data; // user data 
+    const token = access_token.token; // token  
+    Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    user = {
+        ...userData,
+        token,
+    };
+    authAxios = axios.create({
+        baseURL: 'http://127.0.0.1:8000/api',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+    });
 
-        return token;
-    
+
+    //console.log('Utilisateur connecté :', user); // get data user + token 
+
+    return token;
+
 }
 
 
@@ -540,7 +537,7 @@ describe('API accessibility test', () => {
     });
 });
 
-// test to open public page trailers-by-category/2 
+// test to open public page trailers-by-category/2
 
 
 /*
@@ -568,7 +565,7 @@ describe('API accessibility test', () => {
 
 // page detail
 
-// test to open page trucks/27 = ok  
+// test to open page trucks/27 = ok
 
 
 /*
@@ -576,7 +573,7 @@ describe('API accessibility test', () => {
     test('should return status 200 for /trucks/27', async () => {
         const response = await Axios.get('/trucks/27');
         expect(response.status).toBe(200);
-        console.log('detail du truck 27 :', response.data); // data = details of the truck 27 
+        console.log('detail du truck 27 :', response.data); // data = details of the truck 27
 
     });
 });
