@@ -483,13 +483,16 @@ describe("User orders", () => {
 //            email: 'ulysse31@odyssee.fr',
   //          password: 'ulysse31',
 
-             email: 'robert@transportslenantais.fr', // id user = 5
+             email: 'robert@transportslenantais.fr', // id user = 2
              password: 'robert44',
         };
 
-        const token = await login(credentials);
-
-        const res = await Axios.get('/orders', {
+        const login = async ({ email, password }) => {
+            const res = await Axios.post('/login', { email, password });
+            return res.data.token;
+        };
+        
+        const res = await Axios.get('/api/orders', {
           headers: {
             Authorization: `Bearer ${token}`,
           }
