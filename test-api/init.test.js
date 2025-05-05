@@ -476,10 +476,7 @@ describe("Vérification d'un camion dans le panier", () => {
 
 /*  read all the orders of the user  = ok  */
 
-const login = async ({ email, password }) => {
-    const res = await Axios.post('/api/login', { email, password });
-    return res.data.token;
-  };
+
   
   describe("User orders", () => {
     test("Vérifie si l'acheteur a des commandes", async () => {
@@ -489,19 +486,16 @@ const login = async ({ email, password }) => {
       };
   
       const token = await login(credentials);
-      console.log("Token reçu :", token);
-  
-      const res = await Axios.get('/api/orders', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      expect(token).toBeDefined();
+
+      const res = await authAxios.get('/api/orders');   
   
       const orders = res.data;
   
       expect(orders.length).toBeGreaterThan(0);
-      const camionPresent = orders.some(order => order.id_user === 2);
+      const camionPresent = orders.some(order => order.id_user === user.id);
       expect(camionPresent).toBe(true);
+      console.log('Liste des commandes du user :', orders);
     });
   });
   
