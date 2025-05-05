@@ -66,7 +66,6 @@ class AuthController extends Controller
             $user->save();
 
         $token = auth()->login($user); // non-blocking error message 
-        //    dd($request);
         return response()->json([
             'meta' => [
                 'code'    => 200,

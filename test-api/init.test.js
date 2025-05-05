@@ -475,7 +475,7 @@ describe("Vérification d'un camion dans le panier", () => {
 */
 
 /*  read all the orders of the user  = ok  */
-/*
+
 
 describe("User orders", () => {
     test("Vérifie si l'acheteur a des commandes", async () => {
@@ -494,14 +494,14 @@ describe("User orders", () => {
 
         expect(orders.length).toBeGreaterThan(0);
 
-        const camionPresent = orders.some(item => item.id_user === 123); // id of the user
+        const camionPresent = orders.some(item => item.id_user === 2); // id of the user
         expect(camionPresent).toBe(true);
 
         console.log('List des commandes du user  :', orders);
     });
-});*
+});
 
-*/
+
 
 
 
