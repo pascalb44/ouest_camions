@@ -43,7 +43,7 @@ class AuthController extends Controller
             $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('siren')->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('siren')->storeAs('uploads/users', $filename, 'public');
+            $path = $request->file('siren')->storeAs('uploads/Users', $filename, 'public');
         } else {
             $filename = null;
         }
