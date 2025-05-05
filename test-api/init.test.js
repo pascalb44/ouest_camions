@@ -527,6 +527,15 @@ describe('API accessibility test', () => {
 */
 
 
+
+
+describe('API accessibility test', () => {
+    test('should return status 200 for /cgv', async () => {
+        const response = await Axios.get('/cgv');
+        expect(response.status).toBe(200);
+    });
+});
+
 // test to open public page trailers-by-category/2 
 
 /*
