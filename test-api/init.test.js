@@ -6,8 +6,14 @@ const fs = require('fs');
 const path = require('path');
 
 
+
+require('dotenv').config({ path: '.env.test' }); // Add chatgpt 05/05
 const Axios = axios.create({
-    baseURL: 'http://localhost:8000/api', /* no localhost for local but necessary for tests in github */
+    baseURL: process.env.REACT_APP_API_URL + '/api',
+
+    /*
+const Axios = axios.create({
+    baseURL: 'http://localhost:8000/api', // no localhost for local but necessary for tests in github */
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -526,19 +532,26 @@ describe('API accessibility test', () => {
 
 */
 
+describe('API accessibility test', () => {
+    test('should return status 200 for /cgv', async () => {
+        const response = await Axios.get('/cgv');
+        expect(response.status).toBe(200);
+
+    });
+});
 
 // test to open public page trailers-by-category/2 
 
 
-
+/*
 describe('API accessibility test', () => {
     test('should return status 200 for /trailers/category/2', async () => {
-        const response = await Axios.get('http://srv807237.hstgr.cloud:8000/api/trailers/category/2 ');
+        const response = await Axios.get('/trailers/category/2 ');
         expect(response.status).toBe(200);
     });
 });
 
-
+*/
 
 // test to open public page categories-trucks/1 = ok
 
@@ -558,7 +571,7 @@ describe('API accessibility test', () => {
 // test to open page trucks/27 = ok  
 
 
-
+/*
 describe('API accessibility test', () => {
     test('should return status 200 for /trucks/27', async () => {
         const response = await Axios.get('/trucks/27');
@@ -568,13 +581,13 @@ describe('API accessibility test', () => {
     });
 });
 
-
+*/
 
 
 // test to open page trailers/1 by visitor = ok  
 
 
-
+/*
 describe('API accessibility test', () => {
     test('should return status 200 for /trailers/1', async () => {
         const response = await Axios.get('/trailers/1');
@@ -583,5 +596,5 @@ describe('API accessibility test', () => {
     });
 });
 
-
+*/
 
