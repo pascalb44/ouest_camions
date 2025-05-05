@@ -487,10 +487,16 @@ describe("User orders", () => {
              password: 'robert44',
         };
 
-        await login(credentials);
+        const token = await login(credentials);
 
-        const res = await Axios.get('/orders');
-        const orders = res.data;
+        const res = await Axios.get('/orders', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        });
+
+
+       const orders = res.data;
 
         expect(orders.length).toBeGreaterThan(0);
 
