@@ -22,7 +22,7 @@ let authAxios; // for authentification
 //-----------------------------
 
 
-
+/*
 async function login(credentials) {
 
     const res = await Axios.post('/login', credentials); // request 
@@ -46,10 +46,9 @@ async function login(credentials) {
     //console.log('Utilisateur connecté :', user); // get data user + token 
 
     return token;
-
 }
 
-
+*/
 
 
 //-----------------------------
@@ -57,10 +56,69 @@ async function login(credentials) {
 //-----------------------------
 
 
+let token = ''; // Déclare une variable globale pour stocker le token
 
+describe("User Login", () => {
+    test("Vérifie si l'utilisateur peut se connecter et obtenir un token", async () => {
+        const credentials = {
+        //    email: 'robert@transportslenantais.fr', // pour les tests utilisateurs
+        //    password: 'robert44',
+             email: 'admin@ouestcamions.fr',   // pour les tests administrateur
+             password: 'AdminOuest123!',
+        };
+
+        const loginResponse = await login(credentials); // login() doit retourner un token
+
+        token = loginResponse.token; // Stocke le token dans une variable globale pour réutilisation
+
+        expect(token).toBeDefined();
+        expect(typeof token).toBe("string");
+        //expect(loginResponse.user.email).toBe('robert@transportslenantais.fr'); // Vérifie que l'utilisateur connecté est le bon
+         expect(loginResponse.user.email).toBe('admin@ouestcamions.fr'); // Si tu utilises un admin pour un autre test
+    });
+});
+
+describe('Admin API - CategoryTrailer Creation with login', () => {
+    test('should login and create a new trailer category', async () => {
+        // Si tu utilises un admin, utilise `admin@ouestcamions.fr` comme credentials
+        const credentials = {
+            email: 'admin@ouestcamions.fr', // admin
+            password: 'AdminOuest123!',
+        };
+
+        const loginResponse = await login(credentials);
+        const token = loginResponse.token; // Le token obtenu après le login de l'admin
+
+        // FormData pour la catégorie de remorque
+        const form = new FormData();
+        form.append('name_category_trailer', 'TestCat-' + Date.now());
+        form.append('description', 'Catégorie test créée via Jest');
+        form.append('image_category_trailer', fs.createReadStream(path.join(__dirname, 'camion_IA2.jpg')));
+
+        try {
+            const response = await Axios.post(
+                '/admin/categories-trailers',
+                form,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Utilise le token d'authentification dans les headers
+                        ...form.getHeaders(),
+                    },
+                }
+            );
+
+            expect(response.status).toBe(201);
+            expect(response.data).toHaveProperty('data');
+            console.log('Catégorie créée :', response.data.data);
+        } catch (error) {
+            console.error('Erreur lors de la création de catégorie', error.response?.data || error.message);
+            throw error;
+        }
+    });
+});
 
 // login of the user + admin  = ok
-
+/*
 
 describe("User Login", () => {
     test("Vérifie si l'utilisateur peut se connecter et obtenir un token", async () => {
@@ -144,13 +202,13 @@ describe('Register API test', () => {
 */
 
 
-// crud by admin : create categories-trailers = ok in the base 
+// crud by admin : create categories-trailers = ok in the base + site local + postman but no test
 /*
 const fs = require('fs'); 
 const path = require('path'); // to get image 
 const FormData = require('form-data'); // to get data of image
 */
-
+/*
 describe('Admin API - CategoryTrailer Creation with login', () => {
    test('should login and create a new trailer category', async () => {
        const credentials = {
@@ -187,6 +245,7 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
        }
    });
 });
+
 
 
 // crud by admin : read categories-trailers = ok
