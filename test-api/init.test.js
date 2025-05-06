@@ -48,7 +48,8 @@ async function login(credentials) {
     return {
         token,
         user: userData,
-    };}
+    };
+}
 
 
 
@@ -63,10 +64,10 @@ let token = ''; // Déclare une variable globale pour stocker le token
 describe("User Login", () => {
     test("Vérifie si l'utilisateur peut se connecter et obtenir un token", async () => {
         const credentials = {
-        //    email: 'robert@transportslenantais.fr', // pour les tests utilisateurs
-        //    password: 'robert44',
-             email: 'admin@ouestcamions.fr',   // pour les tests administrateur
-             password: 'AdminOuest123!',
+            //    email: 'robert@transportslenantais.fr', // pour les tests utilisateurs
+            //    password: 'robert44',
+            email: 'admin@ouestcamions.fr',   // pour les tests administrateur
+            password: 'AdminOuest123!',
         };
 
         const loginResponse = await login(credentials); // login() doit retourner un token
@@ -76,7 +77,7 @@ describe("User Login", () => {
         expect(token).toBeDefined();
         expect(typeof token).toBe("string");
         //expect(loginResponse.user.email).toBe('robert@transportslenantais.fr'); // Vérifie que l'utilisateur connecté est le bon
-         expect(loginResponse.user.email).toBe('admin@ouestcamions.fr'); // Si tu utilises un admin pour un autre test
+        expect(loginResponse.user.email).toBe('admin@ouestcamions.fr'); // Si tu utilises un admin pour un autre test
     });
 });
 
@@ -95,9 +96,10 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
         const form = new FormData();
         form.append('name_category_trailer', 'TestCat-' + Date.now());
         form.append('description', 'Catégorie test créée via Jest');
-        form.append('image_category_trailer', fs.createReadStream('C:/wamp64/www/ouestcamions/test-api/camion_IA2.jpg'));
+        const imagePath = path.resolve(__dirname, 'camion_IA2.jpg');
+        form.append('image_category_trailer', fs.createReadStream(imagePath));
         try {
-            const response = await authAxios .post(
+            const response = await authAxios.post(
                 '/admin/categories-trailers',
                 form,
                 {
@@ -205,8 +207,8 @@ describe('Register API test', () => {
 
 // crud by admin : create categories-trailers = ok in the base + site local + postman but no test
 /*
-const fs = require('fs'); 
-const path = require('path'); // to get image 
+const fs = require('fs');
+const path = require('path'); // to get image
 const FormData = require('form-data'); // to get data of image
 */
 /*
@@ -217,9 +219,9 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
            password: 'AdminOuest123!',
        };
 
-       await login(credentials); // login 
+       await login(credentials); // login
 
-       // FormData 
+       // FormData
        const form = new FormData();
        form.append('name_category_trailer', 'TestCat-' + Date.now());
        form.append('description', 'Catégorie test créée via Jest');
@@ -279,7 +281,7 @@ describe('Admin API tests', () => {
 
 */
 
-// crud by admin : update categories-trailers 
+// crud by admin : update categories-trailers
 
 /*
 
@@ -427,19 +429,19 @@ describe('Commande - Ajouter un camion au panier', () => {
             trucks: [33],
             trailers: [],
         };
-    
-            console.log('Payload envoyé à /cart :', payload);
-            await authAxios.post('/cart', payload); 
 
-            const response = await authAxios.get('/cart');     
-           
+            console.log('Payload envoyé à /cart :', payload);
+            await authAxios.post('/cart', payload);
+
+            const response = await authAxios.get('/cart');
+
 
             expect(response.status).toBe(200);
             const lastOrder = response.data[response.data.length - 1];
             expect(lastOrder.trucks[0].truck).toBe(33); // Verif if truck 33 is in the order
 
             console.log('Réponse brute:', JSON.stringify(response.data, null, 2));
-        
+
     });
 });
 */
@@ -453,17 +455,17 @@ describe('Panier - Ajout d\'élément au panier', () => {
             password: 'robert44',
         };
 
-        await login(credentials); 
+        await login(credentials);
 
         const payload = {
             start_date: '2025-05-01',
             end_date: '2025-05-03',
-            amount: 805, 
+            amount: 805,
             method_payment: 'none', // Sans paiement
             trucks: [28], // Ajouter un camion dans le panier
-            trailers: [], 
+            trailers: [],
         };
-        
+
             console.log('Payload envoyé à /orders :', payload);
             const response = await authAxios.post('/orders', payload);
 
@@ -471,7 +473,7 @@ describe('Panier - Ajout d\'élément au panier', () => {
             expect(response.data).toHaveProperty('order');
             expect(response.data.order.trucks[0].id_truck).toBe(28); // Vérifie que le camion a bien été ajouté au panier
             console.log('Commande ajoutée au panier :', response.data.order);
-       
+
     });
 
     test('devrait récupérer les éléments du panier de l\'utilisateur', async () => {
@@ -489,7 +491,7 @@ describe('Panier - Ajout d\'élément au panier', () => {
 
 */
 
-//  read cart of the user 5 = ok 
+//  read cart of the user 5 = ok
 
 /*
 
@@ -674,7 +676,7 @@ describe('API accessibility test', () => {
 
 */
 
-// test to open public page trailers-by-category/2 
+// test to open public page trailers-by-category/2
 
 /*
 
@@ -701,7 +703,7 @@ describe('API accessibility test', () => {
 
 // page detail
 
-// test to open page trucks/27 = ok  
+// test to open page trucks/27 = ok
 
 
 
@@ -709,7 +711,7 @@ describe('API accessibility test', () => {
     test('should return status 200 for /trucks/27', async () => {
         const response = await Axios.get('/trucks/27');
         expect(response.status).toBe(200);
-        console.log('detail du truck 27 :', response.data); // data = details of the truck 27 
+        console.log('detail du truck 27 :', response.data); // data = details of the truck 27
 
     });
 });
