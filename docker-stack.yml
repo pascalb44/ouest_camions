@@ -12,6 +12,8 @@ services:
       - "traefik.http.routers.laravel-docker.rule=Host(`api.ouestcamions.fr`)"  # real site 
       - "traefik.http.routers.laravel-docker.entrypoints=websecure"
       - "traefik.http.routers.laravel-docker.tls.certresolver=myresolver"
+    volumes:
+      - ~/storage:/var/www/app/storage
 
   vue-docker:
     image: ghcr.io/pascalb44/cda-spa-prod:latest
@@ -33,6 +35,8 @@ services:
       MYSQL_DATABASE: ouest_camions  # real database
     ports:
       - 3306:3306
+    volumes :
+      - ~/datadir:/var/lib/mysql
 
   traefik:
     image: traefik:v3.2
@@ -48,5 +52,5 @@ services:
       - "443:443"
       - "8080:8080"
     volumes:
-      - "/letsencrypt:/letsencrypt"
+      - "/letsencrypt:/letsencrypt" # security
       - "/var/run/docker.sock:/var/run/docker.sock:ro"

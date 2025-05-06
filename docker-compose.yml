@@ -5,8 +5,8 @@ services:
     ports:
       - 8000:80
     volumes:
-    #  - ~/storage:/var/www/app/storage
-      - /c/wamp64/www/ouestcamions/ouest-camions-api/storage:/var/www/app/storage
+      - ~/storage:/var/www/app/storage
+      # - /c/wamp64/www/ouestcamions/ouest-camions-api/storage:/var/www/app/storage
 
   vue-docker:
     container_name: vue-docker
