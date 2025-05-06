@@ -145,10 +145,11 @@ describe('Register API test', () => {
 
 
 // crud by admin : create categories-trailers = ok in the base 
-
+/*
 const fs = require('fs'); 
 const path = require('path'); // to get image 
 const FormData = require('form-data'); // to get data of image
+*/
 
 describe('Admin API - CategoryTrailer Creation with login', () => {
    test('should login and create a new trailer category', async () => {
