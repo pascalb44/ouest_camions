@@ -22,7 +22,7 @@ let authAxios; // for authentification
 //-----------------------------
 
 
-/*
+
 async function login(credentials) {
 
     const res = await Axios.post('/login', credentials); // request 
@@ -45,10 +45,12 @@ async function login(credentials) {
 
     //console.log('Utilisateur connecté :', user); // get data user + token 
 
-    return token;
-}
+    return {
+        token,
+        user: userData,
+    };}
 
-*/
+
 
 
 //-----------------------------
@@ -96,7 +98,7 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
         form.append('image_category_trailer', fs.createReadStream(path.join(__dirname, 'camion_IA2.jpg')));
 
         try {
-            const response = await Axios.post(
+            const response = await authAxios .post(
                 '/admin/categories-trailers',
                 form,
                 {
