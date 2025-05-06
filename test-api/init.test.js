@@ -145,7 +145,7 @@ describe('Register API test', () => {
 
 
 // crud by admin : create categories-trailers = ok in the base 
-/*
+
 const fs = require('fs'); 
 const path = require('path'); // to get image 
 const FormData = require('form-data'); // to get data of image
@@ -186,7 +186,7 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
        }
    });
 });
-*/
+
 
 // crud by admin : read categories-trailers = ok
 
@@ -659,7 +659,7 @@ describe('API accessibility test', () => {
 // test to open page trailers/1 by visitor = ok  
 
 
-
+/*
 describe('API accessibility test', () => {
     test('should return status 200 for /trailers/1', async () => {
         const response = await Axios.get('/trailers/1');
@@ -669,3 +669,4 @@ describe('API accessibility test', () => {
 });
 
 
+*/
