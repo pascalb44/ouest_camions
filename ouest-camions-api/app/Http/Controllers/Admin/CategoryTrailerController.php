@@ -26,6 +26,7 @@ class CategoryTrailerController extends Controller
         $formFields = $request->validate([
             'name_category_trailer' => 'required|string',
             'description' => 'required|string',
+            'image_category_trailer' => 'required|image|mimes:jpg,jpeg,png|max:2048',
 
         ]);
         $filename = "";

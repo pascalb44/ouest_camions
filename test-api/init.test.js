@@ -95,8 +95,7 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
         const form = new FormData();
         form.append('name_category_trailer', 'TestCat-' + Date.now());
         form.append('description', 'Catégorie test créée via Jest');
-        form.append('image_category_trailer', fs.createReadStream(path.join(__dirname, 'camion_IA2.jpg')));
-
+        form.append('image_category_trailer', fs.createReadStream('C:/wamp64/www/ouestcamions/test-api/camion_IA2.jpg'));
         try {
             const response = await authAxios .post(
                 '/admin/categories-trailers',
