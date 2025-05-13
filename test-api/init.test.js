@@ -691,6 +691,7 @@ describe('API accessibility test', () => {
 // test to open public page categories-trucks/1 = ok
 
 
+
 describe('API accessibility test', () => {
     test('should return status 200 for /trucks/category/1', async () => {
         const response = await Axios.get('/trucks/category/1');
