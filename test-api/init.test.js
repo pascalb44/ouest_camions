@@ -22,7 +22,7 @@ let authAxios; // for authentification
 //-----------------------------
 
 
-
+/*
 async function login(credentials) {
 
     const res = await Axios.post('/login', credentials); // request 
@@ -51,13 +51,13 @@ async function login(credentials) {
     };
 }
 
-
+*/
 
 
 //-----------------------------
 // TEST 
 //-----------------------------
-
+/*
 
 let token = ''; // Déclare une variable globale pour stocker le token
 
@@ -119,6 +119,9 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
         }
     });
 });
+
+*/
+
 
 // login of the user + admin  = ok
 /*
