@@ -1,0 +1,86 @@
+/***************** version desktop *******************/
+
+@media (min-width: 1025px) {
+
+    /***************************** page agencies **********************************/
+
+    .h1-agencies {
+        color: green;
+        padding: 2%;
+        font-size: 3rem;
+        text-align: center;
+        margin: 10% auto 10%;
+    }
+       
+    .icon-agencies {
+        margin: 5% 0 10% 35%;
+    }
+    
+    .icon-agencies img {
+        width: 50%;
+        padding : 1%;
+    }
+
+    .bloc-agencies1, .bloc-agencies2,.bloc-agencies3, .bloc-agencies4 {
+        display: flex;
+        flex-direction: row;
+        margin : 1% 5%;
+    }
+
+    .bloc-agencies {
+        margin: 2% auto 2%;
+
+        p {
+            font-size: 1.3rem;
+            width: max-content;
+            border : solid 1px blue;
+            border-radius: 15%;
+            padding: 10px;
+            
+            background-color:powderblue;
+        }
+    }
+
+}
+
+/* tablette lanscape */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .h1-agencies {
+        color: green;
+        padding: 2%;
+        font-size: 3rem;
+        text-align: center;
+        margin: 10% auto 10%;
+    }
+       
+    .icon-agencies {
+        margin: 5% 0 10% 35%;
+    }
+    
+    .icon-agencies img {
+        width: 50%;
+        padding : 1%;
+    }
+
+    .bloc-agencies1, .bloc-agencies2,.bloc-agencies3, .bloc-agencies4 {
+        display: flex;
+        flex-direction: row;
+        margin : 1% 5%;
+    }
+
+    .bloc-agencies {
+        margin: 2% auto 2%;
+
+        p {
+            font-size: 1rem;
+            width: max-content;
+            border : solid 1px blue;
+            border-radius: 15%;
+            padding: 10px;
+            
+            background-color:powderblue;
+        }
+    }
+}

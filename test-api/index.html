@@ -2,15 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <main class="ant-layout-content" style="background: rgb(255, 255, 255); height: calc(-54.8px + 100vh); padding: 24px; overflow: scroll;"><div id="formao"><h2>Testez votre API</h2><p>Dans le cadre de ce cursus nous aborderons uniquement les tests API. Ces tests étant finalement les plus importants dans l’architecture 3-tiers.<br>Pour commencer, créons un programme complétement séparé du reste de notre projet. Dans notre cas, nous allons l’écrire en <strong>NodeJS </strong>avec <strong>Jest</strong> et <strong>Axios </strong>! En plus, cela permettras de ré-utiliser le code source des requêtes <strong>Axios </strong>dans notre front:</p><pre><code class="hljs language-arduino"><span class="hljs-meta"># npm init</span>
+  <main class="ant-layout-content"
+    style="background: rgb(255, 255, 255); height: calc(-54.8px + 100vh); padding: 24px; overflow: scroll;">
+    <div id="formao">
+      <h2>Testez votre API</h2>
+      <p>Dans le cadre de ce cursus nous aborderons uniquement les tests API. Ces tests étant finalement les plus
+        importants dans l’architecture 3-tiers.<br>Pour commencer, créons un programme complétement séparé du reste de
+        notre projet. Dans notre cas, nous allons l’écrire en <strong>NodeJS </strong>avec <strong>Jest</strong> et
+        <strong>Axios </strong>! En plus, cela permettras de ré-utiliser le code source des requêtes <strong>Axios
+        </strong>dans notre front:</p>
+      <pre><code class="hljs language-arduino"><span class="hljs-meta"># npm init</span>
         <span class="hljs-meta"># npm install jest</span>
-        <span class="hljs-meta"># npm install axios</span></code></pre><h3>Configurer le package.json</h3><pre><code class="language-json hljs"><span class="hljs-punctuation">{</span>
+        <span class="hljs-meta"># npm install axios</span></code></pre>
+      <h3>Configurer le package.json</h3>
+      <pre><code class="language-json hljs"><span class="hljs-punctuation">{</span>
           <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Test API"</span><span class="hljs-punctuation">,</span>
           <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1.0.0"</span><span class="hljs-punctuation">,</span>
           <span class="hljs-attr">"module"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"esnext"</span><span class="hljs-punctuation">,</span>
@@ -25,7 +36,13 @@
           <span class="hljs-attr">"dependencies"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
             <span class="hljs-attr">"axios"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"^1.7.5"</span>
           <span class="hljs-punctuation">}</span>
-        <span class="hljs-punctuation">}</span></code></pre><p>La ligne <code>"test": "jest --runInBand"</code> permet de lancer la commande <code># npm run test </code>. Cette commande exécutera l’ensemble des tests. <strong>Il faut savoir que Jest exécute uniquement les fichiers qui sont post-fixés</strong> par <strong>.test.js</strong>.</p><h3>Procédure de connexion</h3><p>A présent, créons un fichier<strong> init.test.js</strong> qui contiendra nos tests:</p><pre><code class="language-javascript hljs"><span class="hljs-keyword">const</span> { expect } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@jest/globals'</span>);
+        <span class="hljs-punctuation">}</span></code></pre>
+      <p>La ligne <code>"test": "jest --runInBand"</code> permet de lancer la commande <code># npm run test </code>.
+        Cette commande exécutera l’ensemble des tests. <strong>Il faut savoir que Jest exécute uniquement les fichiers
+          qui sont post-fixés</strong> par <strong>.test.js</strong>.</p>
+      <h3>Procédure de connexion</h3>
+      <p>A présent, créons un fichier<strong> init.test.js</strong> qui contiendra nos tests:</p>
+      <pre><code class="language-javascript hljs"><span class="hljs-keyword">const</span> { expect } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@jest/globals'</span>);
         <span class="hljs-keyword">const</span> axios = <span class="hljs-built_in">require</span>(<span class="hljs-string">'axios'</span>);
         
         <span class="hljs-keyword">const</span> <span class="hljs-title class_">Axios</span> = axios.<span class="hljs-title function_">create</span>({
@@ -78,7 +95,13 @@
           <span class="hljs-keyword">const</span> endAt = cookies[<span class="hljs-number">0</span>].<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">';'</span>);
           <span class="hljs-keyword">const</span> csrf = cookies[<span class="hljs-number">0</span>].<span class="hljs-title function_">substring</span>(startAt + <span class="hljs-number">1</span>, endAt - <span class="hljs-number">3</span>);
           <span class="hljs-keyword">return</span> csrf;
-        }</code></pre><p>Ce code est certes un peu barbare mais pas d’inquiétude. Cette partie là sera la même pour toutes vos API basé sur Laravel. Ce code initialise une connexion en tant qu’utilisateur. Les tests suivant se feront donc dans le contexte de cet utilisateur là. Plus concrètement, nous récupérons tout simplement les cookies de la requête de connexion pour les sauvegarder dans les headers de nos futur requêtes (voir cours API Part.2).</p><h3>Ecriture des tests utilisateurs</h3><pre><code class="language-javascript hljs"><span class="hljs-title function_">describe</span>(<span class="hljs-string">"User Login"</span>, <span class="hljs-function">() =&gt;</span> {
+        }</code></pre>
+      <p>Ce code est certes un peu barbare mais pas d’inquiétude. Cette partie là sera la même pour toutes vos API basé
+        sur Laravel. Ce code initialise une connexion en tant qu’utilisateur. Les tests suivant se feront donc dans le
+        contexte de cet utilisateur là. Plus concrètement, nous récupérons tout simplement les cookies de la requête de
+        connexion pour les sauvegarder dans les headers de nos futur requêtes (voir cours API Part.2).</p>
+      <h3>Ecriture des tests utilisateurs</h3>
+      <pre><code class="language-javascript hljs"><span class="hljs-title function_">describe</span>(<span class="hljs-string">"User Login"</span>, <span class="hljs-function">() =&gt;</span> {
           <span class="hljs-title function_">test</span>(<span class="hljs-string">"Vérification de l'authentification"</span>, <span class="hljs-keyword">async</span> () =&gt; {
             <span class="hljs-keyword">await</span> <span class="hljs-title function_">login</span>(user, {
               <span class="hljs-attr">email</span>: <span class="hljs-string">'user@pokedex.com'</span>,
@@ -182,7 +205,9 @@
             <span class="hljs-title function_">expect</span>(deleteRes.<span class="hljs-property">status</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">403</span>);
             <span class="hljs-title function_">expect</span>(curNumCreature).<span class="hljs-title function_">toBe</span>(oldNumCreature);
           });
-        });</code></pre><h3>Ecriture des tests administrateur</h3><pre><code class="language-javascript hljs"><span class="hljs-title function_">describe</span>(<span class="hljs-string">"Admin Login"</span>, <span class="hljs-function">() =&gt;</span> {
+        });</code></pre>
+      <h3>Ecriture des tests administrateur</h3>
+      <pre><code class="language-javascript hljs"><span class="hljs-title function_">describe</span>(<span class="hljs-string">"Admin Login"</span>, <span class="hljs-function">() =&gt;</span> {
           <span class="hljs-title function_">test</span>(<span class="hljs-string">"Vérification de l'authentification"</span>, <span class="hljs-keyword">async</span> () =&gt; {
             <span class="hljs-keyword">await</span> <span class="hljs-title function_">login</span>(user, {
               <span class="hljs-attr">email</span>: <span class="hljs-string">'admin@pokedex.com'</span>,
@@ -214,7 +239,12 @@
             <span class="hljs-title function_">expect</span>(deleteRes.<span class="hljs-property">status</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">200</span>);
             <span class="hljs-title function_">expect</span>(curNumCreature).<span class="hljs-title function_">toBe</span>(oldNumCreature - <span class="hljs-number">1</span>);
           });
-        });</code></pre><h3>Lancement des tests</h3><p>Cela se fait en deux temps, ont commence par mettre la base de donnée dans un état initiale avec la commande: <code># php artisan migrate:fresh --seed</code> puis ont démarre nos tests: <code># npm run test</code></p></div></main>
+        });</code></pre>
+      <h3>Lancement des tests</h3>
+      <p>Cela se fait en deux temps, ont commence par mettre la base de donnée dans un état initiale avec la commande:
+        <code># php artisan migrate:fresh --seed</code> puis ont démarre nos tests: <code># npm run test</code></p>
+    </div>
+  </main>
 </body>
 
 </html>

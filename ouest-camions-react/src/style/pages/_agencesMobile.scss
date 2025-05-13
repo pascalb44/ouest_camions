@@ -1,0 +1,89 @@
+/* version tablette orientation portrait */
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    /***************************** page agencies **********************************/
+
+
+    .h1-agencies {
+        color: green;
+        padding: 2%;
+        font-size: 3rem;
+        text-align: center;
+        margin: 10% auto 10%;
+    }
+       
+    .icon-agencies {
+        margin: 5% 0 10% 35%;
+    }
+    
+    .icon-agencies img {
+        width: 50%;
+        padding : 1%;
+    }
+
+    .bloc-agencies1, .bloc-agencies2,.bloc-agencies3, .bloc-agencies4 {
+        display: flex;
+        flex-direction: column;
+        margin : 1% 5%;
+    }
+
+    .bloc-agencies {
+        margin: 2% auto 2%;
+
+        p {
+            font-size: 1.2rem;
+            width: max-content;
+            border : solid 1px blue;
+            border-radius: 15%;
+            padding: 10px;
+            
+            background-color:powderblue;
+        }
+    }
+}
+
+
+
+/********************************** version mobile ********************/
+
+@media (max-width: 480px) {
+
+    .h1-agencies {
+        color: green;
+        padding: 2%;
+        font-size: 3rem;
+        text-align: center;
+        margin: 10% auto 10%;
+    }
+       
+    .icon-agencies {
+        margin: 5% 0 10% 35%;
+    }
+    
+    .icon-agencies img {
+        width: 60%;
+        padding : 1%;
+    }
+
+    .bloc-agencies1, .bloc-agencies2,.bloc-agencies3, .bloc-agencies4 {
+        display: flex;
+        flex-direction: column;
+        margin : 1% 5%;
+    }
+
+    .bloc-agencies {
+        margin: 2% auto 2%;
+
+        p {
+            font-size: 1.1rem;
+            width: max-content;
+            border : solid 1px blue;
+            border-radius: 15%;
+            padding: 10px;
+            
+            background-color:powderblue;
+        }
+    }
+}

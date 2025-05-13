@@ -9,9 +9,12 @@ import Profile from "./pages/users/Profile";
 import EditUser from './pages/users/EditUser';
 import PaypalCheckout from './components/PaypalCheckout';
 
+
 import Legal from "./pages/Legal";
 import Cgv from "./pages/Cgv";
 import Presentation from "./pages/Presentation";
+import Agences from "./pages/Agences";
+
 
 
 
@@ -79,6 +82,8 @@ function App() {
           <Route path="legal" element={<Legal />} />
           <Route path="cgv" element={<Cgv />} />
           <Route path="presentation" element={<Presentation />} />
+          <Route path="agences" element={<Agences />} />
+
 
           <Route path="categories-trucks" element={<CategoriesTrucks />} />
           <Route path="/trucks-by-category/:id" element={<TrucksByCategory />} />
