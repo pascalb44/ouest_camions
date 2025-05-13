@@ -22,7 +22,7 @@ let authAxios; // for authentification
 //-----------------------------
 
 
-/*
+
 async function login(credentials) {
 
     const res = await Axios.post('/login', credentials); // request 
@@ -51,13 +51,13 @@ async function login(credentials) {
     };
 }
 
-*/
+
 
 
 //-----------------------------
 // TEST 
 //-----------------------------
-/*
+
 
 let token = ''; // Déclare une variable globale pour stocker le token
 
@@ -81,6 +81,9 @@ describe("User Login", () => {
     });
 });
 
+
+
+/*
 describe('Admin API - CategoryTrailer Creation with login', () => {
     test('should login and create a new trailer category', async () => {
         // Si tu utilises un admin, utilise `admin@ouestcamions.fr` comme credentials
@@ -120,7 +123,7 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
     });
 });
 
-*/
+
 
 
 // login of the user + admin  = ok
