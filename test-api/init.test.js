@@ -417,7 +417,7 @@ describe('Admin API - CategoryTrailer Deletion with login', () => {
 // crud by user : create cart
 
 
-/*
+
 describe('Commande - Ajouter un camion au panier', () => {
     test('devrait créer une commande avec le camion 33', async () => {
         const credentials = {
@@ -428,8 +428,8 @@ describe('Commande - Ajouter un camion au panier', () => {
         await login(credentials);
 
         const payload = {
-            start_date: '2025-05-12',
-            end_date: '2025-05-14',
+            start_date: '2025-05-25',
+            end_date: '2025-06-14',
             amount: 650,
             method_payment: 'none',
             trucks: [33],
@@ -450,7 +450,7 @@ describe('Commande - Ajouter un camion au panier', () => {
 
     });
 });
-*/
+
 
 /*
 
@@ -499,10 +499,10 @@ describe('Panier - Ajout d\'élément au panier', () => {
 
 //  read cart of the user 5 = ok
 
-/*
+
 
 describe("Vérification d'un camion dans le panier", () => {
-    test("Vérifie si le camion 28 est dans le panier de l'utilisateur 5", async () => {
+    test("Vérifie si le camion 33 est dans le panier de l'utilisateur 5", async () => {
         const credentials = {
             email: 'robert@transportslenantais.fr',
             password: 'robert44',
@@ -512,7 +512,7 @@ describe("Vérification d'un camion dans le panier", () => {
 
         const res = await Axios.get('/cart'); // Requête pour récupérer les réservations en cours (panier)
         const cart = res.data;
-        const camionId = 28;
+        const camionId = 33;
 
         const camionDansPanier = cart.some(reservation =>
             reservation.trucks?.some(truck => truck.id === camionId)
@@ -525,7 +525,7 @@ describe("Vérification d'un camion dans le panier", () => {
         ));
     });
 });
-*/
+
 
 
 /*  read cart of the user = ok */
