@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-
 export default function IconCard() {
   const navigate = useNavigate();
-
   const icons = [
     { 
       src: "./images/carteRegion.jpg", 
@@ -11,7 +9,6 @@ export default function IconCard() {
     },
   
   ];
-
   return (
     <div className="icon-map">
       {icons.map((icon, index) => (
