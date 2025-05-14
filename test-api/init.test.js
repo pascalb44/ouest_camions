@@ -64,10 +64,10 @@ let token = ''; // Déclare une variable globale pour stocker le token
 describe("User Login", () => {
     test("Vérifie si l'utilisateur peut se connecter et obtenir un token", async () => {
         const credentials = {
-            //    email: 'robert@transportslenantais.fr', // pour les tests utilisateurs
-            //    password: 'robert44',
-            email: 'admin@ouestcamions.fr',   // pour les tests administrateur
-            password: 'AdminOuest123!',
+                email: 'robert@transportslenantais.fr', // pour les tests utilisateurs
+                password: 'robert44',
+            //email: 'admin@ouestcamions.fr',   // pour les tests administrateur
+            //password: 'AdminOuest123!',
         };
 
         const loginResponse = await login(credentials); // login() doit retourner un token
