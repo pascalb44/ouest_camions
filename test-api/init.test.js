@@ -428,24 +428,25 @@ describe('Commande - Ajouter un camion au panier', () => {
         await login(credentials);
 
         const payload = {
-            start_date: '2025-05-25',
+            start_date: '2025-05-28',
             end_date: '2025-06-14',
-            amount: 650,
+            amount: 60,
             method_payment: 'none',
             trucks: [33],
-            trailers: [],
+            trailers: [3],
         };
 
 
-        console.log('Payload envoyé à /order :', payload);
+        console.log('Payload envoyé à /cart :', payload);
 
         try {
-            await authAxios.post('/order', payload);
+            await authAxios.post('/cart', payload);
         } catch (error) {
-            console.error('Erreur lors du POST /order :', error.response?.data || error.message);
+            console.error('Erreur lors du POST /cart :', error.response?.data || error.message);
         }
 
-        const response = await authAxios.get('/order');
+        const response = await authAxios.get('/cart');
+
 
         expect(response.status).toBe(200);
         const lastOrder = response.data[response.data.length - 1];
