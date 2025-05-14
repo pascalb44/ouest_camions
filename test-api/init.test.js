@@ -76,8 +76,8 @@ describe("User Login", () => {
 
         expect(token).toBeDefined();
         expect(typeof token).toBe("string");
-        //expect(loginResponse.user.email).toBe('robert@transportslenantais.fr'); // Vérifie que l'utilisateur connecté est le bon
-        expect(loginResponse.user.email).toBe('admin@ouestcamions.fr'); // Si tu utilises un admin pour un autre test
+       expect(loginResponse.user.email).toBe('robert@transportslenantais.fr'); // Vérifie que l'utilisateur connecté est le bon
+     //   expect(loginResponse.user.email).toBe('admin@ouestcamions.fr'); // Si tu utilises un admin pour un autre test
     });
 });
 
