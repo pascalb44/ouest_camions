@@ -712,6 +712,7 @@ describe('API accessibility test', () => {
 
 // test to open page trucks/27 = ok
 
+*/
 
 
 describe('API accessibility test', () => {
@@ -724,7 +725,7 @@ describe('API accessibility test', () => {
 });
 
 
-*/
+
 
 // test to open page trailers/1 by visitor = ok  
 

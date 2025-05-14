@@ -8,7 +8,7 @@
     }
 
 
-    /* Bouton de bascule mode sombre */
+    /* dark mode button reverse */
     .dark-mode-toggle {
         position: absolute;
         top: 1rem;
@@ -24,20 +24,20 @@
         transition: background 0.3s, color 0.3s;
     }
 
-    /* Appliquer le mode sombre */
+    /* dark mode */
     body.dark-mode {
         background-color: #121212;
         color: #f0f0f0;
     }
 
-    /* Header en mode sombre */
+    /* dark mode header */
     body.dark-mode .header {
         background-color: #1e1e1e;
     }
 
-    /* Liens en mode sombre (optionnel si tu as des liens dans le header/nav) */
+    /* dark mode links in header/nav */
     body.dark-mode a {
-        color: #90caf9;
+        color: floralwhite;
     }
 
 
