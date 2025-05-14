@@ -419,7 +419,7 @@ describe('Admin API - CategoryTrailer Deletion with login', () => {
 
 
 describe('Commande - Ajouter un camion au panier', () => {
-    test('devrait créer une commande avec le camion 33', async () => {
+    test('devrait créer une commande avec le camion 28', async () => {
         const credentials = {
             email: 'robert@transportslenantais.fr',
             password: 'robert44',
