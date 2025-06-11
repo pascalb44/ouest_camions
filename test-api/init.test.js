@@ -7,7 +7,7 @@ const path = require('path');
 
 
 const Axios = axios.create({
-    baseURL: 'http://localhost:8000/api', /* no localhost for local but necessary for tests in github */
+    baseURL: 'http://127.0.0.1:8000/api', /* no localhost for local but necessary for tests in github */
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -59,43 +59,44 @@ async function login(credentials) {
 //-----------------------------
 
 
-let token = ''; // Déclare une variable globale pour stocker le token
+let token = ''; // global to stock token
 
 describe("User Login", () => {
     test("Vérifie si l'utilisateur peut se connecter et obtenir un token", async () => {
         const credentials = {
-            email: 'robert@transportslenantais.fr', // pour les tests utilisateurs
+            email: 'robert@transportslenantais.fr', // for users tests
             password: 'robert44',
-            //email: 'admin@ouestcamions.fr',   // pour les tests administrateur
+            //email: 'admin@ouestcamions.fr',   // for admin tests
             //password: 'AdminOuest123!',
         };
 
-        const loginResponse = await login(credentials); // login() doit retourner un token
+        const loginResponse = await login(credentials); // login() return token
 
-        token = loginResponse.token; // Stocke le token dans une variable globale pour réutilisation
+        token = loginResponse.token; // Stock token in a global to re-use
 
         expect(token).toBeDefined();
         expect(typeof token).toBe("string");
-        expect(loginResponse.user.email).toBe('robert@transportslenantais.fr'); // Vérifie que l'utilisateur connecté est le bon
-        //   expect(loginResponse.user.email).toBe('admin@ouestcamions.fr'); // Si tu utilises un admin pour un autre test
+        expect(loginResponse.user.email).toBe('robert@transportslenantais.fr'); // verif if user is good
+        //   expect(loginResponse.user.email).toBe('admin@ouestcamions.fr'); // verif if admin is good
     });
 });
+
+
 
 
 
 /*
 describe('Admin API - CategoryTrailer Creation with login', () => {
     test('should login and create a new trailer category', async () => {
-        // Si tu utilises un admin, utilise `admin@ouestcamions.fr` comme credentials
         const credentials = {
             email: 'admin@ouestcamions.fr', // admin
             password: 'AdminOuest123!',
         };
 
         const loginResponse = await login(credentials);
-        const token = loginResponse.token; // Le token obtenu après le login de l'admin
+        const token = loginResponse.token; // token after admin login
 
-        // FormData pour la catégorie de remorque
+        // FormData trailer catégory
         const form = new FormData();
         form.append('name_category_trailer', 'TestCat-' + Date.now());
         form.append('description', 'Catégorie test créée via Jest');
@@ -107,7 +108,7 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
                 form,
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Utilise le token d'authentification dans les headers
+                        Authorization: `Bearer ${token}`, // use token in headers
                         ...form.getHeaders(),
                     },
                 }
@@ -130,7 +131,7 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
 /*
 
 describe("User Login", () => {
-    test("Vérifie si l'utilisateur peut se connecter et obtenir un token", async () => {
+    test("Verif if user can connect and have token", async () => {
         const credentials = {
             email: 'robert@transportslenantais.fr', // for user tests
             password: 'robert44',
@@ -414,94 +415,75 @@ describe('Admin API - CategoryTrailer Deletion with login', () => {
 
 
 
-// crud by user : create cart
+// crud by user : create cart : ok
 
 
-
-describe('Commande - Ajouter un camion au panier', () => {
-    test('créer une commande avec le camion identifié', async () => {
-        const credentials = {
-            email: 'robert@transportslenantais.fr',
-            password: 'robert44',
-        };
-
-        await login(credentials);
-
-        const payload = {
-            start_date: '2025-05-28',
-            end_date: '2025-06-14',
-            amount: 60,
-            method_payment: 'none',
-            trucks: [33],
-            trailers: [3],
-        };
-
-
-        console.log('Payload envoyé à /cart :', payload);
-
-        try {
-            await authAxios.post('/cart', payload);
-        } catch (error) {
-            console.error('Erreur lors du POST /cart :', error.response?.data || error.message);
-        }
-
-        const response = await authAxios.get('/cart');
-
-
-        expect(response.status).toBe(200);
-        const lastOrder = response.data[response.data.length - 1];
-        expect(lastOrder.trucks[0].truck).toBe(33); // Verif if truck 33 is in the order
-
-        console.log('Réponse brute:', JSON.stringify(response.data, null, 2));
-
-    });
-});
-
-
+// test ok 
 /*
 
 describe('Panier - Ajout d\'élément au panier', () => {
-    test('devrait ajouter un camion au panier sans paiement', async () => {
+    test('ajoute un camion + une remorque au panier sans paiement', async () => {
         const credentials = {
             email: 'robert@transportslenantais.fr',
             password: 'robert44',
         };
 
-        await login(credentials);
+        const loginResponse = await login(credentials);
+        const token = loginResponse.token;
+        const authAxios = axios.create({
+            baseURL: 'http://127.0.0.1:8000/api',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
 
         const payload = {
-            start_date: '2025-05-01',
-            end_date: '2025-05-03',
-            amount: 805,
-            method_payment: 'none', // Sans paiement
-            trucks: [28], // Ajouter un camion dans le panier
-            trailers: [],
+            start_date: '2025-05-25',
+            end_date: '2025-07-21',
+            amount: 512,
+            method_payment: 'none', // no paid
+            trucks: [33], // add truck in cart
+            trailers: [8],
         };
 
+        let response; 
+
+        try {
             console.log('Payload envoyé à /orders :', payload);
-            const response = await authAxios.post('/orders', payload);
+            response = await authAxios.post('/cart', payload);
 
             expect(response.status).toBe(200);
             expect(response.data).toHaveProperty('order');
-            expect(response.data.order.trucks[0].id_truck).toBe(28); // Vérifie que le camion a bien été ajouté au panier
+            expect(response.data.order.trucks[0].id).toBe(33);
             console.log('Commande ajoutée au panier :', response.data.order);
 
+        } catch (error) {
+            console.error('Erreur lors de la requête /orders:', error.response?.data || error.message);
+            throw error;
+        }
     });
+});
+*/
 
-    test('devrait récupérer les éléments du panier de l\'utilisateur', async () => {
-        // Récupérer le panier de l'utilisateur connecté
+// test ok 
+/*
+describe("Vérification camion 33 + remorque 8 dans le panier", () => {
+    test('récupérer les éléments du panier de l\'utilisateur', async () => {
+        // get user cart
         const response = await authAxios.get('/cart');
 
         console.log('Contenu du panier :', response.data);
 
-        // Vérifie que le panier contient au moins un camion
+        // Verif if cart = truck + trailer
         expect(response.status).toBe(200);
-        expect(response.data.trucks).toHaveLength(1); // Le panier doit contenir un camion
-        expect(response.data.trucks[0].id_truck).toBe(28); // Vérifie que c'est bien le camion avec l'ID 28
+        expect(response.data.trucks).toHaveLength(1); // less 1 truck
+        expect(response.data.trucks[0].id).toBe(33); // check if truck with id 33
+        expect(response.data.trailers[0].id).toBe(8); // check trailer with id 8
     });
 });
-
 */
+
+
 
 //  read cart of the user 5 = ok
 
@@ -603,11 +585,11 @@ describe("User orders", () => {
 
 
 
-// if truck 28 is in the orders of the user 5  = ok
+// if truck is in the orders of the user 5  = ok
 
 /*
 describe("Commande d'un camion spécifique", () => {
-    test("Vérifie si le camion 28 est dans les commandes du user 5", async () => {
+    test("Vérifie si le camion 33 est dans les commandes du user 5", async () => {
         const credentials = {
             email: 'robert@transportslenantais.fr',
             password: 'robert44',
@@ -617,7 +599,7 @@ describe("Commande d'un camion spécifique", () => {
 
         const res = await Axios.get('/orders');
         const orders = res.data;
-        const camionId = 28;
+        const camionId = 33;
 
         const camionCommandé = orders.some(order =>
             order.trucks?.some(truck => truck.id === camionId)
@@ -630,8 +612,8 @@ describe("Commande d'un camion spécifique", () => {
         ));
     });
 });
-
 */
+
 
 
 // page contacts : ok
@@ -722,11 +704,10 @@ describe('API accessibility test', () => {
 /*
 
 describe('API accessibility test', () => {
-    test('should return status 200 for /trucks/27', async () => {
-        const response = await Axios.get('/trucks/27');
+    test('should return status 200 for /trucks/15', async () => {
+        const response = await Axios.get('/trucks/15');
         expect(response.status).toBe(200);
-        console.log('detail du truck 27 :', response.data); // data = details of the truck 27
-
+        console.log('detail du truck 15 :', response.data); // data = details of the truck 15
     });
 });
 

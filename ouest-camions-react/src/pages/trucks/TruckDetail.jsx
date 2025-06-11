@@ -17,7 +17,6 @@ const TruckDetail = () => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-
     const updateTruckDuration = useCallback((newDuration, newStartDate, newEndDate) => {
         setDurationTruck(newDuration); // Update duration
         setStartDate(newStartDate); // Update start date
@@ -82,7 +81,7 @@ const TruckDetail = () => {
             return;
         }
 
-        // Add nex reservation
+        // Add new reservation
         existingReservations.push(newReservation);
         localStorage.setItem("reservations", JSON.stringify(existingReservations));
 

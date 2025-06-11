@@ -60,26 +60,23 @@ Route::post('/contacts', [ContactController::class, 'store']);
 
 
 /* protected routes */
-
-
-
-Route::middleware('auth:api')->group(function () {
-  
     // for dashboard admin 
 
-Route::get('/admin', [DashboardController::class, 'index']);  /* admin dashboard => routes admin only, easier to find url */
+Route::middleware('auth:api')->group(function () {
+  Route::get('/admin', [DashboardController::class, 'index']);  /* admin dashboard => routes admin only, easier to find url */
 
 // users
 
 Route::get('/currentuser', [UserController::class, 'currentUser']);
 Route::post('/logout', [AuthController::class, 'logout']);
-
 Route::get('users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
-/*Route::get('/users/{user}', [UserController::class, 'show']); */
-Route::get('users/{id}', [UserController::class, 'show']);
+Route::get('users/{user}', [UserController::class, 'show']);
 Route::patch('/users/{user}', [UserController::class, 'update']);
-Route::delete('/users/{id}', [UserController::class, 'destroy']); 
+Route::delete('/users/{user}', [UserController::class, 'destroy']); 
+
+
+/*Route::get('/users/{user}', [UserController::class, 'show']); */
 
 
 // categories-trucks
