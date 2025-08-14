@@ -18,7 +18,7 @@ const Dashboard = () => {
 
         try {
             const decodedToken = jwtDecode(token);
-            if (decodedToken.role !== 1) { 
+            if (decodedToken.role !== 1) {
                 navigate('/profile'); // if no admin
                 return;
             }
@@ -32,14 +32,14 @@ const Dashboard = () => {
         axios.get('http://127.0.0.1:8000/api/admin/dashboard', {
             headers: { 'Authorization': `Bearer ${token}` }
         })
-        .then(response => {
-            console.log(response);
-            setMessage(response.data.message);
-        })
-        .catch(error => {
-            console.error('Erreur lors de la récupération des données du dashboard', error);
-            setError("Erreur lors du chargement du tableau de bord.");
-        });
+            .then(response => {
+                console.log(response);
+                setMessage(response.data.message);
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des données du dashboard', error);
+                setError("Erreur lors du chargement du tableau de bord.");
+            });
     }, [navigate]);
 
     const handleLogout = async () => {
@@ -64,10 +64,10 @@ const Dashboard = () => {
                 <li><Link to="/admin/trucks">Gestion des camions</Link></li>
                 <li><Link to="/admin/trailers">Gestion des remorques</Link></li>
                 <li><Link to="/admin/categories-trucks">Gestion des catégories de camions</Link></li>
-       {/*           <li><Link to="/admin/orders">Gestion des commandes</Link></li> */}
-       {/*         <li><Link to="/admin/users">Gestion des clients</Link></li> */}
+                {/*           <li><Link to="/admin/orders">Gestion des commandes</Link></li> */}
+                {/*         <li><Link to="/admin/users">Gestion des clients</Link></li> */}
             </ul>
-            <button onClick={handleLogout} className="btn-to-login"> 
+            <button onClick={handleLogout} className="btn-to-login">
                 Se déconnecter {/* go to login page */}
             </button>
         </div>

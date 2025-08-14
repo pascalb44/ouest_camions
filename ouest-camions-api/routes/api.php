@@ -60,71 +60,77 @@ Route::post('/contacts', [ContactController::class, 'store']);
 
 
 /* protected routes */
-    // for dashboard admin 
+// for dashboard admin 
 
-Route::middleware('auth:api')->group(function () {
-  Route::get('/admin', [DashboardController::class, 'index']);  /* admin dashboard => routes admin only, easier to find url */
-
-// users
-
-Route::get('/currentuser', [UserController::class, 'currentUser']);
-Route::post('/logout', [AuthController::class, 'logout']);
-Route::get('users', [UserController::class, 'index']);
-Route::post('/users', [UserController::class, 'store']);
-Route::get('users/{user}', [UserController::class, 'show']);
-Route::patch('/users/{user}', [UserController::class, 'update']);
-Route::delete('/users/{user}', [UserController::class, 'destroy']); 
-
-
-/*Route::get('/users/{user}', [UserController::class, 'show']); */
-
-
-// categories-trucks
-
-Route::get('/admin/categories-trucks', [CategoryTruckController::class, 'index']); /* list for admin*/
-Route::post('/admin/categories-trucks', [CategoryTruckController::class, 'store']);
-Route::patch('/admin/categories-trucks/{id}', [CategoryTruckController::class, 'update']); /* no show for admin, it's just for update */
-Route::delete('/admin/categories-trucks/{id}', [CategoryTruckController::class, 'destroy']);
-
-
-// categories-trailers
-
-Route::get('/admin/categories-trailers', [CategoryTrailerController::class, 'index']); /* list for admin*/
-Route::post('/admin/categories-trailers', [CategoryTrailerController::class, 'store']);
-Route::patch('admin/categories-trailers/{id}', [CategoryTrailerController::class, 'update']); /* no route show for admin, it's just for update */
-Route::delete('/admin/categories-trailers/{id}', [CategoryTrailerController::class, 'destroy']);
-
-
-// trucks
-
-Route::get('/admin/trucks', [TruckController::class, 'index']); /* list for admin*/
-Route::get('/admin/trucks/{truck}', [TruckController::class, 'show']);
-Route::post('/admin/trucks', [TruckController::class, 'store']);
-Route::patch('/admin/trucks/{truck}', [TruckController::class, 'update']);
-Route::delete('/admin/trucks/{truck}', [TruckController::class, 'destroy']);
-
-
-// trailers
-
-Route::get('/admin/trailers', [TrailerController::class, 'index']); /* list for admin*/
-Route::post('/admin/trailers/{trailer}', [TrailerController::class, 'show']);
-Route::post('/admin/trailers', [TrailerController::class, 'store']);
-Route::patch('/admin/trailers/{trailer}', [TrailerController::class, 'update']);
-Route::delete('/admin/trailers/{trailer}', [TrailerController::class, 'destroy']);
-
-
-// orders
-
-Route::get('cart', [OrderController::class, 'getCart']); /* cart = not paid */
-Route::post('/cart', [OrderController::class, 'addToCart']); /* to post to cart */
-Route::get('payment', [OrderController::class, 'index']);
-Route::get('orders', [OrderController::class, 'index']);
-Route::post('/orders', [OrderController::class, 'store']);
-Route::get('/orders/{orders}', [OrderController::class, 'show']);
-Route::get('orders/{id}', [OrderController::class, 'show']);
-Route::patch('/orders/{orders}', [OrderController::class, 'update']);
-Route::delete('/orders/{orders}', [OrderController::class, 'destroy']);
-
+Route::get('/check-env', function () {
+  return response()->json([
+    'APP_ENV' => env('APP_ENV'),
+    'DB_CONNECTION' => env('DB_CONNECTION'),
+    'DB_DATABASE' => env('DB_DATABASE'),
+  ]);
 });
 
+Route::middleware('auth:api')->group(function () {
 
+  Route::get('/admin/dashboard', [DashboardController::class, 'index']);  /* admin dashboard => routes admin only, easier to find url */
+
+  // users
+
+  Route::get('/currentuser', [UserController::class, 'currentUser']);
+  Route::post('/logout', [AuthController::class, 'logout']);
+  Route::get('users', [UserController::class, 'index']);
+  Route::post('/users', [UserController::class, 'store']);
+  Route::get('users/{user}', [UserController::class, 'show']);
+  Route::patch('/users/{user}', [UserController::class, 'update']);
+  Route::delete('/users/{user}', [UserController::class, 'destroy']);
+
+
+  /*Route::get('/users/{user}', [UserController::class, 'show']); */
+
+
+  // categories-trucks
+
+  Route::get('/admin/categories-trucks', [CategoryTruckController::class, 'index']); /* list for admin*/
+  Route::post('/admin/categories-trucks', [CategoryTruckController::class, 'store']);
+  Route::patch('/admin/categories-trucks/{id}', [CategoryTruckController::class, 'update']); /* no show for admin, it's just for update */
+  Route::delete('/admin/categories-trucks/{id}', [CategoryTruckController::class, 'destroy']);
+
+
+  // categories-trailers
+
+  Route::get('/admin/categories-trailers', [CategoryTrailerController::class, 'index']); /* list for admin*/
+  Route::post('/admin/categories-trailers', [CategoryTrailerController::class, 'store']);
+  Route::patch('/admin/categories-trailers/{id}', [CategoryTrailerController::class, 'update']); /* no route show for admin, it's just for update */
+  Route::delete('/admin/categories-trailers/{id}', [CategoryTrailerController::class, 'destroy']);
+
+
+  // trucks
+
+  Route::get('/admin/trucks', [TruckController::class, 'index']); /* list for admin*/
+  Route::get('/admin/trucks/{truck}', [TruckController::class, 'show']);
+  Route::post('/admin/trucks', [TruckController::class, 'store']);
+  Route::patch('/admin/trucks/{truck}', [TruckController::class, 'update']);
+  Route::delete('/admin/trucks/{truck}', [TruckController::class, 'destroy']);
+
+
+  // trailers
+
+  Route::get('/admin/trailers', [TrailerController::class, 'index']); /* list for admin*/
+  Route::post('/admin/trailers/{trailer}', [TrailerController::class, 'show']);
+  Route::post('/admin/trailers', [TrailerController::class, 'store']);
+  Route::patch('/admin/trailers/{trailer}', [TrailerController::class, 'update']);
+  Route::delete('/admin/trailers/{trailer}', [TrailerController::class, 'destroy']);
+
+
+  // orders
+
+  Route::get('cart', [OrderController::class, 'getCart']); /* cart = not paid */
+  Route::post('/cart', [OrderController::class, 'addToCart']); /* to post to cart */
+  Route::get('payment', [OrderController::class, 'index']);
+  Route::get('orders', [OrderController::class, 'index']);
+  Route::post('/orders', [OrderController::class, 'store']);
+  Route::get('/orders/{orders}', [OrderController::class, 'show']);
+  Route::get('orders/{id}', [OrderController::class, 'show']);
+  Route::patch('/orders/{orders}', [OrderController::class, 'update']);
+  Route::delete('/orders/{orders}', [OrderController::class, 'destroy']);
+});

@@ -7,7 +7,8 @@ const RegisterForm = () => {
         first_name: '',
         last_name: '',
         company: '',
-        siren: null,
+        siret_number: '',
+        siret: null,
         address: '',
         postal_code: '',
         town: '',
@@ -28,10 +29,10 @@ const RegisterForm = () => {
     const handleChange = (e) => {
         const { name, value, files } = e.target;
     
-        if (name === 'siren') {
+        if (name === 'siret') {
             setFormData({
                 ...formData,
-                [name]: files[0] // seclected file 
+                [name]: files[0] // selected file 
             });
         } else {
             setFormData({
@@ -55,7 +56,8 @@ const RegisterForm = () => {
         if (!formData.first_name.trim()) newErrors.first_name = "Le prénom est requis";
         if (!formData.last_name.trim()) newErrors.last_name = "Le nom de famille est requis";
         if (!formData.company.trim()) newErrors.company = "Le nom de l'entreprise est requis";
-        if (!formData.siren) newErrors.siren = "Le siren doit être un fichier image";
+        if (!formData.siret_number.trim()) newErrors.siret_number = "Le numéro du siret est requis";
+        if (!formData.siret) newErrors.siret = "Le siret doit être un fichier image";
         if (!formData.address.trim()) newErrors.address = "L'adresse est requise";
         if (!formData.postal_code.trim()) newErrors.postal_code = "Le code postal est requis";
         if (!formData.town.trim()) newErrors.town = "La ville est requise";
@@ -116,7 +118,6 @@ const RegisterForm = () => {
         <div className="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-lg shadow-md">
 
-
                 {isSuccess && (
                     <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                         <strong className="font-bold">Succès!</strong>
@@ -157,14 +158,21 @@ const RegisterForm = () => {
                             className={`input-register ${errors.company ? 'border-red-300' : 'border-gray-300'}`} />
                         {errors.company && <p className="mt-2 text-sm text-red-600">{errors.company}</p>}
                     </div>
-
-
-                    {/* siren */}
+                    {/* siret number*/}
                     <div className="form-group-register">
-                        <label htmlFor="siren" for="image" className="label-register">SIREN</label>
-                        <input id="siren" name="siren" type="file" onChange={handleChange}
-                            className={`input-register ${errors.siren ? 'border-red-300' : 'border-gray-300'}`} />
-                        {errors.siren && <p className="mt-2 text-sm text-red-600">{errors.siren}</p>}
+                        <label htmlFor="siret_number" className="label-register">Numéro siret</label>
+                        <input id="siret_number" name="siret_number" type="text" value={formData.siret_number}
+                            onChange={handleChange} className={`input-register ${errors.siret_number ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.siret_number && <p className="mt-2 text-sm text-red-600">{errors.siret_number}</p>}
+                    </div>
+
+
+                    {/* siret */}
+                    <div className="form-group-register">
+                        <label htmlFor="siret" className="label-register">Siret</label>
+                        <input id="siret" name="siret" type="file" onChange={handleChange}
+                            className={`input-register ${errors.siret ? 'border-red-300' : 'border-gray-300'}`} />
+                        {errors.siret && <p className="mt-2 text-sm text-red-600">{errors.siret}</p>}
                     </div>
 
 

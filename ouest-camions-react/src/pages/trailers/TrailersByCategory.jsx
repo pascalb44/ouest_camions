@@ -31,7 +31,7 @@ const TrailersByCategory = () => {
     }, [fetchTrailersByCategory]);
     console.log("Category Name:", categoryName);
     return (
-        <div>
+        <div className ="categories-trailers-background-color">          
             <Link to="/categories-trailers" className="trailer-by-category-btn-return">Retour à la liste</Link>
             <h1 className="h1-trailer-category-name">{categoryName}</h1>  {/* name change on each page */}
 

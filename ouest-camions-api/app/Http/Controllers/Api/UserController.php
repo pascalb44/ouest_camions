@@ -69,7 +69,8 @@ class UserController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'company' => 'nullable|string|max:255',
-            'siren' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation pour le fichier image
+            'siret_number' => 'nullable|string|max:14',
+            'siret' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation pour le fichier image
             'address' => 'nullable|string|max:255',
             'postal_code' => 'nullable|string|max:10',
             'town' => 'nullable|string|max:255',
@@ -77,19 +78,19 @@ class UserController extends Controller
             'phone' => 'nullable|string|max:20',
         ]);
 
-        // siren file 
-        if ($request->hasFile('siren')) {
+        // siret file 
+        if ($request->hasFile('siret')) {
             // delete old file if exist
-            if ($user->siren && file_exists(public_path('uploads/users/' . $user->siren))) {
-                unlink(public_path('uploads/users/' . $user->siren));
+            if ($user->siret && file_exists(public_path('uploads/users/' . $user->siret))) {
+                unlink(public_path('uploads/users/' . $user->siret));
             }
 
-            $file = $request->file('siren');
+            $file = $request->file('siret');
             $filenameWithoutExt = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
             $file->storeAs('uploads/users', $filename, 'public');
-            $validatedData['siren'] = $filename;
+            $validatedData['siret'] = $filename;
         }
 
         $user->update($validatedData);

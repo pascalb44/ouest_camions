@@ -44,20 +44,20 @@
         margin-bottom: 10px;
     }
 
-    .form-group-edit-user-siren-mobile {
+    .form-group-edit-user-siret-mobile {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
         margin-bottom: 15px;
 
-        .group-edit-user-siren-mobile {
+        .group-edit-user-siret-mobile {
             display: flex;
             flex-direction: row;
         }
 
         .label-edit-user-no-mobile {
-            display: none;
+            display: none !important;
         }
 
         .label-edit-user-mobile {
@@ -149,14 +149,14 @@
         margin-bottom: 10px;
     }
 
-    .form-group-edit-user-siren-mobile {
+    .form-group-edit-user-siret-mobile {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
         margin-bottom: 15px;
 
-        .group-edit-user-siren-mobile {
+        .group-edit-user-siret-mobile {
             display: flex;
             flex-direction: row;
         }

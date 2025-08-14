@@ -28,7 +28,7 @@ const Cart = () => {
         if (storedData) {
             try {
                 const parsedData = JSON.parse(storedData);
-
+                recalculateTotals(parsedData);
                 let totalTruck = 0;
                 let totalTrailer = 0;
 
@@ -78,6 +78,32 @@ const Cart = () => {
             window.removeEventListener("storage", checkAuth);
         };
     }, []);
+    const recalculateTotals = (reservationsList) => {
+        let totalTruck = 0;
+        let totalTrailer = 0;
+
+        const updatedReservations = reservationsList.map((reservation) => {
+            const price = calculatePrice(
+                reservation.duration,
+                reservation.pricePerDay,
+                reservation.pricePerWeek,
+                reservation.pricePerMonth,
+                reservation.pricePerYear
+            );
+
+            if (reservation.type === "truck") {
+                totalTruck += price;
+            } else if (reservation.type === "trailer") {
+                totalTrailer += price;
+            }
+
+            return { ...reservation, calculatedPrice: price };
+        });
+
+        setReservations(updatedReservations);
+        setTotalTruckPrice(totalTruck);
+        setTotalTrailerPrice(totalTrailer);
+    };
 
     const handleProceedToPayment = () => {
         const token = localStorage.getItem("token");
@@ -109,10 +135,11 @@ const Cart = () => {
     };
 
     const handleRemove = (id) => {
-        const updatedReservations = reservations.filter(res => res.id !== id);
+        const filteredReservations = reservations.filter(res => res.id !== id);
         // save list in localStorage
-        localStorage.setItem("reservations", JSON.stringify(updatedReservations));
-        setReservations(updatedReservations);
+        localStorage.setItem("reservations", JSON.stringify(filteredReservations));
+        //    setReservations(updatedReservations);
+        recalculateTotals(filteredReservations);
     };
 
 

@@ -14,7 +14,8 @@ const Payment = () => {
         {/* PayPal */}
         <div>
           <h3 className="text-lg font-semibold mb-2">PayPal</h3>
-          <PaypalCheckout />
+          {/* <PaypalCheckout /> */}
+          <PaypalCheckout key="paypal-checkout" />
         </div>
 
 

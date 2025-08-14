@@ -26,6 +26,7 @@ let authAxios; // for authentification
 async function login(credentials) {
 
     const res = await Axios.post('/login', credentials); // request 
+    console.log('Réponse login:', res.data);  // <-- voir ce qui arrive
     const { user: userData, access_token } = res.data.data; // user data 
     const token = access_token.token; // token  
     Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -58,16 +59,16 @@ async function login(credentials) {
 // TEST 
 //-----------------------------
 
-
+/*
 let token = ''; // global to stock token
 
 describe("User Login", () => {
     test("Vérifie si l'utilisateur peut se connecter et obtenir un token", async () => {
         const credentials = {
-            email: 'robert@transportslenantais.fr', // for users tests
-            password: 'robert44',
-            //email: 'admin@ouestcamions.fr',   // for admin tests
-            //password: 'AdminOuest123!',
+        //    email: 'robert@transportslenantais.fr', // for users tests
+        //    password: 'robert44',
+            email: 'admin@ouestcamions.fr',   // for admin tests
+            password: 'AdminOuest123!',
         };
 
         const loginResponse = await login(credentials); // login() return token
@@ -81,11 +82,9 @@ describe("User Login", () => {
     });
 });
 
-
-
-
-
+*/
 /*
+
 describe('Admin API - CategoryTrailer Creation with login', () => {
     test('should login and create a new trailer category', async () => {
         const credentials = {
@@ -124,7 +123,7 @@ describe('Admin API - CategoryTrailer Creation with login', () => {
     });
 });
 
-
+/*
 
 
 // login of the user + admin  = ok
@@ -290,56 +289,57 @@ describe('Admin API tests', () => {
 
 // crud by admin : update categories-trailers
 
-/*
+
 
 let token = '';
 let categoryId;
 
 beforeAll(async () => {
-    const loginResponse = await Axios.post('http://127.0.0.1:8000/api/login', {
+    const { token: t } = await login({
         email: 'admin@ouestcamions.fr',
         password: 'AdminOuest123!',
     });
-
-    if (loginResponse.status === 200 && loginResponse.data.token) {
-        token = loginResponse.data.token;
-    } else {
-        throw new Error('Token non reçu dans la réponse ou requête de login échouée');
-    }
+    token = t;
 });
-
 test('Vérifie si l\'utilisateur peut se connecter et obtenir un token', () => {
     expect(token).toBeTruthy();
 });
-
 test('should login, create then update the category description', async () => {
+    const filePath = path.join(__dirname, 'semitrailer_rideau_3.jpg');
+    expect(fs.existsSync(filePath)).toBe(true);
+
+    // --- Création ---
+    const formDataCreate = new FormData();
+    formDataCreate.append('name_category_trailer', 'Remorque test');
+    formDataCreate.append('description', 'Description test');
+    formDataCreate.append(
+        'image_category_trailer',
+        fs.createReadStream(filePath)
+    );
+
     const createResponse = await authAxios.post(
+        
         'http://127.0.0.1:8000/api/admin/categories-trailers',
-        {
-            name_category_trailer: 'Remorque test',
-            description: 'Description test',
-        },
+        formDataCreate,
         {
             headers: {
+                ...formDataCreate.getHeaders(),
                 Authorization: `Bearer ${token}`,
             },
         }
     );
+    console.log('createResponse status:', createResponse.status);
+console.log('createResponse full:', createResponse.data);
 
-    expect(createResponse.status).toBe(200);
-    categoryId = createResponse.data.data.id_category_trailer;
+    expect(createResponse.status).toBe(201);
+    const categoryId = createResponse.data.data.id;
     expect(categoryId).toBeTruthy();
 
-    const filePath = path.join(__dirname, 'semitrailer_rideau_3.jpg');
-    expect(fs.existsSync(filePath)).toBe(true);
-
+    // --- Mise à jour ---
     const formData = new FormData();
     formData.append('name_category_trailer', 'Remorque test mise à jour');
     formData.append('description', 'Description mise à jour via Jest');
-    formData.append(
-        'image_category_trailer',
-        fs.createReadStream(filePath)
-    );
+    formData.append('image_category_trailer', fs.createReadStream(filePath));
 
     const updateResponse = await authAxios.patch(
         `http://127.0.0.1:8000/api/admin/categories-trailers/${categoryId}`,
@@ -354,11 +354,11 @@ test('should login, create then update the category description', async () => {
 
     console.log('Réponse de mise à jour :', updateResponse.data);
     expect(updateResponse.status).toBe(200);
-    expect(updateResponse.data.message).toMatch(/mise à jour/i);  // Vérifie le champ message ou adapte selon la réponse
+    expect(updateResponse.data.message).toMatch(/mise à jour/i);
     expect(updateResponse.data.data.description).toBe('Description mise à jour via Jest');
 });
 
-*/
+
 
 
 // crud by admin : destroy categories-trailers : ok
@@ -418,7 +418,7 @@ describe('Admin API - CategoryTrailer Deletion with login', () => {
 // crud by user : create cart : ok
 
 
-// test ok 
+// test ok
 /*
 
 describe('Panier - Ajout d\'élément au panier', () => {
@@ -446,7 +446,7 @@ describe('Panier - Ajout d\'élément au panier', () => {
             trailers: [8],
         };
 
-        let response; 
+        let response;
 
         try {
             console.log('Payload envoyé à /orders :', payload);
@@ -465,7 +465,7 @@ describe('Panier - Ajout d\'élément au panier', () => {
 });
 */
 
-// test ok 
+// test ok
 /*
 describe("Vérification camion 33 + remorque 8 dans le panier", () => {
     test('récupérer les éléments du panier de l\'utilisateur', async () => {

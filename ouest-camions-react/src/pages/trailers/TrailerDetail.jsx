@@ -110,7 +110,7 @@ const TrailerDetail = () => {
                             <p>Longueur : {trailer.length_trailer}</p>
                             <p>Largeur : {trailer.width_trailer}</p>
                             <p>Hauteur : {trailer.height_trailer}</p>
-                            <p>Charge utile : {trailer.load_trailer}</p>
+                            <p>Charge utile : {trailer.load_trailer} tonnes</p>
                         </div>
                         <div className="trailer-detail-location">
                             <h2>Locations</h2>

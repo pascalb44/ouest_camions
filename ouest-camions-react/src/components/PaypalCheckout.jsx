@@ -1,100 +1,93 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef  } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const PaypalCheckout = () => {
   const paypalRef = useRef(null);
-  const [sdkReady, setSdkReady] = useState(false);
   const navigate = useNavigate();
   const hasRendered = useRef(false);
 
   useEffect(() => {
-    const scriptId = "paypal-sdk";
-    const existingScript = document.getElementById(scriptId);
+    if (!window.paypal || !paypalRef.current || hasRendered.current) return;
 
-    const loadPaypalScript = () => {
-      if (!existingScript) {
-        const script = document.createElement("script"); /* seller account */
-        script.src = `https://www.paypal.com/sdk/js?client-id=AaIHlzqZ6B_9pqy0L4MusknH8T_8F8H0qetd9iFIRrIUNInfmmoM7kOjU5pVxADkNamRDCBEamouY-jH&currency=EUR`;        
-        script.id = scriptId;
-        script.async = true;
-        script.onload = () => setSdkReady(true);
-        document.body.appendChild(script);
-      } else {
-        setSdkReady(true);
-      }
-    };
+    hasRendered.current = true;
+    paypalRef.current.innerHTML = "";
 
-    loadPaypalScript();
-  }, []);
+    const reservation = JSON.parse(localStorage.getItem("reservation"));
+    const amount = reservation?.amount || "0.01";
 
-  useEffect(() => {
-    if (sdkReady && window.paypal && paypalRef.current && !hasRendered.current) {
-      hasRendered.current = true; // ✅ pour éviter le double render
+    window.paypal.Buttons({
+      createOrder: (data, actions) => {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: amount.toString() }
+          }]
+        });
+      },
 
-      // 🧹 Nettoyage du container avant de rendre le bouton
-      paypalRef.current.innerHTML = "";
-
-      const reservation = JSON.parse(localStorage.getItem("reservation"));
-      const amount = reservation?.amount || "0.01";
-
-      window.paypal.Buttons({
-        createOrder: (data, actions) => {
-          return actions.order.create({
-            purchase_units: [{ amount: { value: amount.toString() } }],
-          });
-        },
-
-        onApprove: async (data, actions) => {
-          // Capture the payment details
+      onApprove: async (data, actions) => {
+        try {
           await actions.order.capture();
+          const paypalOrderId = data.orderID;
 
-          // Now let's send the data to the backend
-          try {
-            const token = localStorage.getItem("token");
-            //const user_id = localStorage.getItem("user_id");
+          const token = localStorage.getItem("token");
+          const reservation = JSON.parse(localStorage.getItem("reservation"));
 
-            console.log({
-              reservations: reservation.reservations,
-              amount: reservation.amount,
-              status: "payé",
-            });
-            
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-              },
-              body: JSON.stringify({                
-                reservations: reservation.reservations,
-                amount: reservation.amount,
-                status: "payé",
-              }),
-            });
+          const payload = {
+            start_date: reservation.startDate,
+            end_date: reservation.endDate,
+            amount: reservation.amount,
+            method_payment: "paypal",
+            trucks: reservation.trucks || [],
+            trailers: reservation.trailers || [],
+            paypal_order_id: paypalOrderId,
+          };
+
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          const contentType = response.headers.get("content-type");
+          const rawText = await response.text();
+
+          if (contentType && contentType.includes("application/json")) {
+            const result = JSON.parse(rawText);
 
             if (!response.ok) {
+              console.error("Réponse serveur :", result);
               throw new Error("Erreur lors de l'enregistrement de la commande");
             }
 
-            // Clean up and navigate
+            console.log("Réponse API :", result);
             localStorage.removeItem("reservation");
             localStorage.removeItem("reservations");
             navigate("/orders");
-
-          } catch (error) {
-            console.error("Erreur de paiement ou d'enregistrement :", error);
-            alert("Une erreur est survenue. Veuillez contacter le support.");
+          } else {
+            console.error("Réponse non-JSON :", rawText);
+            throw new Error("Réponse invalide reçue du serveur.");
           }
-        },
-
-        onError: (err) => {
-          console.error("Erreur PayPal :", err);
+        } catch (error) {
+          console.error("Erreur de paiement ou d'enregistrement :", error);
+          alert("Une erreur est survenue. Veuillez contacter le support.");
         }
-      }).render(paypalRef.current);
-    }
-  }, [sdkReady, navigate]);
+      },
 
-  return <div ref={paypalRef}></div>;
+      onError: (err) => {
+        console.error("Erreur PayPal :", err);
+      }
+    }).render(paypalRef.current);
+  }, [navigate]);
+
+  return (
+    <div id="paypal-wrapper">
+      <div id="paypal-button-container" ref={paypalRef}></div>
+    </div>
+  );
 };
 
-export default PaypalCheckout; 
+export default PaypalCheckout;

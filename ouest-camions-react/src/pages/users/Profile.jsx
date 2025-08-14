@@ -13,7 +13,7 @@ const Profile = () => {
             try {
                 const token = localStorage.getItem('token'); // to get user Id 
                 if (!token) {
-                    setError('Aucun utilisateur trouvé');
+                    setError('Aucun utilisateur trouvé, vous n\'êtes pas connecté');
                     return;
                 }
                 const decoded = jwtDecode(token);
@@ -74,7 +74,8 @@ const Profile = () => {
                 <div className="form-group-profile"><label className="label-profile">Prénom :</label> {user.first_name}</div>
                 <div className="form-group-profile"><label className="label-profile">Nom :</label> {user.last_name}</div>
                 <div className="form-group-profile"><label className="label-profile">Entreprise :</label> {user.company}</div>
-                <div className="form-group-profile"><label className="label-profile">SIREN :</label> {user.siren}</div>
+                <div className="form-group-profile"><label className="label-profile">SIRET :</label> {user.siret_number}</div>
+                <div className="form-group-profile"><label className="label-profile">Fichier SIRET :</label> {user.siret}</div>
                 <div className="form-group-profile"><label className="label-profile">Adresse :</label> {user.address}</div>
                 <div className="form-group-profile"><label className="label-profile">Code postal :</label> {user.postal_code}</div>
                 <div className="form-group-profile"><label className="label-profile">Ville :</label> {user.town}</div>

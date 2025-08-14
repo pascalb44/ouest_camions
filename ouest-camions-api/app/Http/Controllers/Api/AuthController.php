@@ -28,22 +28,23 @@ class AuthController extends Controller
              'email'         => 'required|email|unique:users',
              'password'      => 'required|string|min:6|max:255',
              'company'       => 'required|string|max:255',
-             'siren'         => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'siret_number'    => 'required|string|max:14',
+             'siret'         => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
              'address'       => 'required|string|max:255',
              'postal_code'    => 'required|string|max:10',
              'town'          => 'required|string|max:255',
              'phone'     => 'required|string|max:20|regex:/^[0-9+\-\(\) ]+$/',
         ]);
 
-        /* to upload file image for siren */
+        /* to upload file image for siret */
 
         $filename = ""; 
-        if ($request->file('siren')) {  /*  don't use hasFile */
-            $filenameWithExt = $request->file('siren')->getClientOriginalName();
+        if ($request->file('siret')) {  /*  don't use hasFile */
+            $filenameWithExt = $request->file('siret')->getClientOriginalName();
             $filenameWithoutExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('siren')->getClientOriginalExtension();
+            $extension = $request->file('siret')->getClientOriginalExtension();
             $filename = $filenameWithoutExt . '_' . time() . '.' . $extension;
-            $path = $request->file('siren')->storeAs('uploads/Users', $filename, 'public');
+            $path = $request->file('siret')->storeAs('uploads/Users', $filename, 'public');
         } else {
             $filename = null;
         }
@@ -54,7 +55,8 @@ class AuthController extends Controller
             'email'         => $request->email,
             'password'      => Hash::make($request->password),
             'company'       => $request->company,
-            'siren'         => $filename, 
+            'siret_number'   => $request->siret_number,
+            'siret'         => $filename, 
             'address'       => $request->address,
             'postal_code'   => $request->postal_code,
             'town'          => $request->town,

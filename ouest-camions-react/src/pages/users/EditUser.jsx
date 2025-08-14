@@ -10,7 +10,8 @@ const EditUser = () => {
         first_name: '',
         last_name: '',
         company: '',
-        siren: '',
+        siret_number: '',
+        siret: '',
         address: '',
         postal_code: '',
         town: '',
@@ -57,6 +58,7 @@ const EditUser = () => {
         formData.append('first_name', user.first_name);
         formData.append('last_name', user.last_name);
         formData.append('company', user.company);
+        formData.append('siret_number', user.siret_number);
         formData.append('address', user.address);
         formData.append('postal_code', user.postal_code);
         formData.append('town', user.town);
@@ -64,7 +66,7 @@ const EditUser = () => {
         formData.append('phone', user.phone);
 
         if (file) {
-            formData.append('siren', file);
+            formData.append('siret', file);
         }
 
         try {
@@ -149,16 +151,18 @@ const EditUser = () => {
                         <input type="text" name="company" value={user.company} onChange={handleChange} />
                         {validationError.company && <p className="error">{validationError.company}</p>}
                     </div>
-                    <div className="form-group-edit-user form-group-edit-user-siren-mobile"> 
-                            <label className="label-edit-user-no-mobile">SIREN : </label> 
-                            <div className="file-info-no-mobile">{user.siren}</div>
-                        <div className="group-edit-user-siren-mobile">        {/* only for mobile */}
-                            <label className="label-edit-user-mobile">SIREN : </label>
-                            <div className="file-info-mobile">{user.siren}</div>
+                    <div className="form-group-edit-user">
+                        <label className="label-edit-user label-edit-user-no-mobile">SIRET:</label>
+                        <input type="text" name="siret_number" value={user.siret_number} onChange={handleChange} />
+                        {validationError.siret_number && <p className="error">{validationError.siret_number}</p>}
+                    </div>
+                    <div className="form-group-edit-user">
+                        <div className="foirm-group-edit-user-siret-no-moble">
+                            <label className="label-edit-user-no-mobile">Fichier SIRET : </label>
+                            <div className="file-info-no-mobile">{user.siret}</div>
                         </div>
-
-                        <input type="file" name="siren" accept="image/*" onChange={handleFileChange} />
-                        {validationError.siren && <p className="error">{validationError.siren}</p>}
+                        <input type="file" name="siret" accept="image/*" onChange={handleFileChange} />
+                        {validationError.siret && <p className="error">{validationError.siret}</p>}
                     </div>
                     <div className="form-group-edit-user">
                         <label className="label-edit-user label-edit-user-no-mobile">Adresse:</label>
@@ -190,8 +194,8 @@ const EditUser = () => {
                         <button type="button" onClick={handleDelete} className="delete-button-user">Supprimez votre compte</button>
                     </div>
                 </div>
-            </form>
-        </div>
+            </form >
+        </div >
     );
 };
 

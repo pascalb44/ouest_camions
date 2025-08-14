@@ -22,11 +22,10 @@ const CategoriesTrucks = () => {
 
 
     return (
-        <div>
+        <div className ="categories-trucks-background-color">          
             <div className="top-categories-trucks">
                 <Link to="/" className="categories-truck-btn-return">Accueil</Link>
                 <h1 className="h1-categories-trucks" >Ouestcamions, des camions pour tous vos usages</h1>
-
             </div>
             <div className="categories-trucks-list">
                 {categoriesTrucks.map((truck) => (
@@ -51,6 +50,6 @@ const CategoriesTrucks = () => {
             </div>
         </div>
     );
-}
+};
 
 export default CategoriesTrucks;

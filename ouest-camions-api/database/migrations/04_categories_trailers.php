@@ -13,8 +13,9 @@ return new class extends Migration
     {
           Schema::create('categories_trailers', function (Blueprint $table) {
             $table->id();
-            $table->string('name_category_trailer');
+            $table->string('name_category_trailer', 50);
             $table->string('image_category_trailer');
+            $table->string('description', 500)->nullable();
             $table->timestamps();
         });
     }

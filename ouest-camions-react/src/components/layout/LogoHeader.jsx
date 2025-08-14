@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 
 const LogoHeader = () => {
     const logoSrc = `${process.env.PUBLIC_URL}/images/logo_ouestcamions.jpg`;
-    const altText = "Logo Ouest Camions";
+    const altText = "Logo du site Ouest Camions";
 
     return (
         <div className="logo-container-header">
-                     <Link to="/"> {/* to home */}
+            <Link to="/"> {/* to home */}
                 <img className="logo-header" src={logoSrc} alt={altText} />
-                
             </Link>
         </div>
     );

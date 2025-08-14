@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode'; 
+import { jwtDecode } from 'jwt-decode';
 
 
 function LoginForm() {
@@ -30,12 +30,14 @@ function LoginForm() {
             localStorage.setItem('token', token);
 
             const decodedToken = jwtDecode(token);
-
-            const userId = decodedToken.id;  // users
+            const userId = decodedToken.sub;  // users
             const userRole = decodedToken.role; // admin
             localStorage.setItem('user_id', userId);
             localStorage.setItem('role', userRole);
 
+            if (!localStorage.getItem(`reservations_${userId}`)) {
+                localStorage.setItem(`reservations_${userId}`, JSON.stringify([]));
+            }
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -57,8 +59,8 @@ function LoginForm() {
         <div>
             <form onSubmit={handleLogin} className="form-container-login" >
                 <div className="form-group-login">
-                <label className="label-login">Email</label>
-                <input className="input-login" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <label className="label-login">Email</label>
+                    <input className="input-login" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div className="form-group-login">
                     <label className="label-login">Mot de passe</label>
@@ -66,7 +68,7 @@ function LoginForm() {
                 </div>
                 <button className="button-login" type="submit">Se connecter</button>
             </form>
-            {error && <div className="error-Login-user">{error}</div>} {/* error message user not known / email field is required */ }
+            {error && <div className="error-Login-user">{error}</div>} {/* error message user not known / email field is required */}
             {token && <div>Token JWT: {token}</div>}
         </div>
     );

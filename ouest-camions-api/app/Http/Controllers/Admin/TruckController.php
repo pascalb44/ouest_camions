@@ -141,7 +141,6 @@ class TruckController extends Controller
         }
         
         $truck->update($updateData);
-              //dd($truck);
         return response()->json([
             'status' => 'camion mis à jour avec succès',
             'data' => $truck,

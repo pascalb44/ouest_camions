@@ -32,14 +32,13 @@
 
     /* dark mode header */
     body.dark-mode .header {
-        background-color: #1e1e1e;
+        background-color: unset;
     }
 
     /* dark mode links in header/nav */
     body.dark-mode a {
         color: floralwhite;
     }
-
 
     .banner-container {
         position: relative;

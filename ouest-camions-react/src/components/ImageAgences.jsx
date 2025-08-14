@@ -1,11 +1,10 @@
-
+import React from 'react';
 export default function ImagesAgences() {
 
   const icons = [
     { 
       src: "./images/companycart.jpg", 
       label: "Nos agences",
-
     },
   
   ];
@@ -20,4 +19,3 @@ export default function ImagesAgences() {
     </div>
   );
 }
-

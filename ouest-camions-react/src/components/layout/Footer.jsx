@@ -30,7 +30,7 @@ const Footer = () => {
                 <div className="company-footer">
                     <p className="company-footer-title">L'entreprise</p>
                     <p><Link to="/cgv" className="nav-link">CGV</Link></p>
-                    <p><Link to="/cgv" className="nav-link">Nos agences</Link></p>
+                    <p><Link to="/agences" className="nav-link">Nos agences</Link></p>
                     <p><Link to="/presentation" className="nav-link">Qui sommes nous?</Link></p>
                    
                 </div>

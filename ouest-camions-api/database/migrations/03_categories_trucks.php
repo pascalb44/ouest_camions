@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('categories_trucks', function (Blueprint $table) {
             $table->id();
-            $table->string('name_category_truck');
+            $table->string('name_category_truck',50);
             $table->string('image_category_truck');
             $table->timestamps();
         });

@@ -16,7 +16,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $user = JWTAuth::user(); // Get the connected user
+        //$user = JWTAuth::user(); // Get the connected user
+        $user = JWTAuth::parseToken()->authenticate();
         if (!$user) {
             return response()->json(['message' => 'Utilisateur non authentifié'], 401);
         }
@@ -42,6 +43,11 @@ class OrderController extends Controller
         ]);
         $user = JWTAuth::user(); // to get connected user
 
+        
+        if ($formFields['method_payment'] === 'none') {
+            return response()->json(['message' => 'Utiliser /cart pour enregistrer un panier'], 400); /* no confusion with  cart */
+        }
+
         // Create order
         $order = new Order();
         $order->order_number = rand(1000, 9999);
@@ -53,26 +59,37 @@ class OrderController extends Controller
         $order->id_user = $user->id;
         $order->save();
 
-        // Associate trucks with table 'orders_truck'
         
- //       $order->trucks()->attach($formFields['trucks']); // 1 : trucks
+        // Associate trucks with table 'orders_truck'
 
         if (!empty($formFields['trucks'])) {
-            $order->trucks()->attach($formFields['trucks']);
+            $order->trucks()->attach($formFields['trucks']);    // 1 : trucks
         }
 
         if (!empty($formFields['trailers'])) {
             $order->trailers()->attach($formFields['trailers']); // 2 : trailers
         }
 
-        if ($formFields['method_payment'] === 'none') {
-            return response()->json(['message' => 'Utiliser /cart pour enregistrer un panier'], 400); /* no confusion with  cart */
-        }
+
+        // Load the relationships based on what was attached
+        /*
+        $order->load(['trucks' => function ($query) use ($formFields) {
+            if (empty($formFields['trucks'])) {
+                $query->whereIn('id', []);
+            }
+        }, 'trailers' => function ($query) use ($formFields) {
+            if (empty($formFields['trailers'])) {
+                $query->whereIn('id', []);
+            }
+        }]);
+        
+*/
+        $order->load(['trucks', 'trailers']);
 
         return response()->json([
             'status' => 'success',
             'message' => 'Commande créée avec succès.',
-            'order' => $order->load('trucks', 'trailers'),
+            'order' => $order,
         ]);
     }
 
@@ -81,7 +98,7 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        $order = Order::with('trucks')->find($id); // orders with trucks
+        $order = Order::with('trucks', 'trailers')->find($id); // orders with trucks
         if (!$order) {
             return response()->json(['message' => 'commande non trouvée'], 404);
         }
@@ -89,12 +106,11 @@ class OrderController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update useless , The user cannot modify the cart.
+     * The user must add or remove an item.
+     * 
      */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -116,6 +132,9 @@ class OrderController extends Controller
     public function getCart()
     {
         $user = JWTAuth::user();
+        if (!$user) {
+            return response()->json(['message' => 'Utilisateur non authentifié'], 401);
+        }
 
         $order = Order::where('id_user', $user->id)
             ->where('method_payment', 'none')
@@ -127,7 +146,7 @@ class OrderController extends Controller
             return response()->json(['message' => 'Aucun panier en cours'], 404);
         }
 
-        return response()->json($order);
+        return response()->json(['data' => $order], 200);
     }
 
 
@@ -139,13 +158,17 @@ class OrderController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'amount' => 'required|numeric',
-            'trucks' => 'required|array',
+            'trucks' => 'nullable|array',
             'trucks.*' => 'exists:trucks,id',
             'trailers' => 'nullable|array',
             'trailers.*' => 'exists:trailers,id',
         ]);
 
         $user = JWTAuth::user();
+
+        if (!$user) {
+            return response()->json(['message' => 'Utilisateur non authentifié'], 401);
+        }
 
         $order = new Order();
         $order->order_number = rand(1000, 9999);
@@ -156,7 +179,9 @@ class OrderController extends Controller
         $order->id_user = $user->id;
         $order->save();
 
-        $order->trucks()->attach($formFields['trucks']);
+        if (!empty($formFields['trucks'])) {
+            $order->trucks()->attach($formFields['trucks']);
+        }
 
         if (!empty($formFields['trailers'])) {
             $order->trailers()->attach($formFields['trailers']);

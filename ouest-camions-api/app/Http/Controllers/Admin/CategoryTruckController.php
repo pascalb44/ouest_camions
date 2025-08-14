@@ -91,7 +91,10 @@ class CategoryTruckController extends Controller
 
         $categoryTruck->update($validatedData);
 
-        return response()->json(['message' => 'Mise à jour réussie !'], 200);
+        return response()->json([
+            'message' => 'Mise à jour réussie !',
+            'data' => $categoryTruck],
+            200);
     }
 
 

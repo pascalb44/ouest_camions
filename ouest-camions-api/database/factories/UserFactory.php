@@ -28,7 +28,8 @@ class UserFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'company' => fake()->company(),
-            'siren' => fake()->unique()->randomNumber(9, true), // to generate a SIREN number non recognized in data generator
+            'siret_number' => fake()->numerify('##############'), // 14 
+            //'siret'
             'address' => fake()->address(),
             'postal_code' => fake()->numerify('#####'), 
             'town' => fake()->city(),

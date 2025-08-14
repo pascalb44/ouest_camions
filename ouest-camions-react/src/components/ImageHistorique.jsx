@@ -1,4 +1,3 @@
-
 export default function IconPromoHome() {
 
   const icons = [

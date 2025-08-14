@@ -58,7 +58,7 @@ const TrucksByCategory = () => {
                         </div>
                     ))
                 ) : (
-                    <p>Aucun camion trouvé pour cette catégorie.</p>
+                    <p>Aucun camion trouvé pour cette catégorie</p>
                 )}
             </div>
         </div>
