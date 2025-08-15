@@ -71,19 +71,7 @@ class OrderController extends Controller
         }
 
 
-        // Load the relationships based on what was attached
-        /*
-        $order->load(['trucks' => function ($query) use ($formFields) {
-            if (empty($formFields['trucks'])) {
-                $query->whereIn('id', []);
-            }
-        }, 'trailers' => function ($query) use ($formFields) {
-            if (empty($formFields['trailers'])) {
-                $query->whereIn('id', []);
-            }
-        }]);
         
-*/
         $order->load(['trucks', 'trailers']);
 
         return response()->json([
