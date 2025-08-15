@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+/*import React, { useEffect, useRef } from 'react';
 
-const PaypalCheckout = () => {
+const CardCheckout  = () => {
+   
     const paypalRef = useRef(null);
 
     useEffect(() => {
@@ -71,5 +72,5 @@ const PaypalCheckout = () => {
     return <div ref={paypalRef}></div>;
 };
 
-export default PaypalCheckout;
- 
+export default CardCheckout;
+ */

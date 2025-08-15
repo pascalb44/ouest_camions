@@ -1,10 +1,14 @@
-import React, { useEffect, useRef  } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { format } from "date-fns";
+
 
 const PaypalCheckout = () => {
   const paypalRef = useRef(null);
   const navigate = useNavigate();
   const hasRendered = useRef(false);
+
+
 
   useEffect(() => {
     if (!window.paypal || !paypalRef.current || hasRendered.current) return;
@@ -32,9 +36,23 @@ const PaypalCheckout = () => {
           const token = localStorage.getItem("token");
           const reservation = JSON.parse(localStorage.getItem("reservation"));
 
+
+          const formatDateForSQL = (date) => {
+            const parsed = new Date(date);
+            if (isNaN(parsed.getTime())) {
+              console.error("Date invalide :", date);
+              return null; 
+            }
+            return format(parsed, "yyyy-MM-dd HH:mm:ss");
+          };
+
+          if (!reservation?.startDate || !reservation?.endDate) {
+            alert("Les dates de réservation sont manquantes ou invalides.");
+            return;
+          }
           const payload = {
-            start_date: reservation.startDate,
-            end_date: reservation.endDate,
+            start_date: formatDateForSQL(reservation.startDate),
+            end_date: formatDateForSQL(reservation.endDate),
             amount: reservation.amount,
             method_payment: "paypal",
             trucks: reservation.trucks || [],
@@ -42,6 +60,8 @@ const PaypalCheckout = () => {
             paypal_order_id: paypalOrderId,
           };
 
+
+          console.log(JSON.parse(localStorage.getItem("reservation")));
           const response = await fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
             method: "POST",
             headers: {
@@ -59,6 +79,7 @@ const PaypalCheckout = () => {
             const result = JSON.parse(rawText);
 
             if (!response.ok) {
+              console.error("Code HTTP :", response.status);
               console.error("Réponse serveur :", result);
               throw new Error("Erreur lors de l'enregistrement de la commande");
             }
@@ -82,6 +103,7 @@ const PaypalCheckout = () => {
       }
     }).render(paypalRef.current);
   }, [navigate]);
+
 
   return (
     <div id="paypal-wrapper">

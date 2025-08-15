@@ -104,7 +104,6 @@ const Cart = () => {
         setTotalTruckPrice(totalTruck);
         setTotalTrailerPrice(totalTrailer);
     };
-
     const handleProceedToPayment = () => {
         const token = localStorage.getItem("token");
 
@@ -116,14 +115,27 @@ const Cart = () => {
         localStorage.setItem("reservations", JSON.stringify(reservations));
 
         const totalPrice = totalTruckPrice + totalTrailerPrice;
+
+        const firstReservation = reservations[0];
+        const start_date = firstReservation?.start_date || firstReservation?.startDate;
+        const end_date = firstReservation?.end_date || firstReservation?.endDate;
+
+        // Séparer les véhicules
+        const trucks = reservations.filter(r => r.type === "truck")
+            .map(r => r.id);
+        const trailers = reservations.filter(r => r.type === "trailer")
+            .map(r => r.id);
+
         const reservationPayload = {
+            startDate: start_date,
+            endDate: end_date,
             amount: totalPrice,
-            reservations,
+            trucks,
+            trailers
         };
 
         localStorage.setItem("reservation", JSON.stringify(reservationPayload));
     };
-
 
     const handleClearCart = () => {
         if (window.confirm("Voulez-vous vraiment vider votre panier ?")) {
@@ -153,7 +165,7 @@ const Cart = () => {
     }
 
     const formatDate = (date) => {
-        return format(new Date(date), "dd MMMM yyyy", { locale: fr }); // french dates
+        return format(new Date(date), "dd MMMM yyyy 'à' HH:mm", { locale: fr });// french dates
     }
 
     return (
