@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mysqli pdo pdo_mysql
 
 # Config Apache
-COPY .env.testing /var/www/app/.env
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
