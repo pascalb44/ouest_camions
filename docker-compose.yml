@@ -18,7 +18,7 @@ services:
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ouest_camions
+      MYSQL_DATABASE: ouest_camions_test # base test
     ports:
       - 3306:3306
     volumes :
