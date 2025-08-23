@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install mysqli pdo pdo_mysql
 
 # Config Apache
+COPY .env.testing /var/www/app/.env
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
@@ -38,7 +39,7 @@ COPY artisan ./
 COPY .env.${MODE} .env
 
 # Installer les dépendances PHP (sans scripts pour éviter artisan qui nécessite tout le code)
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts 
 
 # Copier le reste du code
 COPY . .
