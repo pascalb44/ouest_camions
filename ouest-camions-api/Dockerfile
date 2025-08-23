@@ -28,13 +28,15 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:2.8.3 /usr/bin/composer /usr/local/bin/composer
 
 # Copier les fichiers nécessaires à Composer et artisan
-COPY composer.json composer.lock artisan ./ 
+COPY composer.json composer.lock ./ 
+COPY bootstrap bootstrap/
+COPY artisan ./
 
 # Copier le .env selon le MODE (test pour CI, prod pour production)
 COPY .env.${MODE} .env
 
 # Installer les dépendances PHP avec optimisations
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
 
 # Copier le reste du code
 COPY . .
