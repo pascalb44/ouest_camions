@@ -27,15 +27,17 @@ WORKDIR /var/www/app
 ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:2.8.3 /usr/bin/composer /usr/local/bin/composer
 
-# Copier les fichiers nécessaires à Composer et artisan
-COPY composer.json composer.lock ./ 
+# Copier uniquement ce qui est nécessaire pour Composer et artisan
+COPY composer.json composer.lock ./
 COPY bootstrap bootstrap/
 COPY artisan ./
 
-# Copier le .env selon le MODE (test pour CI, prod pour production)
+# Copier le bon .env selon le MODE
+# MODE=test => .env.testing
+# MODE=prod => .env.prod
 COPY .env.${MODE} .env
 
-# Installer les dépendances PHP avec optimisations
+# Installer les dépendances PHP (sans scripts pour éviter artisan qui nécessite tout le code)
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
 
 # Copier le reste du code
