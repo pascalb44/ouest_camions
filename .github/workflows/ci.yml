@@ -20,8 +20,6 @@ jobs:
       run: sleep 10s
       shell: bash
       # Build API et DB pour les tests
-    - name: Build Laravel Docker (CI)
-      run: docker build --build-arg MODE=test -t laravel-ci-test ./ouest-camions-api
     - name: Start containers
       run: docker-compose -f docker-compose.yml up -d mysql_db laravel-docker
     - name: Wait for MySQL
