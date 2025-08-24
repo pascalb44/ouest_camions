@@ -40,8 +40,6 @@ jobs:
         node-version: 20.x
     - name: Install dependencies
       run: npm install
-    - name: install Jest
-      run: npm install -g jest # global 
     - name: Run tests
       run: npm run test
 

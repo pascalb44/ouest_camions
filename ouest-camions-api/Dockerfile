@@ -32,9 +32,6 @@ COPY composer.json composer.lock ./
 COPY bootstrap bootstrap/
 COPY artisan ./
 
-# Copier le bon .env selon le MODE
-# MODE=test => .env.testing
-# MODE=prod => .env.prod
 COPY .env.${MODE} .env
 
 # Installer les dépendances PHP (sans scripts pour éviter artisan qui nécessite tout le code)
