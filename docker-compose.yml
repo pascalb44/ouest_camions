@@ -15,9 +15,9 @@ services:
       - 80:80
 
   mysql_db:
-    image: mysql:latest
+    image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"  
       MYSQL_DATABASE: ouest_camions_test # base test
     ports:
       - 3306:3306
