@@ -11,7 +11,7 @@ RUN apk add --no-cache python3 make g++
 COPY package*.json ./
 
 
-RUN npm config set registry https://registry.npmmirror.com
+RUN npm config set registry https://registry.npmjs.org/ 
 
 #  Mise à jour de npm + nettoyage du cache
 RUN npm install -g npm@latest
