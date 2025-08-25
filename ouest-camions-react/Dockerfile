@@ -29,7 +29,7 @@ COPY .env.${MODE} .env
 RUN npm run build
 
 #  Production stage
-FROM nginx:Alpine AS production-stage
+FROM nginx:alpine AS production-stage
 
 #  Copie du build React dans Nginx
 COPY --from=build-stage /app/build /usr/share/nginx/html
