@@ -4,8 +4,7 @@ FROM node:lts-alpine AS build-stage
 WORKDIR /app
 
 # Configuration NPM (sans nettoyage du cache)
-RUN npm set strict-integrity false \
-    && npm config set registry https://registry.npmjs.org
+RUN npm config set registry https://registry.npmjs.org
 
 # Copie des fichiers de dépendances
 COPY package.json package-lock.json ./
