@@ -5,7 +5,7 @@ ARG MODE=test
 WORKDIR /app
 
 #  Dépendances système nécessaires pour compiler certains modules
-#RUN apk add --no-cache python3 make g++
+RUN apk add --no-cache python3 make g++
 
 #  Copie des fichiers de dépendances
 COPY package*.json ./
@@ -17,6 +17,7 @@ RUN npm cache verify
 
 #  Installation des dépendances avec options de résilience
 #RUN npm install --legacy-peer-deps --no-audit --progress=false
+RUN npm ci --no-audit --progress=false
 
 #  Copie du reste du projet
 COPY . .
@@ -28,7 +29,7 @@ COPY .env.${MODE} .env
 RUN npm run build
 
 #  Production stage
-FROM nginx:stable-alpine AS production-stage
+FROM nginx:latest-alpine AS production-stage
 
 #  Copie du build React dans Nginx
 COPY --from=build-stage /app/build /usr/share/nginx/html
