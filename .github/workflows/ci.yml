@@ -21,7 +21,7 @@ jobs:
       shell: bash
       # Build API et DB pour les tests
     - name: Start containers
-      run: docker-compose -f docker-compose.yml up -d mysql_db laravel-docker
+      run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
     - name: Wait for MySQL
       run: |
         until docker exec mysql_db mysqladmin ping -h "127.0.0.1" --silent; do
