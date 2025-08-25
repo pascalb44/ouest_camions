@@ -17,7 +17,7 @@ services:
   mysql_db:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ouest_camions_test # base test
     ports:
       - 3306:3306
