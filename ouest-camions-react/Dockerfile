@@ -5,7 +5,7 @@ ARG MODE=test
 WORKDIR /app
 
 #  Dépendances système nécessaires pour compiler certains modules
-RUN apk add --no-cache python3 make g++
+#RUN apk add --no-cache python3 make g++
 
 #  Copie des fichiers de dépendances
 COPY package*.json ./
@@ -16,7 +16,7 @@ RUN npm cache clean --force
 RUN npm cache verify
 
 #  Installation des dépendances avec options de résilience
-RUN npm install --legacy-peer-deps --prefer-offline --no-audit --progress=false
+#RUN npm install --legacy-peer-deps --no-audit --progress=false
 
 #  Copie du reste du projet
 COPY . .

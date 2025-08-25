@@ -9,7 +9,7 @@ services:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.laravel-docker.rule=Host(`api.ouestcamions.fr`)"  # real site 
+      - "traefik.http.routers.laravel-docker.rule=Host(`api.ouestcamions.com`)"  # real site 
       - "traefik.http.routers.laravel-docker.entrypoints=websecure"
       - "traefik.http.routers.laravel-docker.tls.certresolver=myresolver"
     volumes:
@@ -24,7 +24,7 @@ services:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.vue-docker.rule=Host(`ouestcamions.fr`)" # real site 
+      - "traefik.http.routers.vue-docker.rule=Host(`ouestcamions.com`)" # real site 
       - "traefik.http.routers.vue-docker.entrypoints=websecure"
       - "traefik.http.routers.vue-docker.tls.certresolver=myresolver"
 

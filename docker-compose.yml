@@ -6,7 +6,7 @@ services:
       - 8000:80
     volumes:
       - ~/storage:/var/www/app/storage
-      # - /c/wamp64/www/ouestcamions/ouest-camions-api/storage:/var/www/app/storage
+  # - /c/wamp64/www/ouestcamions/ouest-camions-api/storage:/var/www/app/storage
 
   vue-docker:
     container_name: vue-docker
@@ -17,7 +17,7 @@ services:
   mysql_db:
     image: mysql:latest
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"  
+      MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
       MYSQL_DATABASE: ouest_camions_test # base test
     ports:
       - 3306:3306
