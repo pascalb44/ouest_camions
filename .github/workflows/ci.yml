@@ -13,7 +13,7 @@ jobs:
         working-directory: test-api # test file
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
     - name: Install Docker
       uses: hoverkraft-tech/compose-action@v2.0.1
     - name: Sleep for 10 seconds
@@ -36,8 +36,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 20.x
+    - name: Configure npm registry
+      run: npm config set registry https://registry.npmjs.org/
     - name: Install dependencies
-      run: npm install
+      run:  npm ci --legacy-peer-deps --no-audit --progress=false
     - name: Run tests
       run: npm run test
 
