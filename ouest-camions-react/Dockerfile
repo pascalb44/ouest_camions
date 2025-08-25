@@ -10,12 +10,15 @@ RUN apk add --no-cache python3 make g++
 #  Copie des fichiers de dépendances
 COPY package*.json ./
 
+
+RUN npm config set registry https://registry.npmmirror.com
+
 #  Mise à jour de npm + nettoyage du cache
 RUN npm install -g npm@latest
 RUN npm cache clean --force
 
 #  Installation des dépendances avec options de résilience
-RUN npm install --legacy-peer-deps --no-audit --progress=false
+RUN npm ci --legacy-peer-deps --no-audit --progress=false
 #RUN npm ci --no-audit --progress=false
 
 #  Copie du reste du projet
