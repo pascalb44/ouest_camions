@@ -13,11 +13,10 @@ COPY package*.json ./
 #  Mise à jour de npm + nettoyage du cache
 RUN npm install -g npm@latest
 RUN npm cache clean --force
-RUN npm cache verify
 
 #  Installation des dépendances avec options de résilience
-#RUN npm install --legacy-peer-deps --no-audit --progress=false
-RUN npm ci --no-audit --progress=false
+RUN npm install --legacy-peer-deps --no-audit --progress=false
+#RUN npm ci --no-audit --progress=false
 
 #  Copie du reste du projet
 COPY . .
