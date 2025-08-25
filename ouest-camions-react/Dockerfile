@@ -3,10 +3,9 @@ FROM node:lts-alpine AS build-stage
 
 WORKDIR /app
 
-# Désactivation des vérifications d'intégrité
+# Configuration NPM (sans nettoyage du cache)
 RUN npm set strict-integrity false \
-    && npm config set registry https://registry.npmjs.org \
-    && npm cache clean --force
+    && npm config set registry https://registry.npmjs.org
 
 # Copie des fichiers de dépendances
 COPY package.json package-lock.json ./
@@ -23,9 +22,10 @@ RUN npm run build
 # Étape 2 : Serveur Nginx
 FROM nginx:alpine AS production-stage
 
+# Copie du build React vers Nginx
 COPY --from=build-stage /app/build /usr/share/nginx/html
 
-# Configuration Nginx personnalisée (si tu en as une)
+# Configuration Nginx personnalisée (si nécessaire)
 # COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
