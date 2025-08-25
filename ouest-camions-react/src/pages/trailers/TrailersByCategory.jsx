@@ -49,8 +49,8 @@ const TrailersByCategory = () => {
                                     alt={trailer.name_trailer} />
                             </div>
 
-                            <p>Charge utile : {trailer.load_trailer}</p>
-                            <p>A partir de {trailer.price_day_trailer} euros/jour</p>
+                            <p className="trailer-by-category-content">Charge utile : {trailer.load_trailer}</p>
+                            <p className="trailer-by-category-content">A partir de {trailer.price_day_trailer} euros/jour</p>
 
                             <div className="trailer-category-image-caption">
                                 <Link to={`/trailers/${trailer.id}`}>En savoir plus</Link>

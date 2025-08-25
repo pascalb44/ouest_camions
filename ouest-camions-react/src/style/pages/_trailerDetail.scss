@@ -10,6 +10,10 @@
         background-color: #99FFFF;
     }
 
+    body.dark-mode .trailer-detail-page {
+        background-color: steelblue;
+    }
+
     .trailer-btn-return {
         display: flex;
         text-align: center;
@@ -29,10 +33,18 @@
         text-transform: uppercase;
     }
 
+    body.dark-mode .h1-trailer-detail {
+        color: black;
+    }
+
     .edito-trailer {
         margin: 3% 20% 0 20%;
         text-align: center;
         font-size: 1.2rem;
+    }
+
+    body.dark-mode .edito-trailer {
+        color: black
     }
 
     .trailer-detail-top {
@@ -92,7 +104,13 @@
         }
     }
 
+    body.dark-mode .trailer-block-features {
+        background-color: deepskyblue;
 
+        h2,p {
+            color: black;
+        }
+    }
 
     /* calendar */
 
@@ -154,7 +172,7 @@
         padding-left: 10px;
     }
 
-/*
+    /*
     .selected-dates-trailer {
         margin: 3% 0 0 10%;      
           border: solid 1px blue;
@@ -274,7 +292,7 @@
     }
 
 
-    
+
     /* calendar */
 
     .date-picker-trailer {

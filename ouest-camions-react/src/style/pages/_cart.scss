@@ -10,6 +10,10 @@
         text-align: center;
     }
 
+    body.dark-mode .h1-cart {
+        color: white;
+    }
+
     .cart {
         margin-left: 10%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -38,6 +42,11 @@
         width: max-content;
         padding: 10px;
     }
+
+    body.dark-mode .h2-resa-trucks {
+        background-color: green;
+    }
+
 
     .resa-trucks-delete-button,
     .resa-trailers-delete-button {
@@ -106,7 +115,7 @@
     }
 
     .cart {
-        margin-left : 10%
+        margin-left: 10%
     }
 
     .back-message {
