@@ -16,6 +16,7 @@ services:
 
   mysql_db:
     image: mysql:latest
+    container_name: mysql_db 
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: ouest_camions_test # base test
