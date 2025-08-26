@@ -2,7 +2,7 @@
 FROM php:8.2-apache AS base
 ARG MODE=test
 
-# Installer les dépendances PHP
+# Install dependancies PHP
 RUN apt-get update && apt-get install -y \
     libfreetype-dev \
     libjpeg62-turbo-dev \
@@ -20,21 +20,21 @@ RUN apt-get update && apt-get install -y \
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
-# Définir le répertoire de travail
+# Define work folder
 WORKDIR /var/www/app
 
 # Installer Composer 2.8.3
 ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:2.8.3 /usr/bin/composer /usr/local/bin/composer
 
-# Copier uniquement ce qui est nécessaire pour Composer et artisan
+# Copy only what is necessary for Composer and artisan
 COPY composer.json composer.lock ./
 COPY bootstrap bootstrap/
 COPY artisan ./
 
 COPY .env.${MODE} .env
 
-# Installer les dépendances PHP (sans scripts pour éviter artisan qui nécessite tout le code)
+# Install dependancies PHP (without scripts to avoid artisan and all the code)
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts 
 
 # Copier le reste du code
