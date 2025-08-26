@@ -37,18 +37,16 @@ COPY .env.${MODE} .env
 # Install dependancies PHP (without scripts to avoid artisan and all the code)
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts 
 
-# Copier le reste du code
 COPY . .
 
 # Permissions
 RUN chown -R www-data:www-data /var/www/app \
     && chmod -R 775 /var/www/app/storage
 
-# Créer le lien storage de Laravel
 RUN php artisan storage:link
 
-# Exposer le port Apache
+# Apache
 EXPOSE 80
 
-# Commande de lancement
+# run command
 CMD ["apache2-foreground"]
