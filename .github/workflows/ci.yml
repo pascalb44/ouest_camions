@@ -1,4 +1,4 @@
-name: ouestcamion
+name: ouestcamions
 
 on: # specify the build to trigger the automated ci/cd
   push:
@@ -8,9 +8,7 @@ jobs:
   tests:
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: test-api # test file
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -22,6 +20,7 @@ jobs:
       # Build API et DB pour les tests
     - name: Start containers
       run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
+      working-directory: . #test-api # test file
     - name: Wait for MySQL
       run: |
         until docker exec mysql_db mysqladmin ping -h "127.0.0.1" --silent; do
