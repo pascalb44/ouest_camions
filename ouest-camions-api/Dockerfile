@@ -23,7 +23,7 @@ RUN a2enmod rewrite
 # Define work folder
 WORKDIR /var/www/app
 
-# Installer Composer 2.8.3
+# Install Composer 2.8.3
 ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:2.8.3 /usr/bin/composer /usr/local/bin/composer
 
