@@ -2,10 +2,11 @@ services:
   laravel-docker:
     container_name: laravel-docker
     build: ./ouest-camions-api # back
+    restart: unless-stopped
     ports:
       - 8000:80
     volumes:
-      - ~/storage:/var/www/app/storage
+      - ./ouest-camions-api/storage:/var/www/app/storage
   # - /c/wamp64/www/ouestcamions/ouest-camions-api/storage:/var/www/app/storage
 
   vue-docker:
@@ -13,12 +14,13 @@ services:
     build: ./ouest-camions-react #front
     ports:
       - 80:80
+    restart: unless-stopped
 
   mysql_db:
     image: mysql:latest
     container_name: mysql_db 
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "root" 
       MYSQL_DATABASE: ouest_camions_test # base test
     ports:
       - 3306:3306
@@ -29,5 +31,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 volumes:
   mysql_data:
