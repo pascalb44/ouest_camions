@@ -9,7 +9,7 @@ module.exports = {
     },
 
     transformIgnorePatterns: [
-        '/node_modules/(?!(axios|date-fns)/)', 
+        '/node_modules/(?!(axios|date-fns)/)',
     ],
 
     // Mock les fichiers styles (css/scss)
@@ -18,5 +18,8 @@ module.exports = {
         '\\.(gif|ttf|eot|svg|png|mp4)$': path.resolve(__dirname, 'fileMock.js'),
     },
 
-    testEnvironment: 'jsdom', 
+    testEnvironment: 'jsdom',
+    testMatch: [
+        '<rootDir>/unit/**/*.test.js'
+    ],
 };
