@@ -9,7 +9,8 @@ module.exports = {
     },
 
     transformIgnorePatterns: [
-        '\\\\node_modules\\\\(?!(axios|date-fns\\\\.*))',
+        //'\\\\node_modules\\\\(?!(axios|date-fns\\\\.*))',
+          '/node_modules/(?!(axios|date-fns/.*))',
     ],
 
     // Mock les fichiers styles (css/scss)
