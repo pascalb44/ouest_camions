@@ -3,8 +3,7 @@ import { calculatePrice } from "../../utils/utils";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
-//import { fr } from "date-fns/locale";
-import fr from "date-fns/locale/fr/index.js";
+import { fr } from "date-fns/locale";
 
 
 const Cart = () => {
