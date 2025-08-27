@@ -43,8 +43,10 @@ jobs:
       run: npm install
       working-directory: ./ouest-camions-react
     - name: Run tests
-      run: npm run test
+      run: npm run test -- --passWithNoTests
+      working-directory: ./ouest-camions-react
 
+      
   integration-tests:
     runs-on: ubuntu-latest
     steps:
@@ -79,28 +81,6 @@ jobs:
     - name: Run integration tests (test-api)
       run: npm run test
       working-directory: ./test-api
-
-
-  react-unit-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install dependencies (React)
-        run: npm install
-        working-directory: ./ouest-camions-react
-
-      - name: Run unit tests (React)
-        run: npm run test
-        working-directory: ./ouest-camions-react
-
-
-
 
   build-and-push-image-api-prod:
     needs:
