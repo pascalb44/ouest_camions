@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Cart from '../src/pages/order/Cart';
+import Cart from '../pages/order/Cart';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Composant Cart', () => {

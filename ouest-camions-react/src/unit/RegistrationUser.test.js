@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Register from '../src/pages/users/Register';
+import Register from '../pages/users/Register';
 
 test('simule une inscription utilisateur', () => {
     global.fetch = jest.fn(() => /* to accept fetch in the registerForm */

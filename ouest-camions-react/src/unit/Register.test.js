@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Register from '../src/pages/users/Register';
+import Register from '../pages/users/Register';
 
 test('affiche la page d\'inscription', () => {
     render(

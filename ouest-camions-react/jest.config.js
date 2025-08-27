@@ -20,6 +20,6 @@ module.exports = {
 
     testEnvironment: 'jsdom',
     testMatch: [
-        '<rootDir>/unit/**/*.test.js'
+        '<rootDir>/src/unit/**/*.test.js'
     ],
 };

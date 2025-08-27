@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import App from '../src/App';
+import App from '../App';
 
 test('renders La location de qualité link', () => {
   render(<App />);
