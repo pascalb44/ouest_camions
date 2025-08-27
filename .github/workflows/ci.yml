@@ -41,8 +41,66 @@ jobs:
         node-version: 20.x
     - name: Install dependencies
       run: npm install
+      working-directory: ./ouest-camions-react
     - name: Run tests
       run: npm run test
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies (test-api)
+      run: npm install
+      working-directory: ./test-api
+
+    - name: Start containers
+      run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
+
+    - name: Wait for MySQL
+      run: |
+        until docker exec mysql_db mysqladmin ping -h "127.0.0.1" --silent; do
+        echo "Waiting for MySQL..."
+        sleep 2
+        done
+
+    - name: Prepare Laravel
+      run: |
+        docker exec laravel-docker cp .env.testing .env
+        docker exec laravel-docker php artisan migrate --force
+        docker exec laravel-docker php artisan db:seed --force
+
+    - name: Run integration tests (test-api)
+      run: npm run test
+      working-directory: ./test-api
+
+
+  react-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies (React)
+        run: npm install
+        working-directory: ./ouest-camions-react
+
+      - name: Run unit tests (React)
+        run: npm run test
+        working-directory: ./ouest-camions-react
+
+
+
 
   build-and-push-image-api-prod:
     needs:
