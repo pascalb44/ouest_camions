@@ -28,6 +28,9 @@ jobs:
         echo "Waiting for MySQL..."
         sleep 2
         done
+    - name: Use testing environment inside container
+      run: docker exec laravel-docker cp .env.testing .env
+
     - name: Database migrate
       run: docker exec laravel-docker php artisan migrate --force
     - name: Database seed
