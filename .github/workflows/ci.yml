@@ -78,7 +78,7 @@ jobs:
       run: docker build -t test-api ./test-api
 
     - name: Run integration tests
-      run: docker compose -f docker-compose.ci.yml run --rm \
+      run: docker compose -f docker-compose.yml run --rm \
            -e BASE_URL=http://laravel:8000 test-api
 
   build-and-push-image-api-prod:
