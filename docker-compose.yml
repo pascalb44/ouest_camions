@@ -34,5 +34,16 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
+
+  test-api:
+    image: node:20
+    working_dir: /usr/src/app
+    volumes:
+      - ./test-api:/usr/src/app
+      - ./node_modules:/usr/src/app/node_modules
+    depends_on:
+      - app
+    command: ["npx", "jest", "--runInBand"]
+
 volumes:
   mysql_data:
