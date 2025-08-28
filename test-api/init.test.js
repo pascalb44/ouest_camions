@@ -324,6 +324,7 @@ test('should login, create then update the category description', async () => {
         {
             headers: {
                 ...formDataCreate.getHeaders(),
+                Accept: 'application/json',
                 Authorization: `Bearer ${token}`,
             },
         }
