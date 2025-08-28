@@ -12,10 +12,12 @@ RUN npm config set cache /tmp/npm-cache --global
 COPY package.json package-lock.json ./
 
 # Installer les dépendances de façon tolérante
-RUN npm install --legacy-peer-deps --no-audit --prefer-offline --no-fund
+RUN npm ci --legacy-peer-deps --no-audit --prefer-offline --no-fund
 
 # Copier le reste des fichiers du projet
 COPY . .
 
+RUN chmod +x node_modules/.bin/* || true
+
 # Commande par défaut : lancer les tests d'intégration
-CMD ["npx", "jest", "--runInBand", "--detectOpenHandles", "--forceExit"]
+CMD ["npm", "run", "test:integration"]
