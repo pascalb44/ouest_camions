@@ -78,11 +78,13 @@ jobs:
         docker exec laravel-docker php artisan migrate --force
         docker exec laravel-docker php artisan db:seed --force
 
-    - name: Run integration tests
-      run: npm run test:integration
-      working-directory: ./test-api
+    - name: Build test-api container
+      run: docker build -t test-api ./test-api
 
-      
+    - name: Run integration tests
+      run: docker run --network host test-api
+
+
   build-and-push-image-api-prod:
     needs:
       - tests
