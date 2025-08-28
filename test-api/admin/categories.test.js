@@ -8,6 +8,9 @@ const path = require('path');
 const { loginAsAdmin } = require('../utils/login');
 jest.setTimeout(20000); 
 
+const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80/api';
+
+
 let authAxios;
 let token;
 
