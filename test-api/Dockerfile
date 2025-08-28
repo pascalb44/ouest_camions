@@ -1,21 +1,21 @@
+# Étape 1 : image Node
 FROM node:lts-alpine
 
+# Répertoire de travail
 WORKDIR /app
 
-
-# Configuration npm pour éviter erreurs tarballs
+# Configuration npm pour éviter problèmes de tarballs
 RUN npm config set registry https://registry.npmjs.org
+RUN npm config set cache /tmp/npm-cache --global
 
-# Copier package.json et package-lock.json
+# Copier uniquement package.json et package-lock.json
 COPY package.json package-lock.json ./
 
-RUN npm cache clean --force
+# Installer les dépendances de façon tolérante
+RUN npm install --legacy-peer-deps --no-audit --prefer-offline --no-fund
 
-# Installer dépendances avec legacy-peer-deps
-RUN npm ci --legacy-peer-deps --no-audit --prefer-offline --no-fund
-
-# Copier le reste des fichiers test-api
+# Copier le reste des fichiers du projet
 COPY . .
 
-# Commande par défaut pour lancer les tests d'intégration
+# Commande par défaut : lancer les tests d'intégration
 CMD ["npm", "run", "test:integration"]
