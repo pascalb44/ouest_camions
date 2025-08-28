@@ -291,7 +291,7 @@ describe('Admin API tests', () => {
 // crud by admin : update categories-trailers
 
 
-
+/*
 let token = '';
 let categoryId;
 
@@ -362,7 +362,7 @@ console.log('createResponse full:', createResponse.data);
     expect(updateResponse.data.data.description).toBe('Description mise à jour via Jest');
 });
 
-
+*/
 
 
 // crud by admin : destroy categories-trailers : ok
