@@ -1,11 +1,12 @@
 const { expect, test, beforeAll } = require('@jest/globals');
 const { loginAsAdmin } = require('./utils/login');
+jest.setTimeout(30000);
 
 let authAxios;
 let token;
 
 beforeAll(async () => {
-    const result = await loginAsAdmin();
+    const result = await loginAsAdmin(BASE_URL);
     token = result.token;
     authAxios = result.authAxios;
 });

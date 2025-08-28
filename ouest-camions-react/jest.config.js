@@ -20,7 +20,7 @@ module.exports = {
         '^axios$': require.resolve('axios')
     },
 
-    testEnvironment: 'jsdom',
+    testEnvironment: 'node', // not jsdom
     testMatch: [
         '<rootDir>/src/unit/**/*.test.js'
     ],

@@ -43,7 +43,8 @@ services:
       - ./node_modules:/usr/src/app/node_modules
     depends_on:
     - laravel-docker
-    command: ["npx", "jest", "--runInBand"]
+    command: >
+      sh -c "npm install && npx jest --runInBand"
 
 volumes:
   mysql_data:
