@@ -18,4 +18,4 @@ RUN npm install --legacy-peer-deps --no-audit --prefer-offline --no-fund
 COPY . .
 
 # Commande par défaut : lancer les tests d'intégration
-CMD ["npm", "run", "test:integration"]
+CMD ["npx", "jest", "--runInBand", "--detectOpenHandles", "--forceExit"]
