@@ -348,6 +348,7 @@ console.log('createResponse full:', createResponse.data);
         {
             headers: {
                 ...formData.getHeaders(),
+                Accept: 'application/json',
                 Authorization: `Bearer ${token}`,
             },
         }
