@@ -1,14 +1,13 @@
 process.env.APP_ENV = 'testing';
 require('dotenv').config({ path: '.env.testing' });
 
+const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80/api';
 const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
 const { loginAsAdmin } = require('../utils/login');
 jest.setTimeout(20000); 
-
-const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80/api';
 
 
 let authAxios;
