@@ -59,10 +59,10 @@ jobs:
         node-version: '20'
 
     - name: Install dependencies (test-api)
-      run: npm install
+      run: npm ci
       working-directory: ./test-api
 
-    - name: Start containers
+    - name: Build and start containers
       run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
 
     - name: Wait for MySQL
@@ -78,10 +78,11 @@ jobs:
         docker exec laravel-docker php artisan migrate --force
         docker exec laravel-docker php artisan db:seed --force
 
-    - name: Run integration tests (test-api)
+    - name: Run integration tests
       run: npm run test:integration
       working-directory: ./test-api
 
+      
   build-and-push-image-api-prod:
     needs:
       - tests
