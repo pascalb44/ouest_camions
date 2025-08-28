@@ -1,7 +1,7 @@
 # Étape 1 : image Node
 FROM node:lts-alpine
 
-# Répertoire de travail
+# work folder
 WORKDIR /app
 
 # Configuration npm pour éviter problèmes de tarballs
