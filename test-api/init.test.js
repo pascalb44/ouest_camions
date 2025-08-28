@@ -1,5 +1,5 @@
 const { expect, test, beforeAll } = require('@jest/globals');
-const { loginAsAdmin } = require('../utils/login');
+const { loginAsAdmin } = require('./utils/login');
 
 let authAxios;
 let token;

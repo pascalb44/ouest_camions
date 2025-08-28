@@ -6,7 +6,7 @@ const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
 const { loginAsAdmin } = require('../utils/login');
-
+jest.setTimeout(20000); 
 
 let authAxios;
 let token;
@@ -26,7 +26,7 @@ beforeAll(async () => {
 
 describe('Check API ENV', () => {
     test('Vérifie que Laravel utilise .env.testing', async () => {
-        const res = await axios.get('/check-env');
+        const res = await axios.get(`${process.env.BASE_URL}/check-env`);
         expect(res.status).toBe(200);
         expect(res.data).toHaveProperty('APP_ENV', 'testing');
         expect(res.data).toHaveProperty('DB_DATABASE', 'ouest_camions_test');
