@@ -79,7 +79,7 @@ jobs:
         docker exec laravel-docker php artisan db:seed --force
 
     - name: Run integration tests (test-api)
-      run: npm run test
+      run: npm run test:integration
       working-directory: ./test-api
 
   build-and-push-image-api-prod:

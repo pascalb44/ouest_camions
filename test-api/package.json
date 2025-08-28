@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "test:integration": "jest --runInBand --detectOpenHandles --forceExit"
   },
   "devDependencies": {
     "chai": "^5.1.1",
