@@ -1,3 +1,27 @@
+const { expect, test, beforeAll } = require('@jest/globals');
+const { loginAsAdmin } = require('../utils/login');
+
+let authAxios;
+let token;
+
+beforeAll(async () => {
+    const result = await loginAsAdmin();
+    token = result.token;
+    authAxios = result.authAxios;
+});
+
+test('Vérifie si l\'utilisateur peut se connecter et obtenir un token', () => {
+    expect(token).toBeTruthy();
+});
+
+// Exemple simple de test utilisant authAxios
+test('Exemple : récupérer l\'env Laravel', async () => {
+    const res = await authAxios.get('/check-env');
+    expect(res.status).toBe(200);
+    expect(res.data).toHaveProperty('APP_ENV', 'testing');
+});
+
+/*
 const { expect, test, describe, beforeAll } = require('@jest/globals');
 const axios = require('axios');
 
@@ -7,7 +31,7 @@ const path = require('path');
 
 
 const Axios = axios.create({
-    //baseURL: 'http://127.0.0.1:8000/api', /* no localhost for local but necessary for tests in github */
+    //baseURL: 'http://127.0.0.1:8000/api', // no localhost for local but necessary for tests in github
     baseURL: process.env.BASE_URL || 'http://127.0.0.1:8000/api',
     headers: {
         Accept: 'application/json',
@@ -15,21 +39,21 @@ const Axios = axios.create({
     },
 });
 
-let user = {}; /* no const to modify user after */
+let user = {}; // no const to modify user after
 let authAxios; // for authentification
 
 //-----------------------------
-// UTILS 
+// UTILS
 //-----------------------------
 
 
 
 async function login(credentials) {
 
-    const res = await Axios.post('/login', credentials); // request 
+    const res = await Axios.post('/login', credentials); // request
     console.log('Réponse login:', res.data);  // <-- voir ce qui arrive
-    const { user: userData, access_token } = res.data.data; // user data 
-    const token = access_token.token; // token  
+    const { user: userData, access_token } = res.data.data; // user data
+    const token = access_token.token; // token
     Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     user = {
         ...userData,
@@ -45,7 +69,7 @@ async function login(credentials) {
     });
 
 
-    //console.log('Utilisateur connecté :', user); // get data user + token 
+    //console.log('Utilisateur connecté :', user); // get data user + token
 
     return {
         token,
@@ -53,11 +77,11 @@ async function login(credentials) {
     };
 }
 
-
+*/
 
 
 //-----------------------------
-// TEST 
+// TEST
 //-----------------------------
 
 /*
@@ -319,7 +343,7 @@ test('should login, create then update the category description', async () => {
     );
 
     const createResponse = await authAxios.post(
-        
+
         '/admin/categories-trailers',
         formDataCreate,
         {
@@ -354,7 +378,7 @@ console.log('createResponse full:', createResponse.data);
             },
         }
     );
-    
+
 
     console.log('Réponse de mise à jour :', updateResponse.data);
     expect(updateResponse.status).toBe(200);

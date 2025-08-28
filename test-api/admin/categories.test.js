@@ -1,142 +1,11 @@
 process.env.APP_ENV = 'testing';
+require('dotenv').config({ path: '.env.testing' });
 
 const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
 const { loginAsAdmin } = require('../utils/login');
-require('dotenv').config({ path: '.env.testing' });
-
-let authAxios;
-let token;
-
-beforeAll(async () => {
-    token = await loginAsAdmin();
-    authAxios = axios.create({
-        baseURL: 'http://127.0.0.1:8000/api',
-        headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: 'application/json',
-        },
-    });
-});
-
-const buildForm = (fields, imgField, imgFile) => {
-    const form = new FormData();
-    for (const [k, v] of Object.entries(fields)) form.append(k, v);
-    const imagePath = path.resolve(__dirname, imgFile);
-    if (!fs.existsSync(imagePath)) throw new Error(`Image missing: ${imagePath}`);
-    form.append(imgField, fs.createReadStream(imagePath));
-    return form;
-};
-
-const createCategory = async (url, fields, imgField, imgFile) => {
-    const form = buildForm(fields, imgField, imgFile);
-    const res = await authAxios.post(url, form, {
-        headers: { ...form.getHeaders(), APP_ENV: 'testing' },
-    });
-    expect(res.status).toBe(201);
-    return res.data.data.id;
-};
-
-describe('Check API ENV', () => {
-    test('Laravel utilise .env.testing', async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/check-env');
-        expect(res.status).toBe(200);
-        expect(res.data).toMatchObject({
-            APP_ENV: 'testing',
-            DB_DATABASE: 'ouest_camions_test',
-        });
-    });
-});
-
-describe('Admin API - CategoryTrailer CRUD', () => {
-    test('token disponible', () => expect(token).toBeTruthy());
-
-    test('create trailer category', async () => {
-        await createCategory('/admin/categories-trailers',
-            { name_category_trailer: 'TestCat-' + Date.now(), description: 'Cat test' },
-            'image_category_trailer',
-            'icone_semitrailer.jpg'
-        );
-    });
-
-    test('list trailer categories', async () => {
-        const res = await authAxios.get('/admin/categories-trailers');
-        expect(res.status).toBe(200);
-    });
-
-    test('update trailer category', async () => {
-        const id = await createCategory('/admin/categories-trailers',
-            { name_category_trailer: 'TestCat-' + Date.now(), description: 'Cat test' },
-            'image_category_trailer',
-            'icone_semitrailer.jpg'
-        );
-        const updateData = { name_category_trailer: 'TestCat-' + Date.now(), description: 'Maj via Jest' };
-        const res = await authAxios.patch(`/admin/categories-trailers/${id}`, updateData, {
-            headers: { 'Content-Type': 'application/json' },
-        });
-        expect(res.status).toBe(200);
-    });
-
-    test('delete trailer category', async () => {
-        const id = await createCategory('/admin/categories-trailers',
-            { name_category_trailer: 'TestCat-' + Date.now(), description: 'Cat test' },
-            'image_category_trailer',
-            'icone_semitrailer.jpg'
-        );
-        const res = await authAxios.delete(`/admin/categories-trailers/${id}`);
-        expect(res.status).toBe(200);
-    });
-});
-
-describe('Admin API - CategoryTruck CRUD', () => {
-    test('create truck category', async () => {
-        await createCategory('/admin/categories-trucks',
-            { name_category_truck: 'TestCat-' + Date.now() },
-            'image_category_truck',
-            'camion_IA2.jpg'
-        );
-    });
-
-    test('list truck categories', async () => {
-        const res = await authAxios.get('/admin/categories-trucks');
-        expect(res.status).toBe(200);
-    });
-
-    test('update truck category', async () => {
-        const id = await createCategory('/admin/categories-trucks',
-            { name_category_truck: 'TestCat-' + Date.now() },
-            'image_category_truck',
-            'camion_IA2.jpg'
-        );
-        const updateData = { name_category_truck: 'TestCat-' + Date.now(), description: 'Maj via Jest' };
-        const res = await authAxios.patch(`/admin/categories-trucks/${id}`, updateData, {
-            headers: { 'Content-Type': 'application/json' },
-        });
-        expect(res.status).toBe(200);
-    });
-
-    test('delete truck category', async () => {
-        const id = await createCategory('/admin/categories-trucks',
-            { name_category_truck: 'TestCat-' + Date.now() },
-            'image_category_truck',
-            'icone_semitrailer.jpg'
-        );
-        const res = await authAxios.delete(`/admin/categories-trucks/${id}`);
-        expect(res.status).toBe(200);
-    });
-});
-
-
-/* process.env.APP_ENV = 'testing';
-
-const axios = require('axios');
-const FormData = require('form-data');
-const fs = require('fs');
-const path = require('path');
-const { loginAsAdmin } = require('../utils/login');
-require('dotenv').config({ path: '.env.testing' });
 
 
 let authAxios;
@@ -146,18 +15,18 @@ beforeAll(async () => {
     token = await loginAsAdmin(); // to get token
 
     authAxios = axios.create({
-        baseURL: 'http://127.0.0.1:8000/api',
+        baseURL: process.env.BASE_URL || 'http://mysql_db:8000/api', // pour GitHub/Docker
         headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data',
-        },
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+    },
     });
 });
 
 
 describe('Check API ENV', () => {
     test('Vérifie que Laravel utilise .env.testing', async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/check-env');
+        const res = await axios.get('/check-env');
         expect(res.status).toBe(200);
         expect(res.data).toHaveProperty('APP_ENV', 'testing');
         expect(res.data).toHaveProperty('DB_DATABASE', 'ouest_camions_test');
@@ -170,7 +39,7 @@ describe('Check API ENV', () => {
 // login admin
 describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
-    test('Vérifie si l\'utilisateur peut se connecter et obtenir un token', () => {
+    test('Vérifie si connection et token', () => {
         expect(token).toBeTruthy();
     });
 
@@ -179,7 +48,7 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
     // categories_trailers create
 
-    test('should login and create a new trailer category', async () => {
+    test('create a new trailer category', async () => {
         const form = new FormData();
         form.append('name_category_trailer', 'TestCat-' + Date.now());
         form.append('description', 'Catégorie test créée via Jest');
@@ -221,7 +90,7 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
     // categories_trailers update
 
-    test('should login, create then update the category description', async () => {
+    test('update the category description', async () => {
         const form = new FormData();
         form.append('name_category_trailer', 'TestCat-' + Date.now());
         form.append('description', 'Catégorie test créée via Jest');
@@ -313,7 +182,7 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
 
 // CRUD for categories_trucks
-describe('Admin API - CategoryTruck CRUD avec login', () => {
+describe('Admin CategoryTruck CRUD', () => {
 
 
     // categories_trucks create
@@ -446,4 +315,3 @@ describe('Admin API - CategoryTruck CRUD avec login', () => {
         }
     });
 });
-*/
