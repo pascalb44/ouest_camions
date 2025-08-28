@@ -58,10 +58,6 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Install dependencies (test-api)
-      run: npm ci
-      working-directory: ./test-api
-
     - name: Build and start containers
       run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
 
