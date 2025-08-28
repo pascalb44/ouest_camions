@@ -8,7 +8,7 @@ const path = require('path');
 
 const Axios = axios.create({
     //baseURL: 'http://127.0.0.1:8000/api', /* no localhost for local but necessary for tests in github */
-    baseURL: 'http://localhost',
+    baseURL: process.env.BASE_URL || 'http://127.0.0.1:8000/api',
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ async function login(credentials) {
         token,
     };
     authAxios = axios.create({
-        baseURL: 'http://127.0.0.1:8000/api',
+        baseURL: process.env.BASE_URL || 'http://127.0.0.1:8000/api',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -320,7 +320,7 @@ test('should login, create then update the category description', async () => {
 
     const createResponse = await authAxios.post(
         
-        'http://127.0.0.1:8000/api/admin/categories-trailers',
+        '/admin/categories-trailers',
         formDataCreate,
         {
             headers: {
@@ -344,7 +344,7 @@ console.log('createResponse full:', createResponse.data);
     formData.append('image_category_trailer', fs.createReadStream(filePath));
 
     const updateResponse = await authAxios.patch(
-        `http://127.0.0.1:8000/api/admin/categories-trailers/${categoryId}`,
+        `admin/categories-trailers/${categoryId}`,
         formData,
         {
             headers: {
@@ -354,6 +354,7 @@ console.log('createResponse full:', createResponse.data);
             },
         }
     );
+    
 
     console.log('Réponse de mise à jour :', updateResponse.data);
     expect(updateResponse.status).toBe(200);
