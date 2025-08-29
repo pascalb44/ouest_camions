@@ -33,7 +33,7 @@ jobs:
       run: |
           docker compose -f docker-compose.yml run --rm test-api ls -l node_modules/.bin/jest || true
           docker compose -f docker-compose.yml run --rm test-api npx jest --version || true    
-          
+
     - name: Use testing environment inside container
       run: docker exec laravel-docker cp .env.testing .env
 
@@ -56,36 +56,48 @@ jobs:
   integration-tests:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-    - name: Build and start containers
-      run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
+    # Démarre MySQL + Laravel
+      - name: Build and start containers
+        run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
 
-    - name: Wait for MySQL
-      run: |
-        until docker exec mysql_db mysqladmin ping -h "127.0.0.1" --silent; do
-        echo "Waiting for MySQL..."
-        sleep 2
-        done
+    # Attendre que MySQL soit prêt
+      - name: Wait for MySQL
+        run: |
+          until docker exec mysql_db mysqladmin ping -h "127.0.0.1" --silent; do
+            echo "Waiting for MySQL..."
+            sleep 2
+          done
 
-    - name: Prepare Laravel
-      run: |
-        docker exec laravel-docker cp .env.testing .env
-        docker exec laravel-docker php artisan migrate --force
-        docker exec laravel-docker php artisan db:seed --force
+    # Préparer Laravel avec le bon .env
+      - name: Prepare Laravel (env, cache, migrations, seed)
+        run: |
+          docker exec laravel-docker cp .env.testing .env
+          docker exec laravel-docker php artisan config:clear
+          docker exec laravel-docker php artisan config:cache
+          docker exec laravel-docker php artisan migrate --force
+          docker exec laravel-docker php artisan db:seed --force
 
-    - name: Build test-api container
-      run: docker build -t test-api ./test-api
+    # (Optionnel) vérifier que JWT_SECRET est bien pris en compte
+      - name: Check JWT_SECRET
+        run: docker exec laravel-docker php artisan tinker --execute="echo env('JWT_SECRET');"
 
-    - name: Run integration tests
-      run: docker compose -f docker-compose.yml run --rm -e BASE_URL=http://laravel-docker:80/api test-api
+    # Build test-api container
+      - name: Build test-api container
+        run: docker build -t test-api ./test-api
 
+    # Lancer les tests d'intégration
+      - name: Run integration tests
+        run: docker compose -f docker-compose.yml run --rm \
+          -e BASE_URL=http://laravel-docker:80/api \
+          test-api
 
   build-and-push-image-api-prod:
     needs:
