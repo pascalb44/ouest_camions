@@ -40,8 +40,8 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-s
 COPY . .
 
 # Permissions
-RUN chown -R www-data:www-data /var/www/app \
-    && chmod -R 775 /var/www/app/storage
+RUN chown --R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
 RUN php artisan storage:link
 

@@ -17,7 +17,7 @@ RUN npm ci --legacy-peer-deps --no-audit --prefer-offline --no-fund
 # Copier le reste des fichiers du projet
 COPY . .
 
-# RUN chmod +x node_modules/.bin/* || true
+RUN chmod +x node_modules/.bin/* || true
 
 # juste avant de lancer les tests
 RUN mkdir -p /app/storage/logs && chmod -R 777 /app/storage
