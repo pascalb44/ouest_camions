@@ -45,7 +45,7 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./test-api:/usr/src/app
-      - ./node_modules:/usr/src/app/node_modules
+      #- ./node_modules:/usr/src/app/node_modules
     depends_on:
     - laravel-docker
     command: >
