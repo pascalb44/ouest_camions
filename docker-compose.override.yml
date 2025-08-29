@@ -1,0 +1,4 @@
+services:
+  laravel-docker:
+    volumes:
+      - ./ouest-camions-api/storage:/var/www/app/storage:rw
