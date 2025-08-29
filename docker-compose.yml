@@ -5,6 +5,8 @@ services:
     restart: unless-stopped
     ports:
       - 8000:80
+    env_file:
+      - ./ouest-camions-api/.env.testing
     volumes:
     - ./ouest-camions-api/storage:/var/www/app/storage:rw
     depends_on:
