@@ -6,7 +6,7 @@ services:
     ports:
       - 8000:80
     volumes:
-    - ouest-camions-api/storage:/var/www/app/storage:rw
+      - ./ouest-camions-api/storage:/var/www/app/storage:rw
     depends_on:
       mysql_db:
         condition: service_healthy
