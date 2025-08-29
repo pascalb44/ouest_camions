@@ -5,17 +5,12 @@ services:
     restart: unless-stopped
     ports:
       - 8000:80
-    env_file:
-      - ./ouest-camions-api/.env.testing
     volumes:
-    - /c/wamp64/www/ouestcamions/ouest-camions-api/storage:/var/www/app/storage:rw
+    - ouest-camions-api/storage:/var/www/app/storage:rw
     depends_on:
       mysql_db:
         condition: service_healthy
-    command: >
-      sh -c "chown -R www-data:www-data /var/www/app/storage /var/www/app/bootstrap/cache &&
-             chmod -R 775 /var/www/app/storage /var/www/app/bootstrap/cache &&
-             apache2-foreground"
+
   vue-docker:
     container_name: vue-docker
     build: ./ouest-camions-react #front
@@ -45,7 +40,7 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./test-api:/usr/src/app
-      #- ./node_modules:/usr/src/app/node_modules
+      - ./node_modules:/usr/src/app/node_modules
     depends_on:
     - laravel-docker
     command: >
