@@ -2,3 +2,10 @@ services:
   laravel-docker:
     volumes:
       - ./ouest-camions-api/storage:/var/www/app/storage:rw
+
+  test-api:
+    environment:
+      BASE_URL: http://laravel-docker:80
+      JWT_SECRET: at4oMJgeieryAyYyPO2oXA22ZI6sQIlt7KwlSxxwmr1T5cZOn2N1aP6H9YZskLAG
+    command: >
+      sh -c "npm ci && npx jest --runInBand"
