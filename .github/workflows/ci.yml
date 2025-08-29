@@ -52,7 +52,6 @@ jobs:
       run: npm run test
       working-directory: ./ouest-camions-react
 
-
   integration-tests:
     runs-on: ubuntu-latest
     steps:
@@ -64,11 +63,9 @@ jobs:
         with:
           node-version: '20'
 
-    # Démarre MySQL + Laravel
       - name: Build and start containers
         run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
 
-    # Attendre que MySQL soit prêt
       - name: Wait for MySQL
         run: |
           until docker exec mysql_db mysqladmin ping -h "127.0.0.1" --silent; do
@@ -76,24 +73,23 @@ jobs:
             sleep 2
           done
 
-    # Préparer Laravel avec le bon .env
       - name: Prepare Laravel (env, cache, migrations, seed)
         run: |
-          docker exec laravel-docker cp .env.testing .env
-          docker exec laravel-docker php artisan config:clear
-          docker exec laravel-docker php artisan config:cache
-          docker exec laravel-docker php artisan migrate --force
-          docker exec laravel-docker php artisan db:seed --force
+          docker exec laravel-docker sh -c "
+            cd /var/www/app &&
+            cp .env.testing .env &&
+            php artisan config:clear &&
+            php artisan config:cache &&
+            php artisan migrate --force &&
+            php artisan db:seed --force
+          "
 
-    # (Optionnel) vérifier que JWT_SECRET est bien pris en compte
       - name: Check JWT_SECRET
         run: docker exec laravel-docker php artisan tinker --execute="echo env('JWT_SECRET');"
 
-    # Build test-api container
       - name: Build test-api container
         run: docker build -t test-api ./test-api
 
-    # Lancer les tests d'intégration
       - name: Run integration tests
         run: docker compose -f docker-compose.yml run --rm -e BASE_URL=http://laravel-docker:80/api test-api
 
