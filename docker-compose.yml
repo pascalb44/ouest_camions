@@ -8,7 +8,7 @@ services:
     env_file:
       - ./ouest-camions-api/.env.testing
     volumes:
-    - ./ouest-camions-api/storage:/var/www/app/storage:rw
+    - /c/wamp64/www/ouestcamions/ouest-camions-api/storage:/var/www/app/storage:rw
     depends_on:
       mysql_db:
         condition: service_healthy
