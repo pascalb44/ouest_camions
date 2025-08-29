@@ -4,7 +4,7 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "test": "NODE_ENV=testing jest"
+        "test": "NODE_ENV=testing node node_modules/jest/bin/jest.js --runInBand"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.20",
