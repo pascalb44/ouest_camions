@@ -7,22 +7,24 @@ const FormData = require('form-data');
 const fs = require('fs');
 const path = require('path');
 const { loginAsAdmin } = require('../utils/login');
-jest.setTimeout(20000); 
+jest.setTimeout(20000);
 
 
-let authAxios;
 let token;
 
-beforeAll(async () => {
-    token = await loginAsAdmin(); // to get token
 
-    authAxios = axios.create({
-        baseURL: process.env.BASE_URL || 'http://mysql_db:8000/api', // pour GitHub/Docker
-        headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'multipart/form-data',
-    },
-    });
+beforeAll(async () => {
+    const { token: t } = await loginAsAdmin();
+    token = t; // to get token
+    /*
+        authAxios = axios.create({
+            baseURL: process.env.BASE_URL || 'http://mysql_db:8000/api', // pour GitHub/Docker
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        */
 });
 
 
@@ -36,8 +38,6 @@ describe('Check API ENV', () => {
 });
 
 
-
-
 // login admin
 describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
@@ -47,10 +47,17 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
 
     // CRUD for categories_trailers
-
     // categories_trailers create
 
     test('create a new trailer category', async () => {
+        const authAxios = axios.create({
+            baseURL: BASE_URL,
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        
         const form = new FormData();
         form.append('name_category_trailer', 'TestCat-' + Date.now());
         form.append('description', 'Catégorie test créée via Jest');

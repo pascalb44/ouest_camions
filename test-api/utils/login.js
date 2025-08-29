@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const baseURL = process.env.BASE_URL || 'http://127.0.0.1:8000/api';
+const baseURL = process.env.BASE_URL || 'http://laravel-docker/api';
 
 async function loginAsAdmin() {
     try {
@@ -10,7 +10,8 @@ async function loginAsAdmin() {
         });
 
         const token = response.data.data.access_token.token;
-
+        return { token };
+        
         const authAxios = axios.create({
             baseURL,
             headers: {

@@ -1,23 +1,26 @@
 const { expect, test, beforeAll } = require('@jest/globals');
+const axios = require('axios');
 const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80/api';
 const { loginAsAdmin } = require('./utils/login');
 jest.setTimeout(30000);
 
-let authAxios;
 let token;
 
 beforeAll(async () => {
-    const result = await loginAsAdmin(BASE_URL);
-    token = result.token;
-    authAxios = result.authAxios;
+    const { token: t } = await loginAsAdmin(BASE_URL);
+    token = t;
 });
 
 test('Vérifie si l\'utilisateur peut se connecter et obtenir un token', () => {
     expect(token).toBeTruthy();
 });
 
-// Exemple simple de test utilisant authAxios
 test('Exemple : récupérer l\'env Laravel', async () => {
+    const authAxios = axios.create({
+        baseURL: BASE_URL,
+        headers: { Authorization: `Bearer ${token}` },
+    });
+
     const res = await authAxios.get('/check-env');
     expect(res.status).toBe(200);
     expect(res.data).toHaveProperty('APP_ENV', 'testing');
