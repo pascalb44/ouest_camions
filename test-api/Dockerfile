@@ -12,12 +12,11 @@ RUN npm config set cache /tmp/npm-cache --global
 COPY package.json package-lock.json ./
 
 # Installer les dépendances de façon tolérante
-RUN npm ci --legacy-peer-deps --no-audit --prefer-offline --no-fund
+RUN npm ci --legacy-peer-deps --no-audit --prefer-offline --no-fund \
+  && chmod +x node_modules/.bin/jest 
 
 # Copier le reste des fichiers du projet
 COPY . .
-
-RUN chmod +x node_modules/.bin/* || true
 
 # juste avant de lancer les tests
 RUN mkdir -p /app/storage/logs && chmod -R 777 /app/storage
