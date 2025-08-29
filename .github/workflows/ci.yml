@@ -27,7 +27,13 @@ jobs:
         until docker exec mysql_db mysqladmin ping -h "127.0.0.1" --silent; do
         echo "Waiting for MySQL..."
         sleep 2
-        done
+        done  
+
+    - name: Debug jest inside test-api
+      run: |
+          docker compose -f docker-compose.yml run --rm test-api ls -l node_modules/.bin/jest || true
+          docker compose -f docker-compose.yml run --rm test-api npx jest --version || true    
+          
     - name: Use testing environment inside container
       run: docker exec laravel-docker cp .env.testing .env
 
