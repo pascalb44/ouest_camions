@@ -1,7 +1,7 @@
 process.env.APP_ENV = 'testing';
 require('dotenv').config({ path: '.env.testing' });
 
-const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80/api';
+const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80';
 const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');

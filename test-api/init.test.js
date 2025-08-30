@@ -3,7 +3,7 @@ require('dotenv').config({ path: '.env.testing' });
 
 const { expect, test, beforeAll } = require('@jest/globals');
 const axios = require('axios');
-const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80/api';
+const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80';
 const { loginAsAdmin } = require('./utils/login');
 jest.setTimeout(30000);
 
