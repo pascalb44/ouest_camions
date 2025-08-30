@@ -75,17 +75,17 @@ jobs:
 
       - name: Prepare Laravel (env, cache, migrations, seed)
         run: |
-          docker exec laravel-docker sh -c "
-            cd /var/www/app &&
-            until nc -z mysql 3306; do
+            until docker exec laravel-docker mysqladmin ping -h mysql --silent; do
               echo 'Waiting for MySQL...';
               sleep 2;
-            done &&
-            php artisan config:clear &&
-            php artisan config:cache &&
-            php artisan migrate --force &&
-            php artisan db:seed --force
-          "
+            done
+            docker exec laravel-docker sh -c "
+             cd /var/www/app &&
+              php artisan config:clear &&
+              php artisan config:cache &&
+              php artisan migrate --force &&
+              php artisan db:seed --force
+            "
 
       - name: Check JWT_SECRET
         run: docker exec laravel-docker php artisan tinker --execute="echo env('JWT_SECRET');"
