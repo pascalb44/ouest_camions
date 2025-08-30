@@ -2,11 +2,10 @@ services:
   laravel-docker:
     volumes:
       - ./ouest-camions-api/storage:/var/www/app/storage:rw
-      - ./ouest-camions-api/.env.testing:/var/www/app/.env:ro
     command: >
       sh -c "chown -R www-data:www-data /var/www/app/storage &&
              chmod -R 775 /var/www/app/storage &&
-             php-fpm -F"
+            "
 
   test-api:
     environment:

@@ -17,7 +17,7 @@ jobs:
     - name: Sleep for 10 seconds
       run: sleep 10s
       shell: bash
-      # Build API and DB for tests
+      # Build API et DB pour les tests
       
     - name: Start containers
       run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
@@ -34,8 +34,8 @@ jobs:
           docker compose -f docker-compose.yml run --rm test-api ls -l node_modules/.bin/jest || true
           docker compose -f docker-compose.yml run --rm test-api npx jest --version || true    
 
-    #- name: Use testing environment inside container
-    #  run: docker exec laravel-docker cp .env.testing .env
+    - name: Use testing environment inside container
+      run: docker exec laravel-docker cp .env.testing .env
 
     - name: Database migrate
       run: docker exec laravel-docker php artisan migrate --force
@@ -75,18 +75,14 @@ jobs:
 
       - name: Prepare Laravel (env, cache, migrations, seed)
         run: |
-            until docker exec laravel-docker mysqladmin ping -h mysql --silent; do
-              echo 'Waiting for MySQL...';
-              sleep 2;
-            done
-            docker exec laravel-docker sh -c "
-              cd /var/www/app &&
-              cp .env.testing .env &&
-              php artisan config:clear &&
-              php artisan config:cache &&
-              php artisan migrate --force &&
-              php artisan db:seed --force
-            "
+          docker exec laravel-docker sh -c "
+            cd /var/www/app &&
+            cp .env.testing .env &&
+            php artisan config:clear &&
+            php artisan config:cache &&
+            php artisan migrate --force &&
+            php artisan db:seed --force
+          "
 
       - name: Check JWT_SECRET
         run: docker exec laravel-docker php artisan tinker --execute="echo env('JWT_SECRET');"
