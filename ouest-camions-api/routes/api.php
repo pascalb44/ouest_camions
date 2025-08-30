@@ -135,6 +135,3 @@ Route::middleware('auth:api')->group(function () {
   Route::delete('/orders/{orders}', [OrderController::class, 'destroy']);
 });
 
-Route::get('/test-laravel', function () {
-    return response()->json(['status' => 'OK', 'message' => 'Laravel fonctionne !']);
-});

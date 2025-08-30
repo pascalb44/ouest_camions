@@ -50,8 +50,7 @@ services:
     environment:
       BASE_URL: http://laravel-docker:80
       JWT_SECRET: At4oMJgeieryAyYyPO2oXA22ZI6sQIlt7KwlSxxwmr1T5cZOn2N1aP6H9YZskLAG
-    command: px jest --runInBand # >
-      # sh -c "npm ci && npx jest --runInBand"
+    command: npm run test:integration
 
 volumes:
   mysql_data:
