@@ -1,3 +1,6 @@
+process.env.APP_ENV = 'testing';
+require('dotenv').config({ path: '.env.testing' });
+
 const axios = require('axios');
 
 const baseURL = process.env.BASE_URL || 'http://laravel-docker:80/api';

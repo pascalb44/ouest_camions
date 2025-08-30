@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\Admin\TruckController;
@@ -133,4 +133,8 @@ Route::middleware('auth:api')->group(function () {
   Route::get('orders/{id}', [OrderController::class, 'show']);
   Route::patch('/orders/{orders}', [OrderController::class, 'update']);
   Route::delete('/orders/{orders}', [OrderController::class, 'destroy']);
+});
+
+Route::get('/test-laravel', function () {
+    return response()->json(['status' => 'OK', 'message' => 'Laravel fonctionne !']);
 });
