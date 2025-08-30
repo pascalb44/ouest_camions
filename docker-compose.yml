@@ -2,7 +2,9 @@ services:
   laravel-docker:
     container_name: laravel-docker
     build: ./ouest-camions-api # back
-    restart: unless-stopped
+    #restart: unless-stopped
+    restart: "no"
+
     ports:
       - 8000:80
     #volumes:
