@@ -80,7 +80,8 @@ jobs:
               sleep 2;
             done
             docker exec laravel-docker sh -c "
-             cd /var/www/app &&
+              cd /var/www/app &&
+              cp .env.testing .env &&
               php artisan config:clear &&
               php artisan config:cache &&
               php artisan migrate --force &&
