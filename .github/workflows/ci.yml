@@ -17,7 +17,7 @@ jobs:
     - name: Sleep for 10 seconds
       run: sleep 10s
       shell: bash
-      # Build API et DB pour les tests
+      # Build API and DB for tests
       
     - name: Start containers
       run: docker compose -f docker-compose.yml up -d mysql_db laravel-docker
