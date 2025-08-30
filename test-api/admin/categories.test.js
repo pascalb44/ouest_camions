@@ -14,8 +14,9 @@ let token;
 
 
 beforeAll(async () => {
-    const { token: t } = await loginAsAdmin();
-    token = t; // to get token
+    const { token: t,  authAxios: ax } = await loginAsAdmin(BASE_URL);
+    token = t;
+    authAxios = ax; // to get token
     /*
         authAxios = axios.create({
             baseURL: process.env.BASE_URL || 'http://mysql_db:8000/api', // pour GitHub/Docker
@@ -30,7 +31,7 @@ beforeAll(async () => {
 
 describe('Check API ENV', () => {
     test('Vérifie que Laravel utilise .env.testing', async () => {
-        const res = await axios.get(`${process.env.BASE_URL}/check-env`);
+        const res = await authAxios.get(`/check-env`);
         expect(res.status).toBe(200);
         expect(res.data).toHaveProperty('APP_ENV', 'testing');
         expect(res.data).toHaveProperty('DB_DATABASE', 'ouest_camions_test');

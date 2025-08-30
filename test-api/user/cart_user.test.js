@@ -1,13 +1,14 @@
 const Axios = require('axios');
 const { loginAsUser } = require('../utils/login');
+const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80';
 
-Axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
+Axios.defaults.baseURL = process.env.BASE_URL || 'http://laravel-docker:80';
 
 let token = '';
 let cartItemId = null;
 
 beforeAll(async () => {
-  token = await loginAsUser();
+  token = await loginAsUser(BASE_URL);
   Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 });
 
@@ -57,11 +58,11 @@ describe('CRUD Panier - Tests d’intégration', () => {
     );
   });
 
-  truckId = 14; 
+  truckId = 14;
   test('Supprimer un camion du panier', async () => {
-  const res = await Axios.delete(`/cart/${truckId}`); 
-  expect(res.status).toBe(200);
-  expect(res.data.message).toMatch(/supprimé/i);
+    const res = await Axios.delete(`/cart/${truckId}`);
+    expect(res.status).toBe(200);
+    expect(res.data.message).toMatch(/supprimé/i);
   });
 
 });
