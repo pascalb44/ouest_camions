@@ -2,11 +2,11 @@ process.env.APP_ENV = 'testing';
 require('dotenv').config({ path: '.env.testing' });
 
 const axios = require('axios');
-const baseURL = process.env.BASE_URL || 'http://laravel-docker:80';
+//const baseURL = process.env.BASE_URL || 'http://laravel-docker:80';
 
 async function loginAsAdmin(BASE_URL) {
     try {
-        const response = await axios.post(`${BASE_URL}/api/login`, {
+        const response = await axios.post(`${BASE_URL}/login`, {
             email: 'admin@ouestcamions.fr',
             password: 'AdminOuest123!',
         });
