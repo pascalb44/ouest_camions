@@ -7,7 +7,7 @@ const baseURL = process.env.BASE_URL || 'http://laravel-docker:80';
 
 async function loginAsAdmin() {
     try {
-        const response = await axios.post(`${baseURL}/api/login`, {
+        const response = await axios.post(`${baseURL}/login`, {
             email: 'admin@ouestcamions.fr',
             password: 'AdminOuest123!',
         });
@@ -30,7 +30,7 @@ async function loginAsAdmin() {
 
 async function loginAsUser() {
     try {
-        const response = await axios.post(`${baseURL}/api/login`, {
+        const response = await axios.post(`${baseURL}/login`, {
             email: 'robert@transportslenantais.fr',
             password: 'robert44',
         });
