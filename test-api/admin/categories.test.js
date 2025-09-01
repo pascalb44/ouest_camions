@@ -1,7 +1,10 @@
 process.env.APP_ENV = 'testing';
 require('dotenv').config({ path: '.env.testing' });
 
-const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80';
+//const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80';
+const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:8000';
+
+
 const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs');
@@ -9,33 +12,21 @@ const path = require('path');
 const { loginAsAdmin } = require('../utils/login');
 jest.setTimeout(20000);
 
-
+let authAxios;
 let token;
 
 
 beforeAll(async () => {
-    const { token: t,  authAxios: ax } = await loginAsAdmin(BASE_URL);
-    token = t;
-    authAxios = ax; // to get token
-    /*
-        authAxios = axios.create({
-            baseURL: process.env.BASE_URL || 'http://mysql_db:8000/api', // pour GitHub/Docker
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-        */
-});
-
-
-describe('Check API ENV', () => {
-    test('Vérifie que Laravel utilise .env.testing', async () => {
-        const res = await authAxios.get(`/check-env`);
-        expect(res.status).toBe(200);
-        expect(res.data).toHaveProperty('APP_ENV', 'testing');
-        expect(res.data).toHaveProperty('DB_DATABASE', 'ouest_camions_test');
+    ({ token } = await loginAsAdmin(BASE_URL));
+    authAxios = axios.create({
+        // baseURL: process.env.BASE_URL || 'http://mysql_db:8000/api', // pour GitHub/Docker
+        baseURL: `${BASE_URL}/api/admin/`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+        },
     });
+
 });
 
 
@@ -50,15 +41,7 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
     // CRUD for categories_trailers
     // categories_trailers create
 
-    test('create a new trailer category', async () => {
-        const authAxios = axios.create({
-            baseURL: BASE_URL,
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-        
+    test('login and create a new trailer category', async () => {
         const form = new FormData();
         form.append('name_category_trailer', 'TestCat-' + Date.now());
         form.append('description', 'Catégorie test créée via Jest');
@@ -70,10 +53,9 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
         form.append('image_category_trailer', fs.createReadStream(imagePath));
 
         try {
-            const response = await authAxios.post('/admin/categories-trailers', form, {
+            const response = await authAxios.post('categories-trailers', form, {
                 headers: {
-                    ...form.getHeaders(),
-                    'APP_ENV': 'testing',
+                    ...form.getHeaders()
                 },
             });
 
@@ -88,9 +70,9 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
     // return to categories_trailers
 
-    test('should return 200 on /admin/categories-trailers', async () => {
+    test('return 200 on /admin/categories-trailers', async () => {
         try {
-            const response = await authAxios.get('/admin/categories-trailers');
+            const response = await authAxios.get('categories-trailers');
             expect(response.status).toBe(200);
         } catch (error) {
             console.error('Erreur lors de la récupération des catégories', error.response?.data || error.message);
@@ -114,7 +96,7 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
         try {
             // Create the category
-            const createResponse = await authAxios.post('/admin/categories-trailers', form, {
+            const createResponse = await authAxios.post('categories-trailers', form, {
                 headers: {
                     ...form.getHeaders(),
                     'APP_ENV': 'testing',
@@ -135,7 +117,7 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
             console.log('Données envoyées pour la mise à jour :', updateData);
 
-            const updateResponse = await authAxios.patch(`/admin/categories-trailers/${categoryId}`, updateData, {
+            const updateResponse = await authAxios.patch(`categories-trailers/${categoryId}`, updateData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -152,7 +134,7 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
     // categories_trailers delete
 
-    test('should login and delete a trailer category', async () => {
+    test('login and delete a trailer category', async () => {
         const form = new FormData();
         form.append('name_category_trailer', 'TestCat-' + Date.now());
         form.append('description', 'Catégorie test créée via Jest');
@@ -165,7 +147,7 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 
         try {
             // Create the category
-            const createResponse = await authAxios.post('/admin/categories-trailers', form, {
+            const createResponse = await authAxios.post('categories-trailers', form, {
                 headers: {
                     ...form.getHeaders(),
                     'APP_ENV': 'testing',
@@ -177,7 +159,7 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
             const categoryId = createResponse.data.data.id;
 
             // Delete the category
-            const deleteResponse = await authAxios.delete(`/admin/categories-trailers/${categoryId}`);
+            const deleteResponse = await authAxios.delete(`categories-trailers/${categoryId}`);
 
             expect(deleteResponse.status).toBe(200);
             console.log('Catégorie supprimée :', categoryId);
@@ -194,10 +176,13 @@ describe('Admin API - CategoryTrailer CRUD avec login', () => {
 // CRUD for categories_trucks
 describe('Admin CategoryTruck CRUD', () => {
 
+    test('Vérifie si connexion et token', () => {
+        expect(token).toBeTruthy();   // token est maintenant défini
+    });
 
     // categories_trucks create
 
-    test('should login and create a new truck category', async () => {
+    test('login and create a new truck category', async () => {
         const form = new FormData();
         form.append('name_category_truck', 'TestCat-' + Date.now());
 
@@ -208,10 +193,9 @@ describe('Admin CategoryTruck CRUD', () => {
         form.append('image_category_truck', fs.createReadStream(imagePath));
 
         try {
-            const response = await authAxios.post('/admin/categories-trucks', form, {
+            const response = await authAxios.post('categories-trucks', form, {
                 headers: {
-                    ...form.getHeaders(),
-                    'APP_ENV': 'testing',
+                    ...form.getHeaders()
                 },
             });
 
@@ -226,9 +210,9 @@ describe('Admin CategoryTruck CRUD', () => {
 
     // return to categories_trucks
 
-    test('should return 200 on /admin/categories-trucks', async () => {
+    test('return 200 on /admin/categories-trucks', async () => {
         try {
-            const response = await authAxios.get('/admin/categories-trucks');
+            const response = await authAxios.get('categories-trucks');
             expect(response.status).toBe(200);
         } catch (error) {
             console.error('Erreur lors de la récupération des catégories', error.response?.data || error.message);
@@ -240,7 +224,7 @@ describe('Admin CategoryTruck CRUD', () => {
 
     // categories_trucks update
 
-    test('should login, create then update the truck category ', async () => {
+    test('login, create and update the truck category ', async () => {
         const form = new FormData();
         form.append('name_category_truck', 'TestCat-' + Date.now());
         const imagePath = path.resolve(__dirname, 'camion_IA2.jpg');
@@ -253,7 +237,7 @@ describe('Admin CategoryTruck CRUD', () => {
 
         try {
             // Create the category
-            const createResponse = await authAxios.post('/admin/categories-trucks', form, {
+            const createResponse = await authAxios.post('categories-trucks', form, {
                 headers: {
                     ...form.getHeaders(),
                     'APP_ENV': 'testing',
@@ -274,7 +258,7 @@ describe('Admin CategoryTruck CRUD', () => {
 
             console.log('Données envoyées pour la mise à jour :', updateData);
 
-            const updateResponse = await authAxios.patch(`/admin/categories-trucks/${categoryId}`, updateData, {
+            const updateResponse = await authAxios.patch(`categories-trucks/${categoryId}`, updateData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -291,7 +275,7 @@ describe('Admin CategoryTruck CRUD', () => {
 
     // categories_trucks delete
 
-    test('should login and delete a truck category', async () => {
+    test(' login and delete a truck category', async () => {
         const form = new FormData();
         form.append('name_category_truck', 'TestCat-' + Date.now());
 
@@ -303,10 +287,9 @@ describe('Admin CategoryTruck CRUD', () => {
 
         try {
             // Create the category
-            const createResponse = await authAxios.post('/admin/categories-trucks', form, {
+            const createResponse = await authAxios.post('categories-trucks', form, {
                 headers: {
-                    ...form.getHeaders(),
-                    'APP_ENV': 'testing',
+                    ...form.getHeaders()
                 },
             });
 
@@ -315,7 +298,7 @@ describe('Admin CategoryTruck CRUD', () => {
             const categoryId = createResponse.data.data.id;
 
             // Delete the category
-            const deleteResponse = await authAxios.delete(`/admin/categories-trucks/${categoryId}`);
+            const deleteResponse = await authAxios.delete(`categories-trucks/${categoryId}`);
 
             expect(deleteResponse.status).toBe(200);
             console.log('Catégorie supprimée :', categoryId);

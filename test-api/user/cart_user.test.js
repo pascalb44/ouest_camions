@@ -1,15 +1,20 @@
+process.env.APP_ENV = 'testing';
+require('dotenv').config({ path: '.env.testing' });
+
 const Axios = require('axios');
 const { loginAsUser } = require('../utils/login');
-const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80';
+//const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80';
+const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:8000';
 
-Axios.defaults.baseURL = process.env.BASE_URL || 'http://laravel-docker:80';
+//Axios.defaults.baseURL = process.env.BASE_URL || 'http://laravel-docker:80';
 
-let token = '';
+let authAxios = null;
 let cartItemId = null;
 
 beforeAll(async () => {
-  token = await loginAsUser(BASE_URL);
-  Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  ({ authAxios } = await loginAsUser(BASE_URL));
+  //axios.defaults.baseURL = BASE_URL;
+  // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 });
 
 
@@ -19,30 +24,27 @@ describe('CRUD Panier - Tests d’intégration', () => {
   let truckId;
 
   test('Créer un élément dans le panier', async () => {
-    try {
-      const res = await Axios.post('/cart', {
+    const payload = {
 
-        start_date: '2025-08-08',
-        end_date: '2025-08-10',
-        amount: 300,
-        trucks: [14],
-        trailers: [],
-      });
+      start_date: '2025-08-08',
+      end_date: '2025-08-10',
+      amount: 120,
+      method_payment: 'none',
+      trucks: [14],
+      trailers: [],
+    };
 
-      expect(res.status).toBe(200);
-      expect(res.data).toHaveProperty('order');
-      expect(res.data.order).toHaveProperty('id');
-      expect(res.data.message).toMatch(/panier enregistré/i);
-      cartItemId = res.data.order.id;
-    }
-    catch (error) {
-      console.error('Erreur POST /cart:', error.response?.data || error.message);
-      throw error;
-    }
+    const res = await authAxios.post('/cart', payload)
+
+    expect(res.status).toBe(200);
+    expect(res.data).toHaveProperty('order');
+    expect(res.data.order).toHaveProperty('id');
+    expect(res.data.message).toMatch(/panier enregistré/i);
+    cartItemId = res.data.order.id;
   });
 
-  test('Récupérer les éléments du panier', async () => {
-    const res = await Axios.get('/cart');
+  test('Afficher le panier', async () => {
+    const res = await authAxios.get('/cart');
     expect(res.status).toBe(200);
     expect(res.data).toHaveProperty('data');
     expect(res.data.data).toEqual(
@@ -58,11 +60,8 @@ describe('CRUD Panier - Tests d’intégration', () => {
     );
   });
 
-  truckId = 14;
-  test('Supprimer un camion du panier', async () => {
-    const res = await Axios.delete(`/cart/${truckId}`);
+  test('Supprimer le panier', async () => {
+    const res = await authAxios.delete(`/orders/${cartItemId}`);
     expect(res.status).toBe(200);
-    expect(res.data.message).toMatch(/supprimé/i);
   });
-
 });

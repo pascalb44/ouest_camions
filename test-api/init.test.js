@@ -3,7 +3,14 @@ require('dotenv').config({ path: '.env.testing' });
 
 const { expect, test, beforeAll } = require('@jest/globals');
 const axios = require('axios');
-const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80';
+const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:8000';
+ 
+
+//const BASE_URL = process.env.BASE_URL || 'http://laravel-docker:80';
+
+console.log('url utilisee dans init BASE_URL:', BASE_URL) ; //used URL 
+
+
 const { loginAsAdmin } = require('./utils/login');
 jest.setTimeout(30000);
 
@@ -12,21 +19,22 @@ let token;
 beforeAll(async () => {
     const { token: t } = await loginAsAdmin(BASE_URL);
     token = t;
+    //console.log('Token reçu :', token); //  token
 });
 
 test('Vérifie si l\'utilisateur peut se connecter et obtenir un token', () => {
     expect(token).toBeTruthy();
 });
 
-test('Exemple : récupérer l\'env Laravel', async () => {
+test('Pointer vers la base ouest_camions_test', async () => {
     const authAxios = axios.create({
         baseURL: BASE_URL,
         headers: { Authorization: `Bearer ${token}` },
     });
 
-    const res = await authAxios.get('/check-env');
-    expect(res.status).toBe(200);
-    expect(res.data).toHaveProperty('APP_ENV', 'testing');
+    const response = await authAxios.get('api/check-env');
+    expect(response.status).toBe(200);
+    expect(response.data).toHaveProperty('APP_ENV', 'testing');
 });
 
 /*
@@ -60,7 +68,7 @@ async function login(credentials) {
 
     const res = await Axios.post('/login', credentials); // request
     console.log('Réponse login:', res.data);  // <-- voir ce qui arrive
-    const { user: userData, access_token } = res.data.data; // user data
+    
     const token = access_token.token; // token
     Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     user = {

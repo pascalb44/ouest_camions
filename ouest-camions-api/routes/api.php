@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\CategoryTrailerController;
 /*  public routes */
 
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 
 // categories-trucks
 
@@ -134,4 +134,3 @@ Route::middleware('auth:api')->group(function () {
   Route::patch('/orders/{orders}', [OrderController::class, 'update']);
   Route::delete('/orders/{orders}', [OrderController::class, 'destroy']);
 });
-

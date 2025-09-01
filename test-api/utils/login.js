@@ -1,19 +1,29 @@
 process.env.APP_ENV = 'testing';
-require('dotenv').config({ path: '.env.testing' });
+//require('dotenv').config({ path: '.env.testing' });
 
 const axios = require('axios');
 //const baseURL = process.env.BASE_URL || 'http://laravel-docker:80';
+const BASE_URL = process.env.BASE_URL || 'http://127.0.0.1:8000';
+//const BASE_URL = process.env.BASE_URL;
 
 async function loginAsAdmin(BASE_URL) {
     try {
-        const response = await axios.post(`${BASE_URL}/login`, {
+        console.log('URL de connexion dans login.js :', `${BASE_URL}/api/login`); // connexion URL
+        const response = await axios.post(`${BASE_URL}/api/login`, {
             email: 'admin@ouestcamions.fr',
             password: 'AdminOuest123!',
         });
 
-        const token = response.data.access_token;
+        console.log('Type de response.data :', typeof response.data);
+        console.log('Réponse de l\'API :', response.data); // response 
+
+        const token = response.data.data?.access_token?.token;
+        if (!token) {
+            throw new Error("Token non trouvé dans la réponse : structure inattendue.");
+        }
+
         const authAxios = axios.create({
-            baseURL,
+            baseURL: BASE_URL,
             headers: {
                 Accept: 'application/json',
                 Authorization: `Bearer ${token}`,
@@ -29,15 +39,15 @@ async function loginAsAdmin(BASE_URL) {
 
 async function loginAsUser(BASE_URL) {
     try {
-        const response = await axios.post(`${BASE_URL}/login`, {
+        console.log('URL de connexion dans login.js :', `${BASE_URL}/api/login`);
+        const response = await axios.post(`${BASE_URL}/api/login`, {
             email: 'robert@transportslenantais.fr',
             password: 'robert44',
         });
 
-        const token = response.data.access_token;
-
+        const token = response.data.data?.access_token?.token;
         const authAxios = axios.create({
-            baseURL,
+            baseURL: `${BASE_URL}/api`,
             headers: {
                 Accept: 'application/json',
                 Authorization: `Bearer ${token}`,
