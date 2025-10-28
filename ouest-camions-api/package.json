@@ -7,15 +7,15 @@
         "test": "NODE_ENV=testing node node_modules/jest/bin/jest.js --runInBand"
     },
     "devDependencies": {
+        "@types/jest": "^29.5.12",
         "autoprefixer": "^10.4.20",
-        "axios": "^1.7.4",
+        "axios": "^1.13.0",
         "concurrently": "^9.0.1",
+        "jest": "^27.5.1",
+        "jest-environment-node": "^29.7.0",
         "laravel-vite-plugin": "^1.2.0",
         "postcss": "^8.4.38",
         "tailwindcss": "^3.4.13",
-        "vite": "^6.0.11",
-        "jest": "^27.5.1",
-        "jest-environment-node": "^29.7.0",
-        "@types/jest": "^29.5.12"
+        "vite": "^6.0.11"
     }
 }
