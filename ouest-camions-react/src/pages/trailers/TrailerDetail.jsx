@@ -78,7 +78,7 @@ const TrailerDetail = () => {
         });
 
         if (isTrailerAlreadyBooked) {
-            alert("Ce remorque est déjà réservé sur cette période. Veuillez choisir d'autres dates.");
+            alert("Cette remorque est déjà réservée sur cette période. Veuillez choisir d'autres dates.");
             return;
         }
 

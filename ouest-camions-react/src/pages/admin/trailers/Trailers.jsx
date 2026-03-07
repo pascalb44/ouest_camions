@@ -51,7 +51,7 @@ const Trailers = () => {
                             <div><strong>Modèle :</strong> {trailer.name_trailer}</div>
                             <div><strong>Catégorie :</strong> {trailer.categories_trailers?.name_category_trailer || "categorie non disponible"}</div>
                             <div className="admin-trailer-image-container">
-                                <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/trailer/${trailer.image_trailer}`} alt={trailer.name_trailer} className="admin-trailer-image" />
+                                <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/Trailer/${trailer.image_trailer}`} alt={trailer.name_trailer} className="admin-trailer-image" />
                             </div>
                         </div>
                         <div className="admin-trailer-bloc-right">

@@ -198,7 +198,7 @@ const EditTrailer = () => {
                         {imagePreview ? (
                             <img src={imagePreview} alt={trailer.name_trailer} className="admin-trailer-image-edit" />
                         ) : trailer.image_trailer ? (
-                            <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/trailer/${trailer.image_trailer}`}
+                            <img src={`${process.env.REACT_APP_API_URL}/storage/uploads/Trailer/${trailer.image_trailer}`}
                                 alt={trailer.name_trailer} className="admin-trailer-image-edit" />
                         ) : (
                             <p>Aucune image</p>
